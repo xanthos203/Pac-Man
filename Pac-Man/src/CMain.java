@@ -1,6 +1,6 @@
 import control.CLogDB;
 
-
+//test
 
 public class CMain
 {
