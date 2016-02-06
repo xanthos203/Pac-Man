@@ -6,7 +6,8 @@ import java.util.TreeMap;
 
 public class CLogDB 
 {
-	private ArrayList<CLogzeile> log = new ArrayList<CLogzeile>();
+	public ArrayList<CLogzeile> log = new ArrayList<CLogzeile>();
+	CLogzeile logzeile = new CLogzeile();
 	
 	public CLogDB(String path) 
 	{
@@ -19,7 +20,7 @@ public class CLogDB
 			String[] teile = zeile.split(";");
 			
 			//Manchmal fehlt die letzte Spalte (Information)
-			CLogzeile logzeile = null;
+			logzeile = null;
 			
 			if (teile.length >= 6) 
 			{
@@ -32,18 +33,6 @@ public class CLogDB
 			}
 			
 			log.add(logzeile);
-		}
-	}
-	
-//-----------------------------------------------------------------------------------------------------	
-	public void listTagesaktivitaeten() 
-	{
-		TreeMap<String, Integer> anzTag = new TreeMap<String, Integer>();
-		ListIterator<CLogzeile> lit = log.listIterator(log.size() - 1);  //auf letzte Zeile positionieren
-		
-		while (lit.hasPrevious()) 
-		{
-			CLogzeile zeile = lit.previous();
 		}
 	}
 }
