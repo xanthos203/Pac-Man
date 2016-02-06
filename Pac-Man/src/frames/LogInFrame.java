@@ -64,6 +64,11 @@ public final class LogInFrame extends JFrame implements KeyListener
 		contentPane.add(infoPanel, BorderLayout.EAST);
 	}
 
+	public String getUsername()
+	{
+		return username;
+	}
+	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
