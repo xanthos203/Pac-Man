@@ -1,11 +1,9 @@
 import control.CLogDB;
 
-//test halli hallo
-
 public class CMain
 {
 	public static void main(String[] args) 
 	{
-		CLogDB logdb = new CLogDB("C:/Users/Thomas/Desktop/Pac-Man Projekt/Mappe1.csv");
+		CLogDB logdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\GUI.csv");
 	}
 }
