@@ -24,6 +24,7 @@ public class CLogzeile extends JFrame
 	
 	public CLogzeile()
 	{
+		System.out.println("HALLO");
 		oFrame.setBounds(300,100 , 500, 500);
 		//oFrame.setLayout(new FlowLayout());
 		contantPane.setMaximumSize(oFrame.getSize());
