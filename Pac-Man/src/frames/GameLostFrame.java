@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class GameLostFrame extends JFrame implements ActionListener
+public final class GameLostFrame extends JFrame implements ActionListener
 {
 	private Color 		backgroundColor	= new Color(38, 0, 38);
 	private JPanel 		contentPane		= new JPanel(),
