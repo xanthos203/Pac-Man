@@ -75,9 +75,9 @@ public final class LogInFrame extends JFrame implements KeyListener
 				usernameFeld.setText("");
 				return;
 			}
-			if(usernameFeld.getText().length() > 12)
+			if(usernameFeld.getText().length() > 20)
 			{
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername kann nur maximal 12 Zeichen lang sein.", "Zu langer Name", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf nur maximal 20 Zeichen lang sein.", "Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				usernameFeld.setText("");
 			}
 			else

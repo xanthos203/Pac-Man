@@ -9,10 +9,12 @@ public final class GameWonFrame extends JFrame implements ActionListener
 	private Color 		backgroundColor	= new Color(38, 0, 38);
 	private JPanel 		contentPane		= new JPanel(),
 						gratulationPanel= new JPanel(),
+						gratTextPanel	= new JPanel(),
 						playagainPanel	= new JPanel(),
 						buttonPanel		= new JPanel();
 	private Icon		gameWonIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Game_won.PNG")));
 	private JLabel		gratulationLabel= new JLabel(),
+						gratTextLabel	= new JLabel(),
 						playagainLabel	= new JLabel(),
 						wonImage_label	= new JLabel(gameWonIcon);
 	private JButton		jaButton		= new JButton("     Ja     "),
@@ -35,15 +37,26 @@ public final class GameWonFrame extends JFrame implements ActionListener
 		contentPane.setBackground(backgroundColor);
 		contentPane.setLayout(new BorderLayout());
 		
-		gratulationLabel.setText("GRATULATION " + LogInFrame.getUsername() + "\u0021 SIE HABEN GEWONNEN\u0021 \u003A\u0029");
+		gratulationLabel.setText("GRATULATION \"" + LogInFrame.getUsername() + "\"\u0021");
+		gratulationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		gratulationLabel.setFont(new Font("arial", Font.PLAIN, 40));
 		gratulationLabel.setForeground(Color.CYAN);
+		
+		gratTextLabel.setText("SIE HABEN GEWONNEN\u0021 \u003A\u0029");
+		gratTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		gratTextLabel.setFont(new Font("arial", Font.PLAIN, 40));
+		gratTextLabel.setForeground(Color.CYAN);
+		
+		gratTextPanel.setLayout(new BorderLayout());
+		gratTextPanel.setBackground(backgroundColor);
+		gratTextPanel.add(gratulationLabel, BorderLayout.NORTH);
+		gratTextPanel.add(gratTextLabel, BorderLayout.SOUTH);
 		
 		gratulationPanel.setLayout(new GridBagLayout());
 		GridBagConstraints center = new GridBagConstraints();
 		center.anchor = GridBagConstraints.CENTER;
 		center.fill = GridBagConstraints.NONE;
-		gratulationPanel.add(gratulationLabel);
+		gratulationPanel.add(gratTextPanel);
 		gratulationPanel.setBackground(backgroundColor);
 		
 		playagainLabel.setText("Nochmal\u003F");
