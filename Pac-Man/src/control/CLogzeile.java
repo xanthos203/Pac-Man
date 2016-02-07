@@ -1,12 +1,15 @@
 package control;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class CLogzeile 
+public class CLogzeile extends JFrame
 {
 	JFrame oFrame = new JFrame();
 	JPanel contantPane = new JPanel();
@@ -15,13 +18,16 @@ public class CLogzeile
 	int zaehlerX=0;
 	int laenge=20;
 	int breite=5;
+	
 	static int zaehler =0;
+	JPanel jPanel = new JPanel();
 	
 	public CLogzeile()
 	{
-		oFrame.add(contantPane);
-		oFrame.setLayout(new FlowLayout());
 		oFrame.setBounds(300,100 , 500, 500);
+		//oFrame.setLayout(new FlowLayout());
+		contantPane.setMaximumSize(oFrame.getSize());
+		oFrame.add(contantPane);		
 		oFrame.setVisible(true);
 	}
 	
@@ -30,34 +36,35 @@ public class CLogzeile
 	public CLogzeile(String string1, String string2, String string3,
 					 String string4, String string5, String string6)
 	{
+		
 		if(string1.equals("0") )
 		{
-			
+			Muenzendarstellen();
 		}
 		
 		if(string2.equals("0") )
 		{
-			
+			Muenzendarstellen();
 		}
 		
 		if(string3.equals("0") )
 		{
-			
+			Muenzendarstellen();
 		}
 		
 		if(string4.equals("0") )
 		{
-			
+			Muenzendarstellen();
 		}
 		
 		if(string5.equals("0") )
 		{
-			Darstellen();
+			Muenzendarstellen();
 		}
 		
 		if(string6.equals("0") )
 		{
-		
+			Muenzendarstellen();
 		}
 //-------------------------------\\			
 		if(string1.equals("1") )
@@ -119,37 +126,7 @@ public class CLogzeile
 		{
 			
 		}
-//-------------------------------\\	
-		
-		if(string1.equals("2") )
-		{
-			
-		}
-				
-		if(string2.equals("2") )
-		{
-			
-		}
-				
-		if(string3.equals("2") )
-		{
-			
-		}
-				
-		if(string4.equals("2") )
-		{
-			
-		}
-		
-		if(string5.equals("2") )
-		{
-			
-		}
-				
-		if(string6.equals("2") )
-		{
-			
-		}
+
 //-------------------------------\\	
 		
 		if(string1.equals("3") )
@@ -186,13 +163,34 @@ public class CLogzeile
 	
 //---------------------------------------------------------	
 	
-	public void Darstellen()
+	private void Muenzendarstellen() 
 	{
-		JPanel jPanel = new JPanel();
+		
+	}
+	
+//---------------------------------------------------------
+	
+	public void Darstellen()
+	{		
 		jPanel.setBounds(zaehlerX,zaehlerY,laenge, breite);
 		jPanel.setBackground(Color.BLUE);
 		contantPane.add(jPanel);
-		oFrame.repaint();
-		
+		clear();
+		System.out.println("1");
+	}
+	
+	public void clear() 
+	{
+        EventQueue.invokeLater(new Runnable() 
+        {
+            @Override
+            public void run() 
+            {
+                oFrame.removeAll();
+                //oFrame.setLayout(new FlowLayout());
+                oFrame.add(jPanel);
+                oFrame.validate();
+            }
+        });
 	}
 }
