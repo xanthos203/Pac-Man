@@ -2,7 +2,6 @@ package frames;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public final class GameWonFrame extends JFrame implements ActionListener
