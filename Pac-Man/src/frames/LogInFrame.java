@@ -71,13 +71,13 @@ public final class LogInFrame extends JFrame implements KeyListener
 		{
 			if(usernameFeld.getText().equals("") || (usernameFeld.getText().equals(" ")))
 			{
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein!", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				usernameFeld.setText("");
 				return;
 			}
 			if(usernameFeld.getText().length() > 12)
 			{
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein!", "Zu langer Name", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername kann nur maximal 12 Zeichen lang sein.", "Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				usernameFeld.setText("");
 			}
 			else
@@ -88,7 +88,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 				/*========Hauptfenster öffnen========*/
 				
 //				GameWonFrame  frame = new GameWonFrame();	// <= Gewonnen-Fenster; nur TEST!!!!
-//				GameLostFrame frame = new GameLostFrame(); 	// <= Verloren-Fenster; nur TEST!!!!
+				GameLostFrame frame = new GameLostFrame(); 	// <= Verloren-Fenster; nur TEST!!!!
 			}
 		}
 	}

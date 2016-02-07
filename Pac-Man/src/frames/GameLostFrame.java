@@ -36,7 +36,7 @@ public class GameLostFrame extends JFrame implements ActionListener
 		contentPane.setLayout(new BorderLayout());
 		
 		gameoverLabel.setText("GAME OVER!");
-		gameoverLabel.setFont(new Font("arial", Font.BOLD + Font.ITALIC, 30));
+		gameoverLabel.setFont(new Font("arial", Font.BOLD + Font.ITALIC, 40));
 		gameoverLabel.setForeground(Color.CYAN);
 		
 		gameoverPanel.setLayout(new GridBagLayout());
