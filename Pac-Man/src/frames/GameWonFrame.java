@@ -35,7 +35,7 @@ public final class GameWonFrame extends JFrame implements ActionListener
 		contentPane.setBackground(backgroundColor);
 		contentPane.setLayout(new BorderLayout());
 		
-		gratulationLabel.setText("GRATULATION " + LogInFrame.getUsername() + "! SIE HABEN GEWONNEN! :)");
+		gratulationLabel.setText("GRATULATION " + LogInFrame.getUsername() + "\u0021 SIE HABEN GEWONNEN\u0021 \u003A\u0029");
 		gratulationLabel.setFont(new Font("arial", Font.PLAIN, 40));
 		gratulationLabel.setForeground(Color.CYAN);
 		

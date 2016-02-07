@@ -29,7 +29,8 @@ public class CLogzeile extends JFrame
 		//oFrame.setLayout(new FlowLayout());
 		contantPane.setMaximumSize(oFrame.getSize());
 		oFrame.add(contantPane);		
-		oFrame.setVisible(true);
+//		oFrame.setVisible(true);
+		oFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 //------------------------------------------------------------------	

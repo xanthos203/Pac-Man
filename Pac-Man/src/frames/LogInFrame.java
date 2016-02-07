@@ -87,8 +87,8 @@ public final class LogInFrame extends JFrame implements KeyListener
 				
 				/*========Hauptfenster öffnen========*/
 				
-//				GameWonFrame  frame = new GameWonFrame();	// <= Gewonnen-Fenster; nur TEST!!!!
-				GameLostFrame frame = new GameLostFrame(); 	// <= Verloren-Fenster; nur TEST!!!!
+				GameWonFrame  frame = new GameWonFrame();	// <= Gewonnen-Fenster; nur TEST!!!!
+//				GameLostFrame frame = new GameLostFrame(); 	// <= Verloren-Fenster; nur TEST!!!!
 			}
 		}
 	}
