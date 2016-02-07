@@ -1,6 +1,7 @@
 package main;
 
 import control.CLogDB;
+import frames.GameWonFrame;
 import frames.LogInFrame;
 
 public class CMain

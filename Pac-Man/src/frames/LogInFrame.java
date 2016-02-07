@@ -2,11 +2,12 @@ package frames;
 
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.swing.*;
 
 public final class LogInFrame extends JFrame implements KeyListener
 {
+	private static String username		= null;
+	
 	private Color 		backgroundColor	= new Color(38, 0, 38);
 	private JPanel 		contentPane		= new JPanel();
 	private Icon		pacmanIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man.PNG"))),
@@ -14,8 +15,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 						infoText		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Info_Text.PNG")));
 	private JPanel		infoPanel		= new JPanel(),
 						usernamePanel	= new JPanel();
-	private JLabel		text			= new JLabel(),
-						pmImage_label	= new JLabel(pacmanIcon),
+	private JLabel		pmImage_label	= new JLabel(pacmanIcon),
 						infoImage_label	= new JLabel(infoIcon),
 						infoText_label	= new JLabel(infoText);
 	private JTextField	usernameFeld	= new JTextField();
@@ -23,7 +23,6 @@ public final class LogInFrame extends JFrame implements KeyListener
 						screenHeight	= Toolkit.getDefaultToolkit().getScreenSize().height,
 						frameWidth		= 1100,
 						frameHeight		= 735;
-	private String		username		= null;
 		
 	public LogInFrame()
 	{
@@ -43,10 +42,6 @@ public final class LogInFrame extends JFrame implements KeyListener
 		infoPanel.add(infoImage_label, BorderLayout.WEST);
 		infoPanel.add(infoText_label, BorderLayout.EAST);
 		
-		text.setText("Bitte Spielernamen eingeben:");
-		text.setFont(new Font("arial", Font.BOLD, 12));
-		text.setForeground(Color.WHITE);
-		
 		usernameFeld.setColumns(7);
 		usernameFeld.setFont(new Font("arial", Font.PLAIN, 27));
 		usernameFeld.setHorizontalAlignment(SwingConstants.LEFT);
@@ -64,7 +59,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		contentPane.add(infoPanel, BorderLayout.EAST);
 	}
 
-	public String getUsername()
+	public static String getUsername()
 	{
 		return username;
 	}
@@ -75,12 +70,25 @@ public final class LogInFrame extends JFrame implements KeyListener
 		if(e.getKeyCode() == KeyEvent.VK_ENTER)
 		{
 			if(usernameFeld.getText().equals("") || (usernameFeld.getText().equals(" ")))
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein!", "Fehler", JOptionPane.ERROR_MESSAGE);
+			{
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein!", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				usernameFeld.setText("");
+				return;
+			}
+			if(usernameFeld.getText().length() > 12)
+			{
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein!", "Zu langer Name", JOptionPane.WARNING_MESSAGE);
+				usernameFeld.setText("");
+			}
 			else
 			{
 				username = usernameFeld.getText();
-				System.exit(0);
-				// Hauptfenster öffnen
+				this.dispose();
+				
+				/*========Hauptfenster öffnen========*/
+				
+//				GameWonFrame  frame = new GameWonFrame();	// <= Gewonnen-Fenster; nur TEST!!!!
+//				GameLostFrame frame = new GameLostFrame(); 	// <= Verloren-Fenster; nur TEST!!!!
 			}
 		}
 	}
