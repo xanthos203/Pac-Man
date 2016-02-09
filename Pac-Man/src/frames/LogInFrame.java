@@ -89,7 +89,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		
 		/*dem Panel wird ein neues GridBagLayout hinzugefügt*/
 		usernamePanel.setLayout(new GridBagLayout());
-		/*erstellt ein GridBagConstraint-Objekt mit all seinen Feldern auf ihren Standardwert gesetzt*/
+		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints center = new GridBagConstraints();
 		/*das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert*/
 		center.anchor = GridBagConstraints.CENTER;

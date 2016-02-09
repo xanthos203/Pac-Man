@@ -4,83 +4,146 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>verloren</b> hat, dargestellt.<br>
+ * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle seine Leben verloren</i> hat.<br>
+ * Diese Klasse erbt von der Klasse <b>JFrame</b> und implementiert den <b>ActionListener</b>.
+ * @author Manuel Glantschnig
+ * @version 1.0 */
 public final class GameLostFrame extends JFrame implements ActionListener
 {
+	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
-	private JPanel 		contentPane		= new JPanel(),
-						gameoverPanel	= new JPanel(),
-						playagainPanel	= new JPanel(),
-						buttonPanel		= new JPanel();
+	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
+	private JPanel 		contentPane		= new JPanel();
+	/**Auf dem <i>gameoverPanel</i> wird das <b>gameoverLabel</b> angezeigt.*/
+	private JPanel		gameoverPanel= new JPanel();
+	/**Auf dem <i>playagainPanel</i> werden alle <b>Komponenten</b> angezeigt, die <b>zum Wiederholen des Spiels</b> notwendig sind.*/
+	private JPanel		playagainPanel	= new JPanel();
+	/**Auf dem <i>buttonPanel</i> werden sämtliche <b>Buttons</b> nebeneinander <b>dargestellt</b>.*/
+	private JPanel		buttonPanel		= new JPanel();
+	/**Das Icon <i>gameLostIcon</i> stellt die <b>Hauptfigur Pac-Man</b>, der gerade <i>von Geistern verspeist wird</i>, dar.*/
 	private Icon		gameLostIcon	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Game_lost.PNG")));
-	private JLabel		gameoverLabel	= new JLabel(),
-						playagainLabel	= new JLabel(),
-						lostImage_label	= new JLabel(gameLostIcon);
-	private JButton		jaButton		= new JButton("     Ja     "),
-						neinButton		= new JButton("   Nein   ");
-	private int 		screenWidth		= Toolkit.getDefaultToolkit().getScreenSize().width,  
-						screenHeight	= Toolkit.getDefaultToolkit().getScreenSize().height,
-						frameWidth		= 1100,
-						frameHeight		= 735;
+	/**Mit dem <i>gameoverLabel</i> wird dem Benutzer mitgeteilt, dass das <b>Spiel vorbei</b> ist.*/
+	private JLabel		gameoverLabel= new JLabel();
+	/**Mit dem <i>playagainLabel</i> wird der Benutzer gefragt, ob er <b>nochmal spielen</b> will.*/
+	private JLabel		playagainLabel	= new JLabel();
+	/**Auf dem Label <i>lostImage_label</i> wird das Icon <b>gameLostIcon</b> dargestellt.*/
+	private JLabel		lostImage_label	= new JLabel(gameLostIcon);
+	/**Mit dem <i>ja</i>-Button bestätigt der Benutzer, dass er <b>nochmal spielen</b> möchte.*/
+	private JButton		jaButton		= new JButton("     Ja     ");
+	/**Mit dem <i>nein</i>-Button bestätigt der Benutzer, dass er das <b>Spiel beenden</b> möchte.*/
+	private JButton		neinButton		= new JButton("   Nein   ");
+	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
+	private int 		screenWidth		= Toolkit.getDefaultToolkit().getScreenSize().width;
+	/**In <i>screenHeight</i> wird die <b>Höhe des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
+	private int			screenHeight	= Toolkit.getDefaultToolkit().getScreenSize().height;
+	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
+	private int			frameWidth		= 1100;
+	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
+	private int			frameHeight		= 735;
 	
+	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public GameLostFrame()
 	{
+		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+		/*beim Schließen des Fensters wird das Programm beendet*/
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		/*der Titel der Fensters wird zugewiesen*/
 		setTitle("Verloren");
+		/*das Fenster wird sichtbar gemacht*/
 		setVisible(true);
+		/*das Fenster ist in seiner Größe nicht veränderbar*/
 		setResizable(false);
+		/*die Größe des Fensters wird festgelegt*/
 		setSize(frameWidth, frameHeight);
+		/*die Position des Fensters am Bildschirm wird festgelegt*/
 		setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
+		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
 		add(contentPane);
+		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
 		contentPane.setBackground(backgroundColor);
+		/*der contentPane wird ein neues BorderLayout zugewiesen*/
 		contentPane.setLayout(new BorderLayout());
 		
+		/*dem gameoverLabel wird der Hinweistext, dass das Spiel vorbei ist, zugewiesen*/
 		gameoverLabel.setText("GAME OVER\u0021");
+		/*dem Text im gameoverLabel wird ein Schriftstil zugewiesen*/
 		gameoverLabel.setFont(new Font("arial", Font.BOLD + Font.ITALIC, 40));
+		/*dem Text im gameoverLabel wird eine Schriftfarbe zugewiesen*/
 		gameoverLabel.setForeground(Color.CYAN);
 		
+		/*dem Panel wird ein neues GridBagLayout hinzugefügt*/
 		gameoverPanel.setLayout(new GridBagLayout());
+		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints center = new GridBagConstraints();
+		/*das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert*/
 		center.anchor = GridBagConstraints.CENTER;
+		/*das GridBagConstraint-Objekt wird in seiner Größe nicht verändert*/
 		center.fill = GridBagConstraints.NONE;
+		/*dem Panel wird das Textfeld im Zentrum hinzugefügt*/
 		gameoverPanel.add(gameoverLabel, center);
+		/*die Hintergrundfarbe des Panels wird festgelegt*/
 		gameoverPanel.setBackground(backgroundColor);
 		
+		/*dem playagainLabel wird der Fragetext zugewiesen*/
 		playagainLabel.setText("Nochmal\u003F");
-		playagainLabel.setFont(new Font("arial", Font.PLAIN, 38));
-		playagainLabel.setForeground(Color.MAGENTA);
+		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
 		playagainLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		/*dem Text im playagainLabel wird ein Schriftstil zugewiesen*/
+		playagainLabel.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem Text im playagainLabel wird eine Schriftfarbe zugewiesen*/
+		playagainLabel.setForeground(Color.MAGENTA);
 		
+		/*dem ja-Button wird ein Schriftstil zugewiesen*/
 		jaButton.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem ja-Button wird DIESE Klasse als ActionListener zugewiesen*/
 		jaButton.addActionListener(this);
+		/*dem nein-Button wird ein Schriftstil zugewiesen*/
 		neinButton.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem nein-Button wird DIESE Klasse als ActionListener zugewiesen*/
 		neinButton.addActionListener(this);
 		
+		/*dem buttonPanel wird ein neues FlowLayout hinzugefügt*/
 		buttonPanel.setLayout(new FlowLayout());
+		/*dem buttonPanel wird eine Hintergrundfarbe zugewiesen*/
 		buttonPanel.setBackground(backgroundColor);
+		/*dem buttonPanel wird der ja-Button zugewiesen*/
 		buttonPanel.add(jaButton);
+		/*dem buttonPanel wird der nein-Button zugewiesen*/
 		buttonPanel.add(neinButton);
 		
+		/*dem playagainPanel wird ein neues BorderLayout hinzugefügt*/
 		playagainPanel.setLayout(new BorderLayout());
+		/*dem playagainPanel wird eine Hintergrundfarbe zugewiesen*/
 		playagainPanel.setBackground(backgroundColor);
+		/*dem playagainPanel wird das playagainLabel im Norden des BorderLayouts hinzugefügt*/
 		playagainPanel.add(playagainLabel, BorderLayout.NORTH);
+		/*dem playagainPanel wird das buttonPanel im Süden des BorderLayouts hinzugefügt*/
 		playagainPanel.add(buttonPanel, BorderLayout.SOUTH);
 		
+		/*der contentPane wird das lostImage_label im Norden des BorderLayouts hinzugefügt*/
 		contentPane.add(lostImage_label, BorderLayout.NORTH);
+		/*der contentPane wird das gameoverPanel im Zentrum des BorderLayouts hinzugefügt*/
 		contentPane.add(gameoverPanel, BorderLayout.CENTER);
+		/*der contentPane wird das playagainPanel im Süden des BorderLayouts hinzugefügt*/
 		contentPane.add(playagainPanel, BorderLayout.SOUTH);
 	}
 
+	/**Die <i>actionPerformed</i>-Methode fängt Knopfdrücke auf und verarbeitet diese.
+	 * @param e Knopfdruck*/
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
+		/*wird ausgeführt, wenn der Knopf zum Wiederholen des Spiels gedrückt wurde*/
 		if(e.getSource() == jaButton)
 		{
+			/*das aktuelle Fenster wird geschlossen*/
 			this.dispose();
 			
 			/*========Hauptfenster öffnen========*/
 		}
-		
+		/*andernsfalls wird das Programm verlassen*/
 		else System.exit(0);
 	}
 }
