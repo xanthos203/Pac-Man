@@ -123,8 +123,8 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*Wird nur ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
 		if(e.getKeyCode() == KeyEvent.VK_ENTER)
 		{
-			/*wird ausgeführt, wenn entweder kein Text oder ein Leerzeichen eingegeben wurde*/
-			if(usernameFeld.getText().equals("") || (usernameFeld.getText().equals(" ")))
+			/*wird ausgeführt, wenn entweder kein Text oder Leerzeichen eingegeben wurden*/
+			if(usernameFeld.getText().isEmpty() || (usernameFeld.getText().equals(" ")) || (usernameFeld.getText().equals("  ")) || (usernameFeld.getText().equals("   ")) || (usernameFeld.getText().equals("    ")))
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
