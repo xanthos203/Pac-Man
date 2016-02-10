@@ -34,11 +34,6 @@ public class CSpielFrame extends JFrame
 		fenster = bFenster;
 		if((fenster == true))
 		{
-			jPanel = new JPanel();
-			jPanel.setBounds(zaehlerX,zaehlerY,laenge, breite);
-			jPanel.setBackground(Color.BLUE);
-			getContentPane().add(jPanel);
-			
 			System.out.println("HALLO");
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
 			setTitle("Pac-Man");
@@ -46,6 +41,13 @@ public class CSpielFrame extends JFrame
 			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 			setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			setVisible(true);
+			
+			
+			jPanel = new JPanel();
+			jPanel.setBounds(zaehlerX,zaehlerY,laenge, breite);
+			jPanel.setBackground(Color.BLUE);
+			getContentPane().add(jPanel);
+			
 			fenster = false;
 		}
 	}
