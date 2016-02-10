@@ -11,10 +11,10 @@ public class CLogzeile extends JFrame
 	CMuenzendarstellen oMuenzendarstellen;
 	CSpielFrame oDarstellen;
 	
-public CLogzeile()
-{
+	public CLogzeile()
+	{
 	
-}
+	}
 	
 //----------------------------------------------------------------------
 	

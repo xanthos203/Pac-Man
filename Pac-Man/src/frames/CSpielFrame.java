@@ -13,6 +13,10 @@ public class CSpielFrame extends JFrame
 	int zaehlerX=0;
 	int laenge=20;
 	int breite=5;
+	int screenWidth	= Toolkit.getDefaultToolkit().getScreenSize().width;
+	int	screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+	int	frameWidth = 1100;
+	int	frameHeight	= 735;
 	
 	static int zaehler =0;
 	
@@ -37,7 +41,8 @@ public class CSpielFrame extends JFrame
 			
 			System.out.println("HALLO");
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			setBounds(300,100 , 500, 500);
+			setSize(frameWidth, frameHeight);
+			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 			setVisible(true);
 			fenster = false;
 		}
