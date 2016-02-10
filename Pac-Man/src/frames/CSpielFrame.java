@@ -1,50 +1,50 @@
 package frames;
 
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.*;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
-import control.CLogDB;
-import view.CDarstellen;
-import view.CMuenzendarstellen;
+import control.*;
 
-public class CSpielFrame 
+public class CSpielFrame extends JFrame
 {
-	
-	public JFrame oFrame = new JFrame();
+	JPanel jPanel;
+	int zaehlerY=20;
+	int zaehlerX=0;
+	int laenge=20;
+	int breite=5;
 	
 	static int zaehler =0;
 	
 	protected boolean fenster = false;
+	
+	CLogDB oCLog = new CLogDB();
 
 	public CSpielFrame()
 	{
+		
 	}
 //----------------------------------------------	
 	public CSpielFrame( boolean bFenster)
 	{
 		fenster = bFenster;
-		if(fenster == true)
+		if((fenster == true))
 		{
+			jPanel = new JPanel();
+			jPanel.setBounds(zaehlerX,zaehlerY,laenge, breite);
+			jPanel.setBackground(Color.BLUE);
+			getContentPane().add(jPanel);
+			
 			System.out.println("HALLO");
-			oFrame.setBounds(300,100 , 500, 500);
-			oFrame.setVisible(true);
+			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			setBounds(300,100 , 500, 500);
+			setVisible(true);
 			fenster = false;
 		}
 	}
 	
-//---------------------------------------------------------	
-	
-	public void Muenzendarstellen() 
-	{
-			CMuenzendarstellen oMuenzen = new CMuenzendarstellen();
-	}
-		
-//---------------------------------------------------------
-		
 	public void Darstellen()
-	{	CDarstellen oDarstellen = new CDarstellen();
+	{
+		
 	}
 }

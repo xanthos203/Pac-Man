@@ -6,4 +6,9 @@ public class CMuenzendarstellen
 	{
 		
 	}
+	
+	public void Muenzendarstellen() 
+	{
+		
+	}
 }
