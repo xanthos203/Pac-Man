@@ -107,7 +107,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*der contentPane wird das infoPanel im Osten des BorderLayouts hinzugefügt*/
 		contentPane.add(infoPanel, BorderLayout.EAST);
 	}
-//github.com/xanthos203/Pac-Man.git
+
 	public static String getUsername()
 	{
 		return username;
@@ -115,7 +115,6 @@ public final class LogInFrame extends JFrame implements KeyListener
 
 	/**Die <i>keyPressed</i>-Methode fängt Tastendrücke auf und verarbeitet diese.
 	 * @param e Tastendruck*/
-
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
