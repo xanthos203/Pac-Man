@@ -41,8 +41,10 @@ public class CSpielFrame extends JFrame
 			
 			System.out.println("HALLO");
 			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			setTitle("Pac-Man");
 			setSize(frameWidth, frameHeight);
 			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
+			setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			setVisible(true);
 			fenster = false;
 		}
