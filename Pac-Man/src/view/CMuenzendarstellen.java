@@ -1,4 +1,4 @@
-package frames;
+package view;
 
 public class CMuenzendarstellen 
 {

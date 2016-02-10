@@ -7,11 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import control.CLogDB;
+import view.CDarstellen;
+import view.CMuenzendarstellen;
 
 public class CSpielFrame 
 {
 	
-	protected JFrame oFrame = new JFrame();
+	public JFrame oFrame = new JFrame();
 	
 	static int zaehler =0;
 	
@@ -28,7 +30,6 @@ public class CSpielFrame
 		{
 			System.out.println("HALLO");
 			oFrame.setBounds(300,100 , 500, 500);
-			//oFrame.setLayout(new FlowLayout());	
 			oFrame.setVisible(true);
 			fenster = false;
 		}

@@ -1,13 +1,15 @@
-package frames;
+package view;
 
 import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import frames.CSpielFrame;
+
 /**
  * 
  * @author Thomas
- * ss
+ * 
  *	Ich bin dafür zustendig die Hindernisse Darzustellen :)
  */
 
@@ -23,11 +25,9 @@ public class CDarstellen
 	
 	public CDarstellen()
 	{
-		
 		jPanel = new JPanel();
 		jPanel.setBounds(zaehlerX,zaehlerY,laenge, breite);
 		jPanel.setBackground(Color.BLUE);
-		System.out.println("1");
 		oSpiel.oFrame.getContentPane().add(jPanel);
 	}
 }
