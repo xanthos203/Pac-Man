@@ -35,4 +35,9 @@ public class CLogDB
 			log.add(logzeile);
 		}
 	}
+//--------------------------------------------------------
+	public CLogDB() 
+	{
+		// TODO Auto-generated constructor stub
+	}
 }

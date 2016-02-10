@@ -58,12 +58,12 @@ public final class LogInFrame extends JFrame implements KeyListener
 		contentPane.add(usernamePanel, BorderLayout.CENTER);
 		contentPane.add(infoPanel, BorderLayout.EAST);
 	}
-
+//-------------------------------------------------------------------------------
 	public static String getUsername()
 	{
 		return username;
 	}
-	
+//--------------------------------------------------------------------------------	
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
@@ -82,6 +82,9 @@ public final class LogInFrame extends JFrame implements KeyListener
 			}
 			else
 			{
+				
+				CSpielFrame oSpielFrame = new CSpielFrame(true);
+							
 				username = usernameFeld.getText();
 				this.dispose();
 				
@@ -89,10 +92,11 @@ public final class LogInFrame extends JFrame implements KeyListener
 				
 //				GameWonFrame  frame = new GameWonFrame();	// <= Gewonnen-Fenster; nur TEST!!!!
 //				GameLostFrame frame = new GameLostFrame(); 	// <= Verloren-Fenster; nur TEST!!!!
+				
 			}
 		}
 	}
-	
+//-------------------------------------------------------------------------------------	
 	@Override
 	public void keyTyped(KeyEvent e) {}
 	@Override
