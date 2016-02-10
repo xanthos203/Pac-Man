@@ -148,9 +148,9 @@ public final class LogInFrame extends JFrame implements KeyListener
 				username = usernameFeld.getText();
 				/*das aktuelle Fenster wird geschlossen*/
 				this.dispose();
-				GameLostFrame Game = new GameLostFrame();
+
 				/*========Hauptfenster öffnen========*/
-				//CSpielFrame oSpielFrame = new CSpielFrame(true);
+				CSpielFrame oSpielFrame = new CSpielFrame(true);
 			}
 		}
 	}
