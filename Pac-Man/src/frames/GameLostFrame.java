@@ -130,7 +130,7 @@ public final class GameLostFrame extends JFrame implements ActionListener
 		contentPane.add(playagainPanel, BorderLayout.SOUTH);
 	}
 
-	/**Die <i>actionPerformed</i>-Methode fängt Knopfdrücke auf und verarbeitet diese.
+	/**Die <i>actionPerformed</i>-Methode fängt <b>Knopfdrücke</b> auf und verarbeitet diese.
 	 * @param e Knopfdruck*/
 	@Override
 	public void actionPerformed(ActionEvent e)

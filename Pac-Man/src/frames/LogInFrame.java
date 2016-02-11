@@ -67,7 +67,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
 		contentPane.setBackground(backgroundColor);
 		/*der contentPane wird ein neues BorderLayout zugewiesen*/
-		contentPane.setLayout(new BorderLayout());
+		getContentPane().setLayout(new BorderLayout());
 		
 		/*dem infoPanel wird die Hintergrundfarbe zugewiesen*/
 		infoPanel.setBackground(backgroundColor);
@@ -108,12 +108,14 @@ public final class LogInFrame extends JFrame implements KeyListener
 		contentPane.add(infoPanel, BorderLayout.EAST);
 	}
 
+	/**Die <i>Getter</i>-Methode für den <b>Spielername</b> retourniert den Spielername, der vom Benutzer eingeben wurde.
+	 * @return den eingegebenen Spielernamen*/
 	public static String getUsername()
 	{
 		return username;
 	}
 
-	/**Die <i>keyPressed</i>-Methode fängt Tastendrücke auf und verarbeitet diese.
+	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
 	 * @param e Tastendruck*/
 	@Override
 	public void keyPressed(KeyEvent e)
@@ -143,7 +145,6 @@ public final class LogInFrame extends JFrame implements KeyListener
 			else
 			{
 				/*der eingegebene Spielername wird gespeichert*/
-
 				username = usernameFeld.getText();
 				/*das aktuelle Fenster wird geschlossen*/
 				this.dispose();
