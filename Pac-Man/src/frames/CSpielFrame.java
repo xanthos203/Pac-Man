@@ -8,28 +8,28 @@ import control.*;
 
 public class CSpielFrame extends JFrame
 {
-	JPanel jPanel;
-	int zaehlerY=20;
-	int zaehlerX=0;
-	int laenge=20;
-	int breite=5;
-	int screenWidth	= Toolkit.getDefaultToolkit().getScreenSize().width;
-	int	screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-	int	frameWidth = 1100;
-	int	frameHeight	= 735;
+	private JPanel jPanel;
+	private int zaehlerY = 20;
+	private int zaehlerX = 0;
+	private int laenge = 20;
+	private int breite = 5;
+	private int screenWidth	= Toolkit.getDefaultToolkit().getScreenSize().width;
+	private int	screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+	private int	frameWidth = 1100;
+	private int	frameHeight	= 735;
 	
-	static int zaehler =0;
+	private static int zaehler =0;
 	
-	protected boolean fenster = false;
+	private boolean fenster = false;
 	
-	CLogDB oCLog = new CLogDB();
+	private CLogDB oCLog = new CLogDB();
 
 	public CSpielFrame()
 	{
 		
 	}
 //----------------------------------------------	
-	public CSpielFrame( boolean bFenster)
+	public CSpielFrame(boolean bFenster)
 	{
 		fenster = bFenster;
 		if((fenster == true))
@@ -44,7 +44,7 @@ public class CSpielFrame extends JFrame
 			
 			
 			jPanel = new JPanel();
-			jPanel.setBounds(zaehlerX,zaehlerY,laenge, breite);
+			jPanel.setBounds(zaehlerX, zaehlerY, laenge, breite);
 			jPanel.setBackground(Color.BLUE);
 			getContentPane().add(jPanel);
 			

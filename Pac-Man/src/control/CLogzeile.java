@@ -7,17 +7,14 @@ import view.*;
 
 public class CLogzeile extends JFrame
 {
-
-	CMuenzendarstellen oMuenzendarstellen;
-	CSpielFrame oDarstellen;
+	private CMuenzendarstellen oMuenzendarstellen;
+	private CSpielFrame oDarstellen;
 	
 	public CLogzeile()
 	{
-	
+		
 	}
-	
 //----------------------------------------------------------------------
-	
 	public CLogzeile(String string1, String string2, String string3,
 					 String string4, String string5, String string6)
 	{
@@ -85,9 +82,7 @@ public class CLogzeile extends JFrame
 		{
 			oDarstellen.Darstellen();
 		}
-		
-//-------------------------------\\	
-		
+//-------------------------------\\
 		if(string1.equals("2") )
 		{
 			
@@ -107,6 +102,7 @@ public class CLogzeile extends JFrame
 		{
 			
 		}
+		
 		if(string5.equals("2") )
 		{
 			
@@ -116,9 +112,7 @@ public class CLogzeile extends JFrame
 		{
 			
 		}
-
-//-------------------------------\\	
-		
+//-------------------------------\\
 		if(string1.equals("3") )
 		{
 			
@@ -148,7 +142,5 @@ public class CLogzeile extends JFrame
 		{
 			
 		}
-	
 	}
 }
-

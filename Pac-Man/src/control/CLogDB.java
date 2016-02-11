@@ -7,7 +7,7 @@ import java.util.TreeMap;
 public class CLogDB 
 {
 	public ArrayList<CLogzeile> log = new ArrayList<CLogzeile>();
-	CLogzeile logzeile = new CLogzeile();
+	private CLogzeile logzeile = new CLogzeile();
 	
 	public CLogDB(String path) 
 	{
