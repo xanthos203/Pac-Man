@@ -42,7 +42,6 @@ public class CSpielFrame extends JFrame
 			setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			setVisible(true);
 			
-			
 			jPanel = new JPanel();
 			jPanel.setBounds(zaehlerX, zaehlerY, laenge, breite);
 			jPanel.setBackground(Color.BLUE);
