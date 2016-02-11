@@ -18,7 +18,7 @@ public class CSpielFrame extends JFrame
 	private int	frameWidth = 1100;
 	private int	frameHeight	= 735;
 	
-	private static int zaehler =0;
+	private static int zaehler = 0;
 	
 	private boolean fenster = false;
 	
