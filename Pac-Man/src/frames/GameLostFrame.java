@@ -22,7 +22,7 @@ public final class GameLostFrame extends JFrame implements ActionListener
 	/**Auf dem <i>buttonPanel</i> werden sämtliche <b>Buttons</b> nebeneinander <b>dargestellt</b>.*/
 	private JPanel		buttonPanel		= new JPanel();
 	/**Das Icon <i>gameLostIcon</i> stellt die <b>Hauptfigur Pac-Man</b>, der gerade <i>von Geistern verspeist wird</i>, dar.*/
-	private Icon		gameLostIcon	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Game_lost.PNG")));
+	private Icon		gameLostIcon	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameLostFrame.class.getResource("/images/Game_lost.PNG")));
 	/**Mit dem <i>gameoverLabel</i> wird dem Benutzer mitgeteilt, dass das <b>Spiel vorbei</b> ist.*/
 	private JLabel		gameoverLabel= new JLabel();
 	/**Mit dem <i>playagainLabel</i> wird der Benutzer gefragt, ob er <b>nochmal spielen</b> will.*/
@@ -40,13 +40,13 @@ public final class GameLostFrame extends JFrame implements ActionListener
 	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
 	private int			frameWidth		= 1100;
 	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	private int			frameHeight		= 735;
+	private int			frameHeight		= 745;
 	
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public GameLostFrame()
 	{
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GameLostFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 		/*beim Schließen des Fensters wird das Programm beendet*/
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		/*der Titel der Fensters wird zugewiesen*/

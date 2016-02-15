@@ -24,7 +24,7 @@ public final class GameWonFrame extends JFrame implements ActionListener
 	/**Auf dem <i>buttonPanel</i> werden sämtliche <b>Buttons</b> nebeneinander <b>dargestellt</b>.*/
 	private JPanel		buttonPanel		= new JPanel();
 	/**Das Icon <i>gameWonIcon</i> stellt die <b>Hauptfigur Pac-Man</b>, der gerade die <i>Geister verspeist</i>, dar.*/
-	private Icon		gameWonIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Game_won.PNG")));
+	private Icon		gameWonIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/images/Game_won.PNG")));
 	/**Mit dem <i>gratulationLabel</i> wird dem Benutzer <b>mit</b> seinem <b>Spielernamen gratuliert</b>.*/
 	private JLabel		gratulationLabel= new JLabel();
 	/**Mit dem <i>gratTextLabel</i> wird der Benutzer darauf hingewiesen, dass er <b>gewonnen</b> hat.*/
@@ -44,13 +44,13 @@ public final class GameWonFrame extends JFrame implements ActionListener
 	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
 	private int			frameWidth		= 1100;
 	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	private int			frameHeight		= 735;
+	private int			frameHeight		= 745;
 	
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public GameWonFrame()
 	{
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
-		setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 		/*beim Schließen des Fensters wird das Programm beendet*/
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		/*der Titel der Fensters wird zugewiesen*/
@@ -64,7 +64,7 @@ public final class GameWonFrame extends JFrame implements ActionListener
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
 		setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
-		add(contentPane);
+		getContentPane().add(contentPane);
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
 		contentPane.setBackground(backgroundColor);
 		/*der contentPane wird ein neues BorderLayout zugewiesen*/

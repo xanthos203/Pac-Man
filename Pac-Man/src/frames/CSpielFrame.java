@@ -43,9 +43,10 @@ public class CSpielFrame extends JFrame
 			setVisible(true);
 			
 			jPanel = new JPanel();
-			jPanel.setBounds(zaehlerX, zaehlerY, laenge, breite);
+			jPanel.setSize(laenge, breite);
+			jPanel.setLocation(zaehlerX, zaehlerY);
 			jPanel.setBackground(Color.BLUE);
-			getContentPane().add(jPanel);
+			add(jPanel);
 			
 			fenster = false;
 		}

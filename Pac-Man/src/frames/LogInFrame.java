@@ -9,7 +9,7 @@ import javax.swing.*;
  * Diese Klasse erbt von der Klasse <b>JFrame</b> und implementiert den <b>KeyListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
-public final class LogInFrame extends JFrame implements KeyListener
+public class LogInFrame extends JFrame implements KeyListener
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
 	private static String username;
@@ -43,7 +43,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
 	private int			frameWidth		= 1100;
 	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	private int			frameHeight		= 735;
+	private int			frameHeight		= 745;
 	
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public LogInFrame()
