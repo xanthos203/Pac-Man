@@ -67,7 +67,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
 		contentPane.setBackground(backgroundColor);
 		/*der contentPane wird ein neues BorderLayout zugewiesen*/
-		getContentPane().setLayout(new BorderLayout());
+		contentPane.setLayout(new BorderLayout());
 		
 		/*dem infoPanel wird die Hintergrundfarbe zugewiesen*/
 		infoPanel.setBackground(backgroundColor);

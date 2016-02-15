@@ -39,7 +39,7 @@ public class CSpielFrame extends JFrame
 			setTitle("Pac-Man");
 			setSize(frameWidth, frameHeight);
 			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
-			setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+			setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			setVisible(true);
 			
 			jPanel = new JPanel();
