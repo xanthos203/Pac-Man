@@ -123,23 +123,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*Wird nur ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
 		if(e.getKeyCode() == KeyEvent.VK_ENTER)
 		{
-			/*wird ausgeführt, wenn entweder kein Text oder Leerzeichen eingegeben wurden*/
-			if((usernameFeld.getText().equals(""))						|| (usernameFeld.getText().equals(" "))						|| (usernameFeld.getText().equals("  "))
-			|| (usernameFeld.getText().equals("   "))					|| (usernameFeld.getText().equals("    "))					|| (usernameFeld.getText().equals("     "))
-			|| (usernameFeld.getText().equals("      "))				|| (usernameFeld.getText().equals("       "))				|| (usernameFeld.getText().equals("        "))
-			|| (usernameFeld.getText().equals("         "))				|| (usernameFeld.getText().equals("          "))			|| (usernameFeld.getText().equals("           "))
-			|| (usernameFeld.getText().equals("            "))			|| (usernameFeld.getText().equals("             "))			|| (usernameFeld.getText().equals("              "))
-			|| (usernameFeld.getText().equals("               "))		|| (usernameFeld.getText().equals("                "))		|| (usernameFeld.getText().equals("                 "))
-			|| (usernameFeld.getText().equals("                  "))	|| (usernameFeld.getText().equals("                   "))	|| (usernameFeld.getText().equals("                    ")))
-			{
-				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen beinhalten.", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
-				/*der Text im Textfeld wird zurückgesetzt*/
-				usernameFeld.setText("");
-				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
-				return;
-			}
-			/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 20 Zeichen ist*/
+			/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
 			if(((usernameFeld.getText().contains("^")) || (usernameFeld.getText().contains("°")) || (usernameFeld.getText().contains("!")) || (usernameFeld.getText().contains("\""))
 			 || (usernameFeld.getText().contains("²")) || (usernameFeld.getText().contains("§")) || (usernameFeld.getText().contains("³")) || (usernameFeld.getText().contains("$"))
 			 || (usernameFeld.getText().contains("%")) || (usernameFeld.getText().contains("&")) || (usernameFeld.getText().contains("/")) || (usernameFeld.getText().contains("{"))
@@ -150,7 +134,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 			 || (usernameFeld.getText().contains(",")) || (usernameFeld.getText().contains(";")) || (usernameFeld.getText().contains("<")) || (usernameFeld.getText().contains(">"))
 			 || (usernameFeld.getText().contains("|")) || (usernameFeld.getText().contains("/")) || (usernameFeld.getText().contains("-")) || (usernameFeld.getText().contains("+"))
 			 || (usernameFeld.getText().contains("_")) || (usernameFeld.getText().contains("ß")))
-			 && (usernameFeld.getText().length() < 20))
+			 && (usernameFeld.getText().length() < 21))
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten.", "Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
@@ -159,11 +143,11 @@ public final class LogInFrame extends JFrame implements KeyListener
 				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als 20 Zeichen ist*/
-			if(usernameFeld.getText().contains(" ") && (usernameFeld.getText().length() < 20))
+			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als 21 Zeichen ist*/
+			if(usernameFeld.getText().contains(" ") && (usernameFeld.getText().length() < 21))
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*//*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten.", "Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten.", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
 				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
