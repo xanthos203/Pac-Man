@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import control.*;
 
-public class CSpielFrame extends JFrame
+public final class CSpielFrame extends JFrame
 {
 	private JPanel jPanel;
 	private int zaehlerY = 20;
@@ -16,7 +16,7 @@ public class CSpielFrame extends JFrame
 	private int screenWidth	= Toolkit.getDefaultToolkit().getScreenSize().width;
 	private int	screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	private int	frameWidth = 1100;
-	private int	frameHeight	= 735;
+	private int	frameHeight	= 745;
 	
 	private static int zaehler = 0;
 	
