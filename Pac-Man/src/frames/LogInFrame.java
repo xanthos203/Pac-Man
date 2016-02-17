@@ -25,7 +25,9 @@ public final class LogInFrame extends JFrame implements KeyListener
 	private JPanel		infoPanel		= new JPanel();
 	/**Auf dem <i>usernamePanel</i> wird ein <b>Textfeld</b> dargestellt, indem der Benutzer seinen gewünschten Spielernamen eingeben kann.*/
 	private JPanel		usernamePanel	= new JPanel();
-	/**Das Icon <i>pacmanIcon</i> stellt die <b>Hauptfigur Pac-Man</b> mit dem Schriftzug <i>"Spielernamen eingeben"</i> dar.*/
+	/**Auf dem <i>eingabePanel</i> werden das Label <i>eingabehinweisLabel</i> und das JTextField <i>usernameFeld</i> zu einem <b>Eingabefeld samt Hinweistext zusammengefügt</b>.*/
+	private JPanel		eingabePanel	= new JPanel();
+	/**Das Icon <i>pacmanIcon</i> stellt die <b>Hauptfigur Pac-Man</b> dar.*/
 	private Icon		pacmanIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man.PNG")));
 	/**Das Icon <i>infoIcon</i> stellt das <b>Information "i"</b> dar.*/
 	private Icon		infoIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Info_i.PNG")));
@@ -37,6 +39,8 @@ public final class LogInFrame extends JFrame implements KeyListener
 	private JLabel		infoImage_label	= new JLabel(infoIcon);
 	/**Auf dem Label <i>infoText_label</i> wird das Icon <b>infoText</b> dargestellt.*/
 	private JLabel		infoText_label	= new JLabel(infoText);
+	/**Mit dem <i>eingabehinweisLabel</i> wird der Benutzer darauf <b>hingewiesen, wo er seinen Spielernamen eingeben</b> muss.*/
+	private JLabel		eingabehinweisLabel	= new JLabel();
 	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
 	private JTextField	usernameFeld	= new JTextField();
 	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
@@ -81,14 +85,34 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*dem infoPanel wird das infoText_label im Osten des BorderLayouts hinzugefügt*/
 		infoPanel.add(infoText_label, BorderLayout.EAST);
 		
-		/*das usernameFeld ist sieben Spalten breit*/
-		usernameFeld.setColumns(7);
+		/*dem eingabehinweisLabel wird der Benutzers darauf hingewiesen, seinen Spielernamen einzugeben*/
+		eingabehinweisLabel.setText("Spielername eingeben\u003A");
+		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
+		eingabehinweisLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		/*dem Text im eingabehinweisLabel wird ein Schriftstil zugewiesen*/
+		eingabehinweisLabel.setFont(new Font("arial", Font.PLAIN, 29));
+		/*dem Text im eingabehinweisLabel wird eine Schriftfarbe zugewiesen*/
+		eingabehinweisLabel.setForeground(Color.WHITE);
+		
+		/*das usernameFeld ist 13 Spalten breit*/
+		usernameFeld.setColumns(13);
 		/*dem Text im usernameFeld wird ein Schriftstil zugewiesen*/
-		usernameFeld.setFont(new Font("arial", Font.PLAIN, 27));
+		usernameFeld.setFont(new Font("arial", Font.PLAIN, 29));
 		/*die Textausrichtung im usernameFeld wird auf LINKS gesetzt*/
 		usernameFeld.setHorizontalAlignment(SwingConstants.LEFT);
+		/*dem usernameFeld wird ein Hinweistext zugewiesen*/
+		usernameFeld.setToolTipText("Spielername eingeben");
 		/*dem usernameFeld wird DIESE Klasse als KeyListener hinzugefügt*/
 		usernameFeld.addKeyListener(this);
+		
+		/*dem eingabePanel wird ein neues BorderLayout hinzugefügt*/
+		eingabePanel.setLayout(new BorderLayout());
+		/*dem eingabePanel wird eine Hintergrundfarbe zugewiesen*/
+		eingabePanel.setBackground(backgroundColor);
+		/*dem eingabePanel wird das eingabehinweisLabel im Norden des BorderLayouts hinzugefügt*/
+		eingabePanel.add(eingabehinweisLabel, BorderLayout.NORTH);
+		/*dem eingabePanel wird das gratTextLabel im Süden des BorderLayouts hinzugefügt*/
+		eingabePanel.add(usernameFeld, BorderLayout.SOUTH);
 		
 		/*dem Panel wird ein neues GridBagLayout hinzugefügt*/
 		usernamePanel.setLayout(new GridBagLayout());
@@ -98,8 +122,8 @@ public final class LogInFrame extends JFrame implements KeyListener
 		center.anchor = GridBagConstraints.CENTER;
 		/*das GridBagConstraint-Objekt wird in seiner Größe nicht verändert*/
 		center.fill = GridBagConstraints.NONE;
-		/*dem Panel wird das Textfeld im Zentrum hinzugefügt*/
-		usernamePanel.add(usernameFeld, center);
+		/*dem Panel wird das eingabePanel im Zentrum hinzugefügt*/
+		usernamePanel.add(eingabePanel, center);
 		/*die Hintergrundfarbe des Panels wird festgelegt*/
 		usernamePanel.setBackground(backgroundColor);
 		

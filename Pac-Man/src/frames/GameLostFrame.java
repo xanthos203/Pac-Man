@@ -97,10 +97,14 @@ public final class GameLostFrame extends JFrame implements ActionListener
 		
 		/*dem ja-Button wird ein Schriftstil zugewiesen*/
 		jaButton.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem ja-Button wird ein Hinweistext zugewiesen*/
+		jaButton.setToolTipText("Nochmal spielen");
 		/*dem ja-Button wird DIESE Klasse als ActionListener zugewiesen*/
 		jaButton.addActionListener(this);
 		/*dem nein-Button wird ein Schriftstil zugewiesen*/
 		neinButton.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem nein-Button wird ein Hinweistext zugewiesen*/
+		neinButton.setToolTipText("Spiel beenden");
 		/*dem nein-Button wird DIESE Klasse als ActionListener zugewiesen*/
 		neinButton.addActionListener(this);
 		

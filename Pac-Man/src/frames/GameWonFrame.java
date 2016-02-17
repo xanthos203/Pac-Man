@@ -25,7 +25,7 @@ public final class GameWonFrame extends JFrame implements ActionListener
 	private JPanel		buttonPanel		= new JPanel();
 	/**Das Icon <i>gameWonIcon</i> stellt die <b>Hauptfigur Pac-Man</b>, der gerade die <i>Geister verspeist</i>, dar.*/
 	private Icon		gameWonIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/images/Game_won.PNG")));
-	/**Mit dem <i>gratulationLabel</i> wird dem Benutzer <b>mit</b> seinem <b>Spielernamen gratuliert</b>.*/
+	/**Mit dem <i>gratulationLabel</i> wird dem Benutzer <b>mit seinem Spielernamen gratuliert</b>.*/
 	private JLabel		gratulationLabel= new JLabel();
 	/**Mit dem <i>gratTextLabel</i> wird der Benutzer darauf hingewiesen, dass er <b>gewonnen</b> hat.*/
 	private JLabel		gratTextLabel	= new JLabel();
@@ -121,10 +121,14 @@ public final class GameWonFrame extends JFrame implements ActionListener
 		
 		/*dem ja-Button wird ein Schriftstil zugewiesen*/
 		jaButton.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem ja-Button wird ein Hinweistext zugewiesen*/
+		jaButton.setToolTipText("Nochmal spielen");
 		/*dem ja-Button wird DIESE Klasse als ActionListener zugewiesen*/
 		jaButton.addActionListener(this);
 		/*dem nein-Button wird ein Schriftstil zugewiesen*/
 		neinButton.setFont(new Font("arial", Font.PLAIN, 38));
+		/*dem nein-Button wird ein Hinweistext zugewiesen*/
+		neinButton.setToolTipText("Spiel beenden");
 		/*dem nein-Button wird DIESE Klasse als ActionListener zugewiesen*/
 		neinButton.addActionListener(this);
 		
