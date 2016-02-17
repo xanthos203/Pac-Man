@@ -116,7 +116,6 @@ public final class LogInFrame extends JFrame implements KeyListener
 	{
 		return username;
 	}
-
 	
 	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
 	 * @param e Tastendruck*/
@@ -166,7 +165,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 			if (usernameFeld.getText().length() < 21)
 			{
 				/*diese Schleife läuft so oft durch, so lang wie das sonderzeichen-Array ist*/
-				for (int i = 0; i <= sonderzeichen.length; i++)
+				for (int i = 0; i < sonderzeichen.length; i++)
 				{
 					/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
 					if (usernameFeld.getText().contains(sonderzeichen[i]))
@@ -183,7 +182,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 				}
 			}
 			/*wird ausgeführt, wenn keine der oben stehenden Bedingungen zutrifft*/
-			for (int i = 0; i <= sonderzeichen.length; i++)
+			for (int i = 0; i < sonderzeichen.length; i++)
 			{
 				/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
 				if (!usernameFeld.getText().contains(sonderzeichen[i]))
