@@ -12,7 +12,9 @@ import javax.swing.*;
 public final class LogInFrame extends JFrame implements KeyListener
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
-	private static String username;
+	private static 	String 		username		= null;
+	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
+	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~","#","'",".",":",",",";","<",">","|","/","-","+","_","ß"};
 	
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -115,62 +117,87 @@ public final class LogInFrame extends JFrame implements KeyListener
 		return username;
 	}
 
+	
 	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
 	 * @param e Tastendruck*/
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
 		/*Wird nur ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
-		if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		if (e.getKeyCode() == KeyEvent.VK_ENTER)
 		{
-			/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
-			if(((usernameFeld.getText().contains("^")) || (usernameFeld.getText().contains("°")) || (usernameFeld.getText().contains("!")) || (usernameFeld.getText().contains("\""))
-			 || (usernameFeld.getText().contains("²")) || (usernameFeld.getText().contains("§")) || (usernameFeld.getText().contains("³")) || (usernameFeld.getText().contains("$"))
-			 || (usernameFeld.getText().contains("%")) || (usernameFeld.getText().contains("&")) || (usernameFeld.getText().contains("/")) || (usernameFeld.getText().contains("{"))
-			 || (usernameFeld.getText().contains("(")) || (usernameFeld.getText().contains("[")) || (usernameFeld.getText().contains(")")) || (usernameFeld.getText().contains("]"))
-			 || (usernameFeld.getText().contains("=")) || (usernameFeld.getText().contains("}")) || (usernameFeld.getText().contains("?")) || (usernameFeld.getText().contains("\\"))
-			 || (usernameFeld.getText().contains("´")) || (usernameFeld.getText().contains("`")) || (usernameFeld.getText().contains("*")) || (usernameFeld.getText().contains("~"))
-			 || (usernameFeld.getText().contains("#")) || (usernameFeld.getText().contains("'")) || (usernameFeld.getText().contains(".")) || (usernameFeld.getText().contains(":"))
-			 || (usernameFeld.getText().contains(",")) || (usernameFeld.getText().contains(";")) || (usernameFeld.getText().contains("<")) || (usernameFeld.getText().contains(">"))
-			 || (usernameFeld.getText().contains("|")) || (usernameFeld.getText().contains("/")) || (usernameFeld.getText().contains("-")) || (usernameFeld.getText().contains("+"))
-			 || (usernameFeld.getText().contains("_")) || (usernameFeld.getText().contains("ß")))
-			 && (usernameFeld.getText().length() < 21))
+			/*wird ausgeführt, wenn kein Text eingegeben wurde*/
+			if (usernameFeld.getText().isEmpty())
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten.", "Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						"Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten.",
+						"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
 				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
 				return;
 			}
 			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als 21 Zeichen ist*/
-			if(usernameFeld.getText().contains(" ") && (usernameFeld.getText().length() < 21))
+			if (usernameFeld.getText().contains(" ") && (usernameFeld.getText().length() < 21))
 			{
-				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*//*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten.", "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
+				JOptionPane.showMessageDialog(null, 
+						"Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten.",
+						"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
 				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
 				return;
 			}
 			/*wird ausgeführt, wenn der eingegebene Text länger als 20 Zeichen ist*/
-			if(usernameFeld.getText().length() > 20)
+			if (usernameFeld.getText().length() > 20)
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal 20 Zeichen lang sein.", "Zu langer Name", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null,
+						"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal 20 Zeichen lang sein.",
+						"Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
+				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
+				return;
+			}
+			/*wird ausgeführt, wenn der eingegebene Text kürzer als 21 Zeichen ist*/
+			if (usernameFeld.getText().length() < 21)
+			{
+				/*diese Schleife läuft so oft durch, so lang wie das sonderzeichen-Array ist*/
+				for (int i = 0; i <= sonderzeichen.length; i++)
+				{
+					/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
+					if (usernameFeld.getText().contains(sonderzeichen[i]))
+					{
+						/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
+						JOptionPane.showMessageDialog(null,
+								"Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten.",
+								"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
+						/*der Text im Textfeld wird zurückgesetzt*/
+						usernameFeld.setText("");
+						/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
+						return;
+					}
+				}
 			}
 			/*wird ausgeführt, wenn keine der oben stehenden Bedingungen zutrifft*/
-			else
+			for (int i = 0; i <= sonderzeichen.length; i++)
 			{
-				/*der eingegebene Spielername wird gespeichert*/
-				username = usernameFeld.getText();
-				/*das aktuelle Fenster wird geschlossen*/
-				this.dispose();
-
-				/*========Hauptfenster öffnen========*/
-				CSpielFrame oSpielFrame = new CSpielFrame(true);
+				/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
+				if (!usernameFeld.getText().contains(sonderzeichen[i]))
+				{
+					/*der eingegebene Spielername wird gespeichert*/
+					username = usernameFeld.getText();
+					/*das aktuelle Fenster wird geschlossen*/
+					this.dispose();
+					
+					/*========Hauptfenster öffnen========*/
+					CSpielFrame oSpielFrame = new CSpielFrame(true);
+				}
+				/*die Schleife wird abgebrochen, wenn die oben stehende Bedingung zutrifft*/
+				break;
 			}
 		}
 	}
