@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>verloren</b> hat, dargestellt.<br>
  * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle seine Leben verloren</i> hat.<br>
- * Diese Klasse erbt von der Klasse <b>JFrame</b> und implementiert den <b>ActionListener</b>.
+ * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface ActionListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
 public final class GameLostFrame extends JFrame implements ActionListener

@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**In dieser Klasse wird des Fenster zum Einloggen des Benutzers dargestellt.<br>
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
- * Diese Klasse erbt von der Klasse <b>JFrame</b> und implementiert den <b>KeyListener</b>.
+ * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface KeyListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
 public final class LogInFrame extends JFrame implements KeyListener
@@ -14,7 +14,8 @@ public final class LogInFrame extends JFrame implements KeyListener
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
 	private static 	String 		username		= null;
 	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
-	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~","#","'",".",":",",",";","<",">","|","/","-","+","_","ß","ä","ö","ü"};
+	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*",
+																"~","#","'", ".",":",",",";","<",">","|","-","+","_","@","€","ß","ä","Ä","ö", "Ö","ü","Ü"};
 	
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -130,7 +131,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null,
-						"Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten.",
+						"Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
 						"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
@@ -142,7 +143,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null, 
-						"Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten.",
+						"Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten\u002E",
 						"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
@@ -154,7 +155,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null,
-						"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal 20 Zeichen lang sein.",
+						"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal 20 Zeichen lang sein\u002E",
 						"Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				usernameFeld.setText("");
@@ -172,7 +173,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 					{
 						/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 						JOptionPane.showMessageDialog(null,
-								"Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten.",
+								"Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten\u002E",
 								"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
 						/*der Text im Textfeld wird zurückgesetzt*/
 						usernameFeld.setText("");
