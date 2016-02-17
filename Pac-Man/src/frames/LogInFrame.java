@@ -183,7 +183,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 				}
 			}
 			/*wird ausgeführt, wenn keine der oben stehenden Bedingungen zutrifft*/
-			for (int i = 0; i < sonderzeichen.length; i++)
+			for (int i = 0; i < sonderzeichen.length;)
 			{
 				/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
 				if (!usernameFeld.getText().contains(sonderzeichen[i]))
