@@ -90,14 +90,14 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
 		hinweisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		/*dem Text im eingabehinweisLabel wird ein Schriftstil zugewiesen*/
-		hinweisLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 29));
+		hinweisLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 30));
 		/*dem Text im eingabehinweisLabel wird eine Schriftfarbe zugewiesen*/
 		hinweisLabel.setForeground(Color.WHITE);
 		
 		/*das usernameFeld ist 13 Spalten breit*/
 		usernameFeld.setColumns(13);
 		/*dem Text im usernameFeld wird ein Schriftstil zugewiesen*/
-		usernameFeld.setFont(new Font("arial", Font.PLAIN, 29));
+		usernameFeld.setFont(new Font("arial", Font.PLAIN, 30));
 		/*die Textausrichtung im usernameFeld wird auf LINKS gesetzt*/
 		usernameFeld.setHorizontalAlignment(SwingConstants.LEFT);
 		/*dem usernameFeld wird ein Hinweistext zugewiesen*/

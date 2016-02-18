@@ -71,7 +71,7 @@ public final class GameWonFrame extends JFrame implements ActionListener
 		contentPane.setLayout(new BorderLayout());
 		
 		/*dem gratulationLabel wird der Text mit dem Spielernamen des Benutzers zugewiesen*/
-		gratulationLabel.setText("GRATULATION \"" + LogInFrame.getUsername() + "\"\u0021");
+		gratulationLabel.setText("GRATULATION " + LogInFrame.getUsername() + "\u0021");
 		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
 		gratulationLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		/*dem Text im gratulationLabel wird ein Schriftstil zugewiesen*/
