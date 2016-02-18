@@ -8,7 +8,7 @@ import javax.swing.*;
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
  * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface KeyListener</b>.
  * @author Manuel Glantschnig
- * @version 1.0 */
+ * @version 1.1.1 */
 public final class LogInFrame extends JFrame implements KeyListener
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
@@ -70,7 +70,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
 		setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
-		add(contentPane);
+		getContentPane().add(contentPane);
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
 		contentPane.setBackground(backgroundColor);
 		/*der contentPane wird ein neues BorderLayout zugewiesen*/
@@ -90,7 +90,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
 		hinweisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		/*dem Text im eingabehinweisLabel wird ein Schriftstil zugewiesen*/
-		hinweisLabel.setFont(new Font("arial", Font.PLAIN, 29));
+		hinweisLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 29));
 		/*dem Text im eingabehinweisLabel wird eine Schriftfarbe zugewiesen*/
 		hinweisLabel.setForeground(Color.WHITE);
 		
