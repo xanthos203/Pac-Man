@@ -15,7 +15,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 	private static 	String 		username		= null;
 	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
 	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*",
-																"~","#","'", ".",":",",",";","<",">","|","-","+","_","@","€","ß","ä","Ä","ö", "Ö","ü","Ü"};
+																"~","#","'", ".",":",",",";","<",">","|","-","+","_","@","€","µ","ß","ä","Ä", "ö","Ö","ü","Ü"};
 	
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -25,7 +25,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 	private JPanel		infoPanel		= new JPanel();
 	/**Auf dem <i>usernamePanel</i> wird ein <b>Textfeld</b> dargestellt, indem der Benutzer seinen gewünschten Spielernamen eingeben kann.*/
 	private JPanel		usernamePanel	= new JPanel();
-	/**Auf dem <i>eingabePanel</i> werden das Label <i>eingabehinweisLabel</i> und das JTextField <i>usernameFeld</i> zu einem <b>Eingabefeld samt Hinweistext zusammengefügt</b>.*/
+	/**Auf dem <i>eingabePanel</i> werden das Label <i>hinweisLabel</i> und das JTextField <i>usernameFeld</i> zu einem <b>Eingabefeld samt Hinweistext zusammengefügt</b>.*/
 	private JPanel		eingabePanel	= new JPanel();
 	/**Das Icon <i>pacmanIcon</i> stellt die <b>Hauptfigur Pac-Man</b> dar.*/
 	private Icon		pacmanIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man.PNG")));
@@ -39,8 +39,8 @@ public final class LogInFrame extends JFrame implements KeyListener
 	private JLabel		infoImage_label	= new JLabel(infoIcon);
 	/**Auf dem Label <i>infoText_label</i> wird das Icon <b>infoText</b> dargestellt.*/
 	private JLabel		infoText_label	= new JLabel(infoText);
-	/**Mit dem <i>eingabehinweisLabel</i> wird der Benutzer darauf <b>hingewiesen, wo er seinen Spielernamen eingeben</b> muss.*/
-	private JLabel		eingabehinweisLabel	= new JLabel();
+	/**Mit dem <i>hinweisLabel</i> wird der Benutzer darauf <b>hingewiesen, wo er seinen Spielernamen eingeben</b> muss.*/
+	private JLabel		hinweisLabel	= new JLabel();
 	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
 	private JTextField	usernameFeld	= new JTextField();
 	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
@@ -86,13 +86,13 @@ public final class LogInFrame extends JFrame implements KeyListener
 		infoPanel.add(infoText_label, BorderLayout.EAST);
 		
 		/*dem eingabehinweisLabel wird der Benutzers darauf hingewiesen, seinen Spielernamen einzugeben*/
-		eingabehinweisLabel.setText("Spielername eingeben\u003A");
+		hinweisLabel.setText("Spielername eingeben\u003A");
 		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
-		eingabehinweisLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		hinweisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		/*dem Text im eingabehinweisLabel wird ein Schriftstil zugewiesen*/
-		eingabehinweisLabel.setFont(new Font("arial", Font.PLAIN, 29));
+		hinweisLabel.setFont(new Font("arial", Font.PLAIN, 29));
 		/*dem Text im eingabehinweisLabel wird eine Schriftfarbe zugewiesen*/
-		eingabehinweisLabel.setForeground(Color.WHITE);
+		hinweisLabel.setForeground(Color.WHITE);
 		
 		/*das usernameFeld ist 13 Spalten breit*/
 		usernameFeld.setColumns(13);
@@ -110,7 +110,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*dem eingabePanel wird eine Hintergrundfarbe zugewiesen*/
 		eingabePanel.setBackground(backgroundColor);
 		/*dem eingabePanel wird das eingabehinweisLabel im Norden des BorderLayouts hinzugefügt*/
-		eingabePanel.add(eingabehinweisLabel, BorderLayout.NORTH);
+		eingabePanel.add(hinweisLabel, BorderLayout.NORTH);
 		/*dem eingabePanel wird das gratTextLabel im Süden des BorderLayouts hinzugefügt*/
 		eingabePanel.add(usernameFeld, BorderLayout.SOUTH);
 		
