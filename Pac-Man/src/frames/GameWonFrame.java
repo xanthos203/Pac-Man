@@ -9,7 +9,7 @@ import javax.swing.*;
  * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface ActionListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
-public final class GameWonFrame extends JFrame implements ActionListener
+public final class GameWonFrame extends JDialog implements ActionListener
 {
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -52,13 +52,11 @@ public final class GameWonFrame extends JFrame implements ActionListener
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 		/*beim Schließen des Fensters wird das Programm beendet*/
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		/*der Titel der Fensters wird zugewiesen*/
 		setTitle("Gewonnen");
 		/*das Fenster wird sichtbar gemacht*/
 		setVisible(true);
-		/*das Fenster ist in seiner Größe nicht veränderbar*/
-		setResizable(false);
 		/*die Größe des Fensters wird festgelegt*/
 		setSize(frameWidth, frameHeight);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
