@@ -7,7 +7,7 @@ import javax.swing.*;
 import control.*;
 
 public final class CSpielFrame extends JFrame
-{//test
+{
 	private JPanel jPanel;
 	private int zaehlerY = 20;
 	private int zaehlerX = 0;
