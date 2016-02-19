@@ -6,10 +6,10 @@ import javax.swing.*;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>gewonnen</b> hat, dargestellt.<br>
  * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle Münzen und alle Geister verspeist</i> hat.<br>
- * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface ActionListener</b>.
+ * Diese Klasse <b>erbt von der Klasse JDialog</b>.
  * @author Manuel Glantschnig
  * @version 1.1 */
-public final class GameWonFrame extends JDialog implements ActionListener
+public final class GameWonFrame extends JDialog
 {
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -122,13 +122,13 @@ public final class GameWonFrame extends JDialog implements ActionListener
 		/*dem ja-Button wird ein Hinweistext zugewiesen*/
 		jaButton.setToolTipText("Nochmal spielen");
 		/*dem ja-Button wird DIESE Klasse als ActionListener zugewiesen*/
-		jaButton.addActionListener(this);
+		jaButton.addActionListener(new ButtonListener(this));
 		/*dem nein-Button wird ein Schriftstil zugewiesen*/
 		neinButton.setFont(new Font("arial", Font.PLAIN, 38));
 		/*dem nein-Button wird ein Hinweistext zugewiesen*/
 		neinButton.setToolTipText("Spiel beenden");
 		/*dem nein-Button wird DIESE Klasse als ActionListener zugewiesen*/
-		neinButton.addActionListener(this);
+		neinButton.addActionListener(new ButtonListener(this));
 		
 		/*dem buttonPanel wird ein neues FlowLayout hinzugefügt*/
 		buttonPanel.setLayout(new FlowLayout());
@@ -155,22 +155,41 @@ public final class GameWonFrame extends JDialog implements ActionListener
 		/*der contentPane wird das playagainPanel im Süden des BorderLayouts hinzugefügt*/
 		contentPane.add(playagainPanel, BorderLayout.SOUTH);
 	}
-
-	/**Die <i>actionPerformed</i>-Methode fängt <b>Knopfdrücke</b> auf und verarbeitet diese.
-	 * @param e Knopfdruck*/
-	@Override
-	public void actionPerformed(ActionEvent e)
+	
+	/**Diese <i>innere Klasse</i> dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
+	 * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
+	 * @author Manuel Glantschnig
+	 * @version 1.0 */
+	class ButtonListener implements ActionListener
 	{
-		/*wird ausgeführt, wenn der Knopf zum Wiederholen des Spiels gedrückt wurde*/
-		if(e.getSource() == jaButton)
+		/**Die <i>reference</i> bestimmt die <b>Referenz</b> auf welche sich die Klasse bezieht.*/
+		private JDialog reference;
+		
+		/**Im Konstruktor wird die <b>Referenz des Fensters</b> festgelegt.
+		 * @param dialog Referenzvariable vom Typ <i>JDialog</i>*/
+		public ButtonListener(JDialog dialog)
 		{
-			/*das aktuelle Fenster wird geschlossen*/
-			this.dispose();
-			
-			/*========Hauptfenster öffnen========*/
-			CSpielFrame oSpielFrame = new CSpielFrame(true);
+			/*der Variable reference wird der Wert von dialog zugewiesen
+			 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
+			reference = dialog;
 		}
-		/*andernsfalls wird das Programm verlassen*/
-		else System.exit(0);
+		
+		/**Die <i>actionPerformed</i>-Methode fängt <b>Knopfdrücke</b> auf und verarbeitet diese.
+		 * @param e Knopfdruck*/
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			/*wird ausgeführt, wenn der Knopf zum Wiederholen des Spiels gedrückt wurde*/
+			if(e.getSource() == jaButton)
+			{
+				/*das aktuelle Fenster wird geschlossen*/
+				reference.dispose();
+				
+				/*========Hauptfenster öffnen========*/
+				CSpielFrame oSpielFrame = new CSpielFrame(true);
+			}
+			/*andernsfalls wird das Programm verlassen*/
+			else System.exit(0);
+		}
 	}
 }

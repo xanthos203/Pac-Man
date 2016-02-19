@@ -4,11 +4,28 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.TreeMap;
 
+/**
+ * 
+ * @author Thomas Mader-Ofer
+ * @version 1.0
+ *
+ * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
+ *
+ */
+
 public class CLogDB 
 {
 	public ArrayList<CLogzeile> log = new ArrayList<CLogzeile>();
 	private CLogzeile logzeile = new CLogzeile();
 	
+	/**
+	 * 
+	 * @param path
+	 * 
+	 * Hier wierd der Text in aufgespalten, wenn ein ; sich inerhalb der Textdatei befindet.
+	 * Die Strings werden dem entsprechendem Konstruktor in der Klasse CLogzeile übergeben.
+	 * 
+	 */
 	public CLogDB(String path) 
 	{
 		//ArrayList der Logzeilen als Strings besorgen
