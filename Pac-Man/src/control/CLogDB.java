@@ -22,6 +22,8 @@ public class CLogDB
 	 * 
 	 * @param path
 	 * 
+	 * Hier wierd der Text in aufgespalten, wenn ein ; sich inerhalb der Textdatei befindet.
+	 * Die Strings werden dem entsprechendem Konstruktor in der Klasse CLogzeile übergeben.
 	 * 
 	 */
 	public CLogDB(String path) 
