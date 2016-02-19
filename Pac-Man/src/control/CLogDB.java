@@ -46,13 +46,18 @@ public class CLogDB
 			if (teile.length >= 6) 
 			{
 				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
-				logzeile = new CLogzeile(teile[0], teile[1], teile[2], teile[3], teile[4], teile[5]); 
+				logzeile = new CLogzeile(teile[0],  teile[1],  teile[2],  teile[3],  teile[4],  teile[5], 
+										 teile[6],  teile[7],  teile[8],  teile[9],  teile[10], teile[11],
+										 teile[12], teile[13], teile[14], teile[15], teile[16], teile[17],
+										 teile[18], teile[19], teile[20], teile[21], teile[22], teile[23],
+										 teile[24], teile[25], teile[26], teile[27], teile[28], teile[29],
+										 teile[30], teile[31], teile[32]); 
 			}
-			else 
+			/*else 
 			{
 				// Hier wierd der Zweite Konstruktor der Klasse CLogzeile auf gerufen, welcher weniger Parameter hat als der Haupkonstruktor
 				logzeile = new CLogzeile(teile[0], teile[1], teile[2], teile[3], teile[4], " ");
-			}
+			}*/
 			
 			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt
 			log.add(logzeile);
