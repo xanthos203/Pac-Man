@@ -92,10 +92,13 @@ public class CLogzeile extends JFrame
 			{
 				if(sString1bis33[i].equals("0"))
 				{
-					oMuenzendarstellen.
+					
 				}
 			}
-		
+			if(i == 33)
+			{
+				z
+			}
 		}
 		
 	}

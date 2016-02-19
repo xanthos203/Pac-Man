@@ -42,7 +42,7 @@ public class CLogDB
 			//Manchmal fehlt die letzte Spalte (Information)
 			logzeile = null;
 			
-			//Hier wierd überprüft, ob die länge größer wie 6 ist
+			//Hier wierd überprüft, ob die länge größer oder kleiner wie 6 ist
 			if (teile.length >= 6) 
 			{
 				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
@@ -53,12 +53,7 @@ public class CLogDB
 										 teile[24], teile[25], teile[26], teile[27], teile[28], teile[29],
 										 teile[30], teile[31], teile[32]); 
 			}
-			/*else 
-			{
-				// Hier wierd der Zweite Konstruktor der Klasse CLogzeile auf gerufen, welcher weniger Parameter hat als der Haupkonstruktor
-				logzeile = new CLogzeile(teile[0], teile[1], teile[2], teile[3], teile[4], " ");
-			}*/
-			
+						
 			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt
 			log.add(logzeile);
 			
