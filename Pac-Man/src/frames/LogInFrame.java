@@ -8,14 +8,14 @@ import javax.swing.*;
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
  * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface KeyListener</b>.
  * @author Manuel Glantschnig
- * @version 1.1.1 */
-public final class LogInFrame extends JFrame implements KeyListener
+ * @version 1.2 */
+public final class LogInFrame extends JDialog implements KeyListener
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
-	private static 	String 		username		= null;
+	private static 	String 		username			= null;
 	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
-	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*",
-																"~","#","'", ".",":",",",";","<",">","|","-","+","_","@","€","µ","ß","ä","Ä", "ö","Ö","ü","Ü"};
+	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~",
+																"#","'",".", ":",",",";","<",">","|","-","+","_","@","€","µ","©","®","ß","ä", "Ä","ö","Ö","ü","Ü"};
 	
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -58,7 +58,7 @@ public final class LogInFrame extends JFrame implements KeyListener
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 		/*beim Schließen des Fensters wird das Programm beendet*/
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		/*der Titel der Fensters wird zugewiesen*/
 		setTitle("LogIn");
 		/*das Fenster wird sichtbar gemacht*/
