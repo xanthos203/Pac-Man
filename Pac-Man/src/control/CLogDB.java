@@ -34,27 +34,31 @@ public class CLogDB
 		//Zeilenobjekte aus Stringzeilen erzeugen und der ArrayList hinzufügen
 		for (String zeile : logString) 
 		{
+			
+			// Hier werden die Texteile "erzeugt" da diese mit dem Befehl split() aufgespalten werden
 			String[] teile = zeile.split(";");
+			
 			
 			//Manchmal fehlt die letzte Spalte (Information)
 			logzeile = null;
 			
+			//Hier wierd überprüft, ob die länge größer wie 6 ist
 			if (teile.length >= 6) 
 			{
+				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
 				logzeile = new CLogzeile(teile[0], teile[1], teile[2], teile[3], teile[4], teile[5]); 
 			}
-			
 			else 
 			{
+				// Hier wierd der Zweite Konstruktor der Klasse CLogzeile auf gerufen, welcher weniger Parameter hat als der Haupkonstruktor
 				logzeile = new CLogzeile(teile[0], teile[1], teile[2], teile[3], teile[4], " ");
 			}
 			
+			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt
 			log.add(logzeile);
+			
 		}
 	}
 //--------------------------------------------------------
-	public CLogDB() 
-	{
-		// TODO Auto-generated constructor stub
-	}
+	public CLogDB() {}
 }

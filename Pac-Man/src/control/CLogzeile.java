@@ -41,7 +41,7 @@ public class CLogzeile extends JFrame
 		oDarstellen = new CSpielFrame();
 		
 		//Test zum Sehen ob richtig eingelesen wurde
-		//System.out.printf("   " + string1 + " " + string2 + " " + string3 + " " + string4 + " " + string5 + " " + string6);
+		System.out.printf("   " + string1 + " " + string2 + " " + string3 + " " + string4 + " " + string5 + " " + string6+"\n");
 		
 		// Hier wird geschaut ob 0 im String steht.
 		if(string1.equals("0") )
