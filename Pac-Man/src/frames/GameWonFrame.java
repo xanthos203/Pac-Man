@@ -8,7 +8,7 @@ import javax.swing.*;
  * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle Münzen und alle Geister verspeist</i> hat.<br>
  * Diese Klasse <b>erbt von der Klasse JFrame</b> und <b>implementiert das Interface ActionListener</b>.
  * @author Manuel Glantschnig
- * @version 1.0 */
+ * @version 1.1 */
 public final class GameWonFrame extends JDialog implements ActionListener
 {
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
