@@ -12,10 +12,10 @@ import javax.swing.*;
 public final class LogInFrame extends JDialog implements KeyListener
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
-	private static 	String 		username		= null;
+	private static 	String 		username			= null;
 	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
-	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*",
-																"~","#","'", ".",":",",",";","<",">","|","-","+","_","@","€","µ","ß","ä","Ä", "ö","Ö","ü","Ü"};
+	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~",
+																"#","'",".", ":",",",";","<",">","|","-","+","_","@","€","µ","©","®","ß","ä", "Ä","ö","Ö","ü","Ü"};
 	
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
