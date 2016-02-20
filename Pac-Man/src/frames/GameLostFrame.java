@@ -16,7 +16,7 @@ public final class GameLostFrame extends JDialog
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
 	private JPanel 		contentPane		= new JPanel();
 	/**Auf dem <i>gameoverPanel</i> wird das <b>gameoverLabel</b> angezeigt.*/
-	private JPanel		gameoverPanel= new JPanel();
+	private JPanel		gameoverPanel	= new JPanel();
 	/**Auf dem <i>playagainPanel</i> werden alle <b>Komponenten</b> angezeigt, die <b>zum Wiederholen des Spiels</b> notwendig sind.*/
 	private JPanel		playagainPanel	= new JPanel();
 	/**Auf dem <i>buttonPanel</i> werden sämtliche <b>Buttons</b> nebeneinander <b>dargestellt</b>.*/
@@ -24,7 +24,7 @@ public final class GameLostFrame extends JDialog
 	/**Das Icon <i>gameLostIcon</i> stellt die <b>Hauptfigur Pac-Man</b>, der gerade <i>von Geistern verspeist wird</i>, dar.*/
 	private Icon		gameLostIcon	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameLostFrame.class.getResource("/images/Game_lost.PNG")));
 	/**Mit dem <i>gameoverLabel</i> wird dem Benutzer mitgeteilt, dass das <b>Spiel vorbei</b> ist.*/
-	private JLabel		gameoverLabel= new JLabel();
+	private JLabel		gameoverLabel	= new JLabel();
 	/**Mit dem <i>playagainLabel</i> wird der Benutzer gefragt, ob er <b>nochmal spielen</b> will.*/
 	private JLabel		playagainLabel	= new JLabel();
 	/**Auf dem Label <i>lostImage_label</i> wird das Icon <b>gameLostIcon</b> dargestellt.*/

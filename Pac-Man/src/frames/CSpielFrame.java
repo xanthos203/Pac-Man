@@ -1,17 +1,14 @@
 package frames;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.util.Random;
 import java.util.TimerTask;
 import java.util.Timer;
 
 import javax.swing.*;
 
-import Figuren.CGeister;
-import Figuren.CSpieler;
+import Figuren.*;
 import control.*;
 
 /**
@@ -56,10 +53,8 @@ public final class CSpielFrame extends JFrame
 	}
 //----------------------------------------------	
 	/**
-	 * 
-	 * @param bFenster
-	 * 
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
+	 * @param bFenster
 	 */
 	public CSpielFrame(boolean bFenster)
 	{
@@ -73,6 +68,7 @@ public final class CSpielFrame extends JFrame
 			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 			setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			setVisible(true);
+			addKeyListener(new CSteuerungListener());
 			
 			jPanel = new JPanel();
 			jPanel.setSize(laenge, breite);
@@ -91,9 +87,26 @@ public final class CSpielFrame extends JFrame
 	public void Darstellen()
 	{
 		TimerTask oTimerTask=new Task();		// Hier wird ein Obejkt der Classe Task welche von der Classe Timerrask erbt erzeugt.
-		oTimer.schedule(oTimerTask,0, 150);		// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen weerden soll.
+		oTimer.schedule(oTimerTask,0, 150);		// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
 	}
-	
+
+	//-------------------------------------------------------------------------------------------------------------------
+			
+		public static JPanel getSpieler()
+		{
+			return pSpieler;
+		}
+		
+	//-------------------------------------------------------------------------------------------------------------------
+		
+		public static CSpielFrame getFrame()
+		{
+			return getFrame();
+		}
+
+			
+	//-------------------------------------------------------------------------------------------------------------------
+		
 	/**
 	 * In dieser Klasse befindet sich die Methode run, welche für die Bewegung des Geistes zuständig ist.
 	 * @author Thomas Mader-Ofer
@@ -139,97 +152,97 @@ public final class CSpielFrame extends JFrame
 			pGeist.repaint();
 		 }
 	}
-
-//-------------------------------------------------------------------------------------------------------------------
-		
-	public static JPanel getSpieler()
-	{
-		return pSpieler;
-	}
 	
-//-------------------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static CSpielFrame getFrame()
-	{
-		return getFrame();
-	}
-
-		
-//-------------------------------------------------------------------------------------------------------------------
-		
 	/**
-	 * Hier wird der Spieler mit hilfe der Pfeiltasten zu Steuern.
+	 * Diese Listener-Klasse dient zur Steuerung des Hauptcharakters Pac-Man.
+	 * @author Manuel Glantschnig
+	 * @version 1.0
 	 */
-	public void keyPressed(KeyEvent arg0) 
+	class CSteuerungListener implements KeyListener
 	{
-// FÜr Spieler welche lieber mit wasd Spielen.		
-		if(arg0.getKeyCode()== KeyEvent.VK_S)
+		/**
+		 * Hier wird der Spieler mit hilfe der Pfeiltasten zu Steuern.
+		 * @param eTastendruck Taste gedrückt
+		 */
+		public void keyPressed(KeyEvent eTastendruck)
 		{
-			iSpielery = pSpieler .getY();
-			iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(),iSpielery);
-			bSpielerAktiv = true;
+	// FÜr Spieler welche lieber mit wasd Spielen.		
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_S)
+			{
+				iSpielery = pSpieler .getY();
+				iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
+				pSpieler.setLocation(pSpieler.getX(),iSpielery);
+				bSpielerAktiv = true;
+					
+			}
 				
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_W)
+			{
+				iSpielery = pSpieler.getY();
+				iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
+				pSpieler.setLocation(pSpieler.getX(),iSpielery);
+				bSpielerAktiv = true;
+			}		
+				
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_A)
+			{
+				iSpielerx = pSpieler.getX();
+				iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
+				pSpieler.setLocation(iSpielerx, pSpieler.getY());
+				bSpielerAktiv = true;		
+				
+			}
+				
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_D)
+			{
+				iSpielerx = pSpieler.getX();
+				iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
+				pSpieler.setLocation(iSpielerx, pSpieler.getY());
+				bSpielerAktiv = true;
+			}		
+	//=================================================================\\
+	// für Benutzer, welche lieber mit den Pfeiltasten arbeiten.
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_DOWN)
+			{
+				iSpielery = pSpieler.getY();
+				iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
+				pSpieler.setLocation(pSpieler.getX(),iSpielery);
+				bSpielerAktiv = true;
+			}
+				
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_UP)
+			{
+				iSpielery = pSpieler.getY();
+				iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
+				pSpieler.setLocation(pSpieler.getX(),iSpielery);
+				bSpielerAktiv = true;
+			}		
+				
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_LEFT)
+			{
+				iSpielerx = pSpieler.getX();
+				iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
+				pSpieler.setLocation(iSpielerx, pSpieler.getY());
+				bSpielerAktiv = true;		
+				
+			}
+				
+			if(eTastendruck.getKeyCode()== KeyEvent.VK_RIGHT)
+			{
+				iSpielerx = pSpieler.getX();
+				iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
+				pSpieler.setLocation(iSpielerx, pSpieler.getY());
+				bSpielerAktiv = true;
+			}		
+			 pSpieler.repaint();
 		}
-			
-		if(arg0.getKeyCode()== KeyEvent.VK_W)
-		{
-			iSpielery = pSpieler.getY();
-			iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(),iSpielery);
-			bSpielerAktiv = true;
-		}		
-			
-		if(arg0.getKeyCode()== KeyEvent.VK_A)
-		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;		
-			
-		}
-			
-		if(arg0.getKeyCode()== KeyEvent.VK_D)
-		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;
-		}		
-//=================================================================\\
-// für Benutzer, welche lieber mit den Pfeiltasten arbeiten.
-		if(arg0.getKeyCode()== KeyEvent.VK_DOWN)
-		{
-			iSpielery = pSpieler.getY();
-			iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(),iSpielery);
-			bSpielerAktiv = true;
-		}
-			
-		if(arg0.getKeyCode()== KeyEvent.VK_UP)
-		{
-			iSpielery = pSpieler.getY();
-			iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(),iSpielery);
-			bSpielerAktiv = true;
-		}		
-			
-		if(arg0.getKeyCode()== KeyEvent.VK_LEFT)
-		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;		
-			
-		}
-			
-		if(arg0.getKeyCode()== KeyEvent.VK_RIGHT)
-		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;
-		}		
-		 pSpieler.repaint();
+	//=================================================================\\
+		@Override
+		public void keyTyped(KeyEvent e) {}
+
+		@Override
+		public void keyReleased(KeyEvent e) {}
 	}
 }

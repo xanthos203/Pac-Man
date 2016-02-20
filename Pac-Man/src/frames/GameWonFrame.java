@@ -54,9 +54,11 @@ public final class GameWonFrame extends JDialog
 		/*beim Schließen des Fensters wird das Programm beendet*/
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		/*der Titel der Fensters wird zugewiesen*/
-		setTitle("Gewonnen");
+		setTitle("LogIn");
 		/*das Fenster wird sichtbar gemacht*/
 		setVisible(true);
+		/*das Fenster ist in seiner Größe nicht veränderbar*/
+		setResizable(false);
 		/*die Größe des Fensters wird festgelegt*/
 		setSize(frameWidth, frameHeight);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
