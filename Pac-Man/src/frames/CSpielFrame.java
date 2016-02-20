@@ -92,17 +92,17 @@ public final class CSpielFrame extends JFrame
 
 	//-------------------------------------------------------------------------------------------------------------------
 			
-		public static JPanel getSpieler()
-		{
-			return pSpieler;
-		}
+	public static JPanel getSpieler()
+	{
+		return pSpieler;
+	}
 		
 	//-------------------------------------------------------------------------------------------------------------------
 		
-		public static CSpielFrame getFrame()
-		{
-			return getFrame();
-		}
+	public static CSpielFrame getFrame()
+	{
+		return getFrame();
+	}
 
 			
 	//-------------------------------------------------------------------------------------------------------------------
