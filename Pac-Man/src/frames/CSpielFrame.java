@@ -53,9 +53,14 @@ public final class CSpielFrame extends JFrame
 	
 	public CSpielFrame()
 	{
-		
 	}
 //----------------------------------------------	
+	/**
+	 * 
+	 * @param bFenster
+	 * 
+	 * Hier wird das Fenster erstellt und Sichtbargeschalten
+	 */
 	public CSpielFrame(boolean bFenster)
 	{
 		fenster = bFenster;
@@ -78,7 +83,11 @@ public final class CSpielFrame extends JFrame
 			fenster = false;
 		}
 	}
+//----------------------------------------------------------------------------------
 	
+	/**
+	 * Hier wird der Timer der sagt wie oft der Geist pro Sekunde aufgerufen werden soll
+	 */
 	public void Darstellen()
 	{
 		TimerTask oTimerTask=new Task();		// Hier wird ein Obejkt der Classe Task welche von der Classe Timerrask erbt erzeugt.
