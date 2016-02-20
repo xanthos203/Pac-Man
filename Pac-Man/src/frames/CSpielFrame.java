@@ -21,11 +21,44 @@ import control.*;
  */
 public final class CSpielFrame extends JFrame
 {
-	private JPanel jPanel;
-	private int zaehlerY = 20;
-	private int zaehlerX = 0;
-	private int laenge = 20;
-	private int breite = 5;
+	private JPanel jPanelOben1 = new JPanel();
+	private JPanel jPanelOben2 = new JPanel();
+	private JPanel jPanelOben3 = new JPanel();
+	private JPanel jPanelOben4 = new JPanel();
+	private JPanel jPanelOben5 = new JPanel();
+	private JPanel jPanelOben6 = new JPanel();
+	private JPanel jPanelOben7 = new JPanel();
+	private JPanel jPanelOben8 = new JPanel();
+	private JPanel jPanelOben9 = new JPanel();
+	private JPanel jPanelOben10= new JPanel();
+	private JPanel jPanelOben11= new JPanel();
+	private JPanel jPanelOben12= new JPanel();
+	private JPanel jPanelOben13= new JPanel();
+	private JPanel jPanelOben14= new JPanel();
+	private JPanel jPanelOben15= new JPanel();
+	private JPanel jPanelOben16= new JPanel();
+	private JPanel jPanelOben17= new JPanel();
+	private JPanel jPanelOben18= new JPanel();
+	private JPanel jPanelOben19= new JPanel();
+	private JPanel jPanelOben20= new JPanel();
+	private JPanel jPanelOben21= new JPanel();
+	private JPanel jPanelOben22= new JPanel();
+	private JPanel jPanelOben23= new JPanel();
+	private JPanel jPanelOben24= new JPanel();
+	private JPanel jPanelOben25= new JPanel();
+	private JPanel jPanelOben26= new JPanel();
+	private JPanel jPanelOben27= new JPanel();
+	private JPanel jPanelOben28= new JPanel();
+	private JPanel jPanelOben29= new JPanel();
+	private JPanel jPanelOben30= new JPanel();
+	private JPanel jPanelOben31= new JPanel();
+	private JPanel jPanelOben32= new JPanel();
+	private JPanel jPanelOben33= new JPanel();
+	
+	private int zaehlerY = 0;
+	private int zaehlerX = 200;
+	private int laenge = 50;
+	private int breite = 10;
 	private int screenWidth	= Toolkit.getDefaultToolkit().getScreenSize().width;
 	private int	screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 	private int	frameWidth = 1100;
@@ -50,11 +83,50 @@ public final class CSpielFrame extends JFrame
 	private CSpieler oSpieler = new CSpieler();
 	
 	private Timer oTimer = new Timer();
+	private JPanel[] aPanel = new JPanel[800];
 	
 	public CSpielFrame()
 	{
+		for(int i=1; i<34; i++)
+		{
+			aPanel[i] = jPanelOben1;
+			aPanel[i] = jPanelOben2;
+			aPanel[i] = jPanelOben3;
+			aPanel[i] = jPanelOben4;
+			aPanel[i] = jPanelOben5;
+			aPanel[i] = jPanelOben6;
+			aPanel[i] = jPanelOben7;
+			aPanel[i] = jPanelOben8;
+			aPanel[i] = jPanelOben9;
+			aPanel[i] = jPanelOben10;
+			aPanel[i] = jPanelOben11;
+			aPanel[i] = jPanelOben12;
+			aPanel[i] =	jPanelOben13;
+			aPanel[i] = jPanelOben14;
+			aPanel[i] = jPanelOben15;
+			aPanel[i] =	jPanelOben16;
+			aPanel[i] = jPanelOben17;
+			aPanel[i] = jPanelOben18;
+			aPanel[i] = jPanelOben19;
+			aPanel[i] = jPanelOben20;
+			aPanel[i] = jPanelOben21;
+			aPanel[i] = jPanelOben22;
+			aPanel[i] = jPanelOben23;
+			aPanel[i] = jPanelOben24;
+			aPanel[i] = jPanelOben25;
+			aPanel[i] = jPanelOben26;
+			aPanel[i] = jPanelOben27;
+			aPanel[i] = jPanelOben28;
+			aPanel[i] = jPanelOben29;
+			aPanel[i] = jPanelOben30;
+			aPanel[i] = jPanelOben31;
+			aPanel[i] = jPanelOben32;
+			aPanel[i] = jPanelOben33;
+		}
 	}
+	
 //----------------------------------------------	
+	
 	/**
 	 * 
 	 * @param bFenster
@@ -72,17 +144,25 @@ public final class CSpielFrame extends JFrame
 			setSize(frameWidth, frameHeight);
 			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 			setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+			setLayout( null);
 			setVisible(true);
 			
-			jPanel = new JPanel();
-			jPanel.setSize(laenge, breite);
-			jPanel.setLocation(zaehlerX, zaehlerY);
-			jPanel.setBackground(Color.BLUE);
-			add(jPanel);
-			
+			/*for(int i=1; i<34; i++)
+			{
+				aPanel[i].setSize(laenge, breite);
+				aPanel[i].setLocation( zaehlerX, zaehlerY);
+				aPanel[i].setBackground(Color.BLUE);
+				add(aPanel[i]);
+				zaehlerX = zaehler+laenge;
+			}*/
+			jPanelOben1.setSize(laenge, breite);
+			jPanelOben1.setLocation(zaehlerX, zaehlerY);
+			jPanelOben1.setBackground(Color.BLUE);
+			add(jPanelOben1);
 			fenster = false;
 		}
 	}
+	
 //----------------------------------------------------------------------------------
 	
 	/**
@@ -91,7 +171,7 @@ public final class CSpielFrame extends JFrame
 	public void Darstellen()
 	{
 		TimerTask oTimerTask=new Task();		// Hier wird ein Obejkt der Classe Task welche von der Classe Timerrask erbt erzeugt.
-		oTimer.schedule(oTimerTask,0, 150);		// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen weerden soll.
+		oTimer.schedule(oTimerTask,0, 150);		// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
 	}
 	
 	/**
@@ -154,7 +234,6 @@ public final class CSpielFrame extends JFrame
 		return getFrame();
 	}
 
-		
 //-------------------------------------------------------------------------------------------------------------------
 		
 	/**
@@ -162,7 +241,7 @@ public final class CSpielFrame extends JFrame
 	 */
 	public void keyPressed(KeyEvent arg0) 
 	{
-// FÜr Spieler welche lieber mit wasd Spielen.		
+		// Für Spieler welche lieber mit wasd Spielen.		
 		if(arg0.getKeyCode()== KeyEvent.VK_S)
 		{
 			iSpielery = pSpieler .getY();
@@ -196,8 +275,10 @@ public final class CSpielFrame extends JFrame
 			pSpieler.setLocation(iSpielerx, pSpieler.getY());
 			bSpielerAktiv = true;
 		}		
+		
 //=================================================================\\
-// für Benutzer, welche lieber mit den Pfeiltasten arbeiten.
+		
+		// für Benutzer, welche lieber mit den Pfeiltasten arbeiten.
 		if(arg0.getKeyCode()== KeyEvent.VK_DOWN)
 		{
 			iSpielery = pSpieler.getY();

@@ -37,11 +37,11 @@ public class CGeister
 //-------------------------------------------------------------------------------------------------------------------------	
 	public int GeisterRechtsBewegen(int iRunterx)
 	{
-		if(iRunterx+CSpielFrame.getSpieler().getHeight()<CSpielFrame.getFrame().getContentPane().getBounds().getWidth()-/*Randkoordinaten des JPanels angeben*/)
-		{
-			iRunterx+=8;
-			iGeistx = iRunterx;
-		}
+//		if(iRunterx+CSpielFrame.getSpieler().getHeight()<CSpielFrame.getFrame().getContentPane().getBounds().getWidth()-/*Randkoordinaten des JPanels angeben*/)
+//		{
+//			iRunterx+=8;
+//			iGeistx = iRunterx;
+//		}
 		return iGeistx;
 	}
 //------------------------------------------------------------------------------------------------------------------------	
