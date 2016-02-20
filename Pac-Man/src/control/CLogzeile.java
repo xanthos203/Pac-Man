@@ -95,10 +95,6 @@ public class CLogzeile extends JFrame
 					
 				}
 			}
-			if(i == 33)
-			{
-				z
-			}
 		}
 		
 	}
