@@ -86,7 +86,7 @@ public class CLogzeile extends JFrame
 		{
 			if(sString1bis33[i].equals("1"))
 			{
-				oDarstellen.Darstellen();
+				oDarstellen.bWand = true;
 			}
 			else
 			{
