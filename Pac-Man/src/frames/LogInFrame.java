@@ -148,7 +148,7 @@ public final class LogInFrame extends JDialog
 	 * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
 	 * @author Manuel Glantschnig
 	 * @version 1.0 */
-	class TextfieldListener implements KeyListener
+	private final class TextfieldListener implements KeyListener
 	{
 		/**Die <i>reference</i> bestimmt die <b>Referenz</b> auf welche sich die Klasse bezieht.*/
 		private JDialog reference;
