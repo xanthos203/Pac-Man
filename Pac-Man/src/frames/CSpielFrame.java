@@ -9,7 +9,6 @@ import java.util.Timer;
 import javax.swing.*;
 
 import Figuren.*;
-import control.*;
 
 /**
  * 
@@ -18,6 +17,8 @@ import control.*;
  */
 public final class CSpielFrame extends JFrame
 {
+	private static CSpielFrame jFrame = new CSpielFrame();
+	
 	private JPanel jPanelOben1 = new JPanel();
 	private JPanel jPanelOben2 = new JPanel();
 	private JPanel jPanelOben3 = new JPanel();
@@ -101,14 +102,14 @@ public final class CSpielFrame extends JFrame
 		if((fenster == true))
 		{
 			
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			setTitle("Pac-Man");
-			setSize(frameWidth, frameHeight);
-			setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
-			setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
-			setLayout( null);
-			setVisible(true);
-			addKeyListener(new CSteuerungListener());
+			jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+			jFrame.setTitle("Pac-Man");
+			jFrame.setSize(frameWidth, frameHeight);
+			jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
+			jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+			jFrame.setLayout(null);
+			jFrame.setVisible(true);
+			jFrame.addKeyListener(new CSteuerungListener());
 			
 			if(bWand)
 			{
@@ -200,7 +201,7 @@ public final class CSpielFrame extends JFrame
 		
 	public static CSpielFrame getFrame()
 	{
-		return getFrame();
+		return jFrame;
 	}
 
 			
@@ -211,9 +212,8 @@ public final class CSpielFrame extends JFrame
 	 * @author Thomas Mader-Ofer
 	 *
 	 */
-	class Task extends TimerTask
+	private class Task extends TimerTask
 	{
-
 		public void run()
 		{
 			if(bSpielerAktiv == true)
@@ -243,13 +243,12 @@ public final class CSpielFrame extends JFrame
 				{
 					pSpieler.setBackground(Color.WHITE);
 				}
-			
 			}
 				
 			setBackground(Color.WHITE);
 			pGeist.setLocation(oGeist.getPosX(),oGeist.getPosY());
 			pGeist.repaint();
-		 }
+		}
 	}
 	
 
@@ -261,23 +260,21 @@ public final class CSpielFrame extends JFrame
 	 * @author Manuel Glantschnig
 	 * @version 1.0
 	 */
-	class CSteuerungListener implements KeyListener
+	private final class CSteuerungListener implements KeyListener
 	{
-
 		/**
 		 * Hier wird der Spieler mit hilfe der Pfeiltasten zu Steuern.
 		 * @param eTastendruck Taste gedrückt
 		 */
 		public void keyPressed(KeyEvent eTastendruck)
 		{
-	// FÜr Spieler welche lieber mit wasd Spielen.		
+	// Für Spieler welche lieber mit "WASD" Spielen.		
 			if(eTastendruck.getKeyCode()== KeyEvent.VK_S)
 			{
 				iSpielery = pSpieler .getY();
 				iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
 				pSpieler.setLocation(pSpieler.getX(),iSpielery);
 				bSpielerAktiv = true;
-					
 			}
 				
 			if(eTastendruck.getKeyCode()== KeyEvent.VK_W)
@@ -293,8 +290,7 @@ public final class CSpielFrame extends JFrame
 				iSpielerx = pSpieler.getX();
 				iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
 				pSpieler.setLocation(iSpielerx, pSpieler.getY());
-				bSpielerAktiv = true;		
-				
+				bSpielerAktiv = true;
 			}
 				
 			if(eTastendruck.getKeyCode()== KeyEvent.VK_D)
@@ -327,8 +323,7 @@ public final class CSpielFrame extends JFrame
 				iSpielerx = pSpieler.getX();
 				iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
 				pSpieler.setLocation(iSpielerx, pSpieler.getY());
-				bSpielerAktiv = true;		
-				
+				bSpielerAktiv = true;
 			}
 				
 			if(eTastendruck.getKeyCode()== KeyEvent.VK_RIGHT)
@@ -338,7 +333,7 @@ public final class CSpielFrame extends JFrame
 				pSpieler.setLocation(iSpielerx, pSpieler.getY());
 				bSpielerAktiv = true;
 			}		
-			 pSpieler.repaint();
+			pSpieler.repaint();
 		}
 
 	//=================================================================\\
@@ -347,6 +342,5 @@ public final class CSpielFrame extends JFrame
 
 		@Override
 		public void keyReleased(KeyEvent e) {}
-
 	}
 }

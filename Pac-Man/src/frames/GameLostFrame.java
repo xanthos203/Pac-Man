@@ -138,7 +138,7 @@ public final class GameLostFrame extends JDialog
 	 * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
 	 * @author Manuel Glantschnig
 	 * @version 1.0 */
-	class ButtonListener implements ActionListener
+	private final class ButtonListener implements ActionListener
 	{
 		/**Die <i>reference</i> bestimmt die <b>Referenz</b> auf welche sich die Klasse bezieht.*/
 		private JDialog reference;
