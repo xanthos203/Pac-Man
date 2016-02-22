@@ -120,7 +120,7 @@ public final class CSpielFrame extends JFrame
 				aPanel[zaehler].setBackground(Color.BLUE);
 				add(aPanel[zaehler]);
 				zaehler++;
-				/*
+				
 				jPanelOben1.setSize(laenge, breite);
 				jPanelOben1.setLocation(zaehlerX, zaehlerY);
 				jPanelOben1.setBackground(Color.BLUE);
