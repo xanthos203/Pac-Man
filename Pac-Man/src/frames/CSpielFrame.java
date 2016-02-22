@@ -15,7 +15,8 @@ import characters.*;
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-public final class CSpielFrame extends JFrame
+  
+public class CSpielFrame extends JFrame
 {
 	private static CSpielFrame jFrame = new CSpielFrame();
 	
@@ -101,7 +102,6 @@ public final class CSpielFrame extends JFrame
 		fenster = bFenster;
 		if((fenster == true))
 		{
-			
 			jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 			jFrame.setTitle("Pac-Man");
 			jFrame.setSize(frameWidth, frameHeight);
@@ -114,17 +114,17 @@ public final class CSpielFrame extends JFrame
 			if(bWand)
 			{
 				System.out.println(""+aPanel[zaehler]);
-				/*
+				
 				aPanel[zaehler].setSize(laenge, breite);
 				aPanel[zaehler].setLocation( zaehlerX, zaehlerY);
 				aPanel[zaehler].setBackground(Color.BLUE);
-				add(aPanel[zaehler]);
+				jFrame.add(aPanel[zaehler]);
 				zaehler++;
 				
 				jPanelOben1.setSize(laenge, breite);
 				jPanelOben1.setLocation(zaehlerX, zaehlerY);
 				jPanelOben1.setBackground(Color.BLUE);
-				add(jPanelOben1);*/
+				add(jPanelOben1);
 				System.out.println("HALLO");
 				
 				iZaehler++;
@@ -203,7 +203,7 @@ public final class CSpielFrame extends JFrame
 	{
 		return jFrame;
 	}
-
+	
 	//-------------------------------------------------------------------------------------------------------------------
 		
 	/**
@@ -302,6 +302,7 @@ public final class CSpielFrame extends JFrame
 		}
 
 	//=================================================================\\
+		
 		@Override
 		public void keyTyped(KeyEvent e) {}
 
@@ -309,3 +310,4 @@ public final class CSpielFrame extends JFrame
 		public void keyReleased(KeyEvent e) {}
 	}
 }
+

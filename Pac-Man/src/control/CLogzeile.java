@@ -19,7 +19,7 @@ public class CLogzeile extends JFrame
 	private CSpielFrame oDarstellen;
 	
 	// dient nur zu Erstellen von Objekten ohne Parameter. 
-	public CLogzeile()	{}
+	public CLogzeile() {}
 	
 //----------------------------------------------------------------------
 	/**
