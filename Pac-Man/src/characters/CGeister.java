@@ -1,6 +1,4 @@
-package Figuren;
-
-import java.awt.Component;
+package characters;
 
 import frames.CSpielFrame;
 
@@ -15,9 +13,9 @@ public class CGeister
 	
 	public int GeisterRaufBewegen(int iRaufy)
 	{
-		if(iRaufy+CSpielFrame.getSpieler().getHeight()<CSpielFrame.getFrame().getContentPane().getBounds().getHeight())
+		if(iRaufy + CSpielFrame.getSpieler().getHeight() < CSpielFrame.getFrame().getContentPane().getBounds().getHeight())
 		{
-			iRaufy+=8;
+			iRaufy += 8;
 			iGeisty = iRaufy;
 		}
 		return iGeisty;
@@ -27,10 +25,10 @@ public class CGeister
 	
 	public int GeisterRunterBewegen(int iRuntery)
 	{ 
-		if(iRuntery>+16) 
+		if(iRuntery >+ 16) 
 		{
-			iRuntery-=8;
-			iGeisty=iRuntery;
+			iRuntery -= 8;
+			iGeisty = iRuntery;
 		}
 		return iGeisty;
 	}
@@ -47,10 +45,10 @@ public class CGeister
 //------------------------------------------------------------------------------------------------------------------------	
 	public int GeisterLinksBewegen(int iRunterx)
 	{
-		if(iRunterx>16)
+		if(iRunterx > 16)
 		{
-			iRunterx-=8;
-			iGeistx=iRunterx;
+			iRunterx -= 8;
+			iGeistx = iRunterx;
 		}
 		return iGeistx;
 	}
@@ -66,4 +64,3 @@ public class CGeister
 		return iGeistx;
 	}
 }
-

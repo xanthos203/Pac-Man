@@ -1,6 +1,5 @@
-package Figuren;
+package characters;
 import frames.CSpielFrame;
-import java.awt.Component;
 
 /**
  * 
@@ -9,8 +8,8 @@ import java.awt.Component;
  */
 public class CSpieler 
 {
-	private int iSpielerx=0;
-	private int iSpielery=0;
+	private int iSpielerx = 0;
+	private int iSpielery = 0;
 	
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
@@ -20,9 +19,9 @@ public class CSpieler
 	public int SpielerRaufBewegen(int iRaufy)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if((iRaufy+CSpielFrame.getSpieler().getHeight()<(CSpielFrame.getFrame().getContentPane().getBounds().getHeight())-18))
+		if((iRaufy + CSpielFrame.getSpieler().getHeight() < (CSpielFrame.getFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			iRaufy+=4;
+			iRaufy += 4;
 			iSpielery = iRaufy;
 		}
 		return iSpielery;
@@ -39,10 +38,10 @@ public class CSpieler
 	public int SpielerRunterBewegen(int iRuntery)
 	{
 		//  Hier wird überprüft ober der Spieler noch weiter hinauf bewegt werden darf
-		if(iRuntery>16)
+		if(iRuntery > 16)
 		{
-			iRuntery-=4;
-			iSpielery=iRuntery;
+			iRuntery -= 4;
+			iSpielery = iRuntery;
 		}
 		return iSpielery;
 	}
@@ -114,6 +113,4 @@ public class CSpieler
 //		}
 		return iSpielerx;
 	}
-
 }
-
