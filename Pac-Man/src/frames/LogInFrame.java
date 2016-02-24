@@ -1,8 +1,9 @@
 package frames;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
+
+import control.TextfieldListener;
 
 /**In dieser Klasse wird des Fenster zum Einloggen des Benutzers dargestellt.<br>
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
@@ -14,7 +15,7 @@ public final class LogInFrame extends JDialog
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
 	private static 	String 		username		= null;
 	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
-	private 		String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~",
+	private static	String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~",
 																"#","'",".", ":",",",";","<",">","|","-","+","_","@","€","µ","©","®","ß","ä", "Ä","ö","Ö","ü","Ü"};
 	
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
@@ -42,7 +43,7 @@ public final class LogInFrame extends JDialog
 	/**Mit dem <i>hinweisLabel</i> wird der Benutzer darauf <b>hingewiesen, wo er seinen Spielernamen eingeben</b> muss.*/
 	private JLabel		hinweisLabel	= new JLabel();
 	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
-	private JTextField	usernameFeld	= new JTextField();
+	private static JTextField	usernameFeld	= new JTextField();
 	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
 	private int 		screenWidth		= Toolkit.getDefaultToolkit().getScreenSize().width;
 	/**In <i>screenHeight</i> wird die <b>Höhe des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
@@ -102,7 +103,7 @@ public final class LogInFrame extends JDialog
 		usernameFeld.setHorizontalAlignment(SwingConstants.LEFT);
 		/*dem usernameFeld wird ein Hinweistext zugewiesen*/
 		usernameFeld.setToolTipText("Spielername eingeben");
-		/*dem usernameFeld wird DIESE Klasse als KeyListener hinzugefügt*/
+		/*dem usernameFeld wird ein KeyListener hinzugefügt*/
 		usernameFeld.addKeyListener(new TextfieldListener(this));
 		
 		/*dem eingabePanel wird ein neues BorderLayout hinzugefügt*/
@@ -142,113 +143,28 @@ public final class LogInFrame extends JDialog
 		/*der aktuelle Spielername wird zurückgegeben*/
 		return username;
 	}
-	
-	/**Diese <i>innere Klasse</i> dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
-	 * Außerdem <b>überprüft</b> diese Klasse den <b>eingegebenen Text</b> im <i>JTextField</i>.<br>
-	 * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
-	 * @author Manuel Glantschnig
-	 * @version 1.0 */
-	private final class TextfieldListener implements KeyListener
+
+	/**Die <i>Setter</i>-Methode für den <b>Spielername</b> setzt den <i>username</i> auf den vom Benutzer gewünschten Text.
+	 * @param name der vom Benutzer festgelegte Spielername*/
+	public static void setUsername(String name)
 	{
-		/**Die <i>reference</i> bestimmt die <b>Referenz</b> auf welche sich die Klasse bezieht.*/
-		private JDialog reference;
-		
-		/**Im Konstruktor wird die <b>Referenz des Fensters</b> festgelegt.
-		 * @param dialog Referenzvariable vom Typ <i>JDialog</i>*/
-		public TextfieldListener(JDialog dialog)
-		{
-			/*der Variable reference wird der Wert von dialog zugewiesen
-			 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
-			reference = dialog;
-		}
-		
-		/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
-		 * @param e Tastendruck*/
-		@Override
-		public void keyPressed(KeyEvent e)
-		{
-			/*Wird nur ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
-			if (e.getKeyCode() == KeyEvent.VK_ENTER)
-			{
-				/*wird ausgeführt, wenn kein Text eingegeben wurde*/
-				if (usernameFeld.getText().isEmpty())
-				{
-					/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-					JOptionPane.showMessageDialog(null,
-							"Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
-							"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
-					/*der Text im Textfeld wird zurückgesetzt*/
-					usernameFeld.setText("");
-					/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
-					return;
-				}
-				/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als 21 Zeichen ist*/
-				if (usernameFeld.getText().contains(" ") && (usernameFeld.getText().length() < 21))
-				{
-					/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-					JOptionPane.showMessageDialog(null, 
-							"Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten\u002E",
-							"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
-					/*der Text im Textfeld wird zurückgesetzt*/
-					usernameFeld.setText("");
-					/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
-					return;
-				}
-				/*wird ausgeführt, wenn der eingegebene Text länger als 20 Zeichen ist*/
-				if (usernameFeld.getText().length() > 20)
-				{
-					/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
-					JOptionPane.showMessageDialog(null,
-							"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal 20 Zeichen lang sein\u002E",
-							"Zu langer Name", JOptionPane.WARNING_MESSAGE);
-					/*der Text im Textfeld wird zurückgesetzt*/
-					usernameFeld.setText("");
-					/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
-					return;
-				}
-				/*wird ausgeführt, wenn der eingegebene Text kürzer als 21 Zeichen ist*/
-				if (usernameFeld.getText().length() < 21)
-				{
-					/*diese Schleife läuft so oft durch, so lang wie das sonderzeichen-Array ist*/
-					for (int i = 0; i < sonderzeichen.length; i++)
-					{
-						/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
-						if (usernameFeld.getText().contains(sonderzeichen[i]))
-						{
-							/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-							JOptionPane.showMessageDialog(null,
-									"Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten\u002E",
-									"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
-							/*der Text im Textfeld wird zurückgesetzt*/
-							usernameFeld.setText("");
-							/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
-							return;
-						}
-					}
-				}
-				/*wird ausgeführt, wenn keine der oben stehenden Bedingungen zutrifft*/
-				for (int i = 0; i < sonderzeichen.length;)
-				{
-					/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
-					if (!usernameFeld.getText().contains(sonderzeichen[i]))
-					{
-						/*der eingegebene Spielername wird gespeichert*/
-						username = usernameFeld.getText();
-						/*das aktuelle Fenster wird geschlossen*/
-						reference.dispose();
-						
-						/*========Hauptfenster öffnen========*/
-						CSpielFrame oSpielFrame = new CSpielFrame(true);
-					}
-					/*die Schleife wird abgebrochen, wenn die oben stehende Bedingung zutrifft*/
-					break;
-				}
-			}
-		}
-	//-------------------------------------------------------------------------------------	
-		@Override
-		public void keyTyped(KeyEvent e) {}
-		@Override
-		public void keyReleased(KeyEvent e) {}
+		/*der username wird auf den Wert von name gesetzt*/
+		username = name;
+	}
+	
+	/**Die <i>Getter</i>-Methode für das <b>UsernameFeld</b> retourniert das UsernameFeld, indem der Benutzer seinen Spielernamen eingeben kann.
+	 * @return den eingegebenen Spielernamen*/
+	public static JTextField getUsernameFeld()
+	{
+		/*das usernameFeld wird zurückgegeben*/
+		return usernameFeld;
+	}
+	
+	/**Die <i>Getter</i>-Methode für das <b>Sonderzeichen-Array</b> retourniert das Sonderzeichen-Array, indem sich alle Sonderzeichen befinden, die nicht eingegeben werden können.
+	 * @return den eingegebenen Spielernamen*/
+	public static String[] getSonderzeichen()
+	{
+		/*das sonderzeichen-Array wird zurückgegeben*/
+		return sonderzeichen;
 	}
 }
