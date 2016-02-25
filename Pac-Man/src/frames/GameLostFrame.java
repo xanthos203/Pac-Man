@@ -5,13 +5,14 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import control.ButtonListener;
+import interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>verloren</b> hat, dargestellt.<br>
  * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle seine Leben verloren</i> hat.<br>
- * Diese Klasse <b>erbt von der Klasse JDialog</b>.
+ * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
  * @author Manuel Glantschnig
  * @version 1.1 */
-public final class GameLostFrame extends JDialog
+public final class GameLostFrame extends JDialog implements IWindowProperties
 {
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
 	private Color 		backgroundColor	= new Color(38, 0, 38);
@@ -35,14 +36,6 @@ public final class GameLostFrame extends JDialog
 	private JButton		jaButton		= new JButton("     Ja     ");
 	/**Mit dem <i>nein</i>-Button bestätigt der Benutzer, dass er das <b>Spiel beenden</b> möchte.*/
 	private JButton		neinButton		= new JButton("   Nein   ");
-	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
-	private int 		screenWidth		= Toolkit.getDefaultToolkit().getScreenSize().width;
-	/**In <i>screenHeight</i> wird die <b>Höhe des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
-	private int			screenHeight	= Toolkit.getDefaultToolkit().getScreenSize().height;
-	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
-	private int			frameWidth		= 1100;
-	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	private int			frameHeight		= 745;
 	
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public GameLostFrame()
@@ -102,13 +95,14 @@ public final class GameLostFrame extends JDialog
 		/*dem ja-Button wird ein Hinweistext zugewiesen*/
 		jaButton.setToolTipText("Nochmal spielen");
 		/*dem ja-Button wird ein ActionListener zugewiesen*/
-		jaButton.addActionListener(new ButtonListener(this, jaButton));
+		jaButton.addActionListener(new ButtonListener(this, ButtonListener.REPEAT_GAME));
+		
 		/*dem nein-Button wird ein Schriftstil zugewiesen*/
 		neinButton.setFont(new Font("arial", Font.PLAIN, 38));
 		/*dem nein-Button wird ein Hinweistext zugewiesen*/
 		neinButton.setToolTipText("Spiel beenden");
 		/*dem nein-Button wird ein ActionListener zugewiesen*/
-		neinButton.addActionListener(new ButtonListener(this, jaButton));
+		neinButton.addActionListener(new ButtonListener(this, ButtonListener.EXIT_GAME));
 		
 		/*dem buttonPanel wird ein neues FlowLayout hinzugefügt*/
 		buttonPanel.setLayout(new FlowLayout());

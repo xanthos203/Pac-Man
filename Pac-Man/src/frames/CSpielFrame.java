@@ -9,6 +9,8 @@ import java.util.Timer;
 import javax.swing.*;
 
 import characters.*;
+import interfaces.ILabyrinth;
+import interfaces.IWindowProperties;
 
 /**
  * 
@@ -16,52 +18,14 @@ import characters.*;
  * @version 1.0
  */
   
-public class CSpielFrame extends JFrame
+public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 {
 	private static CSpielFrame jFrame = new CSpielFrame();
-	
-	private JPanel jPanelOben1 = new JPanel();
-	private JPanel jPanelOben2 = new JPanel();
-	private JPanel jPanelOben3 = new JPanel();
-	private JPanel jPanelOben4 = new JPanel();
-	private JPanel jPanelOben5 = new JPanel();
-	private JPanel jPanelOben6 = new JPanel();
-	private JPanel jPanelOben7 = new JPanel();
-	private JPanel jPanelOben8 = new JPanel();
-	private JPanel jPanelOben9 = new JPanel();
-	private JPanel jPanelOben10= new JPanel();
-	private JPanel jPanelOben11= new JPanel();
-	private JPanel jPanelOben12= new JPanel();
-	private JPanel jPanelOben13= new JPanel();
-	private JPanel jPanelOben14= new JPanel();
-	private JPanel jPanelOben15= new JPanel();
-	private JPanel jPanelOben16= new JPanel();
-	private JPanel jPanelOben17= new JPanel();
-	private JPanel jPanelOben18= new JPanel();
-	private JPanel jPanelOben19= new JPanel();
-	private JPanel jPanelOben20= new JPanel();
-	private JPanel jPanelOben21= new JPanel();
-	private JPanel jPanelOben22= new JPanel();
-	private JPanel jPanelOben23= new JPanel();
-	private JPanel jPanelOben24= new JPanel();
-	private JPanel jPanelOben25= new JPanel();
-	private JPanel jPanelOben26= new JPanel();
-	private JPanel jPanelOben27= new JPanel();
-	private JPanel jPanelOben28= new JPanel();
-	private JPanel jPanelOben29= new JPanel();
-	private JPanel jPanelOben30= new JPanel();
-	private JPanel jPanelOben31= new JPanel();
-	private JPanel jPanelOben32= new JPanel();
-	private JPanel jPanelOben33= new JPanel();
 	
 	private int zaehlerY = 0;
 	private int zaehlerX = 200;
 	private int laenge = 50;
 	private int breite = 10;
-	private int screenWidth	= Toolkit.getDefaultToolkit().getScreenSize().width;
-	private int	screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
-	private int	frameWidth = 1100;
-	private int	frameHeight	= 745;
 	
 	private int iGeisty;
 	private int iGeistx;
@@ -134,7 +98,7 @@ public class CSpielFrame extends JFrame
 			{
 				iZaehler = 0;
 				zaehlerX = 200;
-				zaehlerY = zaehlerY+25;
+				zaehlerY = zaehlerY + 25;
 				zaehlerX = zaehler+laenge;
 			}
 			
@@ -150,6 +114,7 @@ public class CSpielFrame extends JFrame
 	 */
 	public void Darstellen()
 	{
+		System.out.println("MLG");
 		for(int i = 0; i < 34; i++)
 		{
 			aPanel[i] = jPanelOben1;

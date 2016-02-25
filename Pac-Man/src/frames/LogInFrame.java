@@ -4,13 +4,14 @@ import java.awt.*;
 import javax.swing.*;
 
 import control.TextfieldListener;
+import interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster zum Einloggen des Benutzers dargestellt.<br>
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
- * Diese Klasse <b>erbt von der Klasse JDialog</b>.
+ * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
  * @author Manuel Glantschnig
  * @version 1.2 */
-public final class LogInFrame extends JDialog
+public final class LogInFrame extends JDialog implements IWindowProperties
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
 	private static 	String 		username		= null;
@@ -44,14 +45,6 @@ public final class LogInFrame extends JDialog
 	private JLabel		hinweisLabel	= new JLabel();
 	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
 	private static JTextField	usernameFeld	= new JTextField();
-	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
-	private int 		screenWidth		= Toolkit.getDefaultToolkit().getScreenSize().width;
-	/**In <i>screenHeight</i> wird die <b>Höhe des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
-	private int			screenHeight	= Toolkit.getDefaultToolkit().getScreenSize().height;
-	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
-	private int			frameWidth		= 1100;
-	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	private int			frameHeight		= 745;
 	
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public LogInFrame()
@@ -161,7 +154,7 @@ public final class LogInFrame extends JDialog
 	}
 	
 	/**Die <i>Getter</i>-Methode für das <b>Sonderzeichen-Array</b> retourniert das Sonderzeichen-Array, indem sich alle Sonderzeichen befinden, die nicht eingegeben werden können.
-	 * @return den eingegebenen Spielernamen*/
+	 * @return alle unzulässigen Sonderzeichen*/
 	public static String[] getSonderzeichen()
 	{
 		/*das sonderzeichen-Array wird zurückgegeben*/

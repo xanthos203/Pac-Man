@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import frames.*;
 
-/**Diese <i>innere Klasse</i> dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
+/**Diese <i>Klasse</i> dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
  * Außerdem <b>überprüft</b> diese Klasse den <b>eingegebenen Text</b> im <i>JTextField</i>.<br>
  * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
  * @author Manuel Glantschnig
@@ -100,7 +100,7 @@ public final class TextfieldListener implements KeyListener
 					/*das aktuelle Fenster wird geschlossen*/
 					reference.dispose();
 					
-					/*========Hauptfenster öffnen========*/
+					/*=========Hauptfenster öffnen=========*/
 					CSpielFrame oSpielFrame = new CSpielFrame(true);
 				}
 				/*die Schleife wird abgebrochen, wenn die oben stehende Bedingung zutrifft*/
