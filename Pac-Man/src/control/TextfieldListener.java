@@ -1,9 +1,7 @@
 package control;
 
 import java.awt.event.*;
-
 import javax.swing.*;
-
 import frames.*;
 
 /**Diese <i>Klasse</i> dient dazu, um <b>Tastendrücke abzufangen</b>.<br>

@@ -2,7 +2,6 @@ package frames;
 
 import java.awt.*;
 import javax.swing.*;
-
 import control.ButtonListener;
 import interfaces.IWindowProperties;
 
