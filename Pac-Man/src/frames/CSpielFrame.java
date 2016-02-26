@@ -230,8 +230,8 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		 */
 		public void keyPressed(KeyEvent eTastendruck)
 		{
-		// Für Spieler welche lieber mit "WASD" spielen    ODER   Für Spieler welche lieber mit den Pfeiltasten spielen
-			if((eTastendruck.getKeyCode() == KeyEvent.VK_S) || (eTastendruck.getKeyCode() == KeyEvent.VK_DOWN))
+		// Für Spieler welche lieber mit "WASD" spielen
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_S))
 			{
 				iSpielery = pSpieler .getY();
 				iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
@@ -239,7 +239,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 				bSpielerAktiv = true;
 			}
 				
-			if((eTastendruck.getKeyCode() == KeyEvent.VK_W) || (eTastendruck.getKeyCode() == KeyEvent.VK_UP))
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_W))
 			{
 				iSpielery = pSpieler.getY();
 				iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
@@ -247,7 +247,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 				bSpielerAktiv = true;
 			}		
 				
-			if((eTastendruck.getKeyCode() == KeyEvent.VK_A) || (eTastendruck.getKeyCode() == KeyEvent.VK_LEFT))
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_A))
 			{
 				iSpielerx = pSpieler.getX();
 				iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
@@ -255,7 +255,39 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 				bSpielerAktiv = true;
 			}
 				
-			if((eTastendruck.getKeyCode() == KeyEvent.VK_D) || (eTastendruck.getKeyCode() == KeyEvent.VK_RIGHT))
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_D))
+			{
+				iSpielerx = pSpieler.getX();
+				iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
+				pSpieler.setLocation(iSpielerx, pSpieler.getY());
+				bSpielerAktiv = true;
+			}
+			// Für Spieler welche lieber mit den Pfeiltasten spielen
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_DOWN))
+			{
+				iSpielery = pSpieler .getY();
+				iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
+				pSpieler.setLocation(pSpieler.getX(), iSpielery);
+				bSpielerAktiv = true;
+			}
+				
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_UP))
+			{
+				iSpielery = pSpieler.getY();
+				iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
+				pSpieler.setLocation(pSpieler.getX(), iSpielery);
+				bSpielerAktiv = true;
+			}		
+				
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_LEFT))
+			{
+				iSpielerx = pSpieler.getX();
+				iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
+				pSpieler.setLocation(iSpielerx, pSpieler.getY());
+				bSpielerAktiv = true;
+			}
+				
+			if((eTastendruck.getKeyCode() == KeyEvent.VK_RIGHT))
 			{
 				iSpielerx = pSpieler.getX();
 				iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);

@@ -12,8 +12,6 @@ import interfaces.IWindowProperties;
  * @version 1.1 */
 public final class GameWonFrame extends JDialog implements IWindowProperties
 {
-	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
-	private Color 		backgroundColor	= new Color(38, 0, 38);
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
 	private JPanel 		contentPane		= new JPanel();
 	/**Auf dem <i>gratulationPanel</i> wird das <b>gratTextPanel</b> mit all seinen Widgets angezeigt.*/
