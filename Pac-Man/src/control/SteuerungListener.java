@@ -21,7 +21,7 @@ public final class SteuerungListener implements KeyListener
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_W))
 		{
 			CSpielFrame.spielerRauf();
-		}		
+		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_A))
 		{
