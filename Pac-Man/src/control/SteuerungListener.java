@@ -1,81 +1,59 @@
 package control;
 
 import java.awt.event.*;
+import frames.CSpielFrame;
 
+/**Diese Listener-Klasse dient zur Steuerung des Hauptcharakters Pac-Man.
+ * @author Manuel Glantschnig
+ * @version 1.0 */
 public final class SteuerungListener implements KeyListener
 {
-	/**
-	 * Hier wird der Spieler mit hilfe der Pfeiltasten zu Steuern.
-	 * @param eTastendruck Taste gedrückt
-	 */
+	/**Hier wird der Spieler mit Hilfe der Pfeiltasten oder den Tasten "WASD" gesteuert.
+	 * @param eTastendruck Taste gedrückt*/
 	public void keyPressed(KeyEvent eTastendruck)
 	{
-	// Für Spieler welche lieber mit "WASD" spielen
+		// Für Spieler welche lieber mit "WASD" spielen
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_S))
 		{
-			iSpielery = pSpieler .getY();
-			iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(), iSpielery);
-			bSpielerAktiv = true;
+			CSpielFrame.spielerRunter();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_W))
 		{
-			iSpielery = pSpieler.getY();
-			iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(), iSpielery);
-			bSpielerAktiv = true;
+			CSpielFrame.spielerRauf();
 		}		
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_A))
 		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;
+			CSpielFrame.spielerLinks();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_D))
 		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;
+			CSpielFrame.spielerRechts();
 		}
 		// Für Spieler welche lieber mit den Pfeiltasten spielen
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_DOWN))
 		{
-			iSpielery = pSpieler .getY();
-			iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(), iSpielery);
-			bSpielerAktiv = true;
+			CSpielFrame.spielerRunter();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_UP))
 		{
-			iSpielery = pSpieler.getY();
-			iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
-			pSpieler.setLocation(pSpieler.getX(), iSpielery);
-			bSpielerAktiv = true;
+			CSpielFrame.spielerRauf();
 		}		
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_LEFT))
 		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;
+			CSpielFrame.spielerLinks();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_RIGHT))
 		{
-			iSpielerx = pSpieler.getX();
-			iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
-			pSpieler.setLocation(iSpielerx, pSpieler.getY());
-			bSpielerAktiv = true;
+			CSpielFrame.spielerRechts();
 		}
 		
-		pSpieler.repaint();
+		CSpielFrame.getSpieler().repaint();
 	}
 
 //=================================================================\\

@@ -29,14 +29,14 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	private int iGeisty;
 	private int iGeistx;
-	private int iSpielery;
-	private int iSpielerx;
+	private static int iSpielery;
+	private static int iSpielerx;
 	
 	private static int zaehler = 0;
 	private static int iZaehler =1;
 	
 	private boolean fenster = false;
-	private boolean bSpielerAktiv = false;
+	private static boolean bSpielerAktiv = false;
 	public boolean bWand = true;
 	
 	//private CLogDB oCLog = new CLogDB();
@@ -45,7 +45,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	private JPanel pGeist = new JPanel();
 	
 	private CGeister oGeist = new CGeister();
-	private CSpieler oSpieler = new CSpieler();
+	private static CSpieler oSpieler = new CSpieler();
 	
 	private Timer oTimer = new Timer();
 	private JPanel[] aPanel = new JPanel[800];
@@ -171,10 +171,41 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 		
+	public static void spielerRunter()
+	{
+		iSpielery = pSpieler .getY();
+		iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
+		pSpieler.setLocation(pSpieler.getX(), iSpielery);
+		bSpielerAktiv = true;
+	}
 	
-
-//-------------------------------------------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 	
+	public static void spielerRauf()
+	{
+		iSpielery = pSpieler.getY();
+		iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
+		pSpieler.setLocation(pSpieler.getX(), iSpielery);
+		bSpielerAktiv = true;
+	}
 	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void spielerLinks()
+	{
+		iSpielerx = pSpieler.getX();
+		iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
+		pSpieler.setLocation(iSpielerx, pSpieler.getY());
+		bSpielerAktiv = true;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void spielerRechts()
+	{
+		iSpielerx = pSpieler.getX();
+		iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
+		pSpieler.setLocation(iSpielerx, pSpieler.getY());
+		bSpielerAktiv = true;
+	}
 }
-
