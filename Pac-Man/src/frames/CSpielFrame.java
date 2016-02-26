@@ -9,8 +9,8 @@ import java.util.Timer;
 import javax.swing.*;
 
 import characters.*;
-import interfaces.ILabyrinth;
-import interfaces.IWindowProperties;
+import control.SteuerungListener;
+import interfaces.*;
 
 /**
  * 
@@ -73,7 +73,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 			jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			jFrame.setLayout(null);
 			jFrame.setVisible(true);
-//			jFrame.addKeyListener(new CSteuerungListener());
+			jFrame.addKeyListener(new SteuerungListener());
 			
 			if(bWand)
 			{
