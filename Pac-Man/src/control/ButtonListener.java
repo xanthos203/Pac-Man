@@ -15,7 +15,7 @@ public final class ButtonListener implements ActionListener
 	/**Die <i>taskOfButton</i> bestimmt welche <b>Aktion</b> der Button ausführen soll.*/
 	private int taskOfButton;
 	/**Die Konstante <b><i>EXIT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, geschlossen werden soll.*/
-	public static final int EXIT_GAME = 2;
+	public static final int EXIT_GAME = 0;
 	/**Die Konstante <b><i>REPEAT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, nochmal geöffnet werden soll.*/
 	public static final int REPEAT_GAME = 1;
 	
