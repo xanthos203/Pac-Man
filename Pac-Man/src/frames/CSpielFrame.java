@@ -151,8 +151,8 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 			aPanel[i] = jPanelOben32;
 			aPanel[i] = jPanelOben33;
 		}
-		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Classe Task welche von der Classe Timerrask erbt erzeugt.
-		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
+//		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Classe Task welche von der Classe Timerrask erbt erzeugt.
+//		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -171,49 +171,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 		
-	/**
-	 * In dieser Klasse befindet sich die Methode run, welche für die Bewegung des Geistes zuständig ist.
-	 * @author Thomas Mader-Ofer
-	 *
-	 */
-	private class Task extends TimerTask
-	{
-		public void run()
-		{
-			if(bSpielerAktiv == true)
-			{
-				iGeisty = pGeist.getY();
-				iGeistx = pGeist.getX();
-				
-				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
-				int index = zufallsZahl.nextInt(8)+1;
-					
-				for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
-				{
-					switch(index)
-					{
-						case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
-						case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
-						case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-						case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
-						case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
-						case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
-						case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-						case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
-					}
-				}
-									
-				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
-				{
-					pSpieler.setBackground(Color.WHITE);
-				}
-			}
-				
-			setBackground(Color.WHITE);
-			pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
-			pGeist.repaint();
-		}
-	}
+	
 
 //-------------------------------------------------------------------------------------------------------------------
 	
