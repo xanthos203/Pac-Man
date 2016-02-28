@@ -1,10 +1,13 @@
 package control;
 
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import frames.*;
 
-/**Diese <i>Klasse</i> dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
+/**Diese <i>Listener</i>-Klasse dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
  * Außerdem <b>überprüft</b> diese Klasse den <b>eingegebenen Text</b> im <i>JTextField</i>.<br>
  * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
  * @author Manuel Glantschnig
@@ -60,7 +63,7 @@ public final class TextfieldListener implements KeyListener
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null,
-						"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal 20 Zeichen lang sein\u002E",
+						"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal \u0032\u0030 Zeichen lang sein\u002E",
 						"Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				LogInFrame.getUsernameFeld().setText("");
@@ -100,6 +103,8 @@ public final class TextfieldListener implements KeyListener
 					
 					/*=========Hauptfenster öffnen=========*/
 					CSpielFrame oSpielFrame = new CSpielFrame(true);
+//					GameWonFrame frame = new GameWonFrame();
+//					GameLostFrame frame1 = new GameLostFrame();
 				}
 				/*die Schleife wird abgebrochen, wenn die oben stehende Bedingung zutrifft*/
 				break;

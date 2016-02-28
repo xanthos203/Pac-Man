@@ -1,10 +1,12 @@
 package control;
 
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JDialog;
+
 import frames.*;
 
-/**Diese <i>Klasse</i> dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
+/**Diese <i>Listener</i>-Klasse dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
  * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
@@ -26,7 +28,7 @@ public final class ButtonListener implements ActionListener
 	public ButtonListener(JDialog dialog, int task)
 	{
 		/*der Variable referenceFrame wird der Wert von dialog zugewiesen
-		 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
+		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
 		referenceFrame = dialog;
 		/*der Variable taskOfButton wird der Wert von task zugewiesen
 		 *und somit festgelegt, welche Aktion der gedrückte Button ausführt*/
@@ -43,6 +45,8 @@ public final class ButtonListener implements ActionListener
 		{
 			/*das aktuelle Fenster wird geschlossen*/
 			referenceFrame.dispose();
+			/*das Programm wird beendet*/
+			System.exit(EXIT_GAME);
 		}
 		/*wird ausgeführt, wenn der Benutzer nochmal spielen will*/
 		if (taskOfButton == REPEAT_GAME)

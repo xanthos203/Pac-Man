@@ -1,15 +1,18 @@
 package frames;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Toolkit;
 import java.util.Random;
-import java.util.TimerTask;
 import java.util.Timer;
-
-import javax.swing.*;
-
-import characters.*;
+import java.util.TimerTask;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import characters.CGeister;
+import characters.CSpieler;
 import control.SteuerungListener;
-import interfaces.*;
+import control.WindowClosingListener;
+import interfaces.ILabyrinth;
+import interfaces.IWindowProperties;
 
 /**
  * 
@@ -32,7 +35,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	private static int iSpielerx;
 	
 	private static int zaehler = 0;
-	private static int iZaehler =1;
+	private static int iZaehler = 1;
 	
 	private boolean fenster = false;
 	private static boolean bSpielerAktiv = false;
@@ -65,14 +68,16 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		fenster = bFenster;
 		if((fenster == true))
 		{
-			jFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			jFrame.setTitle("Pac-Man");
 			jFrame.setSize(frameWidth, frameHeight);
 			jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 			jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
 			jFrame.setLayout(null);
 			jFrame.setVisible(true);
+			jFrame.setResizable(false);
 			jFrame.addKeyListener(new SteuerungListener());
+			jFrame.addWindowListener(new WindowClosingListener(this));
 			
 			if(bWand)
 			{
@@ -150,7 +155,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 			aPanel[i] = jPanelOben32;
 			aPanel[i] = jPanelOben33;
 		}
-		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Classe Task welche von der Classe Timerrask erbt erzeugt.
+		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
 		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
 	}
 

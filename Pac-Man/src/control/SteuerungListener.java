@@ -1,14 +1,17 @@
 package control;
 
-import java.awt.event.*;
-import frames.CSpielFrame;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-/**Diese Listener-Klasse dient zur Steuerung des Hauptcharakters Pac-Man.
+import frames.*;
+
+/**Diese <i>Listener</i>-Klasse dient zur <b>Steuerung des Hauptcharakters Pac-Man</b>.<br>
+ * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
 public final class SteuerungListener implements KeyListener
 {
-	/**Hier wird der Spieler mit Hilfe der Pfeiltasten oder den Tasten "WASD" gesteuert.
+	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
 	 * @param eTastendruck Taste gedrückt*/
 	public void keyPressed(KeyEvent eTastendruck)
 	{

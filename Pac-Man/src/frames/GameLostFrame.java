@@ -1,8 +1,22 @@
 package frames;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import control.ButtonListener;
+import control.WindowClosingListener;
 import interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>verloren</b> hat, dargestellt.<br>
@@ -36,10 +50,10 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public GameLostFrame()
 	{
+		/*dem Fenster wird ein neuer WindowClosingListener zugewiesen, der ausgeführt wird, wenn auf das Fenster geschlossen wird*/
+		addWindowListener(new WindowClosingListener(this));
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameLostFrame.class.getResource("/images/Pac-Man_icon.PNG")));
-		/*beim Schließen des Fensters wird das Programm beendet*/
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		/*der Titel der Fensters wird zugewiesen*/
 		setTitle("Verloren");
 		/*das Fenster wird sichtbar gemacht*/
