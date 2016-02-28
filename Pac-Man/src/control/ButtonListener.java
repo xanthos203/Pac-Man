@@ -46,7 +46,7 @@ public final class ButtonListener implements ActionListener
 			/*das aktuelle Fenster wird geschlossen*/
 			referenceFrame.dispose();
 			/*das Programm wird beendet*/
-			System.exit(EXIT_GAME);
+			System.exit(0);
 		}
 		/*wird ausgeführt, wenn der Benutzer nochmal spielen will*/
 		if (taskOfButton == REPEAT_GAME)

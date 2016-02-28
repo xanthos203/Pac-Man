@@ -68,7 +68,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		fenster = bFenster;
 		if((fenster == true))
 		{
-			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+//			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			jFrame.setTitle("Pac-Man");
 			jFrame.setSize(frameWidth, frameHeight);
 			jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);

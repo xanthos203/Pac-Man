@@ -38,36 +38,33 @@ public final class TextfieldListener implements KeyListener
 			if (LogInFrame.getUsernameFeld().getText().isEmpty())
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null,
-						"Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
-						"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
+													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				LogInFrame.getUsernameFeld().setText("");
-				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
+				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
 			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als 21 Zeichen ist*/
 			if (LogInFrame.getUsernameFeld().getText().contains(" ") && (LogInFrame.getUsernameFeld().getText().length() < 21))
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null, 
-						"Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten\u002E",
-						"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten\u002E",
+													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				LogInFrame.getUsernameFeld().setText("");
-				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
+				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
 			/*wird ausgeführt, wenn der eingegebene Text länger als 20 Zeichen ist*/
 			if (LogInFrame.getUsernameFeld().getText().length() > 20)
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
-				JOptionPane.showMessageDialog(null,
-						"Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal \u0032\u0030 Zeichen lang sein\u002E",
-						"Zu langer Name", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal \u0032\u0030 Zeichen lang sein\u002E",
+													"Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
 				LogInFrame.getUsernameFeld().setText("");
-				/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
+				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
 			/*wird ausgeführt, wenn der eingegebene Text kürzer als 21 Zeichen ist*/
@@ -80,12 +77,11 @@ public final class TextfieldListener implements KeyListener
 					if (LogInFrame.getUsernameFeld().getText().contains(LogInFrame.getSonderzeichen()[i]))
 					{
 						/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
-						JOptionPane.showMessageDialog(null,
-								"Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten\u002E",
-								"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten\u002E",
+															"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
 						/*der Text im Textfeld wird zurückgesetzt*/
 						LogInFrame.getUsernameFeld().setText("");
-						/*das Programm kehrt wieder zum LogIn-Fenster zurück*/
+						/*das Programm kehrt wieder zum Fenster zurück*/
 						return;
 					}
 				}
