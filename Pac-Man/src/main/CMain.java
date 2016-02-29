@@ -1,6 +1,6 @@
 package main;
 
-import control.CLogDB;
+import control.file_processing.CLogDB;
 import frames.*;
 
 public class CMain

@@ -9,8 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import characters.CGeister;
 import characters.CSpieler;
-import control.SteuerungListener;
-import control.WindowClosingListener;
+import control.listeners.SteuerungListener;
+import control.listeners.WindowClosingListener;
 import interfaces.ILabyrinth;
 import interfaces.IWindowProperties;
 
@@ -19,7 +19,6 @@ import interfaces.IWindowProperties;
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-  
 public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 {
 	private static CSpielFrame jFrame = new CSpielFrame();
@@ -31,14 +30,14 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	private int iGeisty;
 	private int iGeistx;
-	private static int iSpielery;
-	private static int iSpielerx;
+	private int iSpielery;
+	private int iSpielerx;
 	
 	private static int zaehler = 0;
 	private static int iZaehler = 1;
 	
 	private boolean fenster = false;
-	private static boolean bSpielerAktiv = false;
+	private boolean bSpielerAktiv = false;
 	public boolean bWand = true;
 	
 	//private CLogDB oCLog = new CLogDB();
@@ -47,7 +46,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	private JPanel pGeist = new JPanel();
 	
 	private CGeister oGeist = new CGeister();
-	private static CSpieler oSpieler = new CSpieler();
+	private CSpieler oSpieler = new CSpieler();
 	
 	private Timer oTimer = new Timer();
 	private JPanel[] aPanel = new JPanel[800];
@@ -68,7 +67,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		fenster = bFenster;
 		if((fenster == true))
 		{
-//			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			jFrame.setTitle("Pac-Man");
 			jFrame.setSize(frameWidth, frameHeight);
 			jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
@@ -175,7 +174,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 		
-	public static void spielerRunter()
+	public void spielerRunter()
 	{
 		iSpielery = pSpieler .getY();
 		iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
@@ -185,7 +184,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static void spielerRauf()
+	public void spielerRauf()
 	{
 		iSpielery = pSpieler.getY();
 		iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
@@ -195,7 +194,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static void spielerLinks()
+	public void spielerLinks()
 	{
 		iSpielerx = pSpieler.getX();
 		iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
@@ -205,7 +204,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static void spielerRechts()
+	public void spielerRechts()
 	{
 		iSpielerx = pSpieler.getX();
 		iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);

@@ -14,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import control.TextfieldListener;
-import control.WindowClosingListener;
+import control.listeners.TextfieldListener;
+import control.listeners.WindowClosingListener;
 import interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster zum Einloggen des Benutzers dargestellt.<br>

@@ -1,4 +1,4 @@
-package control;
+package control.listeners;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,6 +11,9 @@ import frames.*;
  * @version 1.0 */
 public final class SteuerungListener implements KeyListener
 {
+	/***/
+	CSpielFrame oFrame = new CSpielFrame();
+	
 	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
 	 * @param eTastendruck Taste gedrückt*/
 	public void keyPressed(KeyEvent eTastendruck)
@@ -18,45 +21,45 @@ public final class SteuerungListener implements KeyListener
 		// Für Spieler welche lieber mit "WASD" spielen
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_S))
 		{
-			CSpielFrame.spielerRunter();
+			oFrame.spielerRunter();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_W))
 		{
-			CSpielFrame.spielerRauf();
+			oFrame.spielerRauf();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_A))
 		{
-			CSpielFrame.spielerLinks();
+			oFrame.spielerLinks();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_D))
 		{
-			CSpielFrame.spielerRechts();
+			oFrame.spielerRechts();
 		}
 		// Für Spieler welche lieber mit den Pfeiltasten spielen
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_DOWN))
 		{
-			CSpielFrame.spielerRunter();
+			oFrame.spielerRunter();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_UP))
 		{
-			CSpielFrame.spielerRauf();
+			oFrame.spielerRauf();
 		}		
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_LEFT))
 		{
-			CSpielFrame.spielerLinks();
+			oFrame.spielerLinks();
 		}
 			
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_RIGHT))
 		{
-			CSpielFrame.spielerRechts();
+			oFrame.spielerRechts();
 		}
 		
-		CSpielFrame.getSpieler().repaint();
+		oFrame.getSpieler().repaint();
 	}
 
 //=================================================================\\

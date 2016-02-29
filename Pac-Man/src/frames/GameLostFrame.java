@@ -15,8 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import control.ButtonListener;
-import control.WindowClosingListener;
+import control.listeners.ButtonListener;
+import control.listeners.WindowClosingListener;
 import interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>verloren</b> hat, dargestellt.<br>

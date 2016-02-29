@@ -1,4 +1,4 @@
-package control;
+package control.file_processing;
 
 import javax.swing.*;
 
