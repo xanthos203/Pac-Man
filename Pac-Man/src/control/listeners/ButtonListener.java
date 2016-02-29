@@ -12,16 +12,16 @@ import frames.*;
  * @version 1.0 */
 public final class ButtonListener implements ActionListener
 {
-	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b> auf welche sich der Listener bezieht.*/
+	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
 	private JDialog referenceFrame;
-	/**Die <i>taskOfButton</i> bestimmt welche <b>Aktion</b> der Button ausführen soll.*/
+	/**Die <i>taskOfButton</i> bestimmt, welche <b>Aktion</b> der Button ausführen soll.*/
 	private int taskOfButton;
 	/**Die Konstante <b><i>EXIT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, geschlossen werden soll.*/
 	public static final int EXIT_GAME = 0;
 	/**Die Konstante <b><i>REPEAT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, nochmal geöffnet werden soll.*/
 	public static final int REPEAT_GAME = 1;
 	
-	/**Im Konstruktor wird festgelegt auf <b>welches Fenster</b> sich der Listener bezieht.<br>
+	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> sich der Listener bezieht.<br>
 	 * Außerdem wird festgelegt, <b>welche Aktion</b> der gedrückte Button ausführen soll.
 	 * @param dialog Referenz auf das <i>Fenster</i>
 	 * @param task <i>Aktion</i>, welche der Button ausführen soll*/

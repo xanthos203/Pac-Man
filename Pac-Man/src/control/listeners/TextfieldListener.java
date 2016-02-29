@@ -14,16 +14,16 @@ import frames.*;
  * @version 1.0 */
 public final class TextfieldListener implements KeyListener
 {
-	/**Die <i>reference</i> bestimmt die <b>Referenz</b> auf welche sich die Klasse bezieht.*/
-	private JDialog reference;
+	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
+	private JDialog referenceFrame;
 	
-	/**Im Konstruktor wird die <b>Referenz des Fensters</b> festgelegt.
+	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> sich der Listener bezieht.
 	 * @param dialog Referenzvariable vom Typ <i>JDialog</i>*/
 	public TextfieldListener(JDialog dialog)
 	{
 		/*der Variable reference wird der Wert von dialog zugewiesen
 		 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
-		reference = dialog;
+		referenceFrame = dialog;
 	}
 	
 	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
@@ -95,7 +95,7 @@ public final class TextfieldListener implements KeyListener
 					/*der eingegebene Spielername wird gespeichert*/
 					LogInFrame.setUsername(LogInFrame.getUsernameFeld().getText());
 					/*das aktuelle Fenster wird geschlossen*/
-					reference.dispose();
+					referenceFrame.dispose();
 					
 					/*=========Hauptfenster öffnen=========*/
 					CSpielFrame oSpielFrame = new CSpielFrame(true);
