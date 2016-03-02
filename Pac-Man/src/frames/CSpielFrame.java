@@ -1,6 +1,7 @@
 package frames;
 
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.Random;
 import java.util.Timer;
@@ -52,6 +53,8 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	private Timer oTimer = new Timer();
 	private JPanel[] aPanel = new JPanel[800];
 	
+	private JPanel[][] panelFeld;
+	
 	public CSpielFrame()
 	{
 	
@@ -66,20 +69,32 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	public CSpielFrame(boolean bFenster)
 	{
 		fenster = bFenster;
-		if((fenster == true))
-		{
+		
 			jFrame.setTitle("Pac-Man");
 			jFrame.setSize(frameWidth, frameHeight);
 			jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
 			jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
-			jFrame.setLayout(null);
-			jFrame.setVisible(true);
 			jFrame.setResizable(false);
 			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-			jFrame.addWindowListener(new WindowClosingListener(this));
+			jFrame.addWindowListener(new WindowClosingListener(this));			
+			GridLayout oSpielFeldLayout=new GridLayout(50,50);
+			jFrame.setLayout(oSpielFeldLayout);
+			jFrame.setVisible(true);
 			jFrame.addKeyListener(new SteuerungListener());
+			panelFeld=new JPanel[50][50];
 			
-			if(bWand)
+			for(int iZeile=0;iZeile<50;iZeile++)
+			{
+				for(int iSpalte=0;iSpalte<50;iSpalte++)
+				{
+					panelFeld[iZeile][iSpalte]=new JPanel();
+					panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+					panelFeld[iZeile][iSpalte].setBackground(Color.blue);
+					jFrame.add(	panelFeld[iZeile][iSpalte]);
+				}
+			}
+			repaint();
+			/*if(bWand)
 			{
 				System.out.println(""+aPanel[zaehler]);
 				
@@ -106,9 +121,9 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 				zaehlerX = zaehler+laenge;
 			}
 			
-			zaehlerX = zaehler+laenge;
+			zaehlerX = zaehler+laenge;*/
 			fenster = false;
-		}
+		
 	}
 	
 //----------------------------------------------------------------------------------
