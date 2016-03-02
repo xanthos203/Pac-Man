@@ -11,38 +11,35 @@ import frames.*;
  * @version 1.0 */
 public final class SteuerungListener implements KeyListener
 {
-	/**Das Objekt <i>oSpielFrame</i> wird benötigt, um den <b>Hauptcharakter Pac-Man steuern</b> zu können, da dessen <i>Bewegungen in der Klasse CSpielFrame definiert</i> werden.*/
-	CSpielFrame oSpielFrame = new CSpielFrame();
-	
 	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
 	 * @param eTastendruck Taste gedrückt*/
 	public void keyPressed(KeyEvent eTastendruck)
 	{
 		// Für Spieler die mit "WASD" spielen möchten
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_S))
-			oSpielFrame.spielerRunter();
+			CSpielFrame.spielerRunter();
 		//----------------------------------------------
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_W))
-			oSpielFrame.spielerRauf();
+			CSpielFrame.spielerRauf();
 		//----------------------------------------------
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_A))
-			oSpielFrame.spielerLinks();
+			CSpielFrame.spielerLinks();
 		//----------------------------------------------
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_D))
-			oSpielFrame.spielerRechts();
+			CSpielFrame.spielerRechts();
 //============================================================\\
 		// Für Spieler die mit den Pfeiltasten spielen möchten
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_DOWN))
-			oSpielFrame.spielerRunter();
+			CSpielFrame.spielerRunter();
 		//--------------------------------------------------
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_UP))
-			oSpielFrame.spielerRauf();
+			CSpielFrame.spielerRauf();
 		//--------------------------------------------------
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_LEFT))
-			oSpielFrame.spielerLinks();
+			CSpielFrame.spielerLinks();
 		//--------------------------------------------------
 		if((eTastendruck.getKeyCode() == KeyEvent.VK_RIGHT))
-			oSpielFrame.spielerRechts();
+			CSpielFrame.spielerRechts();
 //============================================================\\
 		CSpielFrame.getSpieler().repaint();
 	}

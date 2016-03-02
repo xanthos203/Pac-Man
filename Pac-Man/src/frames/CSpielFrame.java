@@ -30,14 +30,15 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	private int iGeisty;
 	private int iGeistx;
-	private int iSpielery;
-	private int iSpielerx;
+	private static int iSpielery;
+	private static int iSpielerx;
 	
 	private static int zaehler = 0;
 	private static int iZaehler = 1;
 	
 	private boolean fenster = false;
-	private boolean bSpielerAktiv = false;
+	private static boolean bSpielerAktiv = false;
+	// Achtung PUBLIC
 	public boolean bWand = true;
 	
 	//private CLogDB oCLog = new CLogDB();
@@ -46,7 +47,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	private JPanel pGeist = new JPanel();
 	
 	private CGeister oGeist = new CGeister();
-	private CSpieler oSpieler = new CSpieler();
+	private static CSpieler oSpieler = new CSpieler();
 	
 	private Timer oTimer = new Timer();
 	private JPanel[] aPanel = new JPanel[800];
@@ -67,7 +68,6 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		fenster = bFenster;
 		if((fenster == true))
 		{
-			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			jFrame.setTitle("Pac-Man");
 			jFrame.setSize(frameWidth, frameHeight);
 			jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
@@ -75,8 +75,9 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 			jFrame.setLayout(null);
 			jFrame.setVisible(true);
 			jFrame.setResizable(false);
-			jFrame.addKeyListener(new SteuerungListener());
+			jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			jFrame.addWindowListener(new WindowClosingListener(this));
+			jFrame.addKeyListener(new SteuerungListener());
 			
 			if(bWand)
 			{
@@ -174,9 +175,9 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 		
-	public void spielerRunter()
+	public static void spielerRunter()
 	{
-		iSpielery = pSpieler .getY();
+		iSpielery = pSpieler.getY();
 		iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
 		pSpieler.setLocation(pSpieler.getX(), iSpielery);
 		bSpielerAktiv = true;
@@ -184,7 +185,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public void spielerRauf()
+	public static void spielerRauf()
 	{
 		iSpielery = pSpieler.getY();
 		iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
@@ -194,7 +195,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public void spielerLinks()
+	public static void spielerLinks()
 	{
 		iSpielerx = pSpieler.getX();
 		iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
@@ -204,7 +205,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public void spielerRechts()
+	public static void spielerRechts()
 	{
 		iSpielerx = pSpieler.getX();
 		iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
