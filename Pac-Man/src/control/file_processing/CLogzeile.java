@@ -86,13 +86,13 @@ public class CLogzeile extends JFrame
 		{
 			if(sString1bis33[i].equals("1"))
 			{
-				oDarstellen.bWand = true;
+				oDarstellen.Darstellen();
 			}
 			else
 			{
 				if(sString1bis33[i].equals("0"))
 				{
-					
+					oDarstellen.Muenzendarstellen();
 				}
 			}
 		}
