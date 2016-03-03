@@ -29,7 +29,7 @@ import interfaces.IWindowProperties;
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-public class CSpielFrame extends JFrame  implements IWindowProperties
+public class CSpielFrame extends JFrame implements IWindowProperties
 {
 	static JFrame frame;
 	private ArrayList<String> spielFeldArray;
@@ -54,10 +54,10 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 	private JPanel[][] panelFeld;
 	
 	private CLogDB logdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\GUI.csv");
-	private int feld=-1;
+	private int feld = -1;
 	
-	private JPanel centerPanel=new JPanel();
-	private JPanel chatPanel=new JPanel();
+	private JPanel centerPanel = new JPanel();
+	private JPanel chatPanel = new JPanel();
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
@@ -65,8 +65,8 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 	 */
 	public CSpielFrame()
 	{		
-		frame=this;
-		spielFeldArray=logdb.getArrayList();
+		frame = this;
+		spielFeldArray = logdb.getArrayList();
 		
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
@@ -83,10 +83,10 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 		
 		chatPanel.setSize(200,200);	
 		chatPanel.setLayout(new BorderLayout());
-		JLabel textlabel=new JLabel("            CHAT            ");
-		JPanel panel=new JPanel();
-		JTextArea area=new JTextArea();
-		JTextField field=new JTextField();
+		JLabel textlabel = new JLabel("            CHAT            ");
+		JPanel panel = new JPanel();
+		JTextArea area = new JTextArea();
+		JTextField field = new JTextField();
 		area.setEditable(false);
 		panel.add(field);
 		chatPanel.add(textlabel, BorderLayout.NORTH);
@@ -95,13 +95,13 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 		field.addKeyListener(new KeyListener()
 		{
 			@Override
-			public void keyPressed(KeyEvent e) {
-				// TODO Auto-generated method stub
-				if(e.getKeyCode() == e.VK_ENTER)
+			public void keyPressed(KeyEvent e)
+			{
+				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
 					if(!field.getText().equals(null))
 					{
-						area.setText(area.getText()+"\n"+field.getText());
+						area.setText(area.getText() + "\n" + field.getText());
 						field.setText(null);
 					}
 				}
@@ -111,8 +111,8 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 			@Override
 			public void keyReleased(KeyEvent e) {}
 		});
-		chatPanel.add(panel,BorderLayout.SOUTH);
-		chatPanel.add(area,BorderLayout.CENTER);
+		chatPanel.add(panel, BorderLayout.SOUTH);
+		chatPanel.add(area, BorderLayout.CENTER);
 		
 		add(chatPanel, BorderLayout.WEST);
 		
@@ -125,7 +125,7 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 			for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
 			{
 				feld++;
-				if(spielFeldArray.size()>feld)
+				if(spielFeldArray.size() > feld)
 				{
 					if(spielFeldArray.get(feld).equals("1"))
 					{
@@ -232,7 +232,7 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 				iGeistx = pGeist.getX();
 				
 				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
-				int index = zufallsZahl.nextInt(8)+1;
+				int index = zufallsZahl.nextInt(8) + 1;
 					
 				for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
 				{
