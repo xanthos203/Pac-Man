@@ -46,7 +46,9 @@ public class Client
 				System.out.println("Nichts zum austauschen!");
 			}
 			
-		} catch(Exception ex) {
+		}
+		catch(Exception ex)
+		{
 			ex.printStackTrace();
 		}
 	}	
