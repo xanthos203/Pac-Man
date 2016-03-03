@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import frames.CSpielFrame;
+
 
 public class Server
 {
@@ -16,10 +18,12 @@ public class Server
 	{
 		clientAusgabeStröme = new ArrayList<PrintWriter>();
 		
-		try {
+		try 
+		{
 			ServerSocket serverSock = new ServerSocket(5000);
 			
-			while(true) {
+			while(true) 
+			{
 				Socket clientSocket = serverSock.accept();
 				PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());         
 				clientAusgabeStröme.add(writer);
@@ -31,31 +35,41 @@ public class Server
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
 			
-		}catch(Exception ex) {
+		}
+		catch(Exception ex)
+		{
 			ex.printStackTrace();
 		}
 	}
 
-	public static void esAllenWeitersagen(String nachricht) {
+	public static void esAllenWeitersagen(String nachricht) 
+	{
 		Iterator it = clientAusgabeStröme.iterator();
-		while(it.hasNext()) {
-			try {
+		while(it.hasNext()) 
+		{
+			try 
+			{
 				PrintWriter writer = (PrintWriter) it.next();
 				writer.println(nachricht);
 				writer.flush();
-			} catch(Exception ex) {
+			} 
+			catch(Exception ex) 
+			{
 				ex.printStackTrace();
 			}
 		}
 	} 
 }
 
-class ClientHandler implements Runnable {
+class ClientHandler implements Runnable 
+{
 	
 	BufferedReader reader;
 	Socket sock;	
-	public ClientHandler(Socket clientSocket) {
-		try {
+	public ClientHandler(Socket clientSocket)
+	{
+		try
+		{
 			sock = clientSocket;
 			InputStreamReader isReader = new InputStreamReader(sock.getInputStream());
 			reader = new BufferedReader(isReader);
@@ -63,16 +77,16 @@ class ClientHandler implements Runnable {
 		} catch(Exception ex) {ex.printStackTrace();}
 	} 
 	
-	public void run() {
+	public void run() 
+	{
 		String nachricht;
 		
 		try {
 			
-			while ((nachricht = reader.readLine()) != null) {
-				
-				System.out.println("gelesen: " + nachricht);
-				Server.esAllenWeitersagen(nachricht);
-				
+			while ((nachricht = reader.readLine()) != null) 
+			{
+					System.out.println("gelesen: " + nachricht);
+					Server.esAllenWeitersagen(nachricht);		
 			}
 		} catch(Exception ex) {ex.printStackTrace();}
 	}

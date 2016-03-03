@@ -6,7 +6,12 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import Chat.*;
 
@@ -23,7 +28,7 @@ import interfaces.*;
  */
 public class CSpielFrame extends JFrame implements IWindowProperties
 {
-	static JFrame frame;
+	private static JFrame frame;
 	private ArrayList<String> spielFeldArray;
 	
 	private int iGeisty;
@@ -53,7 +58,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	private JLabel textlabel = new JLabel("               CHAT               ");
 	private JPanel panel = new JPanel();
-	private JTextArea area = new JTextArea();
+	private static JTextArea area = new JTextArea();
 	private static JTextField field = new JTextField();
 	private Server serv;
 	private Client client=new Client();
@@ -90,6 +95,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		area.setEditable(false);
 		panel.add(field);
+		JScrollPane scrollPane = new JScrollPane(area);
 		chatPanel.add(textlabel, BorderLayout.NORTH);
 		field.setSize(panel.getWidth(),panel.getHeight());
 		field.setColumns(10);
@@ -113,7 +119,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			public void keyReleased(KeyEvent e) {}
 		});
 		chatPanel.add(panel, BorderLayout.SOUTH);
-		chatPanel.add(area, BorderLayout.CENTER);
+		chatPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		add(chatPanel, BorderLayout.WEST);
 		
@@ -158,6 +164,11 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	public static JTextField getSchreibFeld()
 	{
 		return field;
+	}
+	
+	public static JTextArea getArea()
+	{
+		return area;
 	}
 	
 	//----------------------------------------------------------------------------------
