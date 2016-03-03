@@ -10,7 +10,10 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 import characters.CGeister;
 import characters.CSpieler;
 import control.file_processing.CLogDB;
@@ -51,7 +54,7 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 	private int feld=-1;
 	
 	private JPanel centerPanel=new JPanel();
-	private JPanel chatPanel;
+	private JPanel chatPanel=new JPanel();
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
@@ -74,6 +77,15 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
 		centerPanel.setLayout(oSpielFeldLayout);
 		add(centerPanel, BorderLayout.CENTER);
+		
+		chatPanel.setSize(200,200);	
+		JLabel textlabel=new JLabel("    CHAT     ");
+		JTextField field=new JTextField();
+		chatPanel.add(textlabel);
+		field.setSize(200,200);
+		field.setText();
+		chatPanel.add(field);
+		add(chatPanel, BorderLayout.WEST);
 		
 		setVisible(true);
 		centerPanel.addKeyListener(new SteuerungListener());
