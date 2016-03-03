@@ -1,28 +1,20 @@
 package frames;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Random;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
+import java.util.*;
 import java.util.Timer;
-import java.util.TimerTask;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-import characters.CGeister;
-import characters.CSpieler;
+import Chat.*;
+
+import characters.*;
+import control.*;
 import control.file_processing.CLogDB;
-import control.listeners.SteuerungListener;
-import control.listeners.WindowClosingListener;
-import interfaces.IWindowProperties;
+import control.listeners.*;
+import interfaces.*;
 
 /**
  * 
@@ -59,11 +51,24 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private JPanel centerPanel = new JPanel();
 	private JPanel chatPanel = new JPanel();
 	
+	private JLabel textlabel = new JLabel("               CHAT               ");
+	private JPanel panel = new JPanel();
+	private JTextArea area = new JTextArea();
+	private static JTextField field = new JTextField();
+	private Server serv;
+	private Client client=new Client();
+	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
 	public CSpielFrame()
-	{		
+	{			
+		client.netzwerkEinrichten();
+		Thread readerThread = new Thread(new EigehendReader());
+		readerThread.start();
+		Darstellen();
+		
+		
 		frame = this;
 		spielFeldArray = logdb.getArrayList();
 		
@@ -82,10 +87,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		chatPanel.setSize(200,200);	
 		chatPanel.setLayout(new BorderLayout());
-		JLabel textlabel = new JLabel("               CHAT               ");
-		JPanel panel = new JPanel();
-		JTextArea area = new JTextArea();
-		JTextField field = new JTextField();
+		
 		area.setEditable(false);
 		panel.add(field);
 		chatPanel.add(textlabel, BorderLayout.NORTH);
@@ -149,6 +151,13 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			}
 		}
 		repaint();
+	}
+	
+	//----------------------------------------------------------------------------------
+	
+	public static JTextField getSchreibFeld()
+	{
+		return field;
 	}
 	
 	//----------------------------------------------------------------------------------
@@ -224,39 +233,48 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private class Task extends TimerTask
 	{
 		public void run()
-		{
+		{			
+			if(!field.getText().equals(null))
+			{
+				client.senden();
+				Server.esAllenWeitersagen(field.getText());
+			}			
+			
 			if(bSpielerAktiv == true)
 			{
-				iGeisty = pGeist.getY();
-				iGeistx = pGeist.getX();
 				
-				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
-				int index = zufallsZahl.nextInt(8) + 1;
+					/*
+					iGeisty = pGeist.getY();
+					iGeistx = pGeist.getX();
+				
+					Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
+					int index = zufallsZahl.nextInt(8) + 1;
 					
-				for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
-				{
-					switch(index)
+					for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
 					{
-						case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
-						case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
-						case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-						case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
-						case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
-						case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
-						case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-						case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
+						switch(index)
+						{
+							case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
+							case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
+							case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
+							case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
+							case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
+							case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
+							case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
+							case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
+						}
+					}
+									
+					if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
+					{
+						GameLostFrame oFrame = new GameLostFrame();	
 					}
 				}
-									
-				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
-				{
-					GameLostFrame oFrame = new GameLostFrame();	
-				}
-			}
 				
-			setBackground(Color.WHITE);
-			pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
-			pGeist.repaint();
+				setBackground(Color.WHITE);
+				pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
+				pGeist.repaint();*/
+			}
 		}
 	}
 }
