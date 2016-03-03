@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -12,6 +14,7 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import characters.CGeister;
@@ -79,12 +82,38 @@ public class CSpielFrame extends JFrame  implements IWindowProperties
 		add(centerPanel, BorderLayout.CENTER);
 		
 		chatPanel.setSize(200,200);	
-		JLabel textlabel=new JLabel("    CHAT     ");
+		chatPanel.setLayout(new BorderLayout());
+		JLabel textlabel=new JLabel("            CHAT            ");
+		JPanel panel=new JPanel();
+		JTextArea area=new JTextArea();
 		JTextField field=new JTextField();
-		chatPanel.add(textlabel);
-		field.setSize(200,200);
-		field.setText();
-		chatPanel.add(field);
+		area.setEditable(false);
+		panel.add(field);
+		chatPanel.add(textlabel, BorderLayout.NORTH);
+		field.setSize(panel.getWidth(),panel.getHeight());
+		field.setColumns(10);
+		field.addKeyListener(new KeyListener()
+		{
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if(e.getKeyCode() == e.VK_ENTER)
+				{
+					if(!field.getText().equals(null))
+					{
+						area.setText(area.getText()+"\n"+field.getText());
+						field.setText(null);
+					}
+				}
+			}
+			@Override
+			public void keyTyped(KeyEvent e) {}
+			@Override
+			public void keyReleased(KeyEvent e) {}
+		});
+		chatPanel.add(panel,BorderLayout.SOUTH);
+		chatPanel.add(area,BorderLayout.CENTER);
+		
 		add(chatPanel, BorderLayout.WEST);
 		
 		setVisible(true);
