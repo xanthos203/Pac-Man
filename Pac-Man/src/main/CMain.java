@@ -1,6 +1,6 @@
 package main;
 
-import Chat.Server;
+import chat.Server;
 import frames.*;
 
 public class CMain

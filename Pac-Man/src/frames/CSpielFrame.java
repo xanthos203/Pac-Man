@@ -2,7 +2,6 @@ package frames;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.IOException;
 import java.util.*;
 import java.util.Timer;
 
@@ -13,10 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import Chat.*;
-
 import characters.*;
-import control.*;
+import chat.*;
 import control.file_processing.CLogDB;
 import control.listeners.*;
 import interfaces.*;
