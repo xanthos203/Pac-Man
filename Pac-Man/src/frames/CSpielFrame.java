@@ -12,7 +12,6 @@ import characters.CGeister;
 import characters.CSpieler;
 import control.listeners.SteuerungListener;
 import control.listeners.WindowClosingListener;
-import interfaces.ILabyrinth;
 import interfaces.IWindowProperties;
 
 /**
@@ -20,7 +19,7 @@ import interfaces.IWindowProperties;
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
+public class CSpielFrame extends JFrame implements IWindowProperties
 {
 	private static CSpielFrame jFrame = new CSpielFrame();
 	
@@ -31,6 +30,8 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	private int iGeisty;
 	private int iGeistx;
+	private int iLayoutZeilen = 28;
+	private int iLayoutSpalten = 33;
 	private static int iSpielery;
 	private static int iSpielerx;
 	
@@ -39,10 +40,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	
 	private boolean fenster = false;
 	private static boolean bSpielerAktiv = false;
-	// Achtung PUBLIC
-	public boolean bWand = true;
-	
-	//private CLogDB oCLog = new CLogDB();
+	private boolean bWand = true;
 	
 	private static JPanel pSpieler = new JPanel();
 	private JPanel pGeist = new JPanel();
@@ -77,15 +75,15 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		jFrame.setResizable(false);
 		jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		jFrame.addWindowListener(new WindowClosingListener(this));
-		GridLayout oSpielFeldLayout = new GridLayout(50, 50);
+		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
 		jFrame.setLayout(oSpielFeldLayout);
 		jFrame.setVisible(true);
 		jFrame.addKeyListener(new SteuerungListener());
 		panelFeld = new JPanel[50][50];
 
-		for (int iZeile = 0; iZeile < 50; iZeile++)
+		for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
 		{
-			for (int iSpalte = 0; iSpalte < 50; iSpalte++)
+			for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
 			{
 				panelFeld[iZeile][iSpalte] = new JPanel();
 				panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
@@ -125,6 +123,36 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 		 * zaehlerX = zaehler + laenge;
 		 */
 		fenster = false;
+		repaint();
+			/*if(bWand)
+			{
+				System.out.println(""+panelFeld[iZeile][iSpalte]);
+				
+				aPanel[zaehler].setSize(laenge, breite);
+				aPanel[zaehler].setLocation( zaehlerX, zaehlerY);
+				aPanel[zaehler].setBackground(Color.BLUE);
+				jFrame.add(aPanel[zaehler]);
+				zaehler++;
+				
+				jPanelOben1.setSize(laenge, breite);
+				jPanelOben1.setLocation(zaehlerX, zaehlerY);
+				jPanelOben1.setBackground(Color.BLUE);
+				add(jPanelOben1);
+				System.out.println("HALLO");
+				
+				iZaehler++;
+			}
+			
+			if(iZaehler == 33)
+			{
+				iZaehler = 0;
+				zaehlerX = 200;
+				zaehlerY = zaehlerY + 25;
+				zaehlerX = zaehler+laenge;
+			}
+			
+			zaehlerX = zaehler+laenge;*/
+		fenster = false;
 	}
 	
 //----------------------------------------------------------------------------------
@@ -134,47 +162,15 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 	 */
 	public void Darstellen()
 	{
-		System.out.println("MLG");
-		for(int i = 0; i < 34; i++)
-		{
-			aPanel[i] = jPanelOben1;
-			aPanel[i] = jPanelOben2;
-			aPanel[i] = jPanelOben3;
-			aPanel[i] = jPanelOben4;
-			aPanel[i] = jPanelOben5;
-			aPanel[i] = jPanelOben6;
-			aPanel[i] = jPanelOben7;
-			aPanel[i] = jPanelOben8;
-			aPanel[i] = jPanelOben9;
-			aPanel[i] = jPanelOben10;
-			aPanel[i] = jPanelOben11;
-			aPanel[i] = jPanelOben12;
-			aPanel[i] =	jPanelOben13;
-			aPanel[i] = jPanelOben14;
-			aPanel[i] = jPanelOben15;
-			aPanel[i] =	jPanelOben16;
-			aPanel[i] = jPanelOben17;
-			aPanel[i] = jPanelOben18;
-			aPanel[i] = jPanelOben19;
-			aPanel[i] = jPanelOben20;
-			aPanel[i] = jPanelOben21;
-			aPanel[i] = jPanelOben22;
-			aPanel[i] = jPanelOben23;
-			aPanel[i] = jPanelOben24;
-			aPanel[i] = jPanelOben25;
-			aPanel[i] = jPanelOben26;
-			aPanel[i] = jPanelOben27;
-			aPanel[i] = jPanelOben28;
-			aPanel[i] = jPanelOben29;
-			aPanel[i] = jPanelOben30;
-			aPanel[i] = jPanelOben31;
-			aPanel[i] = jPanelOben32;
-			aPanel[i] = jPanelOben33;
-		}
+		bWand = true;
 		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
 		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
 	}
 
+	public void Muenzendarstellen()
+	{
+		bWand = false;
+	}
 	//-------------------------------------------------------------------------------------------------------------------
 			
 	public static JPanel getSpieler()
@@ -263,7 +259,7 @@ public class CSpielFrame extends JFrame implements ILabyrinth, IWindowProperties
 									
 				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
 				{
-					pSpieler.setBackground(Color.WHITE);
+					GameLostFrame oFrame = new GameLostFrame();	
 				}
 			}
 				
