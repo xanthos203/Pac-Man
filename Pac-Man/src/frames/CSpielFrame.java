@@ -61,7 +61,6 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
-	 * @param bFenster
 	 */
 	public CSpielFrame()
 	{		
@@ -83,7 +82,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		chatPanel.setSize(200,200);	
 		chatPanel.setLayout(new BorderLayout());
-		JLabel textlabel = new JLabel("            CHAT            ");
+		JLabel textlabel = new JLabel("               CHAT               ");
 		JPanel panel = new JPanel();
 		JTextArea area = new JTextArea();
 		JTextField field = new JTextField();
@@ -139,7 +138,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 					{
 						panelFeld[iZeile][iSpalte] = new JPanel();
 						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						panelFeld[iZeile][iSpalte].setBackground(Color.red);
+						panelFeld[iZeile][iSpalte].setBackground(Color.lightGray);
 						centerPanel.add(panelFeld[iZeile][iSpalte]);
 					}
 				}
