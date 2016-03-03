@@ -21,7 +21,7 @@ public final class Tools
 	 * In dieser Methode wird Mithilfe des BufferedReaders eingelesen und verwendet.
 	 * 
 	 */
-	public static ArrayList<String> readLogCSV(String path) 
+	public ArrayList<String> readLogCSV(String path) 
 	{
 		ArrayList<String> log = new ArrayList<String>();
 		

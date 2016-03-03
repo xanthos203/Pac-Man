@@ -1,15 +1,19 @@
 package frames;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import characters.CGeister;
 import characters.CSpieler;
+import control.file_processing.CLogDB;
 import control.listeners.SteuerungListener;
 import control.listeners.WindowClosingListener;
 import interfaces.IWindowProperties;
@@ -19,14 +23,10 @@ import interfaces.IWindowProperties;
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-public class CSpielFrame extends JFrame implements IWindowProperties
+public class CSpielFrame extends JFrame  implements IWindowProperties
 {
-	private static CSpielFrame jFrame = new CSpielFrame();
-	
-	private int zaehlerY = 0;
-	private int zaehlerX = 200;
-	private int laenge = 50;
-	private int breite = 10;
+	static JFrame frame;
+	private ArrayList<String> spielFeldArray;
 	
 	private int iGeisty;
 	private int iGeistx;
@@ -35,12 +35,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private static int iSpielery;
 	private static int iSpielerx;
 	
-	private static int zaehler = 0;
-	private static int iZaehler = 1;
-	
-	private boolean fenster = false;
 	private static boolean bSpielerAktiv = false;
-	private boolean bWand = true;
 	
 	private static JPanel pSpieler = new JPanel();
 	private JPanel pGeist = new JPanel();
@@ -49,128 +44,84 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private static CSpieler oSpieler = new CSpieler();
 	
 	private Timer oTimer = new Timer();
-	private JPanel[] aPanel = new JPanel[800];
 	
 	private JPanel[][] panelFeld;
 	
-	public CSpielFrame()
-	{
+	private CLogDB logdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\GUI.csv");
+	private int feld=-1;
 	
-	}
-	
-//----------------------------------------------	
+	private JPanel centerPanel=new JPanel();
+	private JPanel chatPanel;
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 * @param bFenster
 	 */
-	public CSpielFrame(boolean bFenster)
-	{
-		fenster = bFenster;
-
-		jFrame.setTitle("Pac-Man");
-		jFrame.setSize(frameWidth, frameHeight);
-		jFrame.setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
-		jFrame.setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
-		jFrame.setResizable(false);
-		jFrame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		jFrame.addWindowListener(new WindowClosingListener(this));
+	public CSpielFrame()
+	{		
+		frame=this;
+		spielFeldArray=logdb.getArrayList();
+		
+		setTitle("Pac-Man");
+		setSize(frameWidth, frameHeight);
+		setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pac-Man_icon.PNG")));
+		setResizable(false);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		addWindowListener(new WindowClosingListener(this));
+		setLayout(new BorderLayout());
+		
 		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
-		jFrame.setLayout(oSpielFeldLayout);
-		jFrame.setVisible(true);
-		jFrame.addKeyListener(new SteuerungListener());
+		centerPanel.setLayout(oSpielFeldLayout);
+		add(centerPanel, BorderLayout.CENTER);
+		
+		setVisible(true);
+		centerPanel.addKeyListener(new SteuerungListener());
 		panelFeld = new JPanel[50][50];
 
 		for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
 		{
 			for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
 			{
-				panelFeld[iZeile][iSpalte] = new JPanel();
-				panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-				panelFeld[iZeile][iSpalte].setBackground(Color.blue);
-				jFrame.add(panelFeld[iZeile][iSpalte]);
+				feld++;
+				if(spielFeldArray.size()>feld)
+				{
+					if(spielFeldArray.get(feld).equals("1"))
+					{
+						panelFeld[iZeile][iSpalte] = new JPanel();
+						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						panelFeld[iZeile][iSpalte].setBackground(Color.blue);
+						centerPanel.add(panelFeld[iZeile][iSpalte]);
+					}
+					
+					if(spielFeldArray.get(feld).equals("0"))
+					{
+						panelFeld[iZeile][iSpalte] = new JPanel();
+						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						panelFeld[iZeile][iSpalte].setBackground(Color.red);
+						centerPanel.add(panelFeld[iZeile][iSpalte]);
+					}
+				}
+				else
+				{
+					break;
+				}
 			}
 		}
 		repaint();
-		/*
-		 * if(bWand)
-		 * {
-		 * 		System.out.println(""+aPanel[zaehler]);
-		 * 
-		 * 		aPanel[zaehler].setSize(laenge, breite);
-		 * 		aPanel[zaehler].setLocation(zaehlerX, zaehlerY);
-		 * 		aPanel[zaehler].setBackground(Color.BLUE);
-		 * 		jFrame.add(aPanel[zaehler]);
-		 * 		zaehler++;
-		 * 
-		 * 		jPanelOben1.setSize(laenge, breite);
-		 * 		jPanelOben1.setLocation(zaehlerX, zaehlerY);
-		 * 		jPanelOben1.setBackground(Color.BLUE);
-		 * 		add(jPanelOben1);
-		 * 		System.out.println("HALLO");
-		 * 
-		 * 		iZaehler++;
-		 * }
-		 * 
-		 * if(iZaehler == 33)
-		 * {
-		 * 		iZaehler = 0;
-		 * 		zaehlerX = 200;
-		 * 		zaehlerY = zaehlerY + 25;
-		 * 		zaehlerX = zaehler + laenge;
-		 * }
-		 * 
-		 * zaehlerX = zaehler + laenge;
-		 */
-		fenster = false;
-		repaint();
-			/*if(bWand)
-			{
-				System.out.println(""+panelFeld[iZeile][iSpalte]);
-				
-				aPanel[zaehler].setSize(laenge, breite);
-				aPanel[zaehler].setLocation( zaehlerX, zaehlerY);
-				aPanel[zaehler].setBackground(Color.BLUE);
-				jFrame.add(aPanel[zaehler]);
-				zaehler++;
-				
-				jPanelOben1.setSize(laenge, breite);
-				jPanelOben1.setLocation(zaehlerX, zaehlerY);
-				jPanelOben1.setBackground(Color.BLUE);
-				add(jPanelOben1);
-				System.out.println("HALLO");
-				
-				iZaehler++;
-			}
-			
-			if(iZaehler == 33)
-			{
-				iZaehler = 0;
-				zaehlerX = 200;
-				zaehlerY = zaehlerY + 25;
-				zaehlerX = zaehler+laenge;
-			}
-			
-			zaehlerX = zaehler+laenge;*/
-		fenster = false;
 	}
 	
-//----------------------------------------------------------------------------------
+	//----------------------------------------------------------------------------------
 	
 	/**
 	 * Hier wird der Timer der sagt wie oft der Geist pro Sekunde aufgerufen werden soll gestartet
 	 */
 	public void Darstellen()
 	{
-		bWand = true;
 		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
 		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
 	}
 
-	public void Muenzendarstellen()
-	{
-		bWand = false;
-	}
 	//-------------------------------------------------------------------------------------------------------------------
 			
 	public static JPanel getSpieler()
@@ -182,7 +133,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 	public static CSpielFrame getFrame()
 	{
-		return jFrame;
+		return (CSpielFrame) frame;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------

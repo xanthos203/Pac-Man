@@ -98,7 +98,7 @@ public final class TextfieldListener implements KeyListener
 					referenceFrame.dispose();
 					
 					/*=========Hauptfenster öffnen=========*/
-					CSpielFrame oSpielFrame = new CSpielFrame(true);
+					CSpielFrame oSpielFrame = new CSpielFrame();
 //					GameWonFrame frame = new GameWonFrame();
 //					GameLostFrame frame1 = new GameLostFrame();
 				}

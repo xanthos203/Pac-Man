@@ -55,7 +55,7 @@ public final class ButtonListener implements ActionListener
 			referenceFrame.dispose();
 
 			/*=========Hauptfenster öffnen=========*/
-			CSpielFrame oSpielFrame = new CSpielFrame(true);
+			CSpielFrame oSpielFrame = new CSpielFrame();
 		}
 	}
 }
