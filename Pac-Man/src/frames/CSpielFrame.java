@@ -14,6 +14,7 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -31,7 +32,7 @@ import interfaces.IWindowProperties;
  */
 public class CSpielFrame extends JFrame implements IWindowProperties
 {
-	static JFrame frame;
+	private static JFrame frame;
 	private ArrayList<String> spielFeldArray;
 	
 	private int iGeisty;
@@ -88,6 +89,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		JTextField field = new JTextField();
 		area.setEditable(false);
 		panel.add(field);
+		JScrollPane scrollPane = new JScrollPane(area);
 		chatPanel.add(textlabel, BorderLayout.NORTH);
 		field.setSize(panel.getWidth(),panel.getHeight());
 		field.setColumns(10);
@@ -111,7 +113,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			public void keyReleased(KeyEvent e) {}
 		});
 		chatPanel.add(panel, BorderLayout.SOUTH);
-		chatPanel.add(area, BorderLayout.CENTER);
+		chatPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		add(chatPanel, BorderLayout.WEST);
 		
