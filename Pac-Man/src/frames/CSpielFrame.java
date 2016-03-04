@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.Timer;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -38,7 +40,11 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private static boolean bSpielerAktiv = false;
 	
 	private static JPanel pSpieler = new JPanel();
-	private JPanel pGeist = new JPanel();
+	
+	private JLabel lGeistgruen = new JLabel();
+	private JLabel lGeistblau = new JLabel();
+	private JLabel lGeistorange = new JLabel();
+	private JLabel lGeistpink = new JLabel();
 	
 	private CGeister oGeist = new CGeister();
 	private static CSpieler oSpieler = new CSpieler();
@@ -60,11 +66,17 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private Server serv;
 	private Client client=new Client();
 	
+	private ImageIcon iCangruen = new ImageIcon();
+	private ImageIcon iCanblau = new ImageIcon();
+	private ImageIcon iCanorange = new ImageIcon();
+	private ImageIcon iCanpink = new ImageIcon();
+	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
 	public CSpielFrame()
-	{			
+	{	
+		int zaehler = -1;
 		client.netzwerkEinrichten();
 		Thread readerThread = new Thread(new EigehendReader());
 		readerThread.start();
@@ -96,6 +108,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		chatPanel.add(textlabel, BorderLayout.NORTH);
 		field.setSize(panel.getWidth(),panel.getHeight());
 		field.setColumns(10);
+		
 		field.addKeyListener(new KeyListener()
 		{
 			@Override
@@ -115,6 +128,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			@Override
 			public void keyReleased(KeyEvent e) {}
 		});
+		
 		chatPanel.add(panel, BorderLayout.SOUTH);
 		chatPanel.add(scrollPane, BorderLayout.CENTER);
 		
@@ -144,6 +158,36 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 						panelFeld[iZeile][iSpalte] = new JPanel();
 						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
 						panelFeld[iZeile][iSpalte].setBackground(Color.lightGray);
+						centerPanel.add(panelFeld[iZeile][iSpalte]);
+					}
+					
+					if(spielFeldArray.get(feld).equals("2"))
+					{
+						panelFeld[iZeile][iSpalte] = new JPanel();
+						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						panelFeld[iZeile][iSpalte].setBackground(Color.lightGray);
+						
+						zaehler++;
+						if(zaehler == 0)
+						{
+							panelFeld[iZeile][iSpalte].add(lGeistgruen);
+						}
+						
+						if(zaehler == 1)
+						{
+							panelFeld[iZeile][iSpalte].add(lGeistgruen);
+						}			
+						
+						if(zaehler == 2)
+						{
+							panelFeld[iZeile][iSpalte].add(lGeistgruen);
+						}
+						
+						if(zaehler == 3)
+						{
+							panelFeld[iZeile][iSpalte].add(lGeistgruen);
+						}
+						
 						centerPanel.add(panelFeld[iZeile][iSpalte]);
 					}
 				}
@@ -246,7 +290,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			{
 				client.senden();
 				Server.esAllenWeitersagen(field.getText());
-			}			
+			}			 
 			
 			if(bSpielerAktiv == true)
 			{
