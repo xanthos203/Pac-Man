@@ -29,9 +29,6 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 	private static	JTextField	usernameFeld	= new JTextField();
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
 	private static 	String 		username		= null;
-	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
-	private static	String[] 	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~",
-																"#","'",".", ":",",",";","<",">","|","-","+","_","@","€","µ","©","®","ß","ä", "Ä","ö","Ö","ü","Ü"};
 	
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
 	private JPanel 		contentPane		= new JPanel();
@@ -159,13 +156,5 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 	{
 		/*das usernameFeld wird zurückgegeben*/
 		return usernameFeld;
-	}
-	
-	/**Die <i>Getter</i>-Methode für das <b>Sonderzeichen-Array</b> retourniert das Sonderzeichen-Array, indem sich alle Sonderzeichen befinden, die nicht eingegeben werden können.
-	 * @return alle unzulässigen Sonderzeichen*/
-	public static String[] getSonderzeichen()
-	{
-		/*das sonderzeichen-Array wird zurückgegeben*/
-		return sonderzeichen;
 	}
 }

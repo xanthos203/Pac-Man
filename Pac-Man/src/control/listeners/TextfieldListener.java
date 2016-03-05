@@ -15,7 +15,10 @@ import frames.*;
 public final class TextfieldListener implements KeyListener
 {
 	/**Das <i>referenceDialog</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
-	private JDialog referenceDialog;
+	private JDialog 	referenceDialog;
+	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
+	private	String[]	sonderzeichen 	= new String[] {"^","°","!","\"","²","§","³","$","%","&","/","{","(","[",")","]","=","}","?","\\","´","`","*","~",
+														"#","'",".", ":",",",";","<",">","|","-","+","_","@","€","µ","©","®","ß","ä", "Ä","ö","Ö","ü","Ü"};
 	
 	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> sich der Listener bezieht.
 	 * @param dialog Referenzvariable vom Typ <i>JDialog</i>*/
@@ -71,10 +74,10 @@ public final class TextfieldListener implements KeyListener
 			if (LogInFrame.getUsernameFeld().getText().length() < 21)
 			{
 				/*diese Schleife läuft so oft durch, so lang wie das sonderzeichen-Array ist*/
-				for (int i = 0; i < LogInFrame.getSonderzeichen().length; i++)
+				for (int i = 0; i < sonderzeichen.length; i++)
 				{
 					/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
-					if (LogInFrame.getUsernameFeld().getText().contains(LogInFrame.getSonderzeichen()[i]))
+					if (LogInFrame.getUsernameFeld().getText().contains(sonderzeichen[i]))
 					{
 						/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 						JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten\u002E",
@@ -87,10 +90,10 @@ public final class TextfieldListener implements KeyListener
 				}
 			}
 			/*wird ausgeführt, wenn keine der oben stehenden Bedingungen zutrifft*/
-			for (int i = 0; i < LogInFrame.getSonderzeichen().length;)
+			for (int i = 0; i < sonderzeichen.length;)
 			{
 				/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
-				if (!LogInFrame.getUsernameFeld().getText().contains(LogInFrame.getSonderzeichen()[i]))
+				if (!LogInFrame.getUsernameFeld().getText().contains(sonderzeichen[i]))
 				{
 					/*der eingegebene Spielername wird gespeichert*/
 					LogInFrame.setUsername(LogInFrame.getUsernameFeld().getText());
