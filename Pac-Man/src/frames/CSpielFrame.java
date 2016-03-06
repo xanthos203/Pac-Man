@@ -5,12 +5,14 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.Timer;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import characters.*;
 import chat.*;
@@ -53,12 +55,14 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private JPanel centerPanel = new JPanel();
 	private JPanel chatPanel = new JPanel();
 	
-	private JLabel textlabel = new JLabel("               CHAT               ");
+	private JLabel spielstandlabel = new JLabel();
+	private JLabel chatlabel = new JLabel("CHAT");
 	private JPanel panel = new JPanel();
+	private JButton textSenden = new JButton("SENDEN");
 	private static JTextArea area = new JTextArea();
 	private static JTextField field = new JTextField();
-	private Server serv;
-	private Client client=new Client();
+	private Server server;
+	private Client client = new Client();
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
@@ -69,7 +73,6 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		Thread readerThread = new Thread(new EigehendReader());
 		readerThread.start();
 		Darstellen();
-		
 		
 		frame = this;
 		spielFeldArray = logdb.getArrayList();
@@ -85,6 +88,13 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
 		centerPanel.setLayout(oSpielFeldLayout);
+		
+		spielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		spielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
+		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "               Punkte: 1.000.000.000.000.000");
+//		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "               Punkte: " + CSpieler.getPunktestand());	// <-- so soll Zeile aussehen!
+		
+		add(spielstandlabel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
 		
 		chatPanel.setSize(200,200);	
@@ -92,9 +102,9 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		area.setEditable(false);
 		panel.add(field);
+		panel.add(textSenden);
 		JScrollPane scrollPane = new JScrollPane(area);
-		chatPanel.add(textlabel, BorderLayout.NORTH);
-		field.setSize(panel.getWidth(),panel.getHeight());
+		field.setSize(panel.getWidth(), panel.getHeight());
 		field.setColumns(10);
 		field.addKeyListener(new KeyListener()
 		{
@@ -103,11 +113,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					if(!field.getText().equals(null))
-					{
-						area.setText(area.getText() + "\n" + field.getText());
-						field.setText(null);
-					}
+					chatTextDarstellen();
 				}
 			}
 			@Override
@@ -115,8 +121,19 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			@Override
 			public void keyReleased(KeyEvent e) {}
 		});
-		chatPanel.add(panel, BorderLayout.SOUTH);
+		//---------------------------------------------------
+		textSenden.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				chatTextDarstellen();
+				field.requestFocus();
+			}
+		});
+		//---------------------------------------------------
 		chatPanel.add(scrollPane, BorderLayout.CENTER);
+		chatPanel.add(panel, BorderLayout.SOUTH);
 		
 		add(chatPanel, BorderLayout.WEST);
 		
@@ -166,6 +183,17 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	public static JTextArea getArea()
 	{
 		return area;
+	}
+	
+	//----------------------------------------------------------------------------------
+	
+	public void chatTextDarstellen()
+	{
+		if(!field.getText().equals(null))
+		{
+			area.setText(area.getText() + "\n" + field.getText());
+			field.setText(null);
+		}
 	}
 	
 	//----------------------------------------------------------------------------------

@@ -10,6 +10,12 @@ public class CSpieler
 {
 	private int iSpielerx = 0;
 	private int iSpielery = 0;
+	private static long longPunktestand = 1000000000000000L; // <-- Testwert
+	
+	public static long getPunktestand()
+	{
+		return longPunktestand;
+	}
 	
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
