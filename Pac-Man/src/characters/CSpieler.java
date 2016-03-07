@@ -10,11 +10,18 @@ public class CSpieler
 {
 	private int iSpielerx = 0;
 	private int iSpielery = 0;
-	private static long longPunktestand = 1000000000000000L; // <-- Testwert
+	private int iLeben = 3;		// <-- Testwert
+	private double dPunktestand = 999999999999999L; // <-- Testwert
 	
-	public static long getPunktestand()
+	public int getLeben()
 	{
-		return longPunktestand;
+		return iLeben;
+	}
+	
+	public double getPunktestand()
+	{
+		if(dPunktestand > 999999999999999L) dPunktestand = 999999999999999L;
+		return dPunktestand;
 	}
 	
 	/**

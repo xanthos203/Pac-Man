@@ -56,7 +56,6 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private JPanel chatPanel = new JPanel();
 	
 	private JLabel spielstandlabel = new JLabel();
-	private JLabel chatlabel = new JLabel("CHAT");
 	private JPanel panel = new JPanel();
 	private JButton textSenden = new JButton("SENDEN");
 	private static JTextArea area = new JTextArea();
@@ -91,8 +90,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		spielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		spielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
-		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "               Punkte: 1.000.000.000.000.000");
-//		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "               Punkte: " + CSpieler.getPunktestand());	// <-- so soll Zeile aussehen!
+		spielstandlabel.setForeground(Color.blue);
+		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "   Leben: " + oSpieler.getLeben() + "UP(S)   Punkte: " + String.format("%,.0f", oSpieler.getPunktestand()));
 		
 		add(spielstandlabel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
@@ -101,6 +100,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		chatPanel.setLayout(new BorderLayout());
 		
 		area.setEditable(false);
+		area.setLineWrap(true);
+		area.setWrapStyleWord(true);
 		panel.add(field);
 		panel.add(textSenden);
 		JScrollPane scrollPane = new JScrollPane(area);
@@ -160,7 +161,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 					{
 						panelFeld[iZeile][iSpalte] = new JPanel();
 						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						panelFeld[iZeile][iSpalte].setBackground(Color.lightGray);
+						panelFeld[iZeile][iSpalte].setBackground(Color.black);
 						centerPanel.add(panelFeld[iZeile][iSpalte]);
 					}
 				}
@@ -189,7 +190,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	public void chatTextDarstellen()
 	{
-		if(!field.getText().equals(null))
+		if(!(field.getText().isEmpty()))
 		{
 			area.setText(area.getText() + "\n" + field.getText());
 			field.setText(null);
