@@ -8,25 +8,20 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import frames.CSpielFrame;
-
-
 public class Server
 {
-	private static   ArrayList<PrintWriter> clientAusgabeStröme;
+	private static ArrayList<PrintWriter> clientAusgabeStroeme;
 	public static void serverStarten()
 	{
-		clientAusgabeStröme = new ArrayList<PrintWriter>();
-		
+		clientAusgabeStroeme = new ArrayList<PrintWriter>();
 		try 
 		{
 			ServerSocket serverSock = new ServerSocket(5000);
-			
 			while(true) 
 			{
 				Socket clientSocket = serverSock.accept();
 				PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());         
-				clientAusgabeStröme.add(writer);
+				clientAusgabeStroeme.add(writer);
 				
 				Thread t = new Thread(new ClientHandler(clientSocket));
 				t.start();
@@ -34,7 +29,6 @@ public class Server
 				System.out.println("habe eine Verbindung");
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
-			
 		}
 		catch(Exception ex)
 		{
@@ -44,7 +38,7 @@ public class Server
 
 	public static void esAllenWeitersagen(String nachricht) 
 	{
-		Iterator it = clientAusgabeStröme.iterator();
+		Iterator<PrintWriter> it = clientAusgabeStroeme.iterator();
 		while(it.hasNext()) 
 		{
 			try 
@@ -63,7 +57,6 @@ public class Server
 
 class ClientHandler implements Runnable 
 {
-	
 	BufferedReader reader;
 	Socket sock;	
 	public ClientHandler(Socket clientSocket)
@@ -74,21 +67,27 @@ class ClientHandler implements Runnable
 			InputStreamReader isReader = new InputStreamReader(sock.getInputStream());
 			reader = new BufferedReader(isReader);
 			
-		} catch(Exception ex) {ex.printStackTrace();}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	} 
 	
 	public void run() 
 	{
 		String nachricht;
-		
-		try {
-			
+		try
+		{
 			while ((nachricht = reader.readLine()) != null) 
 			{
-					System.out.println("gelesen: " + nachricht);
-					Server.esAllenWeitersagen(nachricht);		
+				System.out.println("gelesen: " + nachricht);
+				Server.esAllenWeitersagen(nachricht);		
 			}
-		} catch(Exception ex) {ex.printStackTrace();}
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 }
-

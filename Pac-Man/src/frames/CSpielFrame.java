@@ -91,12 +91,12 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		spielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		spielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
 		spielstandlabel.setForeground(Color.blue);
-		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "   Leben: " + oSpieler.getLeben() + "UP(S)   Punkte: " + String.format("%,.0f", oSpieler.getPunktestand()));
+		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand()));
 		
 		add(spielstandlabel, BorderLayout.NORTH);
 		add(centerPanel, BorderLayout.CENTER);
 		
-		chatPanel.setSize(200,200);	
+		chatPanel.setSize(200, 200);	
 		chatPanel.setLayout(new BorderLayout());
 		
 		area.setEditable(false);
@@ -180,6 +180,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	{
 		return field;
 	}
+	
+	//----------------------------------------------------------------------------------
 	
 	public static JTextArea getArea()
 	{
@@ -271,13 +273,13 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	{
 		public void run()
 		{			
-			if(!field.getText().equals(null))
+			if(!field.getText().isEmpty())
 			{
 				client.senden();
 				Server.esAllenWeitersagen(field.getText());
 			}			
 			
-			if(bSpielerAktiv == true)
+			if(bSpielerAktiv)
 			{
 				
 					/*
