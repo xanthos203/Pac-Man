@@ -18,7 +18,7 @@ public class Client
 			InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
 			reader = new BufferedReader(streamReader);
 			writer = new PrintWriter(sock.getOutputStream());		
-			System.out.println("Gesendet IP-Adresse");
+			System.out.println("IP-Adresse gesendet");
 			PrintWriter writer = new PrintWriter(sock.getOutputStream());			
 			System.out.println("Netzwerkverbindung steht");
 		} 
@@ -35,7 +35,8 @@ public class Client
 	
 	public void senden()
 	{
-		try {
+		try
+		{
 			if(CSpielFrame.getSchreibFeld().getText()!=null||CSpielFrame.getSchreibFeld().getText()!="")
 			{
 				writer.println(CSpielFrame.getSchreibFeld().getText());

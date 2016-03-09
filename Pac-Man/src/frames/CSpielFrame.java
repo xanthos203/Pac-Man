@@ -67,7 +67,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
 	public CSpielFrame()
-	{			
+	{
+		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		client.netzwerkEinrichten();
 		Thread readerThread = new Thread(new EigehendReader());
 		readerThread.start();
@@ -98,15 +99,18 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		chatPanel.setSize(200, 200);	
 		chatPanel.setLayout(new BorderLayout());
+		textSenden.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		
 		area.setEditable(false);
 		area.setLineWrap(true);
 		area.setWrapStyleWord(true);
+		area.setFont(defaultFont);
 		panel.add(field);
 		panel.add(textSenden);
 		JScrollPane scrollPane = new JScrollPane(area);
 		field.setSize(panel.getWidth(), panel.getHeight());
 		field.setColumns(10);
+		field.setFont(defaultFont);
 		field.addKeyListener(new KeyListener()
 		{
 			@Override
@@ -281,33 +285,31 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			
 			if(bSpielerAktiv)
 			{
+				/*
+				iGeisty = pGeist.getY();
+				iGeistx = pGeist.getX();
 				
-					/*
-					iGeisty = pGeist.getY();
-					iGeistx = pGeist.getX();
+				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
+				int index = zufallsZahl.nextInt(8) + 1;
 				
-					Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
-					int index = zufallsZahl.nextInt(8) + 1;
-					
-					for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
+				for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
+				{
+					switch(index)
 					{
-						switch(index)
-						{
-							case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
-							case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
-							case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-							case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
-							case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
-							case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
-							case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-							case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
-						}
+						case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
+						case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
+						case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
+						case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
+						case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
+						case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
+						case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
+						case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
 					}
-									
-					if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
-					{
-						GameLostFrame oFrame = new GameLostFrame();	
-					}
+				}
+				
+				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
+				{
+					GameLostFrame oFrame = new GameLostFrame();	
 				}
 				
 				setBackground(Color.WHITE);

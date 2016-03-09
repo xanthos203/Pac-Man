@@ -15,7 +15,7 @@ public interface IWindowProperties
 	/**In <i>screenHeight</i> wird die <b>Höhe des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
 	public static final int   screenHeight    = Toolkit.getDefaultToolkit().getScreenSize().height;
 	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
-	public static final int   frameWidth	  = 1110;
+	public static final int   frameWidth	  = 1091;
 	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	public static final int   frameHeight	  = 740;
+	public static final int   frameHeight	  = 739;
 }
