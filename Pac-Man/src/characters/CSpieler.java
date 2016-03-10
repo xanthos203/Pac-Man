@@ -1,4 +1,5 @@
 package characters;
+
 import frames.CSpielFrame;
 
 /**

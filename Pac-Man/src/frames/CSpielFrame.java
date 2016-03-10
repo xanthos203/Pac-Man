@@ -1,9 +1,17 @@
 package frames;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,11 +22,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import characters.*;
-import chat.*;
+import characters.CGeister;
+import characters.CSpieler;
+import chat.Client;
+import chat.EigehendReader;
+import chat.Server;
 import control.file_processing.CLogDB;
-import control.listeners.*;
-import interfaces.*;
+import control.listeners.SteuerungListener;
+import control.listeners.WindowClosingListener;
+import interfaces.IWindowProperties;
 
 /**
  * 

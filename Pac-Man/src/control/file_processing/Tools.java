@@ -1,7 +1,9 @@
 package control.file_processing;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * 
@@ -34,7 +36,7 @@ public final class Tools
 			// Hier wird mit readLine die entsprechende Zeile eingelesen und der Variable zeile zugewuiesen.
 			while ((zeile = in.readLine()) != null) 
 			{
-				// Hier wierd die Zeile der ArrayList log geaddet
+				// Hier wird die Zeile der ArrayList log geaddet
 				log.add(zeile);
 			}
 			// Dies Beendet das Einlesen der Datei
@@ -43,7 +45,7 @@ public final class Tools
 		// Dies wird aufgerufen, wenn das try nicht ausgeführt werden kann
 		catch (IOException e) 
 		{
-			// Hier wierd die Exception geworfen, wenn das catch aufgerufen wierd
+			// Hier wird die Exception geworfen, wenn das catch aufgerufen wierd
 			e.printStackTrace();
 		}
 		
