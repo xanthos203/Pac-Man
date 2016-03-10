@@ -39,39 +39,40 @@ import interfaces.IWindowProperties;
  */
 public class CSpielFrame extends JFrame implements IWindowProperties
 {
-	private static JFrame frame;
-	private ArrayList<String> spielFeldArray;
+	private static JFrame fFrame;
+	private static JTextArea taTextArea = new JTextArea();
+	private static JTextField tfTextField = new JTextField();
+	private static JPanel pSpieler = new JPanel();
 	
-	private int iGeisty;
-	private int iGeistx;
-	private int iLayoutZeilen = 28;
-	private int iLayoutSpalten = 33;
-	private static int iSpielery;
-	private static int iSpielerx;
+	private static int iSpielerX;
+	private static int iSpielerY;
 	
 	private static boolean bSpielerAktiv = false;
 	
-	private static JPanel pSpieler = new JPanel();
-	private JPanel pGeist = new JPanel();
+	private static CSpieler oSpieler = new CSpieler();
 	
 	private CGeister oGeist = new CGeister();
-	private static CSpieler oSpieler = new CSpieler();
+	
+	private ArrayList<String> alSpielfeldArrayList;
+	
+	private int iGeistX;
+	private int iGeistY;
+	private int iLayoutZeilen = 28;
+	private int iLayoutSpalten = 33;
+	private int iFeld = -1;
+	
+	private JPanel[][] aPanelArray;
+	private JPanel pGeist = new JPanel();
+	private JPanel pSpielfeldPanel = new JPanel();
+	private JPanel pChatPanel = new JPanel();
+	private JPanel pChatKomponentenPanel = new JPanel();
+	private JLabel lSpielstandlabel = new JLabel();
+	private JButton jbTextSendenButton = new JButton("SENDEN");
 	
 	private Timer oTimer = new Timer();
 	
-	private JPanel[][] panelFeld;
-	
 	private CLogDB logdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\GUI.csv");
-	private int feld = -1;
 	
-	private JPanel centerPanel = new JPanel();
-	private JPanel chatPanel = new JPanel();
-	
-	private JLabel spielstandlabel = new JLabel();
-	private JPanel panel = new JPanel();
-	private JButton textSenden = new JButton("SENDEN");
-	private static JTextArea area = new JTextArea();
-	private static JTextField field = new JTextField();
 	private Server server;
 	private Client client = new Client();
 	
@@ -86,8 +87,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		readerThread.start();
 		Darstellen();
 		
-		frame = this;
-		spielFeldArray = logdb.getArrayList();
+		fFrame = this;
+		alSpielfeldArrayList = logdb.getArrayList();
 		
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
@@ -99,31 +100,31 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		setLayout(new BorderLayout());
 		
 		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
-		centerPanel.setLayout(oSpielFeldLayout);
+		pSpielfeldPanel.setLayout(oSpielFeldLayout);
 		
-		spielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		spielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
-		spielstandlabel.setForeground(Color.blue);
-		spielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand()));
+		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
+		lSpielstandlabel.setForeground(Color.blue);
+		lSpielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand()));
 		
-		add(spielstandlabel, BorderLayout.NORTH);
-		add(centerPanel, BorderLayout.CENTER);
+		add(lSpielstandlabel, BorderLayout.NORTH);
+		add(pSpielfeldPanel, BorderLayout.CENTER);
 		
-		chatPanel.setSize(200, 200);	
-		chatPanel.setLayout(new BorderLayout());
-		textSenden.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		pChatPanel.setSize(200, 200);	
+		pChatPanel.setLayout(new BorderLayout());
+		jbTextSendenButton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		
-		area.setEditable(false);
-		area.setLineWrap(true);
-		area.setWrapStyleWord(true);
-		area.setFont(defaultFont);
-		panel.add(field);
-		panel.add(textSenden);
-		JScrollPane scrollPane = new JScrollPane(area);
-		field.setSize(panel.getWidth(), panel.getHeight());
-		field.setColumns(10);
-		field.setFont(defaultFont);
-		field.addKeyListener(new KeyListener()
+		taTextArea.setEditable(false);
+		taTextArea.setLineWrap(true);
+		taTextArea.setWrapStyleWord(true);
+		taTextArea.setFont(defaultFont);
+		pChatKomponentenPanel.add(tfTextField);
+		pChatKomponentenPanel.add(jbTextSendenButton);
+		JScrollPane scrollPane = new JScrollPane(taTextArea);
+		tfTextField.setSize(pChatKomponentenPanel.getWidth(), pChatKomponentenPanel.getHeight());
+		tfTextField.setColumns(10);
+		tfTextField.setFont(defaultFont);
+		tfTextField.addKeyListener(new KeyListener()
 		{
 			@Override
 			public void keyPressed(KeyEvent e)
@@ -139,46 +140,46 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			public void keyReleased(KeyEvent e) {}
 		});
 		//---------------------------------------------------
-		textSenden.addActionListener(new ActionListener()
+		jbTextSendenButton.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				chatTextDarstellen();
-				field.requestFocus();
+				tfTextField.requestFocus();
 			}
 		});
 		//---------------------------------------------------
-		chatPanel.add(scrollPane, BorderLayout.CENTER);
-		chatPanel.add(panel, BorderLayout.SOUTH);
+		pChatPanel.add(scrollPane, BorderLayout.CENTER);
+		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 		
-		add(chatPanel, BorderLayout.WEST);
+		add(pChatPanel, BorderLayout.WEST);
 		
 		setVisible(true);
-		centerPanel.addKeyListener(new SteuerungListener());
-		panelFeld = new JPanel[50][50];
+		pSpielfeldPanel.addKeyListener(new SteuerungListener());
+		aPanelArray = new JPanel[50][50];
 
 		for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
 		{
 			for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
 			{
-				feld++;
-				if(spielFeldArray.size() > feld)
+				iFeld++;
+				if(alSpielfeldArrayList.size() > iFeld)
 				{
-					if(spielFeldArray.get(feld).equals("1"))
+					if(alSpielfeldArrayList.get(iFeld).equals("1"))
 					{
-						panelFeld[iZeile][iSpalte] = new JPanel();
-						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						panelFeld[iZeile][iSpalte].setBackground(Color.blue);
-						centerPanel.add(panelFeld[iZeile][iSpalte]);
+						aPanelArray[iZeile][iSpalte] = new JPanel();
+						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						aPanelArray[iZeile][iSpalte].setBackground(Color.blue);
+						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
 					}
 					
-					if(spielFeldArray.get(feld).equals("0"))
+					if(alSpielfeldArrayList.get(iFeld).equals("0"))
 					{
-						panelFeld[iZeile][iSpalte] = new JPanel();
-						panelFeld[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						panelFeld[iZeile][iSpalte].setBackground(Color.black);
-						centerPanel.add(panelFeld[iZeile][iSpalte]);
+						aPanelArray[iZeile][iSpalte] = new JPanel();
+						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						aPanelArray[iZeile][iSpalte].setBackground(Color.black);
+						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
 					}
 				}
 				else
@@ -191,27 +192,13 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	}
 	
 	//----------------------------------------------------------------------------------
-	
-	public static JTextField getSchreibFeld()
-	{
-		return field;
-	}
-	
-	//----------------------------------------------------------------------------------
-	
-	public static JTextArea getArea()
-	{
-		return area;
-	}
-	
-	//----------------------------------------------------------------------------------
-	
+
 	public void chatTextDarstellen()
 	{
-		if(!(field.getText().isEmpty()))
+		if(!(tfTextField.getText().isEmpty()))
 		{
-			area.setText(area.getText() + "\n" + field.getText());
-			field.setText(null);
+			taTextArea.setText(taTextArea.getText() + "\n" + tfTextField.getText());
+			tfTextField.setText(null);
 		}
 	}
 	
@@ -227,6 +214,20 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static JTextField getSchreibFeld()
+	{
+		return tfTextField;
+	}
+	
+	//----------------------------------------------------------------------------------
+	
+	public static JTextArea getArea()
+	{
+		return taTextArea;
+	}
+	
+	//----------------------------------------------------------------------------------
 			
 	public static JPanel getSpieler()
 	{
@@ -237,16 +238,16 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 	public static CSpielFrame getFrame()
 	{
-		return (CSpielFrame) frame;
+		return (CSpielFrame) fFrame;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
 		
 	public static void spielerRunter()
 	{
-		iSpielery = pSpieler.getY();
-		iSpielery = oSpieler.SpielerRaufBewegen(iSpielery);
-		pSpieler.setLocation(pSpieler.getX(), iSpielery);
+		iSpielerY = pSpieler.getY();
+		iSpielerY = oSpieler.SpielerRaufBewegen(iSpielerY);
+		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
 	
@@ -254,9 +255,9 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	public static void spielerRauf()
 	{
-		iSpielery = pSpieler.getY();
-		iSpielery = oSpieler.SpielerRunterBewegen(iSpielery);
-		pSpieler.setLocation(pSpieler.getX(), iSpielery);
+		iSpielerY = pSpieler.getY();
+		iSpielerY = oSpieler.SpielerRunterBewegen(iSpielerY);
+		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
 	
@@ -264,9 +265,9 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	public static void spielerLinks()
 	{
-		iSpielerx = pSpieler.getX();
-		iSpielerx = oSpieler.SpielerLinksBewegen(iSpielerx);
-		pSpieler.setLocation(iSpielerx, pSpieler.getY());
+		iSpielerX = pSpieler.getX();
+		iSpielerX = oSpieler.SpielerLinksBewegen(iSpielerX);
+		pSpieler.setLocation(iSpielerX, pSpieler.getY());
 		bSpielerAktiv = true;
 	}
 	
@@ -274,9 +275,9 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	public static void spielerRechts()
 	{
-		iSpielerx = pSpieler.getX();
-		iSpielerx = oSpieler.SpielerRechtsBewegen(iSpielerx);
-		pSpieler.setLocation(iSpielerx, pSpieler.getY());
+		iSpielerX = pSpieler.getX();
+		iSpielerX = oSpieler.SpielerRechtsBewegen(iSpielerX);
+		pSpieler.setLocation(iSpielerX, pSpieler.getY());
 		bSpielerAktiv = true;
 	}
 	
@@ -289,10 +290,10 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	{
 		public void run()
 		{			
-			if(!field.getText().isEmpty())
+			if(!tfTextField.getText().isEmpty())
 			{
 				client.senden();
-				Server.esAllenWeitersagen(field.getText());
+				Server.esAllenWeitersagen(tfTextField.getText());
 			}			
 			
 			if(bSpielerAktiv)

@@ -14,7 +14,9 @@ import java.util.ArrayList;
 public class CLogDB 
 {
 	private ArrayList<String> zeilenString = new ArrayList<String>();
-	private Tools tool=new Tools();
+	private Tools tool = new Tools();
+	
+	public CLogDB() {}
 	
 	/**
 	 * 
@@ -49,11 +51,9 @@ public class CLogDB
 					
 		}
 	}
-	
+	//---------------------------------------------------------------------------------------------------------------------------
 	public ArrayList<String> getArrayList()
 	{
 		return zeilenString;
 	}
-//--------------------------------------------------------
-	public CLogDB() {}
 }
