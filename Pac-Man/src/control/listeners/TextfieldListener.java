@@ -41,7 +41,7 @@ public final class TextfieldListener implements KeyListener
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\nDer Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
 													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
-				LogInFrame.getUsernameFeld().setText("");
+				LogInFrame.getUsernameFeld().setText(null);
 				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
@@ -52,7 +52,7 @@ public final class TextfieldListener implements KeyListener
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\nDer Spielername darf keine Leerzeichen enthalten\u002E",
 													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
-				LogInFrame.getUsernameFeld().setText("");
+				LogInFrame.getUsernameFeld().setText(null);
 				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
@@ -63,7 +63,7 @@ public final class TextfieldListener implements KeyListener
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\nDer Spielername darf maximal \u0032\u0030 Zeichen lang sein\u002E",
 													"Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				/*der Text im Textfeld wird zurückgesetzt*/
-				LogInFrame.getUsernameFeld().setText("");
+				LogInFrame.getUsernameFeld().setText(null);
 				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
@@ -80,7 +80,7 @@ public final class TextfieldListener implements KeyListener
 						JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\nDer Spielername darf keine Sonderzeichen enthalten\u002E",
 															"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
 						/*der Text im Textfeld wird zurückgesetzt*/
-						LogInFrame.getUsernameFeld().setText("");
+						LogInFrame.getUsernameFeld().setText(null);
 						/*das Programm kehrt wieder zum Fenster zurück*/
 						return;
 					}

@@ -1,9 +1,14 @@
 /characters/
 /chat/
 /control/
+<<<<<<< HEAD
 /diagrams/
 /frames/
 /images/
 /interfaces/
 /main/
 /view/
+=======
+/view/
+/images/
+>>>>>>> branch 'master' of https://github.com/xanthos203/Pac-Man.git

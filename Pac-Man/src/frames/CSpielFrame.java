@@ -41,11 +41,6 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	private static JPanel pSpieler = new JPanel();
 	
-	private JLabel lGeistgruen = new JLabel();
-	private JLabel lGeistblau = new JLabel();
-	private JLabel lGeistorange = new JLabel();
-	private JLabel lGeistpink = new JLabel();
-	
 	private CGeister oGeist = new CGeister();
 	private static CSpieler oSpieler = new CSpieler();
 	
@@ -66,17 +61,22 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private Server serv;
 	private Client client=new Client();
 	
-	private ImageIcon iCangruen = new ImageIcon();
-	private ImageIcon iCanblau = new ImageIcon();
-	private ImageIcon iCanorange = new ImageIcon();
-	private ImageIcon iCanpink = new ImageIcon();
+	private ImageIcon iCangruen = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Greeny.PNG")));
+	private ImageIcon iCanblau = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Blue.PNG")));
+	private ImageIcon iCanorange = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Orangy.PNG")));
+	private ImageIcon iCanpink = new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/images/Pinky.PNG")));
+	
+	private JLabel lGeistgruen = new JLabel();
+	private JLabel lGeistblau = new JLabel();
+	private JLabel lGeistorange = new JLabel();
+	private JLabel lGeistpink = new JLabel();
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
 	public CSpielFrame()
 	{	
-		int zaehler = -1;
+		int zaehler = 0;
 		client.netzwerkEinrichten();
 		Thread readerThread = new Thread(new EigehendReader());
 		readerThread.start();
@@ -168,26 +168,13 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 						panelFeld[iZeile][iSpalte].setBackground(Color.lightGray);
 						
 						zaehler++;
-						if(zaehler == 0)
+						switch (zaehler)
 						{
-							panelFeld[iZeile][iSpalte].add(lGeistgruen);
+							case 1:panelFeld[iZeile][iSpalte].add(lGeistgruen); break;
+							case 2:panelFeld[iZeile][iSpalte].add(lGeistblau); break;
+							case 3:panelFeld[iZeile][iSpalte].add(lGeistorange); break;
+							case 4:panelFeld[iZeile][iSpalte].add(lGeistpink); break;
 						}
-						
-						if(zaehler == 1)
-						{
-							panelFeld[iZeile][iSpalte].add(lGeistgruen);
-						}			
-						
-						if(zaehler == 2)
-						{
-							panelFeld[iZeile][iSpalte].add(lGeistgruen);
-						}
-						
-						if(zaehler == 3)
-						{
-							panelFeld[iZeile][iSpalte].add(lGeistgruen);
-						}
-						
 						centerPanel.add(panelFeld[iZeile][iSpalte]);
 					}
 				}
