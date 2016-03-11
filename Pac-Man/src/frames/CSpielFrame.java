@@ -181,6 +181,14 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 						aPanelArray[iZeile][iSpalte].setBackground(Color.black);
 						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
 					}
+					
+					if(alSpielfeldArrayList.get(iFeld).equals("2"))
+					{
+						aPanelArray[iZeile][iSpalte] = new JPanel();
+						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						aPanelArray[iZeile][iSpalte].setBackground(Color.green);
+						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
+					}
 				}
 				else
 				{
