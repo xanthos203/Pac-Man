@@ -41,7 +41,7 @@ import view.characters.CSpieler;
  */
 public class CSpielFrame extends JFrame implements IWindowProperties
 {
-	private static JFrame fFrame;
+	private static JFrame jfFrame;
 	private static JTextArea taTextArea = new JTextArea();
 	private static JTextField tfTextField = new JTextField();
 	private static JPanel pSpieler = new JPanel();
@@ -73,10 +73,10 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	
 	private Timer oTimer = new Timer();
 	
-	private CLogDB logdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
+	private CLogDB oLogdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	
-	private Server server;
-	private Client client = new Client();
+	private Server oServer;
+	private Client oClient = new Client();
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
@@ -84,13 +84,13 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	public CSpielFrame()
 	{
 		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
-		client.netzwerkEinrichten();
+		oClient.netzwerkEinrichten();
 		Thread readerThread = new Thread(new EigehendReader());
 		readerThread.start();
 		Darstellen();
 		
-		fFrame = this;
-		alSpielfeldArrayList = logdb.getArrayList();
+		jfFrame = this;
+		alSpielfeldArrayList = oLogdb.getArrayList();
 		
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
@@ -140,7 +140,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			@Override
 			public void keyReleased(KeyEvent e) {}
 		});
-		//---------------------------------------------------
+		//-------------------------------------------------------
 		jbTextSendenButton.addActionListener(new ActionListener()
 		{
 			@Override
@@ -150,7 +150,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 				tfTextField.requestFocus();
 			}
 		});
-		//---------------------------------------------------
+		//-------------------------------------------------------
 		pChatPanel.add(scrollPane, BorderLayout.CENTER);
 		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 		
@@ -169,26 +169,15 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 				{
 					if(alSpielfeldArrayList.get(iFeld).equals("0"))
 					{
-						aPanelArray[iZeile][iSpalte] = new JPanel();
-						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						aPanelArray[iZeile][iSpalte].setBackground(Color.black);
-						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
+						guiDarstellen(iZeile, iZeile, Color.black);
 					}
-					
 					if(alSpielfeldArrayList.get(iFeld).equals("1"))
 					{
-						aPanelArray[iZeile][iSpalte] = new JPanel();
-						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						aPanelArray[iZeile][iSpalte].setBackground(Color.blue);
-						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
+						guiDarstellen(iZeile, iSpalte, Color.blue);
 					}
-					
 					if(alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
-						aPanelArray[iZeile][iSpalte] = new JPanel();
-						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						aPanelArray[iZeile][iSpalte].setBackground(Color.gray);
-						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
+						guiDarstellen(iZeile, iSpalte, Color.gray);
 					}
 				}
 				else
@@ -200,6 +189,16 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		repaint();
 	}
 
+	//----------------------------------------------------------------------------------
+
+	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
+	{
+		aPanelArray[iZeilenAnz][iSpaltenAnz] = new JPanel();
+		aPanelArray[iZeilenAnz][iSpaltenAnz].addKeyListener(new SteuerungListener());
+		aPanelArray[iZeilenAnz][iSpaltenAnz].setBackground(cFarbe);
+		pSpielfeldPanel.add(aPanelArray[iZeilenAnz][iSpaltenAnz]);
+	}
+	
 	//----------------------------------------------------------------------------------
 
 	public void chattextAnzeigen()
@@ -230,8 +229,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	 */
 	public void Darstellen()
 	{
-		TimerTask oTimerTask = new Task();		// Hier wird ein Obejkt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
-		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterclasse pro Sekunde aufgerufen werden soll.
+		TimerTask oTimerTask = new Task();		// Hier wird ein Objekt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
+		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -259,7 +258,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 	public static CSpielFrame getFrame()
 	{
-		return (CSpielFrame) fFrame;
+		return (CSpielFrame) jfFrame;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -313,7 +312,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		{			
 			if(!tfTextField.getText().isEmpty())
 			{
-				client.senden();
+				oClient.senden();
 				Server.esAllenWeitersagen(tfTextField.getText());
 			}			
 			

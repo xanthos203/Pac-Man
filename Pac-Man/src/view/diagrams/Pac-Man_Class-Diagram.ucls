@@ -198,7 +198,7 @@
   </association>  
   <association id="28">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="29" name="client"/>      
+      <attribute id="29" name="oClient"/>      
       <multiplicity id="30" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
@@ -214,7 +214,7 @@
   </realization>  
   <association id="33">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="34" name="server"/>      
+      <attribute id="34" name="oServer"/>      
       <multiplicity id="35" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="12" navigable="true"/>    
@@ -222,7 +222,7 @@
   </association>  
   <association id="36">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="37" name="logdb"/>      
+      <attribute id="37" name="oLogdb"/>      
       <multiplicity id="38" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
