@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
-import frames.*;
+import view.frames.*;
 
 /**Diese <i>Listener</i>-Klasse dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
  * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.

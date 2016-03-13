@@ -1,7 +1,7 @@
-characters
-chat
 control.file_processing
 control.listeners
-frames
-interfaces
-main
+model.chat
+model.interfaces
+view.characters
+view.frames
+view.main

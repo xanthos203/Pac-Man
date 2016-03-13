@@ -3,7 +3,7 @@ package control.listeners;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import frames.*;
+import view.frames.*;
 
 /**Diese <i>Listener</i>-Klasse dient zur <b>Steuerung des Hauptcharakters Pac-Man</b>.<br>
  * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.

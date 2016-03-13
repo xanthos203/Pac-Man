@@ -1,20 +1,3 @@
-/characters/
-/chat/
 /control/
-<<<<<<< HEAD
-/diagrams/
-/frames/
-/images/
-/interfaces/
-/main/
+/model/
 /view/
-=======
-/view/
-/images/
-<<<<<<< HEAD
-/characters/
-/interfaces/
-/diagrams/
-=======
->>>>>>> branch 'master' of https://github.com/xanthos203/Pac-Man.git
->>>>>>> branch 'master' of https://github.com/xanthos203/Pac-Man.git

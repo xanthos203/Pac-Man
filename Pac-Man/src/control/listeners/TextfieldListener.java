@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-import frames.*;
+import view.frames.*;
 
 /**Diese <i>Listener</i>-Klasse dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
  * Außerdem <b>überprüft</b> diese Klasse den <b>eingegebenen Text</b> im <i>JTextField</i>.<br>
