@@ -23,7 +23,7 @@ public final class Tools
 	 * In dieser Methode wird Mithilfe des BufferedReaders eingelesen und verwendet.
 	 * 
 	 */
-	public ArrayList<String> readLogCSV(String path) 
+	public ArrayList<String> readGuiCSV(String path) 
 	{
 		ArrayList<String> log = new ArrayList<String>();
 		

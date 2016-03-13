@@ -166,14 +166,6 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 				iFeld++;
 				if(alSpielfeldArrayList.size() > iFeld)
 				{
-					if(alSpielfeldArrayList.get(iFeld).equals("1"))
-					{
-						aPanelArray[iZeile][iSpalte] = new JPanel();
-						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						aPanelArray[iZeile][iSpalte].setBackground(Color.blue);
-						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
-					}
-					
 					if(alSpielfeldArrayList.get(iFeld).equals("0"))
 					{
 						aPanelArray[iZeile][iSpalte] = new JPanel();
@@ -182,11 +174,19 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
 					}
 					
+					if(alSpielfeldArrayList.get(iFeld).equals("1"))
+					{
+						aPanelArray[iZeile][iSpalte] = new JPanel();
+						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+						aPanelArray[iZeile][iSpalte].setBackground(Color.blue);
+						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
+					}
+					
 					if(alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
 						aPanelArray[iZeile][iSpalte] = new JPanel();
 						aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-						aPanelArray[iZeile][iSpalte].setBackground(Color.green);
+						aPanelArray[iZeile][iSpalte].setBackground(Color.gray);
 						pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
 					}
 				}

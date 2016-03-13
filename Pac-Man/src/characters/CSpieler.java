@@ -29,7 +29,6 @@ public class CSpieler
 	
 	public double getPunktestand()
 	{
-		if(dPunktestand > 999999999999999L) dPunktestand = 999999999999999L;
 		return dPunktestand;
 	}
 	

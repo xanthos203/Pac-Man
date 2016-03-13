@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
  *
  */
-
 public class CLogDB 
 {
 	private ArrayList<String> zeilenString = new ArrayList<String>();
@@ -29,7 +28,7 @@ public class CLogDB
 	public CLogDB(String path) 
 	{
 		//ArrayList der Logzeilen als Strings besorgen
-		ArrayList<String> logString = tool.readLogCSV(path);
+		ArrayList<String> logString = tool.readGuiCSV(path);
 		
 		//Zeilenobjekte aus Stringzeilen erzeugen und der ArrayList hinzufügen
 		for (String zeile : logString) 
@@ -41,14 +40,12 @@ public class CLogDB
 			if (teile.length >= 6) 
 			{
 				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
-				for(int i=0;i<teile.length-1;i++)
+				for(int i = 0; i < teile.length - 1; i++)
 				{
 					zeilenString.add(teile[i]);
 				}				
-			}
-						
-			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt
-					
+			}		
+			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt		
 		}
 	}
 	//---------------------------------------------------------------------------------------------------------------------------
