@@ -7,6 +7,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 
 import control.file_processing.CLogDB;
@@ -92,12 +94,11 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
-		setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
+		setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		setResizable(false);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowClosingListener(this));
-		setLayout(new BorderLayout());
 		
 		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
 		pSpielfeldPanel.setLayout(oSpielFeldLayout);
@@ -131,7 +132,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			{
 				if(e.getKeyCode() == KeyEvent.VK_ENTER)
 				{
-					chatTextDarstellen();
+					chattextAnzeigen();
 				}
 			}
 			@Override
@@ -145,7 +146,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				chatTextDarstellen();
+				chattextAnzeigen();
 				tfTextField.requestFocus();
 			}
 		});
@@ -198,21 +199,25 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		}
 		repaint();
 	}
-	
+
 	//----------------------------------------------------------------------------------
 
-	public void chatTextDarstellen()
+	public void chattextAnzeigen()
 	{
+		String placeholder = "====================\n";
+		String endOfMessage = "\n---------------------------------";
+		String username = placeholder + LogInFrame.getUsername() + ":\n" + placeholder;
+		
 		if(!(tfTextField.getText().isEmpty()))
 		{
 			if(taTextArea.getText().isEmpty())
 			{
-				taTextArea.setText(taTextArea.getText() + tfTextField.getText());
+				taTextArea.setText(username + taTextArea.getText() + tfTextField.getText() + endOfMessage);
 				tfTextField.setText(null);
 			}
 			else
 			{
-				taTextArea.setText(taTextArea.getText() + "\n" + tfTextField.getText());
+				taTextArea.setText(taTextArea.getText() + "\n\n" + username + tfTextField.getText() + endOfMessage);
 				tfTextField.setText(null);
 			}
 		}

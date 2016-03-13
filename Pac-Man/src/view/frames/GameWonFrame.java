@@ -67,7 +67,7 @@ public final class GameWonFrame extends JDialog implements IWindowProperties
 		/*die Größe des Fensters wird festgelegt*/
 		setSize(frameWidth, frameHeight);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
-		setLocation(screenWidth / 2 - frameWidth / 2, screenHeight / 2 - frameHeight / 2);
+		setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
 		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
 		getContentPane().add(contentPane);
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
