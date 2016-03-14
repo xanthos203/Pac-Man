@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 import control.file_processing.CLogDB;
@@ -122,6 +123,8 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		pChatKomponentenPanel.add(tfTextField);
 		pChatKomponentenPanel.add(jbTextSendenButton);
 		JScrollPane scrollPane = new JScrollPane(taTextArea);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		tfTextField.setSize(pChatKomponentenPanel.getWidth(), pChatKomponentenPanel.getHeight());
 		tfTextField.setColumns(10);
 		tfTextField.setFont(defaultFont);
@@ -169,7 +172,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 				{
 					if(alSpielfeldArrayList.get(iFeld).equals("0"))
 					{
-						guiDarstellen(iZeile, iZeile, Color.black);
+						guiDarstellen(iZeile, iSpalte, Color.black);
 					}
 					if(alSpielfeldArrayList.get(iFeld).equals("1"))
 					{

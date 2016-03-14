@@ -1,4 +1,4 @@
-package view.main;
+package model.main;
 
 import model.chat.Server;
 import view.frames.LogInFrame;
