@@ -40,9 +40,9 @@ public class Client
 	{
 		try
 		{
-			if(CSpielFrame.getSchreibFeld().getText()!=null||CSpielFrame.getSchreibFeld().getText()!="")
+			if(CSpielFrame.getTextfeld().getText()!=null||CSpielFrame.getTextfeld().getText()!="")
 			{
-				writer.println(CSpielFrame.getSchreibFeld().getText());
+				writer.println(CSpielFrame.getTextfeld().getText());
 				writer.flush();
 			}
 			else

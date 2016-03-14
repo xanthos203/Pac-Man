@@ -7,9 +7,13 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,6 +30,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
 import control.file_processing.CLogDB;
+import control.listeners.ChatNachrichtfeldListener;
+import control.listeners.ChatSendenButtonListener;
 import control.listeners.SteuerungListener;
 import control.listeners.WindowClosingListener;
 import model.chat.Client;
@@ -44,7 +50,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 {
 	private static JFrame jfFrame;
 	private static JTextArea taTextArea = new JTextArea();
-	private static JTextField tfTextField = new JTextField();
+	private static JTextField tfTextField = new JTextField("Nachricht eingeben");
 	private static JPanel pSpieler = new JPanel();
 	
 	private static int iSpielerX;
@@ -64,7 +70,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private int iLayoutSpalten = 33;
 	private int iFeld = -1;
 	
-	private JPanel[][] aPanelArray;
+	private JPanel[][] aPanelArray = new JPanel[50][50];
 	private JPanel pGeist = new JPanel();
 	private JPanel pSpielfeldPanel = new JPanel();
 	private JPanel pChatPanel = new JPanel();
@@ -84,85 +90,75 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	 */
 	public CSpielFrame()
 	{
-		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
-		oClient.netzwerkEinrichten();
-		Thread readerThread = new Thread(new EigehendReader());
-		readerThread.start();
-		Darstellen();
-		
+		initialize();
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public void initialize()
+	{
 		jfFrame = this;
-		alSpielfeldArrayList = oLogdb.getArrayList();
+		
+		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
 		setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		setResizable(false);
+		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowClosingListener(this));
 		
+		timerStarten();
+		
+		oClient.netzwerkEinrichten();
+		
+		Thread readerThread = new Thread(new EigehendReader());
+		readerThread.start();
+		
+		alSpielfeldArrayList = oLogdb.getArrayList();
+		
 		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
 		pSpielfeldPanel.setLayout(oSpielFeldLayout);
+		pSpielfeldPanel.addKeyListener(new SteuerungListener());
 		
 		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
 		lSpielstandlabel.setForeground(Color.blue);
-		lSpielstandlabel.setText("Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand()));
-		
-		add(lSpielstandlabel, BorderLayout.NORTH);
-		add(pSpielfeldPanel, BorderLayout.CENTER);
+		lSpielstandlabel.setText(getSpielstandlabelText());
 		
 		pChatPanel.setSize(200, 200);	
 		pChatPanel.setLayout(new BorderLayout());
+		
 		jbTextSendenButton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+		jbTextSendenButton.addActionListener(new ChatSendenButtonListener());
 		
 		taTextArea.setEditable(false);
 		taTextArea.setLineWrap(true);
 		taTextArea.setWrapStyleWord(true);
 		taTextArea.setFont(defaultFont);
-		pChatKomponentenPanel.add(tfTextField);
-		pChatKomponentenPanel.add(jbTextSendenButton);
+		
 		JScrollPane scrollPane = new JScrollPane(taTextArea);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		tfTextField.setSize(pChatKomponentenPanel.getWidth(), pChatKomponentenPanel.getHeight());
-		tfTextField.setColumns(10);
-		tfTextField.setFont(defaultFont);
-		tfTextField.addKeyListener(new KeyListener()
-		{
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-				if(e.getKeyCode() == KeyEvent.VK_ENTER)
-				{
-					chattextAnzeigen();
-				}
-			}
-			@Override
-			public void keyTyped(KeyEvent e) {}
-			@Override
-			public void keyReleased(KeyEvent e) {}
-		});
-		//-------------------------------------------------------
-		jbTextSendenButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				chattextAnzeigen();
-				tfTextField.requestFocus();
-			}
-		});
-		//-------------------------------------------------------
+		
+		pChatKomponentenPanel.add(tfTextField);
+		pChatKomponentenPanel.add(jbTextSendenButton);
+		
 		pChatPanel.add(scrollPane, BorderLayout.CENTER);
 		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 		
+		add(lSpielstandlabel, BorderLayout.NORTH);
+		add(pSpielfeldPanel, BorderLayout.CENTER);
 		add(pChatPanel, BorderLayout.WEST);
 		
-		setVisible(true);
-		pSpielfeldPanel.addKeyListener(new SteuerungListener());
-		aPanelArray = new JPanel[50][50];
-
+		tfTextField.setSize(pChatKomponentenPanel.getWidth(), pChatKomponentenPanel.getHeight());
+		tfTextField.setColumns(10);
+		tfTextField.setFont(defaultFont);
+		tfTextField.addKeyListener(new ChatNachrichtfeldListener());
+		tfTextField.addFocusListener(new ChatNachrichtfeldListener());
+		
 		for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
 		{
 			for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
@@ -192,7 +188,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		repaint();
 	}
 
-	//----------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 
 	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
 	{
@@ -202,35 +198,12 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		pSpielfeldPanel.add(aPanelArray[iZeilenAnz][iSpaltenAnz]);
 	}
 	
-	//----------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 
-	public void chattextAnzeigen()
-	{
-		String placeholder = "====================\n";
-		String endOfMessage = "\n---------------------------------";
-		String username = placeholder + LogInFrame.getUsername() + ":\n" + placeholder;
-		
-		if(!(tfTextField.getText().isEmpty()))
-		{
-			if(taTextArea.getText().isEmpty())
-			{
-				taTextArea.setText(username + taTextArea.getText() + tfTextField.getText() + endOfMessage);
-				tfTextField.setText(null);
-			}
-			else
-			{
-				taTextArea.setText(taTextArea.getText() + "\n\n" + username + tfTextField.getText() + endOfMessage);
-				tfTextField.setText(null);
-			}
-		}
-	}
-	
-	//----------------------------------------------------------------------------------
-	
 	/**
 	 * Hier wird der Timer der sagt wie oft der Geist pro Sekunde aufgerufen werden soll gestartet
 	 */
-	public void Darstellen()
+	public void timerStarten()
 	{
 		TimerTask oTimerTask = new Task();		// Hier wird ein Objekt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
 		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
@@ -238,19 +211,26 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static JTextField getSchreibFeld()
+	public static String getSpielstandlabelText()
+	{
+		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand());
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static JTextField getTextfeld()
 	{
 		return tfTextField;
 	}
 	
-	//----------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 	
 	public static JTextArea getArea()
 	{
 		return taTextArea;
 	}
 	
-	//----------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------------------------------------------
 			
 	public static JPanel getSpieler()
 	{
@@ -262,6 +242,28 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	public static CSpielFrame getFrame()
 	{
 		return (CSpielFrame) jfFrame;
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void chattextAnzeigen()
+	{
+		String placeholder = "====================\n";
+		String username = placeholder + LogInFrame.getUsername() + ":\n" + placeholder;
+		
+		if(!(tfTextField.getText().isEmpty()) && !tfTextField.getText().equals("Nachricht eingeben"))
+		{
+			if(taTextArea.getText().isEmpty())
+			{
+				taTextArea.setText(username + taTextArea.getText() + tfTextField.getText() + "\n" + placeholder);
+				tfTextField.setText(null);
+			}
+			else
+			{
+				taTextArea.setText(taTextArea.getText() + "\n\n" + username + tfTextField.getText() + "\n" + placeholder);
+				tfTextField.setText(null);
+			}
+		}
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -315,8 +317,11 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		{			
 			if(!tfTextField.getText().isEmpty())
 			{
-				oClient.senden();
-				Server.esAllenWeitersagen(tfTextField.getText());
+				if(!tfTextField.getText().equals("Nachricht eingeben"))
+				{
+					oClient.senden();
+					Server.esAllenWeitersagen(tfTextField.getText());
+				}
 			}			
 			
 			if(bSpielerAktiv)
