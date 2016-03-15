@@ -143,7 +143,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		add(pSpielfeldPanel, BorderLayout.CENTER);
 		add(pChatPanel, BorderLayout.WEST);
 		
-		tfTextField.setSize(pChatKomponentenPanel.getWidth(), pChatKomponentenPanel.getHeight());
+		tfTextField.setHorizontalAlignment(SwingConstants.LEADING);
 		tfTextField.setColumns(10);
 		tfTextField.setFont(defaultFont);
 		tfTextField.addKeyListener(new ChatNachrichtfeldListener());

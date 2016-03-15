@@ -18,6 +18,7 @@ public class ChatNachrichtfeldListener implements KeyListener, FocusListener
 	@Override
 	public void focusGained(FocusEvent e)
 	{
+		/*der Text des Textfeldes wird auf "" gesetzt*/
 		CSpielFrame.getTextfeld().setText(null);
 	}
 
@@ -25,7 +26,9 @@ public class ChatNachrichtfeldListener implements KeyListener, FocusListener
 	@Override
 	public void focusLost(FocusEvent e)
 	{
+		/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
 		CSpielFrame.chattextAnzeigen();
+		/*der Text des Textfeldes wird auf "Nachricht eingeben" gesetzt*/
 		CSpielFrame.getTextfeld().setText("Nachricht eingeben");
 	}
 
@@ -34,8 +37,10 @@ public class ChatNachrichtfeldListener implements KeyListener, FocusListener
 	@Override
 	public void keyPressed(KeyEvent e)
 	{
+		/*wird ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
 		if(e.getKeyCode() == KeyEvent.VK_ENTER)
 		{
+			/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
 			CSpielFrame.chattextAnzeigen();
 		}
 	}
