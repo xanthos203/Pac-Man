@@ -2,6 +2,7 @@ package view.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -9,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,6 +50,7 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	private static int iSpielerY;
 	
 	private static boolean bSpielerAktiv = false;
+	private static boolean bGeist = false;
 	
 	private static CSpieler oSpieler = new CSpieler();
 	
@@ -59,6 +63,7 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	private int iLayoutZeilen = 28;
 	private int iLayoutSpalten = 33;
 	private int iFeld = -1;
+	private int zaehler = 0;
 	
 	private JPanel[][] aPanelArray = new JPanel[50][50];
 	private JPanel pGeist = new JPanel();
@@ -74,6 +79,16 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	
 	private Server oServer;
 	private Client oClient = new Client();
+
+	private Icon	oIcongreen	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Greeny.PNG")));
+	private Icon	oIconblue	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Blue.PNG")));
+	private Icon	oIconorange	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Orangy.PNG")));
+	private Icon	oIconpink	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Pinky.PNG")));
+	
+	private JLabel lGreen = new JLabel(oIcongreen);
+	private JLabel lBlue = new JLabel(oIconblue);
+	private JLabel lOrange = new JLabel(oIconorange);
+	private JLabel lPink = new JLabel(oIconpink);
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
@@ -166,7 +181,8 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 					}
 					if(alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.gray);
+						guiDarstellen(iZeile, iSpalte, Color.black);
+						bGeist = true;
 					}
 				}
 				else
@@ -182,9 +198,26 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 
 	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
 	{
+		
 		aPanelArray[iZeilenAnz][iSpaltenAnz] = new JPanel();
 		aPanelArray[iZeilenAnz][iSpaltenAnz].addKeyListener(new SteuerungListener());
 		aPanelArray[iZeilenAnz][iSpaltenAnz].setBackground(cFarbe);
+		
+		if(bGeist == true)
+		{
+			switch(zaehler)
+			{
+			//hi
+				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreen);
+				case 2:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lBlue); break;
+				case 3:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lOrange); break;
+				case 4:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPink); break;
+			}
+			zaehler++;
+			bGeist = false;
+			
+		}
+		
 		pSpielfeldPanel.add(aPanelArray[iZeilenAnz][iSpaltenAnz]);
 	}
 	
