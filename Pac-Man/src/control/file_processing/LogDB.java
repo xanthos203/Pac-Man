@@ -10,39 +10,39 @@ import java.util.ArrayList;
  * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
  *
  */
-public class CLogDB 
+public class LogDB 
 {
-	private ArrayList<String> zeilenString = new ArrayList<String>();
-	private Tools tool = new Tools();
+	private ArrayList<String> alZeilenString = new ArrayList<String>();
+	private Tools oTool = new Tools();
 	
-	public CLogDB() {}
+	public LogDB() {}
 	
 	/**
 	 * 
-	 * @param path
+	 * @param sPath
 	 * 
 	 * Hier wierd der Text in aufgespalten, wenn ein ; sich inerhalb der Textdatei befindet.
 	 * Die Strings werden dem entsprechendem Konstruktor in der Klasse CLogzeile übergeben.
 	 * 
 	 */
-	public CLogDB(String path) 
+	public LogDB(String sPath) 
 	{
 		//ArrayList der Logzeilen als Strings besorgen
-		ArrayList<String> logString = tool.readGuiCSV(path);
+		ArrayList<String> alLogString = oTool.readGuiCSV(sPath);
 		
 		//Zeilenobjekte aus Stringzeilen erzeugen und der ArrayList hinzufügen
-		for (String zeile : logString) 
+		for (String sZeile : alLogString) 
 		{	
 			// Hier werden die Texteile "erzeugt" da diese mit dem Befehl split() aufgespalten werden
-			String[] teile = zeile.split(";");
+			String[] sTeile = sZeile.split(";");
 			
 			//Hier wierd überprüft, ob die länge größer oder kleiner wie 6 ist
-			if (teile.length >= 6) 
+			if (sTeile.length >= 6) 
 			{
 				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
-				for(int i = 0; i < teile.length - 1; i++)
+				for(int i = 0; i < sTeile.length - 1; i++)
 				{
-					zeilenString.add(teile[i]);
+					alZeilenString.add(sTeile[i]);
 				}				
 			}		
 			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt		
@@ -51,6 +51,6 @@ public class CLogDB
 	//---------------------------------------------------------------------------------------------------------------------------
 	public ArrayList<String> getArrayList()
 	{
-		return zeilenString;
+		return alZeilenString;
 	}
 }

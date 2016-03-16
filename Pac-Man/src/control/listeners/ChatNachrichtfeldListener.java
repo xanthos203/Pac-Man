@@ -5,7 +5,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import view.frames.CSpielFrame;
+import view.frames.GameMainFrame;
 
 /**Diese <i>Listener</i>-Klasse dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
  * Außerdem <b>überprüft</b> diese Klasse, ob das Chatnachrichten-Feld im Fokus (=Cursor) steht, oder nicht.<br>
@@ -16,37 +16,37 @@ public class ChatNachrichtfeldListener implements KeyListener, FocusListener
 {
 	/**Die <i>focusGained</i>-Methode wird aufgerufen, wenn das Chatnachrichten-Feld im Fokus steht.*/
 	@Override
-	public void focusGained(FocusEvent e)
+	public void focusGained(FocusEvent feEvent)
 	{
 		/*der Text des Textfeldes wird auf "" gesetzt*/
-		CSpielFrame.getTextfeld().setText(null);
+		GameMainFrame.getTextfeld().setText(null);
 	}
 
 	/**Die <i>focusLost</i>-Methode wird aufgerufen, wenn das Chatnachrichten-Feld den Fokus verliert.*/
 	@Override
-	public void focusLost(FocusEvent e)
+	public void focusLost(FocusEvent feEvent)
 	{
 		/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
-		CSpielFrame.chattextAnzeigen();
+		GameMainFrame.chattextAnzeigen();
 		/*der Text des Textfeldes wird auf "Nachricht eingeben" gesetzt*/
-		CSpielFrame.getTextfeld().setText("Nachricht eingeben");
+		GameMainFrame.getTextfeld().setText("Nachricht eingeben");
 	}
 
 	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
-	 * @param e Tastendruck*/
+	 * @param keEvent Tastendruck*/
 	@Override
-	public void keyPressed(KeyEvent e)
+	public void keyPressed(KeyEvent keEvent)
 	{
 		/*wird ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
-		if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		if(keEvent.getKeyCode() == KeyEvent.VK_ENTER)
 		{
 			/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
-			CSpielFrame.chattextAnzeigen();
+			GameMainFrame.chattextAnzeigen();
 		}
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent keEvent) {}
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent keEvent) {}
 }

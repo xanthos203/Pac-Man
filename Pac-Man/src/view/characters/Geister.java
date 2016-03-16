@@ -1,66 +1,63 @@
 package view.characters;
 
-import view.frames.CSpielFrame;
+import view.frames.GameMainFrame;
 
 /**
  * @author Thomas
  * @version 1.0
  */
-public class CGeister 
+public class Geister 
 {
-	private int iGeisty;
-	private int iGeistx;
+	private int iGeistX;
+	private int iGeistY;
 	
-	public int GeisterRaufBewegen(int iRaufy)
+	public int GeisterRaufBewegen(int iRaufY)
 	{
-		if(iRaufy + CSpielFrame.getSpieler().getHeight() < CSpielFrame.getFrame().getContentPane().getBounds().getHeight())
+		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getFrame().getContentPane().getBounds().getHeight())
 		{
-			iRaufy += 8;
-			iGeisty = iRaufy;
+			iRaufY += 8;
+			iGeistY = iRaufY;
 		}
-		return iGeisty;
+		return iGeistY;
 	}
-	
 //--------------------------------------------------------------------------------------------------------------------------
-	
-	public int GeisterRunterBewegen(int iRuntery)
+	public int GeisterRunterBewegen(int iRunterY)
 	{ 
-		if(iRuntery >+ 16) 
+		if(iRunterY >+ 16) 
 		{
-			iRuntery -= 8;
-			iGeisty = iRuntery;
+			iRunterY -= 8;
+			iGeistY = iRunterY;
 		}
-		return iGeisty;
+		return iGeistY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	public int GeisterRechtsBewegen(int iRunterx)
+	public int GeisterRechtsBewegen(int iRunterX)
 	{
 //		if(iRunterx+CSpielFrame.getSpieler().getHeight()<CSpielFrame.getFrame().getContentPane().getBounds().getWidth()-/*Randkoordinaten des JPanels angeben*/)
 //		{
 //			iRunterx+=8;
 //			iGeistx = iRunterx;
 //		}
-		return iGeistx;
+		return iGeistX;
 	}
 //------------------------------------------------------------------------------------------------------------------------	
-	public int GeisterLinksBewegen(int iRunterx)
+	public int GeisterLinksBewegen(int iRunterX)
 	{
-		if(iRunterx > 16)
+		if(iRunterX > 16)
 		{
-			iRunterx -= 8;
-			iGeistx = iRunterx;
+			iRunterX -= 8;
+			iGeistX = iRunterX;
 		}
-		return iGeistx;
+		return iGeistX;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
 	public int getPosY() 
 	{
-		return iGeisty;
+		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	
 	public int getPosX() 
 	{
-		return iGeistx;
+		return iGeistX;
 	}
 }

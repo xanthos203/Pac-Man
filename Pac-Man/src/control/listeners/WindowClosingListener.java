@@ -42,9 +42,9 @@ public final class WindowClosingListener extends WindowAdapter
 	
 	/**Diese Methode wird ausgeführt, wenn der Benutzer das <b>Spiel beenden</b> will.<br>
 	 * Es erscheint ein <i>kleines Fenster</i> am Bildschirm.
-	 * @param e das Fenster <i>wird geschlossen</i>*/
+	 * @param weEvent das Fenster <i>wird geschlossen</i>*/
 	@Override
-	public void windowClosing(WindowEvent e)
+	public void windowClosing(WindowEvent weEvent)
 	{
 		/*hier wird ein neues JOptionPane erstellt, das den Benutzer fragt, ob er das Spiel wirklich beenden möchte*/
 		int optionPane = JOptionPane.showConfirmDialog(null, "M\u00F6chten Sie das Spiel wirklich beenden\u003F", "Spiel beenden\u003F", JOptionPane.YES_NO_OPTION);

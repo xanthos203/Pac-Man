@@ -32,12 +32,12 @@ public final class TextfieldListener implements KeyListener
 	}
 	
 	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
-	 * @param e Tastendruck*/
+	 * @param keEvent Tastendruck*/
 	@Override
-	public void keyPressed(KeyEvent e)
+	public void keyPressed(KeyEvent keEvent)
 	{
 		/*Wird nur ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
-		if (e.getKeyCode() == KeyEvent.VK_ENTER)
+		if (keEvent.getKeyCode() == KeyEvent.VK_ENTER)
 		{
 			/*wird ausgeführt, wenn kein Text eingegeben wurde*/
 			if (LogInFrame.getUsernameFeld().getText().isEmpty())
@@ -103,7 +103,7 @@ public final class TextfieldListener implements KeyListener
 					referenceDialog.dispose();
 					
 					/*=========Hauptfenster öffnen=========*/
-					CSpielFrame oSpielFrame = new CSpielFrame();
+					GameMainFrame oSpielFrame = new GameMainFrame();
 				}
 				/*die Schleife wird abgebrochen, wenn die oben stehende Bedingung zutrifft*/
 				break;
@@ -112,7 +112,7 @@ public final class TextfieldListener implements KeyListener
 	}
 	//-------------------------------------------------------------------------------------	
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent keEvent) {}
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent keEvent) {}
 }

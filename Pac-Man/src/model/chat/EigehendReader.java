@@ -1,23 +1,23 @@
 package model.chat;
 
-import view.frames.CSpielFrame;
+import view.frames.GameMainFrame;
 
 public class EigehendReader implements Runnable 
 {
 	public void run()
 	{
-		String nachricht;
+		String sNachricht;
 		try
 		{			
-			while ((nachricht = Client.getReader().readLine()) == null) 
+			while ((sNachricht = Client.getReader().readLine()) == null) 
 			{
-				System.out.println("1gelesen: " + nachricht);
-				CSpielFrame.getArea().append(nachricht + "\n");		
+				System.out.println("1gelesen: " + sNachricht);
+				GameMainFrame.getArea().append(sNachricht + "\n");		
 			}
 		} 
-		catch(Exception ex) 
+		catch(Exception exException) 
 		{
-			ex.printStackTrace();
+			exException.printStackTrace();
 		}
 	}
 }

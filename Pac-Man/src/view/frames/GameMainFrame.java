@@ -22,7 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import control.file_processing.CLogDB;
+import control.file_processing.LogDB;
 import control.listeners.ChatNachrichtfeldListener;
 import control.listeners.ChatSendenButtonListener;
 import control.listeners.SteuerungListener;
@@ -31,15 +31,15 @@ import model.chat.Client;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
-import view.characters.CGeister;
-import view.characters.CSpieler;
+import view.characters.Geister;
+import view.characters.Spieler;
 
 /**
  * 
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-public final class CSpielFrame extends JFrame implements IWindowProperties
+public final class GameMainFrame extends JFrame implements IWindowProperties
 {
 	private static JFrame jfFrame;
 	private static JTextArea taTextArea = new JTextArea();
@@ -51,10 +51,11 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	
 	private static boolean bSpielerAktiv = false;
 	private static boolean bGeist = false;
+	private static boolean bPacMan = false;
 	
-	private static CSpieler oSpieler = new CSpieler();
+	private static Spieler oSpieler = new Spieler();
 	
-	private CGeister oGeist = new CGeister();
+	private Geister oGeist = new Geister();
 	
 	private ArrayList<String> alSpielfeldArrayList;
 	
@@ -63,7 +64,7 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	private int iLayoutZeilen = 28;
 	private int iLayoutSpalten = 33;
 	private int iFeld = -1;
-	private int zaehler = 0;
+	private int iZaehler = 0;
 	
 	private JPanel[][] aPanelArray = new JPanel[50][50];
 	private JPanel pGeist = new JPanel();
@@ -75,25 +76,27 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	
 	private Timer oTimer = new Timer();
 	
-	private CLogDB oLogdb = new CLogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
+	private LogDB oLogdb = new LogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	
 	private Server oServer;
 	private Client oClient = new Client();
 
-	private Icon	oIcongreen	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Greeny.PNG")));
-	private Icon	oIconblue	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Blue.PNG")));
-	private Icon	oIconorange	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Orangy.PNG")));
-	private Icon	oIconpink	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Pinky.PNG")));
+	private Icon oIcongreen	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
+	private Icon oIconblue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
+	private Icon oIconorange = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
+	private Icon oIconpink = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
+	private Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
 	
 	private JLabel lGreen = new JLabel(oIcongreen);
 	private JLabel lBlue = new JLabel(oIconblue);
 	private JLabel lOrange = new JLabel(oIconorange);
 	private JLabel lPink = new JLabel(oIconpink);
+	private JLabel lPacMan = new JLabel(oIconPacMan);
 	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
-	public CSpielFrame()
+	public GameMainFrame()
 	{
 		initialize();
 	}
@@ -109,7 +112,7 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
 		setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CSpielFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		setResizable(false);
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -173,7 +176,7 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 				{
 					if(alSpielfeldArrayList.get(iFeld).equals("0"))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.black);
+						guiDarstellen(iZeile, iSpalte);
 					}
 					if(alSpielfeldArrayList.get(iFeld).equals("1"))
 					{
@@ -181,8 +184,13 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 					}
 					if(alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.black);
+						guiDarstellen(iZeile, iSpalte);
 						bGeist = true;
+					}
+					if(alSpielfeldArrayList.get(iFeld).equals("3"))
+					{
+						guiDarstellen(iZeile, iSpalte);
+						bPacMan = true;
 					}
 				}
 				else
@@ -193,31 +201,41 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 		}
 		repaint();
 	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+
+	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz)
+	{
+		guiDarstellen(iZeilenAnz, iSpaltenAnz, Color.black);
+	}
 
 	//-------------------------------------------------------------------------------------------------------------------
 
 	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
 	{
-		
 		aPanelArray[iZeilenAnz][iSpaltenAnz] = new JPanel();
 		aPanelArray[iZeilenAnz][iSpaltenAnz].addKeyListener(new SteuerungListener());
 		aPanelArray[iZeilenAnz][iSpaltenAnz].setBackground(cFarbe);
-		
-		if(bGeist == true)
+		//-----------------------------------------------------------------------
+		if(bGeist)
 		{
-			switch(zaehler)
+			switch(iZaehler)
 			{
-			//hi
-				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreen);
+				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreen); break;
 				case 2:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lBlue); break;
 				case 3:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lOrange); break;
 				case 4:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPink); break;
 			}
-			zaehler++;
+			iZaehler++;
 			bGeist = false;
-			
 		}
-		
+		//-----------------------------------------------------------------------
+		if(bPacMan)
+		{
+			aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPacMan);
+			bPacMan = false;
+		}
+		//-----------------------------------------------------------------------
 		pSpielfeldPanel.add(aPanelArray[iZeilenAnz][iSpaltenAnz]);
 	}
 	
@@ -262,9 +280,9 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 		
 	//-------------------------------------------------------------------------------------------------------------------
 		
-	public static CSpielFrame getFrame()
+	public static GameMainFrame getFrame()
 	{
-		return (CSpielFrame) jfFrame;
+		return (GameMainFrame) jfFrame;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -272,7 +290,8 @@ public final class CSpielFrame extends JFrame implements IWindowProperties
 	public static void chattextAnzeigen()
 	{
 		String placeholder = "====================\n";
-		String username = placeholder + LogInFrame.getUsername() + ":\n" + placeholder;
+		String startOfMessage = "---------------------------------\n";
+		String username = startOfMessage + LogInFrame.getUsername() + ":\n" + placeholder;
 		
 		if(!(tfTextField.getText().isEmpty()) && !tfTextField.getText().equals("Nachricht eingeben"))
 		{

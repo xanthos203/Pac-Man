@@ -12,42 +12,42 @@ import view.frames.*;
 public final class SteuerungListener implements KeyListener
 {
 	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
-	 * @param eTastendruck Taste gedrückt*/
-	public void keyPressed(KeyEvent eTastendruck)
+	 * @param keEvent Taste gedrückt*/
+	public void keyPressed(KeyEvent keEvent)
 	{
 		// Für Spieler die mit "WASD" spielen möchten
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_S))
-			CSpielFrame.spielerRunter();
+		if((keEvent.getKeyCode() == KeyEvent.VK_S))
+			GameMainFrame.spielerRunter();
 		//----------------------------------------------
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_W))
-			CSpielFrame.spielerRauf();
+		if((keEvent.getKeyCode() == KeyEvent.VK_W))
+			GameMainFrame.spielerRauf();
 		//----------------------------------------------
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_A))
-			CSpielFrame.spielerLinks();
+		if((keEvent.getKeyCode() == KeyEvent.VK_A))
+			GameMainFrame.spielerLinks();
 		//----------------------------------------------
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_D))
-			CSpielFrame.spielerRechts();
+		if((keEvent.getKeyCode() == KeyEvent.VK_D))
+			GameMainFrame.spielerRechts();
 //============================================================\\
 		// Für Spieler die mit den Pfeiltasten spielen möchten
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_DOWN))
-			CSpielFrame.spielerRunter();
+		if((keEvent.getKeyCode() == KeyEvent.VK_DOWN))
+			GameMainFrame.spielerRunter();
 		//--------------------------------------------------
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_UP))
-			CSpielFrame.spielerRauf();
+		if((keEvent.getKeyCode() == KeyEvent.VK_UP))
+			GameMainFrame.spielerRauf();
 		//--------------------------------------------------
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_LEFT))
-			CSpielFrame.spielerLinks();
+		if((keEvent.getKeyCode() == KeyEvent.VK_LEFT))
+			GameMainFrame.spielerLinks();
 		//--------------------------------------------------
-		if((eTastendruck.getKeyCode() == KeyEvent.VK_RIGHT))
-			CSpielFrame.spielerRechts();
+		if((keEvent.getKeyCode() == KeyEvent.VK_RIGHT))
+			GameMainFrame.spielerRechts();
 //============================================================\\
-		CSpielFrame.getSpieler().repaint();
+		GameMainFrame.getSpieler().repaint();
 	}
 
 //=================================================================\\
 	
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent keEvent) {}
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent keEvent) {}
 }

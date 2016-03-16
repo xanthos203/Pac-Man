@@ -36,9 +36,9 @@ public final class ButtonListener implements ActionListener
 	}
 	
 	/**Die <i>actionPerformed</i>-Methode fängt <b>Knopfdrücke</b> auf und verarbeitet diese.
-	 * @param e Knopfdruck*/
+	 * @param aeEvent Knopfdruck*/
 	@Override
-	public void actionPerformed(ActionEvent e)
+	public void actionPerformed(ActionEvent aeEvent)
 	{
 		/*wird ausgeführt, wenn der Benutzer das Spiel beenden will*/
 		if (taskOfButton == EXIT_GAME)
@@ -55,7 +55,7 @@ public final class ButtonListener implements ActionListener
 			referenceFrame.dispose();
 
 			/*=========Hauptfenster öffnen=========*/
-			CSpielFrame oSpielFrame = new CSpielFrame();
+			GameMainFrame oSpielFrame = new GameMainFrame();
 		}
 	}
 }

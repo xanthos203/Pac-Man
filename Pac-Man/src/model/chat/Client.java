@@ -6,44 +6,44 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import view.frames.CSpielFrame;
+import view.frames.GameMainFrame;
 
 public class Client 
 {
-	private static BufferedReader reader;
-	private PrintWriter writer;
+	private static BufferedReader brReader;
+	private PrintWriter pwWriter;
 	
 	public void netzwerkEinrichten()
 	{  
 		try 
 		{
-			Socket sock = new Socket("127.0.0.1", 5000);
-			InputStreamReader streamReader = new InputStreamReader(sock.getInputStream());
-			reader = new BufferedReader(streamReader);
-			writer = new PrintWriter(sock.getOutputStream());		
+			Socket soSocket = new Socket("127.0.0.1", 5000);
+			InputStreamReader isrStreamReader = new InputStreamReader(soSocket.getInputStream());
+			brReader = new BufferedReader(isrStreamReader);
+			pwWriter = new PrintWriter(soSocket.getOutputStream());
 			System.out.println("IP-Adresse gesendet");
-			PrintWriter writer = new PrintWriter(sock.getOutputStream());			
+			PrintWriter pwWriter = new PrintWriter(soSocket.getOutputStream());
 			System.out.println("Netzwerkverbindung steht");
 		} 
-		catch(IOException ex)
+		catch(IOException ioException)
 		{
-			ex.printStackTrace();
+			ioException.printStackTrace();
 		}
 	}
 	
 	public static BufferedReader getReader()
 	{
-		return reader;
+		return brReader;
 	}
 	
 	public void senden()
 	{
 		try
 		{
-			if(CSpielFrame.getTextfeld().getText()!=null||CSpielFrame.getTextfeld().getText()!="")
+			if(GameMainFrame.getTextfeld().getText() != null || GameMainFrame.getTextfeld().getText() != "")
 			{
-				writer.println(CSpielFrame.getTextfeld().getText());
-				writer.flush();
+				pwWriter.println(GameMainFrame.getTextfeld().getText());
+				pwWriter.flush();
 			}
 			else
 			{
@@ -51,9 +51,9 @@ public class Client
 			}
 			
 		}
-		catch(Exception ex)
+		catch(Exception exException)
 		{
-			ex.printStackTrace();
+			exException.printStackTrace();
 		}
 	}	
 }

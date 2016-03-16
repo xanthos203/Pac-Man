@@ -1,16 +1,16 @@
 package view.characters;
 
-import view.frames.CSpielFrame;
+import view.frames.GameMainFrame;
 
 /**
  * 
  * @author Thomas
  * @version 1.0
  */
-public class CSpieler 
+public class Spieler 
 {
-	private int iSpielerx = 0;
-	private int iSpielery = 0;
+	private int iSpielerX = 0;
+	private int iSpielerY = 0;
 	private int iLeben = 3;		// <-- Testwert
 	private double dPunktestand = 999999999999999L; // <-- Testwert
 	
@@ -19,12 +19,12 @@ public class CSpieler
 		return iLeben;
 	}
 	
-	public void setPunktestand(double punktestand)
+	public void setPunktestand(double dPunktestand)
 	{
 		if(dPunktestand > 999999999999999L)
 			dPunktestand = 999999999999999L;
 		else
-			this.dPunktestand = punktestand;
+			this.dPunktestand = dPunktestand;
 	}
 	
 	public double getPunktestand()
@@ -34,48 +34,48 @@ public class CSpieler
 	
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
-	 * @param iRaufy
+	 * @param iRaufY
 	 * @return
 	 */
-	public int SpielerRaufBewegen(int iRaufy)
+	public int SpielerRaufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if((iRaufy + CSpielFrame.getSpieler().getHeight() < (CSpielFrame.getFrame().getContentPane().getBounds().getHeight()) - 18))
+		if((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			iRaufy += 4;
-			iSpielery = iRaufy;
+			iRaufY += 4;
+			iSpielerY = iRaufY;
 		}
-		return iSpielery;
+		return iSpielerY;
 	}
 	
 //-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * 
-	 * @param iRuntery
+	 * @param iRunterY
 	 * @return
 	 * 
 	 * Diese Methode bewegt den Spieler hinauf allerdings nur, wenn der Spierler den Oberenerand noch nicht erreicht hat.
 	 */
-	public int SpielerRunterBewegen(int iRuntery)
+	public int SpielerRunterBewegen(int iRunterY)
 	{
 		//  Hier wird überprüft ober der Spieler noch weiter hinauf bewegt werden darf
-		if(iRuntery > 16)
+		if(iRunterY > 16)
 		{
-			iRuntery -= 4;
-			iSpielery = iRuntery;
+			iRunterY -= 4;
+			iSpielerY = iRunterY;
 		}
-		return iSpielery;
+		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	/**
 	 * 
-	 * @param iRunterx
+	 * @param iRunterX
 	 * @return
 	 * 
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public int SpielerRechtsBewegen(int iRunterx)
+	public int SpielerRechtsBewegen(int iRunterX)
 	{
 		
 //		// Hier wird nur überprüft, ob der Spieler noch weiter nach rechts fahren darf
@@ -99,18 +99,18 @@ public class CSpieler
 //			iSpielerx = iRunterx;
 //		}
 		
-		return iSpielerx;
+		return iSpielerX;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	/**
 	 * 
-	 * @param iRunterx
+	 * @param iRunterX
 	 * @return
 	 * 
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public int SpielerLinksBewegen(int iRunterx)
+	public int SpielerLinksBewegen(int iRunterX)
 	{
 //		// Hier wird abegefragt, ob sich der Spieler am Rande des Spielfedes befindet oder nicht
 //		if(iRunterx>/*Hier wird abgefragt ob der Spieler den Rand des Pandels erreicht hat, in Koordinaten anggegeben*/)
@@ -132,6 +132,6 @@ public class CSpieler
 //			
 //			iSpielerx = iRunterx;
 //		}
-		return iSpielerx;
+		return iSpielerX;
 	}
 }

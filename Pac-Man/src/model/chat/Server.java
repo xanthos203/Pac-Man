@@ -10,46 +10,48 @@ import java.util.Iterator;
 
 public class Server
 {
-	private static ArrayList<PrintWriter> clientAusgabeStroeme;
+	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
+	
 	public static void serverStarten()
 	{
-		clientAusgabeStroeme = new ArrayList<PrintWriter>();
+		alClientAusgabeStroeme = new ArrayList<PrintWriter>();
 		try 
 		{
-			ServerSocket serverSock = new ServerSocket(5000);
+			ServerSocket ssServerSocket = new ServerSocket(5000);
 			while(true) 
 			{
-				Socket clientSocket = serverSock.accept();
-				PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());         
-				clientAusgabeStroeme.add(writer);
+				Socket soClientSocket = ssServerSocket.accept();
+				PrintWriter pwWriter = new PrintWriter(soClientSocket.getOutputStream());         
+				alClientAusgabeStroeme.add(pwWriter);
 				
-				Thread t = new Thread(new ClientHandler(clientSocket));
-				t.start();
+				Thread thThread = new Thread(new ClientHandler(soClientSocket));
+				thThread.start();
 				
 				System.out.println("habe eine Verbindung");
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
 		}
-		catch(Exception ex)
+		catch(Exception exException)
 		{
-			ex.printStackTrace();
+			exException.printStackTrace();
 		}
 	}
 
-	public static void esAllenWeitersagen(String nachricht) 
+	public static void esAllenWeitersagen(String sNachricht) 
 	{
-		Iterator<PrintWriter> it = clientAusgabeStroeme.iterator();
-		while(it.hasNext()) 
+		Iterator<PrintWriter> itIterator = alClientAusgabeStroeme.iterator();
+		
+		while(itIterator.hasNext()) 
 		{
 			try 
 			{
-				PrintWriter writer = (PrintWriter) it.next();
-				writer.println(nachricht);
-				writer.flush();
+				PrintWriter pwWriter = (PrintWriter) itIterator.next();
+				pwWriter.println(sNachricht);
+				pwWriter.flush();
 			} 
-			catch(Exception ex) 
+			catch(Exception exException)
 			{
-				ex.printStackTrace();
+				exException.printStackTrace();
 			}
 		}
 	} 
@@ -57,37 +59,38 @@ public class Server
 
 class ClientHandler implements Runnable 
 {
-	BufferedReader reader;
-	Socket sock;	
-	public ClientHandler(Socket clientSocket)
+	BufferedReader brReader;
+	Socket soSocket;
+	
+	public ClientHandler(Socket soClientSocket)
 	{
 		try
 		{
-			sock = clientSocket;
-			InputStreamReader isReader = new InputStreamReader(sock.getInputStream());
-			reader = new BufferedReader(isReader);
+			soSocket = soClientSocket;
+			InputStreamReader isrReader = new InputStreamReader(soSocket.getInputStream());
+			brReader = new BufferedReader(isrReader);
 			
 		}
-		catch(Exception ex)
+		catch(Exception exException)
 		{
-			ex.printStackTrace();
+			exException.printStackTrace();
 		}
 	} 
 	
 	public void run() 
 	{
-		String nachricht;
+		String sNachricht;
 		try
 		{
-			while ((nachricht = reader.readLine()) != null) 
+			while ((sNachricht = brReader.readLine()) != null) 
 			{
-				System.out.println("gelesen: " + nachricht);
-				Server.esAllenWeitersagen(nachricht);		
+				System.out.println("gelesen: " + sNachricht);
+				Server.esAllenWeitersagen(sNachricht);		
 			}
 		}
-		catch(Exception ex)
+		catch(Exception exException)
 		{
-			ex.printStackTrace();
+			exException.printStackTrace();
 		}
 	}
 }
