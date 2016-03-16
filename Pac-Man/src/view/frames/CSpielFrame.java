@@ -89,6 +89,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 	private JLabel lBlue = new JLabel(oIconblue);
 	private JLabel lOrange = new JLabel(oIconorange);
 	private JLabel lPink = new JLabel(oIconpink);
+	
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
@@ -180,7 +181,7 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 					}
 					if(alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.gray);
+						guiDarstellen(iZeile, iSpalte, Color.black);
 						bGeist = true;
 					}
 				}
@@ -206,14 +207,15 @@ public class CSpielFrame extends JFrame implements IWindowProperties
 		{
 			switch(zaehler)
 			{
-				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreen); break;
+			//hi
+				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreen);
 				case 2:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lBlue); break;
 				case 3:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lOrange); break;
 				case 4:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPink); break;
 			}
 			zaehler++;
 			bGeist = false;
-			//update(aPanelArray[iZeilenAnz][iSpaltenAnz].getGraphics());
+			
 		}
 		
 		pSpielfeldPanel.add(aPanelArray[iZeilenAnz][iSpaltenAnz]);
