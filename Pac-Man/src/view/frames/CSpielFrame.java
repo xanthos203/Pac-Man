@@ -36,7 +36,7 @@ import view.characters.CSpieler;
  * @author Thomas Mader-Ofer
  * @version 1.0
  */
-public class CSpielFrame extends JFrame implements IWindowProperties
+public final class CSpielFrame extends JFrame implements IWindowProperties
 {
 	private static JFrame jfFrame;
 	private static JTextArea taTextArea = new JTextArea();
