@@ -57,6 +57,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private Geister oGeist = new Geister();
 	
+	private Timer oTimer = new Timer();
+	
 	private ArrayList<String> alSpielfeldArrayList;
 	
 	private int iGeistX;
@@ -66,21 +68,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iFeld = -1;
 	private int iZaehler = 0;
 	
-	private JPanel[][] aPanelArray = new JPanel[50][50];
-	private JPanel pGeist = new JPanel();
-	private JPanel pSpielfeldPanel = new JPanel();
-	private JPanel pChatPanel = new JPanel();
-	private JPanel pChatKomponentenPanel = new JPanel();
-	private JLabel lSpielstandlabel = new JLabel();
-	private JButton jbTextSendenButton = new JButton("SENDEN");
-	
-	private Timer oTimer = new Timer();
-	
-	private LogDB oLogdb = new LogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
-	
-	private Server oServer;
-	private Client oClient = new Client();
-
 	private Icon oIcongreen	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
 	private Icon oIconblue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
 	private Icon oIconorange = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
@@ -93,6 +80,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private JLabel lPink = new JLabel(oIconpink);
 	private JLabel lPacMan = new JLabel(oIconPacMan);
 	
+	private JPanel[][] aPanelArray = new JPanel[50][50];
+	private JPanel pGeist = new JPanel();
+	private JPanel pSpielfeldPanel = new JPanel();
+	private JPanel pChatPanel = new JPanel();
+	private JPanel pChatKomponentenPanel = new JPanel();
+	private JLabel lSpielstandlabel = new JLabel();
+	private JButton jbTextSendenButton = new JButton("SENDEN");
+	
+	private LogDB oLogdb = new LogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
+	
+	private Server oServer;
+	private Client oClient = new Client();
+
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
 	 */
