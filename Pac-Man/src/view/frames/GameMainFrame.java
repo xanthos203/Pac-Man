@@ -2,7 +2,6 @@ package view.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -68,16 +67,16 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iFeld = -1;
 	private int iZaehler = 0;
 	
-	private Icon oIcongreen	= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
-	private Icon oIconblue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
-	private Icon oIconorange = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
-	private Icon oIconpink = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
+	private Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
+	private Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
+	private Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
+	private Icon oIconPinky = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
 	private Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
 	
-	private JLabel lGreen = new JLabel(oIcongreen);
-	private JLabel lBlue = new JLabel(oIconblue);
-	private JLabel lOrange = new JLabel(oIconorange);
-	private JLabel lPink = new JLabel(oIconpink);
+	private JLabel lGreeny = new JLabel(oIconGreeny);
+	private JLabel lBlue = new JLabel(oIconBlue);
+	private JLabel lOrangy = new JLabel(oIconOrangy);
+	private JLabel lPinky = new JLabel(oIconPinky);
 	private JLabel lPacMan = new JLabel(oIconPacMan);
 	
 	private JPanel[][] aPanelArray = new JPanel[50][50];
@@ -221,10 +220,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		{
 			switch(iZaehler)
 			{
-				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreen); break;
+				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreeny); break;
 				case 2:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lBlue); break;
-				case 3:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lOrange); break;
-				case 4:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPink); break;
+				case 3:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lOrangy); break;
+				case 4:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPinky); break;
 			}
 			iZaehler++;
 			bGeist = false;
@@ -357,13 +356,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		public void run()
 		{			
-			if(!tfTextField.getText().isEmpty())
+			if(!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
 			{
-				if(!tfTextField.getText().equals("Nachricht eingeben"))
-				{
-					oClient.senden();
-					Server.esAllenWeitersagen(tfTextField.getText());
-				}
+				oClient.senden();
+				Server.esAllenWeitersagen(tfTextField.getText());
 			}			
 			
 			if(bSpielerAktiv)
