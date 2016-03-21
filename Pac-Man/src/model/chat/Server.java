@@ -8,6 +8,8 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import view.frames.GameMainFrame;
+
 public class Server
 {
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
@@ -15,10 +17,11 @@ public class Server
 	public static void serverStarten()
 	{
 		alClientAusgabeStroeme = new ArrayList<PrintWriter>();
-		try 
+		
+		try
 		{
 			ServerSocket ssServerSocket = new ServerSocket(5000);
-			while(true) 
+			while (true) 
 			{
 				Socket soClientSocket = ssServerSocket.accept();
 				PrintWriter pwWriter = new PrintWriter(soClientSocket.getOutputStream());         
@@ -27,7 +30,8 @@ public class Server
 				Thread thThread = new Thread(new ClientHandler(soClientSocket));
 				thThread.start();
 				
-				System.out.println("habe eine Verbindung");
+				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n+++habe eine Verbindung+++");
+//				System.out.println("habe eine Verbindung");
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
 		}
@@ -43,7 +47,7 @@ public class Server
 		
 		while(itIterator.hasNext()) 
 		{
-			try 
+			try
 			{
 				PrintWriter pwWriter = (PrintWriter) itIterator.next();
 				pwWriter.println(sNachricht);
@@ -69,7 +73,6 @@ class ClientHandler implements Runnable
 			soSocket = soClientSocket;
 			InputStreamReader isrReader = new InputStreamReader(soSocket.getInputStream());
 			brReader = new BufferedReader(isrReader);
-			
 		}
 		catch(Exception exException)
 		{
@@ -84,7 +87,7 @@ class ClientHandler implements Runnable
 		{
 			while ((sNachricht = brReader.readLine()) != null) 
 			{
-				System.out.println("gelesen: " + sNachricht);
+//				System.out.println("gelesen: " + sNachricht);
 				Server.esAllenWeitersagen(sNachricht);		
 			}
 		}

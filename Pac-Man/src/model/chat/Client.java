@@ -8,32 +8,29 @@ import java.net.Socket;
 
 import view.frames.GameMainFrame;
 
-public class Client 
+public final class Client 
 {
 	private static BufferedReader brReader;
 	private PrintWriter pwWriter;
 	
 	public void netzwerkEinrichten()
 	{  
-		try 
+		try
 		{
 			Socket soSocket = new Socket("127.0.0.1", 5000);
 			InputStreamReader isrStreamReader = new InputStreamReader(soSocket.getInputStream());
 			brReader = new BufferedReader(isrStreamReader);
 			pwWriter = new PrintWriter(soSocket.getOutputStream());
-			System.out.println("IP-Adresse gesendet");
-			PrintWriter pwWriter = new PrintWriter(soSocket.getOutputStream());
-			System.out.println("Netzwerkverbindung steht");
+			GameMainFrame.getArea().setText("------IP-Adresse gesendet------");
+//			System.out.println("IP-Adresse gesendet");
+			PrintWriter pwWriter_1 = new PrintWriter(soSocket.getOutputStream());
+			GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n---Netzwerkverbindung steht---");
+//			System.out.println("Netzwerkverbindung steht");
 		} 
 		catch(IOException ioException)
 		{
 			ioException.printStackTrace();
 		}
-	}
-	
-	public static BufferedReader getReader()
-	{
-		return brReader;
 	}
 	
 	public void senden()
@@ -47,7 +44,8 @@ public class Client
 			}
 			else
 			{
-				System.out.println("Nichts zum austauschen!");
+				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n\n++Nichts zum austauschen!++");
+//				System.out.println("Nichts zum austauschen!");
 			}
 			
 		}
@@ -55,5 +53,10 @@ public class Client
 		{
 			exException.printStackTrace();
 		}
-	}	
+	}
+	
+	public static BufferedReader getReader()
+	{
+		return brReader;
+	}
 }

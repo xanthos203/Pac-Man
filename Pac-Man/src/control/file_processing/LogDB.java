@@ -10,12 +10,9 @@ import java.util.ArrayList;
  * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
  *
  */
-public class LogDB 
+public final class LogDB 
 {
 	private ArrayList<String> alZeilenString = new ArrayList<String>();
-	private Tools oTool = new Tools();
-	
-	public LogDB() {}
 	
 	/**
 	 * 
@@ -28,7 +25,7 @@ public class LogDB
 	public LogDB(String sPath) 
 	{
 		//ArrayList der Logzeilen als Strings besorgen
-		ArrayList<String> alLogString = oTool.readGuiCSV(sPath);
+		ArrayList<String> alLogString = Tools.readGuiCSV(sPath);
 		
 		//Zeilenobjekte aus Stringzeilen erzeugen und der ArrayList hinzufügen
 		for (String sZeile : alLogString) 

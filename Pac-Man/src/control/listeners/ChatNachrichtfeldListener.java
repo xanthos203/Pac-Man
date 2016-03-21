@@ -12,7 +12,7 @@ import view.frames.GameMainFrame;
  * Sie <b>implementiert</b> die Interfaces <b>KeyListener</b> und <b>FocusListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
-public class ChatNachrichtfeldListener implements KeyListener, FocusListener
+public final class ChatNachrichtfeldListener implements KeyListener, FocusListener
 {
 	/**Die <i>focusGained</i>-Methode wird aufgerufen, wenn das Chatnachrichten-Feld im Fokus steht.*/
 	@Override
