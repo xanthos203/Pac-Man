@@ -11,20 +11,32 @@ public class Spieler
 {
 	private int iSpielerX = 0;
 	private int iSpielerY = 0;
-	private int iLeben = 3;		// <-- Testwert
-	private double dPunktestand = 999999999999999L; // <-- Testwert
+	private int iLeben/* = 3*/;		// <-- Testwert
+	private double dPunktestand/* = 999999999999999L*/; // <-- Testwert
+	
+	public void setLeben(int iLeben)
+	{
+		if(iLeben < 0)
+			this.iLeben = 0;
+		if(iLeben > 3)
+			this.iLeben = 3;
+		else
+			this.iLeben = iLeben;
+	}
 	
 	public int getLeben()
 	{
 		return iLeben;
 	}
 	
-	public void setPunktestand(double dPunktestand)
+	public void setPunktestand(int iPunktestand)
 	{
-		if(dPunktestand > 999999999999999L)
-			dPunktestand = 999999999999999L;
+		if(iPunktestand < 0)
+			this.dPunktestand = 0;
+		if(iPunktestand > 999999999999999L)
+			this.dPunktestand = 999999999999999L;
 		else
-			this.dPunktestand = dPunktestand;
+			this.dPunktestand = iPunktestand;
 	}
 	
 	public double getPunktestand()
@@ -40,7 +52,7 @@ public class Spieler
 	public int SpielerRaufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getFrame().getContentPane().getBounds().getHeight()) - 18))
+		if((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
 			iRaufY += 4;
 			iSpielerY = iRaufY;

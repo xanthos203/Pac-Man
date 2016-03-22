@@ -19,7 +19,7 @@ public final class ChatNachrichtfeldListener implements KeyListener, FocusListen
 	public void focusGained(FocusEvent feEvent)
 	{
 		/*der Text des Textfeldes wird auf "" gesetzt*/
-		GameMainFrame.getTextfeld().setText(null);
+		GameMainFrame.getChatnachrichtTextfeld().setText(null);
 	}
 
 	/**Die <i>focusLost</i>-Methode wird aufgerufen, wenn das Chatnachrichten-Feld den Fokus verliert.*/
@@ -29,7 +29,7 @@ public final class ChatNachrichtfeldListener implements KeyListener, FocusListen
 		/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
 		GameMainFrame.chattextAnzeigen();
 		/*der Text des Textfeldes wird auf "Nachricht eingeben" gesetzt*/
-		GameMainFrame.getTextfeld().setText("Nachricht eingeben");
+		GameMainFrame.getChatnachrichtTextfeld().setText("Nachricht eingeben");
 	}
 
 	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.

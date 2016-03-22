@@ -22,10 +22,10 @@ public final class Client
 			brReader = new BufferedReader(isrStreamReader);
 			pwWriter = new PrintWriter(soSocket.getOutputStream());
 //			System.out.println("IP-Adresse gesendet");
-			GameMainFrame.getArea().setText("------IP-Adresse gesendet------");
+			GameMainFrame.getChatverlaufTextarea().setText("------IP-Adresse gesendet------");
 			PrintWriter pwWriter_1 = new PrintWriter(soSocket.getOutputStream());
 //			System.out.println("Netzwerkverbindung steht");
-			GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n---Netzwerkverbindung steht---");
+			GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n---Netzwerkverbindung steht---");
 		} 
 		catch(IOException ioException)
 		{
@@ -37,14 +37,14 @@ public final class Client
 	{
 		try
 		{
-			if(GameMainFrame.getTextfeld().getText() != null || GameMainFrame.getTextfeld().getText() != "")
+			if(GameMainFrame.getChatnachrichtTextfeld().getText() != null || GameMainFrame.getChatnachrichtTextfeld().getText() != "")
 			{
-				pwWriter.println(GameMainFrame.getTextfeld().getText());
+				pwWriter.println(GameMainFrame.getChatnachrichtTextfeld().getText());
 				pwWriter.flush();
 			}
 			else
 			{
-				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n\n----Nichts zum austauschen!----");
+				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n----Nichts zum austauschen!----");
 //				System.out.println("Nichts zum austauschen!");
 			}
 			

@@ -13,7 +13,7 @@ public class Geister
 	
 	public int GeisterRaufBewegen(int iRaufY)
 	{
-		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getFrame().getContentPane().getBounds().getHeight())
+		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
 		{
 			iRaufY += 8;
 			iGeistY = iRaufY;

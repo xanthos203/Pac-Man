@@ -30,7 +30,7 @@
   </class>  
   <interface id="4" language="java" name="model.interfaces.IWindowProperties" project="Pac-Man" 
     file="/Pac-Man/src/model/interfaces/IWindowProperties.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="491" y="248"/>    
+    <position height="-1" width="-1" x="491" y="230"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -64,16 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="model.chat.ClientHandler" project="Pac-Man" 
-    file="/Pac-Man/src/model/chat/Server.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="344" y="-156"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="control.listeners.TextfieldListener" project="Pac-Man" 
+  <class id="8" language="java" name="control.listeners.TextfieldListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/TextfieldListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="267" y="820"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="control.listeners.SteuerungListener" project="Pac-Man" 
+  <class id="9" language="java" name="control.listeners.SteuerungListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/SteuerungListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="706" y="801"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="control.listeners.ButtonListener" project="Pac-Man" 
+  <class id="10" language="java" name="control.listeners.ButtonListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/ButtonListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="487" y="818"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="control.listeners.WindowClosingListener" project="Pac-Man" 
+  <class id="11" language="java" name="control.listeners.WindowClosingListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/WindowClosingListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="923" y="810"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,7 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="control.file_processing.Tools" project="Pac-Man" 
+  <class id="12" language="java" name="control.file_processing.Tools" project="Pac-Man" 
     file="/Pac-Man/src/control/file_processing/Tools.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1218" y="633"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -118,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="control.listeners.ChatNachrichtfeldListener" project="Pac-Man" 
+  <class id="13" language="java" name="control.listeners.ChatNachrichtfeldListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/ChatNachrichtfeldListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1152" y="819"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -127,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="control.listeners.ChatSendenButtonListener" project="Pac-Man" 
+  <class id="14" language="java" name="control.listeners.ChatSendenButtonListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/ChatSendenButtonListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1380" y="783"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -136,25 +127,25 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="view.frames.GameMainFrame.Task" project="Pac-Man" 
+  <class id="15" language="java" name="view.frames.GameMainFrame.Task" project="Pac-Man" 
     file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="692" y="306"/>    
+    <position height="-1" width="-1" x="693" y="297"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="view.frames.GameMainFrame" project="Pac-Man" 
+  <class id="16" language="java" name="view.frames.GameMainFrame" project="Pac-Man" 
     file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="912" y="248"/>    
+    <position height="-1" width="-1" x="912" y="230"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="view.characters.Geister" project="Pac-Man" 
+  <class id="17" language="java" name="view.characters.Geister" project="Pac-Man" 
     file="/Pac-Man/src/view/characters/Geister.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1216" y="-112"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -163,7 +154,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="view.characters.Spieler" project="Pac-Man" 
+  <class id="18" language="java" name="view.characters.Spieler" project="Pac-Man" 
     file="/Pac-Man/src/view/characters/Spieler.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1217" y="186"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -172,7 +163,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="model.main.TestClass" project="Pac-Man" 
+  <class id="19" language="java" name="model.main.TestClass" project="Pac-Man" 
     file="/Pac-Man/src/model/main/TestClass.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="73" y="228"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -181,7 +172,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="control.file_processing.LogDB" project="Pac-Man" 
+  <class id="20" language="java" name="control.file_processing.LogDB" project="Pac-Man" 
     file="/Pac-Man/src/control/file_processing/LogDB.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1217" y="483"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -190,86 +181,95 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
+  <class id="21" language="java" name="model.chat.ClientHandler" project="Pac-Man" 
+    file="/Pac-Man/src/model/chat/ClientHandler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="342" y="-157"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
   <association id="22">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="23" name="oClient">        
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="23" name="oServer">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="24" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="25">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="26">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="27">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="28">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="29" name="oServer">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="30" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="32" name="oLogdb">        
+  <association id="25">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="26" name="oLogdb">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
+      <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
+    <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="34">    
-    <end type="SOURCE" refId="17"/>    
+  <realization id="28">    
+    <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <nesting id="35">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="16"/>  
-  </nesting>  
-  <association id="36">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="37" name="oSpieler">        
+  <association id="29">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="30" name="oGeist">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="38" minimum="0" maximum="1">        
+      <multiplicity id="31" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
+    <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="17" navigable="false">      
-      <attribute id="40" name="oGeist">        
+  <realization id="32">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="33">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="34">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="35" name="oClient">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="38" name="oSpieler">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="40">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <nesting id="41">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="15"/>  
+  </nesting>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

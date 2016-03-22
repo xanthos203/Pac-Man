@@ -13,7 +13,7 @@ public final class EigehendReader implements Runnable
 			while ((sNachricht = Client.getReader().readLine()) == null) 
 			{
 //				System.out.println("gelesen: " + sNachricht);
-				GameMainFrame.getArea().append(sNachricht + "\n");		
+				GameMainFrame.getChatverlaufTextarea().append(sNachricht + "\n");		
 			}
 		} 
 		catch(Exception exException) 

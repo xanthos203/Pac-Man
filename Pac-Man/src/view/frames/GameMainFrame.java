@@ -62,8 +62,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private int iGeistX;
 	private int iGeistY;
-	private int iLayoutZeilen = 28;
-	private int iLayoutSpalten = 33;
 	private int iFeld = -1;
 	private int iZaehler = 0;
 	
@@ -126,7 +124,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		alSpielfeldArrayList = oLogdb.getArrayList();
 		
-		GridLayout oSpielFeldLayout = new GridLayout(iLayoutZeilen, iLayoutSpalten);
+		GridLayout oSpielFeldLayout = new GridLayout(guiRows, guiColumns);
 		pSpielfeldPanel.setLayout(oSpielFeldLayout);
 		pSpielfeldPanel.addKeyListener(new SteuerungListener());
 		
@@ -166,9 +164,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		tfTextField.addKeyListener(new ChatNachrichtfeldListener());
 		tfTextField.addFocusListener(new ChatNachrichtfeldListener());
 		
-		for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
+		for (int iZeile = 0; iZeile < guiRows; iZeile++)
 		{
-			for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
+			for (int iSpalte = 0; iSpalte < guiColumns; iSpalte++)
 			{
 				iFeld++;
 				if(alSpielfeldArrayList.size() > iFeld)
@@ -258,14 +256,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static JTextField getTextfeld()
+	public static JTextField getChatnachrichtTextfeld()
 	{
 		return tfTextField;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static JTextArea getArea()
+	public static JTextArea getChatverlaufTextarea()
 	{
 		return taTextArea;
 	}
@@ -279,7 +277,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 	//-------------------------------------------------------------------------------------------------------------------
 		
-	public static GameMainFrame getFrame()
+	public static GameMainFrame getGameMainFrame()
 	{
 		return (GameMainFrame) jfFrame;
 	}

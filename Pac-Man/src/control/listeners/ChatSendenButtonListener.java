@@ -19,6 +19,6 @@ public final class ChatSendenButtonListener implements ActionListener
 		/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
 		GameMainFrame.chattextAnzeigen();
 		/*der Fokus (Cursor) wird zurück auf das Textfeld gesetzt*/
-		GameMainFrame.getTextfeld().requestFocus();
+		GameMainFrame.getChatnachrichtTextfeld().requestFocus();
 	}
 }
