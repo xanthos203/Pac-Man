@@ -21,11 +21,11 @@ public final class Client
 			InputStreamReader isrStreamReader = new InputStreamReader(soSocket.getInputStream());
 			brReader = new BufferedReader(isrStreamReader);
 			pwWriter = new PrintWriter(soSocket.getOutputStream());
-			GameMainFrame.getArea().setText("------IP-Adresse gesendet------");
 //			System.out.println("IP-Adresse gesendet");
+			GameMainFrame.getArea().setText("------IP-Adresse gesendet------");
 			PrintWriter pwWriter_1 = new PrintWriter(soSocket.getOutputStream());
-			GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n---Netzwerkverbindung steht---");
 //			System.out.println("Netzwerkverbindung steht");
+			GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n---Netzwerkverbindung steht---");
 		} 
 		catch(IOException ioException)
 		{
@@ -44,7 +44,7 @@ public final class Client
 			}
 			else
 			{
-				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n\n++Nichts zum austauschen!++");
+				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n\n----Nichts zum austauschen!----");
 //				System.out.println("Nichts zum austauschen!");
 			}
 			

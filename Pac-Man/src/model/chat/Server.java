@@ -30,7 +30,7 @@ public class Server
 				Thread thThread = new Thread(new ClientHandler(soClientSocket));
 				thThread.start();
 				
-				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n+++habe eine Verbindung+++");
+				GameMainFrame.getArea().setText(GameMainFrame.getArea().getText() + "\n\n+++habe eine Verbindung+++");
 //				System.out.println("habe eine Verbindung");
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung

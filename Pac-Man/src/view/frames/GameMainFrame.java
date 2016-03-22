@@ -294,7 +294,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		if(!(tfTextField.getText().isEmpty()) && !tfTextField.getText().equals("Nachricht eingeben"))
 		{
-			if(taTextArea.getText().equals("------IP-Adresse gesendet------" + "\n---Netzwerkverbindung steht---" + "\n+++habe eine Verbindung+++"))
+			if(taTextArea.getText().equals("------IP-Adresse gesendet------" + "\n---Netzwerkverbindung steht---" + "\n\n+++habe eine Verbindung+++"))
 			{
 				taTextArea.setText(null);
 				taTextArea.setText(username + taTextArea.getText() + tfTextField.getText() + "\n" + placeholder);
