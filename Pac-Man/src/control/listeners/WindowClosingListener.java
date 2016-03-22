@@ -22,6 +22,8 @@ public final class WindowClosingListener extends WindowAdapter
 	 * @param dialog <i>Referenz</i> auf den <b>JDialog</b>*/
 	public WindowClosingListener(JDialog dialog)
 	{
+		/*frameReference wird auf null gesetzt*/
+		frameReference = null;
 		/*der Variable dialogReference wird der Wert von dialog zugewiesen
 		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
 		dialogReference = dialog;
@@ -33,6 +35,8 @@ public final class WindowClosingListener extends WindowAdapter
 	 * @param frame <i>Referenz</i> auf das <b>JFrame</b>*/
 	public WindowClosingListener(JFrame frame)
 	{
+		/*dialogReference wird auf null gesetzt*/
+		dialogReference = null;
 		/*der Variable frameReference wird der Wert von frame zugewiesen
 		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
 		frameReference = frame;
@@ -46,8 +50,18 @@ public final class WindowClosingListener extends WindowAdapter
 	@Override
 	public void windowClosing(WindowEvent weEvent)
 	{
+		/*in warning wird die Warnmeldung, die am optionPane angezeigt wird, gespeichert*/
+		String warning = "M\u00F6chten Sie das Spiel wirklich beenden\u003F";
+		
+		/*wird ausgeführt, wenn frameReference nicht null ist*/
+		if(frameReference != null)
+		{
+			/*zu warning wird der Standardmelung noch ein Teil hinzugefügt*/
+			warning += "\n\nDadurch geht Ihr gesamter Spielfortschritt verloren\u0021";
+		}
+		
 		/*hier wird ein neues JOptionPane erstellt, das den Benutzer fragt, ob er das Spiel wirklich beenden möchte*/
-		int optionPane = JOptionPane.showConfirmDialog(null, "M\u00F6chten Sie das Spiel wirklich beenden\u003F", "Spiel beenden\u003F", JOptionPane.YES_NO_OPTION);
+		int optionPane = JOptionPane.showConfirmDialog(null, warning, "Spiel beenden\u003F", JOptionPane.YES_NO_OPTION);
 		
 		/*wird ausgeführt, wenn der Benutzer auf JA klickt*/
 		if(optionPane == JOptionPane.YES_OPTION)

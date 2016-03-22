@@ -102,7 +102,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public void initialize()
+	private void initialize()
 	{
 		jfFrame = this;
 		
@@ -203,14 +203,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 
-	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz)
+	private void guiDarstellen(int iZeilenAnz, int iSpaltenAnz)
 	{
 		guiDarstellen(iZeilenAnz, iSpaltenAnz, Color.black);
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
 
-	public void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
+	private void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
 	{
 		aPanelArray[iZeilenAnz][iSpaltenAnz] = new JPanel();
 		aPanelArray[iZeilenAnz][iSpaltenAnz].addKeyListener(new SteuerungListener());
@@ -243,7 +243,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	/**
 	 * Hier wird der Timer der sagt wie oft der Geist pro Sekunde aufgerufen werden soll gestartet
 	 */
-	public void timerStarten()
+	private void timerStarten()
 	{
 		TimerTask oTimerTask = new Task();		// Hier wird ein Objekt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
 		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
@@ -294,8 +294,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		if(!(tfTextField.getText().isEmpty()) && !tfTextField.getText().equals("Nachricht eingeben"))
 		{
-			if(taTextArea.getText().equals("------IP-Adresse gesendet------" + 
-			"\n---Netzwerkverbindung steht---" + "\n+++habe eine Verbindung+++"))
+			if(taTextArea.getText().equals("------IP-Adresse gesendet------" + "\n---Netzwerkverbindung steht---" + "\n+++habe eine Verbindung+++"))
 			{
 				taTextArea.setText(null);
 				taTextArea.setText(username + taTextArea.getText() + tfTextField.getText() + "\n" + placeholder);
@@ -395,7 +394,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				
 				setBackground(Color.WHITE);
 				pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
-				pGeist.repaint();*/
+				pGeist.repaint();
+				*/
 			}
 		}
 	}
