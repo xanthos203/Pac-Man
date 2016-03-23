@@ -55,11 +55,9 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameLostFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		/*der Titel der Fensters wird zugewiesen*/
-		setTitle("Verloren");
+		setTitle("Verloren\u0021");
 		/*das Fenster wird sichtbar gemacht*/
 		setVisible(true);
-		/*das Fenster ist in seiner Größe nicht veränderbar*/
-		setResizable(false);
 		/*die Größe des Fensters wird festgelegt*/
 		setSize(frameWidth, frameHeight);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/

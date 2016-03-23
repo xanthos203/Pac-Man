@@ -129,7 +129,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		pSpielfeldPanel.addKeyListener(new SteuerungListener());
 		
 		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.PLAIN, 25));
+		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.BOLD, 25));
 		lSpielstandlabel.setForeground(Color.blue);
 		lSpielstandlabel.setText(getSpielstandlabelText());
 		
@@ -290,7 +290,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		String startOfMessage = "---------------------------------\n";
 		String username = startOfMessage + LogInFrame.getUsername() + ":\n" + placeholder;
 		
-		if(!(tfTextField.getText().isEmpty()) && !tfTextField.getText().equals("Nachricht eingeben"))
+		if(!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
 		{
 			if(taTextArea.getText().equals("------IP-Adresse gesendet------" + "\n---Netzwerkverbindung steht---" + "\n\n+++habe eine Verbindung+++"))
 			{

@@ -15,7 +15,7 @@ import view.frames.*;
 public final class TextfieldListener implements KeyListener
 {
 	/**Die <i>maxZeichenLaenge</i> bestimmt, <b>wie viele Zeichen maximal</b> im Textfeld <b>eingegeben werden können</b>.*/
-	private int			maxZeichenLaenge = 19;
+	private int			maxZeichenLaenge = 18;
 	/**Das <i>referenceDialog</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
 	private JDialog 	referenceDialog;
 	/**Im <i>sonderzeichen</i>-Array werden <b>alle Sonderzeichen</b> gespeichert, welche im <i>usernameFeld nicht eingegeben</i> werden können.*/
