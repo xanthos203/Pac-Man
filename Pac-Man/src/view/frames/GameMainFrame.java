@@ -108,7 +108,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		setTitle("Pac-Man");
 		setSize(frameWidth, frameHeight);
-		setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
+		setLocation(windowPosition);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		setResizable(false);
 		setVisible(true);

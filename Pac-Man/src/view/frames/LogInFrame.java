@@ -50,8 +50,10 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 	private JLabel		infoImage_label	= new JLabel(infoIcon);
 	/**Auf dem Label <i>infoText_label</i> wird das Icon <b>infoText</b> dargestellt.*/
 	private JLabel		infoText_label	= new JLabel(infoText);
+	/**Das <i>pacmanLabel</i> zeigt lediglich den <b>Namen des Spiels</b> an.*/
+	private JLabel 		pacmanLabel 	= new JLabel("PAC-MAN");
 	/**Mit dem <i>hinweisLabel</i> wird der Benutzer darauf <b>hingewiesen, wo er seinen Spielernamen eingeben</b> muss.*/
-	private JLabel		hinweisLabel	= new JLabel();
+	private JLabel		hinweisLabel	= new JLabel("Spielername eingeben\u003A");
 	
 	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
 	public LogInFrame()
@@ -69,7 +71,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*die Größe des Fensters wird festgelegt*/
 		setSize(frameWidth, frameHeight);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
-		setLocation((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
+		setLocation(windowPosition);
 		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
 		getContentPane().add(contentPane);
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
@@ -86,17 +88,22 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*dem infoPanel wird das infoText_label im Osten des BorderLayouts hinzugefügt*/
 		infoPanel.add(infoText_label, BorderLayout.EAST);
 		
-		/*dem eingabehinweisLabel wird der Benutzers darauf hingewiesen, seinen Spielernamen einzugeben*/
-		hinweisLabel.setText("Spielername eingeben\u003A");
 		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
 		hinweisLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		/*dem Text im eingabehinweisLabel wird ein Schriftstil zugewiesen*/
-		hinweisLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 30));
+		hinweisLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 29));
 		/*dem Text im eingabehinweisLabel wird eine Schriftfarbe zugewiesen*/
 		hinweisLabel.setForeground(Color.WHITE);
 		
+		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
+		pacmanLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		/*dem Text im pacmanLabel wird ein Schriftstil zugewiesen*/
+		pacmanLabel.setFont(new Font("Arial", Font.BOLD, 63));
+		/*dem Text im pacmanLabel wird eine Schriftfarbe zugewiesen*/
+		pacmanLabel.setForeground(Color.CYAN);
+		
 		/*dem Text im usernameFeld wird ein Schriftstil zugewiesen*/
-		usernameFeld.setFont(new Font("arial", Font.PLAIN, 30));
+		usernameFeld.setFont(new Font("arial", Font.PLAIN, 29));
 		/*die Textausrichtung im usernameFeld wird auf LINKS gesetzt*/
 		usernameFeld.setHorizontalAlignment(SwingConstants.LEFT);
 		/*dem usernameFeld wird ein Hinweistext zugewiesen*/
@@ -115,16 +122,34 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		
 		/*dem Panel wird ein neues GridBagLayout hinzugefügt*/
 		usernamePanel.setLayout(new GridBagLayout());
-		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
-		GridBagConstraints center = new GridBagConstraints();
-		/*das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert*/
-		center.anchor = GridBagConstraints.CENTER;
-		/*das GridBagConstraint-Objekt wird in seiner Größe nicht verändert*/
-		center.fill = GridBagConstraints.NONE;
-		/*dem Panel wird das eingabePanel im Zentrum hinzugefügt*/
-		usernamePanel.add(eingabePanel, center);
 		/*die Hintergrundfarbe des Panels wird festgelegt*/
 		usernamePanel.setBackground(backgroundColor);
+		
+		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
+		GridBagConstraints gbc_pacmanLabel = new GridBagConstraints();
+		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der X-Achse befindet*/
+		gbc_pacmanLabel.gridx = 0;
+		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der Y-Achse befindet*/
+		gbc_pacmanLabel.gridy = 0;
+		/*das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert*/
+		gbc_pacmanLabel.anchor = GridBagConstraints.CENTER;
+		/*das GridBagConstraint-Objekt wird in seiner Größe nicht verändert*/
+		gbc_pacmanLabel.fill = GridBagConstraints.NONE;
+		/*dem usernamePanel wird das pacmanLabel auf der Position des GridBagConstraint-Objekts hinzugefügt*/
+		usernamePanel.add(pacmanLabel, gbc_pacmanLabel);
+		
+		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
+		GridBagConstraints gbc_eingabePanel = new GridBagConstraints();
+		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der X-Achse befindet*/
+		gbc_eingabePanel.gridx = 0;
+		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der Y-Achse befindet*/
+		gbc_eingabePanel.gridy = 1;
+		/*das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert*/
+		gbc_eingabePanel.anchor = GridBagConstraints.CENTER;
+		/*das GridBagConstraint-Objekt wird in seiner Größe nicht verändert*/
+		gbc_eingabePanel.fill = GridBagConstraints.NONE;
+		/*dem usernamePanel wird das eingabePanel auf der Position des GridBagConstraint-Objekts hinzugefügt*/
+		usernamePanel.add(eingabePanel, gbc_eingabePanel);
 		
 		/*der contentPane wird das pmImage_label im Westen des BorderLayouts hinzugefügt*/
 		contentPane.add(pmImage_label, BorderLayout.WEST);
