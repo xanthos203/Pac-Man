@@ -1,6 +1,8 @@
 package view.characters;
 
+import view.frames.GameLostFrame;
 import view.frames.GameMainFrame;
+import view.frames.GameWonFrame;
 
 /**
  * 
@@ -11,39 +13,45 @@ public class Spieler
 {
 	private int iSpielerX = 0;
 	private int iSpielerY = 0;
-	private int iLeben/* = 3*/;		// <-- Testwert
-	private double dPunktestand/* = 999999999999999L*/; // <-- Testwert
+	private static int iLeben = 3;
+	private static double dPunktestand = 0;
 	
-	public void setLeben(int iLeben)
+	public static void setLeben(int iLeben)
 	{
-		if(iLeben < 0)
-			this.iLeben = 0;
-		if(iLeben > 3)
-			this.iLeben = 3;
+		if(iLeben <= 0)
+		{
+			GameMainFrame.getGameMainFrame().dispose();
+			new GameLostFrame();
+		}
+		if(iLeben >= 3)
+			Spieler.iLeben = 3;
 		else
-			this.iLeben = iLeben;
+			Spieler.iLeben = iLeben;
 	}
-	
+//-------------------------------------------------------------------------------------------------------------------------
+	public static void setPunktestand(double dPunktestand)
+	{
+		if((dPunktestand >= 999999999999999L) && (iLeben > 0))
+		{
+			GameMainFrame.getGameMainFrame().dispose();
+			new GameWonFrame();
+		}
+		if(dPunktestand <= 0)
+			Spieler.dPunktestand = 0;
+		else
+			Spieler.dPunktestand = dPunktestand;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
 	public int getLeben()
 	{
 		return iLeben;
 	}
-	
-	public void setPunktestand(int iPunktestand)
-	{
-		if(iPunktestand < 0)
-			this.dPunktestand = 0;
-		if(iPunktestand > 999999999999999L)
-			this.dPunktestand = 999999999999999L;
-		else
-			this.dPunktestand = iPunktestand;
-	}
-	
+//-------------------------------------------------------------------------------------------------------------------------
 	public double getPunktestand()
 	{
 		return dPunktestand;
 	}
-	
+//-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
 	 * @param iRaufY
@@ -59,7 +67,6 @@ public class Spieler
 		}
 		return iSpielerY;
 	}
-	
 //-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * 

@@ -10,19 +10,19 @@ import java.awt.Toolkit;
 public interface IWindowProperties
 {
 	/**In <i>guiRows</i> wird die <b>Anzahl der Zeilen</b>, die für die GUI notwendig bzw. zulässig ist, gespeichert.*/
-	int	  guiRows		  = 28;
+	int	  GUI_ROWS		   = 28;
 	/**In <i>guiColumns</i> wird die <b>Anzahl der Spalten</b>, die für die GUI notwendig bzw. zulässig ist, gespeichert.*/
-	int   guiColumns	  = 33;
+	int   GUI_COLUMNS	   = 33;
 	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
-	int   frameWidth	  = 1091;
+	int   FRAME_WIDTH	   = 1091;
 	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
-	int   frameHeight	  = 739;
+	int   FRAME_HEIGHT	   = 739;
 	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
-	int   screenWidth	  = Toolkit.getDefaultToolkit().getScreenSize().width;
+	int   SCREEN_WIDTH	   = Toolkit.getDefaultToolkit().getScreenSize().width;
 	/**In <i>screenHeight</i> wird die <b>Höhe des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/
-	int   screenHeight    = Toolkit.getDefaultToolkit().getScreenSize().height;
+	int   SCREEN_HEIGHT    = Toolkit.getDefaultToolkit().getScreenSize().height;
 	/**Die <i>backgroundColor</i> bestimmt die <b>Hintergrundfarbe</b> des Fensters.*/
-	Color backgroundColor = new Color(38, 0, 38);
+	Color BACKGROUND_COLOR = new Color(38, 0, 38);
 	/**Die <i>windowPosition</i> schreibt die <b>Position des Fensters</b> am Bildschirm vor.*/
-	Point windowPosition  = new Point((screenWidth - frameWidth) / 2, (screenHeight - frameHeight) / 2);
+	Point WINDOW_POSITION  = new Point((SCREEN_WIDTH - FRAME_WIDTH) / 2, (SCREEN_HEIGHT - FRAME_HEIGHT) / 2);
 }

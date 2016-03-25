@@ -23,12 +23,13 @@ import model.interfaces.IWindowProperties;
  * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
  * @author Manuel Glantschnig
  * @version 1.2 */
+@SuppressWarnings("serial")
 public final class LogInFrame extends JDialog implements IWindowProperties
 {
 	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
-	private static	JTextField	usernameFeld	= new JTextField();
+	private static JTextField usernameFeld	   = new JTextField();
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
-	private static 	String 		username		= null;
+	private static String 	  username		   = null;
 	
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
 	private JPanel 		contentPane		= new JPanel();
@@ -69,18 +70,18 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*das Fenster ist in seiner Größe nicht veränderbar*/
 		setResizable(false);
 		/*die Größe des Fensters wird festgelegt*/
-		setSize(frameWidth, frameHeight);
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
-		setLocation(windowPosition);
+		setLocation(WINDOW_POSITION);
 		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
 		getContentPane().add(contentPane);
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
-		contentPane.setBackground(backgroundColor);
+		contentPane.setBackground(BACKGROUND_COLOR);
 		/*der contentPane wird ein neues BorderLayout zugewiesen*/
 		contentPane.setLayout(new BorderLayout());
 		
 		/*dem infoPanel wird die Hintergrundfarbe zugewiesen*/
-		infoPanel.setBackground(backgroundColor);
+		infoPanel.setBackground(BACKGROUND_COLOR);
 		/*dem infoPanel wird ein neues BorderLayout zugewiesen*/
 		infoPanel.setLayout(new BorderLayout());
 		/*dem infoPanel wird das infoImage_label im Westen des BorderLayouts hinzugefügt*/
@@ -114,7 +115,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*dem eingabePanel wird ein neues BorderLayout hinzugefügt*/
 		eingabePanel.setLayout(new BorderLayout());
 		/*dem eingabePanel wird eine Hintergrundfarbe zugewiesen*/
-		eingabePanel.setBackground(backgroundColor);
+		eingabePanel.setBackground(BACKGROUND_COLOR);
 		/*dem eingabePanel wird das eingabehinweisLabel im Norden des BorderLayouts hinzugefügt*/
 		eingabePanel.add(hinweisLabel, BorderLayout.NORTH);
 		/*dem eingabePanel wird das gratTextLabel im Süden des BorderLayouts hinzugefügt*/
@@ -123,7 +124,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*dem Panel wird ein neues GridBagLayout hinzugefügt*/
 		usernamePanel.setLayout(new GridBagLayout());
 		/*die Hintergrundfarbe des Panels wird festgelegt*/
-		usernamePanel.setBackground(backgroundColor);
+		usernamePanel.setBackground(BACKGROUND_COLOR);
 		
 		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints gbc_pacmanLabel = new GridBagConstraints();

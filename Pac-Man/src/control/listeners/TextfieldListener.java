@@ -103,7 +103,7 @@ public final class TextfieldListener implements KeyListener
 					referenceDialog.dispose();
 					
 					/*=========Hauptfenster öffnen=========*/
-					GameMainFrame oSpielFrame = new GameMainFrame();
+					new GameMainFrame();
 				}
 				/*die Schleife wird abgebrochen, wenn die oben stehende Bedingung zutrifft*/
 				break;

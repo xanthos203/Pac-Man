@@ -24,6 +24,7 @@ import model.interfaces.IWindowProperties;
  * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
  * @author Manuel Glantschnig
  * @version 1.1 */
+@SuppressWarnings("serial")
 public final class GameLostFrame extends JDialog implements IWindowProperties
 {
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
@@ -59,13 +60,13 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 		/*das Fenster wird sichtbar gemacht*/
 		setVisible(true);
 		/*die Größe des Fensters wird festgelegt*/
-		setSize(frameWidth, frameHeight);
+		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/
-		setLocation(windowPosition);
+		setLocation(WINDOW_POSITION);
 		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
 		add(contentPane);
 		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
-		contentPane.setBackground(backgroundColor);
+		contentPane.setBackground(BACKGROUND_COLOR);
 		/*der contentPane wird ein neues BorderLayout zugewiesen*/
 		contentPane.setLayout(new BorderLayout());
 		
@@ -87,7 +88,7 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 		/*dem Panel wird das Textfeld im Zentrum hinzugefügt*/
 		gameoverPanel.add(gameoverLabel, center);
 		/*die Hintergrundfarbe des Panels wird festgelegt*/
-		gameoverPanel.setBackground(backgroundColor);
+		gameoverPanel.setBackground(BACKGROUND_COLOR);
 		
 		/*dem playagainLabel wird der Fragetext zugewiesen*/
 		playagainLabel.setText("Nochmal\u003F");
@@ -115,7 +116,7 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 		/*dem buttonPanel wird ein neues FlowLayout hinzugefügt*/
 		buttonPanel.setLayout(new FlowLayout());
 		/*dem buttonPanel wird eine Hintergrundfarbe zugewiesen*/
-		buttonPanel.setBackground(backgroundColor);
+		buttonPanel.setBackground(BACKGROUND_COLOR);
 		/*dem buttonPanel wird der ja-Button zugewiesen*/
 		buttonPanel.add(jaButton);
 		/*dem buttonPanel wird der nein-Button zugewiesen*/
@@ -124,7 +125,7 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 		/*dem playagainPanel wird ein neues BorderLayout hinzugefügt*/
 		playagainPanel.setLayout(new BorderLayout());
 		/*dem playagainPanel wird eine Hintergrundfarbe zugewiesen*/
-		playagainPanel.setBackground(backgroundColor);
+		playagainPanel.setBackground(BACKGROUND_COLOR);
 		/*dem playagainPanel wird das playagainLabel im Norden des BorderLayouts hinzugefügt*/
 		playagainPanel.add(playagainLabel, BorderLayout.NORTH);
 		/*dem playagainPanel wird das buttonPanel im Süden des BorderLayouts hinzugefügt*/

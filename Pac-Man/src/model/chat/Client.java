@@ -23,7 +23,7 @@ public final class Client
 			pwWriter = new PrintWriter(soSocket.getOutputStream());
 //			System.out.println("IP-Adresse gesendet");
 			GameMainFrame.getChatverlaufTextarea().setText("------IP-Adresse gesendet------");
-			PrintWriter pwWriter_1 = new PrintWriter(soSocket.getOutputStream());
+			new PrintWriter(soSocket.getOutputStream());
 //			System.out.println("Netzwerkverbindung steht");
 			GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n---Netzwerkverbindung steht---");
 		} 

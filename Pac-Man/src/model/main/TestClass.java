@@ -7,7 +7,7 @@ public class TestClass
 {
 	public static void main(String[] args) 
 	{
-		LogInFrame loginframe = new LogInFrame();
+		new LogInFrame();
 		Server.serverStarten();
 	}
 }
