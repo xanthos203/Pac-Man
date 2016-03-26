@@ -6,10 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 import view.frames.GameMainFrame;
 
 public final class Client 
 {
+	private static boolean bIPgesendet = false;
+	private static boolean bNetzwerkSteht = false;
 	private static BufferedReader brReader;
 	private PrintWriter pwWriter;
 	
@@ -22,10 +26,12 @@ public final class Client
 			brReader = new BufferedReader(isrStreamReader);
 			pwWriter = new PrintWriter(soSocket.getOutputStream());
 //			System.out.println("IP-Adresse gesendet");
-			GameMainFrame.getChatverlaufTextarea().setText("------IP-Adresse gesendet------");
+//			GameMainFrame.getChatverlaufTextarea().setText("------IP-Adresse gesendet------");
+			bIPgesendet = true;
 			new PrintWriter(soSocket.getOutputStream());
 //			System.out.println("Netzwerkverbindung steht");
-			GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n---Netzwerkverbindung steht---");
+//			GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n---Netzwerkverbindung steht---");
+			bNetzwerkSteht = true;
 		} 
 		catch(IOException ioException)
 		{
@@ -44,7 +50,8 @@ public final class Client
 			}
 			else
 			{
-				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n----Nichts zum austauschen!----");
+				JOptionPane.showMessageDialog(null, "Nichts zum Austauschen\u0021", "Achtung", JOptionPane.WARNING_MESSAGE);
+//				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n----Nichts zum austauschen!----");
 //				System.out.println("Nichts zum austauschen!");
 			}
 			
@@ -58,5 +65,15 @@ public final class Client
 	public static BufferedReader getReader()
 	{
 		return brReader;
+	}
+	
+	public static boolean ipSuccessfullySent()
+	{
+		return bIPgesendet;
+	}
+	
+	public static boolean hasNetzworkConnection()
+	{
+		return bNetzwerkSteht;
 	}
 }

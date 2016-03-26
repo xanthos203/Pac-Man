@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -46,6 +47,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static JTextField tfTextField = new JTextField("Nachricht eingeben");
 	private static JPanel pSpieler = new JPanel();
 	private static JLabel lSpielstandlabel = new JLabel();
+	private static JButton jbTextSendenButton = new JButton("SENDEN");
 	
 	private static int iSpielerX;
 	private static int iSpielerY;
@@ -90,7 +92,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private JPanel pSpielfeldPanel = new JPanel();
 	private JPanel pChatPanel = new JPanel();
 	private JPanel pChatKomponentenPanel = new JPanel();
-	private JButton jbTextSendenButton = new JButton("SENDEN");
 	
 	private LogDB oLogDB = new LogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	
@@ -172,6 +173,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		tfTextField.addFocusListener(new ChatNachrichtfeldListener());
 		
 		spielfeldAufbauen();
+		chatInformation();
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -214,6 +216,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			for (int iSpalte = 0; iSpalte < GUI_COLUMNS; iSpalte++)
 			{
 				iFeld++;
+				//-----------------------------------------------------------------------
 				if(alSpielfeldArrayList.size() > iFeld)
 				{
 					if(alSpielfeldArrayList.get(iFeld).equals("0"))
@@ -221,21 +224,25 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						guiDarstellen(iZeile, iSpalte);
 						bClassicCoin = true;
 					}
+					//---------------------------------------------
 					if(alSpielfeldArrayList.get(iFeld).equals("1"))
 					{
 						guiDarstellen(iZeile, iSpalte, Color.BLUE);
 					}
+					//---------------------------------------------
 					if(alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						bGeist = true;
 					}
+					//---------------------------------------------
 					if(alSpielfeldArrayList.get(iFeld).equals("3"))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aPanelArray[iZeile][iSpalte].add(lPacMan);
 						bPacMan = true;
 					}
+					//---------------------------------------------
 					if(alSpielfeldArrayList.get(iFeld).equals("4"))
 					{
 						guiDarstellen(iZeile, iSpalte);
@@ -243,6 +250,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						bEatingCoin = true;
 					}
 				}
+				//-----------------------------------------------------------------------
 				else
 				{
 					break;
@@ -264,6 +272,47 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	//-------------------------------------------------------------------------------------------------------------------
 	
+	private void chatInformation()
+	{
+		int iKindOfMessage;
+		String sInfoTest;
+		//-----------------------------------------------------------------------
+		if (hasSuccessfulChatConnection())
+		{
+			iKindOfMessage = JOptionPane.INFORMATION_MESSAGE;
+			sInfoTest = "Der Chat wurde erfolgreich eingerichtet\u0021\n\n"
+					  + "Sie k\u00F6nnen nun den Chat verwenden, um mit anderen Spielteilnehmern zu kommunizieren\u002E";
+		}
+		//-----------------------------------------------------------------------
+		else
+		{
+			iKindOfMessage = JOptionPane.WARNING_MESSAGE;
+			sInfoTest = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
+					  + "Wenn Sie den Chat nutzen m\u00F6chten, starten Sie das Spiel bitte neu\u002E";
+		}
+		//-----------------------------------------------------------------------
+		JOptionPane.showMessageDialog(null, sInfoTest, "Chat\u00ADInformation", iKindOfMessage);
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	private static boolean hasSuccessfulChatConnection()
+	{
+		if (Server.isConnected() && Client.ipSuccessfullySent() && Client.hasNetzworkConnection())
+		{
+			return true;
+		}
+		else
+		{
+			taTextArea.setEnabled(false);
+			tfTextField.setEnabled(false);
+			jbTextSendenButton.setEnabled(false);
+			return false;
+		}
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
 	public static void setSpielstandlabelText(int iLeben, double dPunkte)
 	{
 		Spieler.setLeben(iLeben);
@@ -275,7 +324,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	public static String getSpielstandlabelText()
 	{
-		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand());
+		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + Spieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", Spieler.getPunktestand());
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -307,28 +356,22 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	
+
 	public static void chattextAnzeigen()
 	{
-		String keepSpace = "\n\n";
-		String placeholder = "\n====================\n";
-		String username = LogInFrame.getUsername() + ":";
-		String startOfMessage = "---------------------------------\n";
-		String message = startOfMessage + username + placeholder + tfTextField.getText() + placeholder;
+		String  keepSpace = "\n\n";
+		String  placeholder = "\n====================\n";
+		String  username = LogInFrame.getUsername() + ":";
+		String  startOfMessage = "---------------------------------\n";
+		String  message = startOfMessage + username + placeholder + tfTextField.getText() + placeholder;
 		
-		if(!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
+		if (hasSuccessfulChatConnection())
 		{
-			if(taTextArea.getText().equals("------IP-Adresse gesendet------" + "\n---Netzwerkverbindung steht---" + "\n\n+++habe eine Verbindung+++"))
+			if (!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
 			{
-				taTextArea.setText(null);
-				taTextArea.setText(message);
+				taTextArea.setText(taTextArea.getText() + message + keepSpace);
 				tfTextField.setText(null);
-			}
-			else
-			{
-				taTextArea.setText(taTextArea.getText() + keepSpace + message);
-				tfTextField.setText(null);
-			}
+			} 
 		}
 	}
 	

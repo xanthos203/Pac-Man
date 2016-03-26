@@ -8,8 +8,9 @@ import java.util.Iterator;
 
 import view.frames.GameMainFrame;
 
-public class Server
+public final class Server
 {
+	private static boolean bIsConnected = false;
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
 	
 	public static void serverStarten()
@@ -19,7 +20,7 @@ public class Server
 		try
 		{
 			ServerSocket ssServerSocket = new ServerSocket(5000);
-			while(true)
+			while (true)
 			{
 				Socket soClientSocket = ssServerSocket.accept();
 				PrintWriter pwWriter = new PrintWriter(soClientSocket.getOutputStream());         
@@ -28,7 +29,8 @@ public class Server
 				Thread thThread = new Thread(new ClientHandler(soClientSocket));
 				thThread.start();
 				
-				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n+++habe eine Verbindung+++");
+				bIsConnected = true;
+//				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n+++habe eine Verbindung+++\n\n");
 //				System.out.println("habe eine Verbindung");
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
@@ -56,5 +58,10 @@ public class Server
 				exException.printStackTrace();
 			}
 		}
-	} 
+	}
+	
+	public static boolean isConnected()
+	{
+		return bIsConnected;
+	}
 }

@@ -23,7 +23,7 @@ public class Geister
 //--------------------------------------------------------------------------------------------------------------------------
 	public int GeisterRunterBewegen(int iRunterY)
 	{ 
-		if(iRunterY >+ 16) 
+		if(iRunterY >+ 16)
 		{
 			iRunterY -= 8;
 			iGeistY = iRunterY;
@@ -33,10 +33,10 @@ public class Geister
 //-------------------------------------------------------------------------------------------------------------------------	
 	public int GeisterRechtsBewegen(int iRunterX)
 	{
-//		if(iRunterx+CSpielFrame.getSpieler().getHeight()<CSpielFrame.getFrame().getContentPane().getBounds().getWidth()-/*Randkoordinaten des JPanels angeben*/)
+//		if(iRunterX + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth() - /*Randkoordinaten des JPanels angeben*/)
 //		{
-//			iRunterx+=8;
-//			iGeistx = iRunterx;
+//			iRunterX += 8;
+//			iGeistX = iRunterX;
 //		}
 		return iGeistX;
 	}
