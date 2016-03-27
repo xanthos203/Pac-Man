@@ -16,54 +16,6 @@ public class Spieler
 	private static int iLeben = 3;
 	private static double dPunktestand = 0;
 	
-	public static void setLeben(int iLeben)
-	{
-		if(iLeben <= 0)
-		{
-			GameMainFrame.getGameMainFrame().dispose();
-			new GameLostFrame();
-		}
-		if(iLeben >= 3)
-		{
-			Spieler.iLeben = 3;
-			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
-		}
-		else
-		{
-			Spieler.iLeben = iLeben;
-			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
-		}
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	public static void setPunktestand(double dPunktestand)
-	{
-		if((dPunktestand >= 999999999999999L) && (iLeben > 0))
-		{
-			GameMainFrame.getGameMainFrame().dispose();
-			new GameWonFrame();
-		}
-		if(dPunktestand <= 0)
-		{
-			Spieler.dPunktestand = 0;
-			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
-		}
-		else
-		{
-			Spieler.dPunktestand = dPunktestand;
-			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
-		}
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	public static int getLeben()
-	{
-		return iLeben;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	public static double getPunktestand()
-	{
-		return dPunktestand;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
 	 * @param iRaufY
@@ -163,5 +115,53 @@ public class Spieler
 //			iSpielerX = iRunterX;
 //		}
 		return iSpielerX;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static void setLeben(int iLeben)
+	{
+		if(iLeben <= 0)
+		{
+			GameMainFrame.getGameMainFrame().dispose();
+			new GameLostFrame();
+		}
+		if(iLeben >= 3)
+		{
+			Spieler.iLeben = 3;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+		else
+		{
+			Spieler.iLeben = iLeben;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static void setPunktestand(double dPunktestand)
+	{
+		if((dPunktestand >= 999999999999999L) && (iLeben > 0))
+		{
+			GameMainFrame.getGameMainFrame().dispose();
+			new GameWonFrame();
+		}
+		if(dPunktestand <= 0)
+		{
+			Spieler.dPunktestand = 0;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+		else
+		{
+			Spieler.dPunktestand = dPunktestand;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static int getLeben()
+	{
+		return iLeben;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static double getPunktestand()
+	{
+		return dPunktestand;
 	}
 }

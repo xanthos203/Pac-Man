@@ -31,6 +31,7 @@ import model.chat.Client;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
+import model.main.TestClass;
 import view.characters.Geister;
 import view.characters.Spieler;
 
@@ -141,9 +142,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		lSpielstandlabel.setForeground(Color.BLUE);
 		lSpielstandlabel.setText(getSpielstandlabelText());
 		
-		pChatPanel.setSize(200, 200);	
-		pChatPanel.setLayout(new BorderLayout());
-		
 		jbTextSendenButton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		jbTextSendenButton.addActionListener(new ChatSendenButtonListener());
 		
@@ -158,7 +156,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		pChatKomponentenPanel.add(tfTextField);
 		pChatKomponentenPanel.add(jbTextSendenButton);
-		
+
+		pChatPanel.setLayout(new BorderLayout());
 		pChatPanel.add(scrollPane, BorderLayout.CENTER);
 		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 		
@@ -191,9 +190,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		aPanelArray[iZeilenAnz][iSpaltenAnz].addKeyListener(new SteuerungListener());
 		aPanelArray[iZeilenAnz][iSpaltenAnz].setBackground(cFarbe);
 		//-----------------------------------------------------------------------
-		if(bGeist)
+		if (bGeist)
 		{
-			switch(iZaehler)
+			switch (iZaehler)
 			{
 				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreeny); break;
 				case 2:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lBlue); break;
@@ -274,40 +273,104 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private void chatInformation()
 	{
-		int iKindOfMessage;
 		String sInfoTest;
 		//-----------------------------------------------------------------------
 		if (hasSuccessfulChatConnection())
 		{
-			iKindOfMessage = JOptionPane.INFORMATION_MESSAGE;
-			sInfoTest = "Der Chat wurde erfolgreich eingerichtet\u0021\n\n"
-					  + "Sie k\u00F6nnen nun den Chat verwenden, um mit anderen Spielteilnehmern zu kommunizieren\u002E";
+			sInfoTest = "Der Chat wurde erfolgreich eingerichtet\u0021\n"
+					  + "\n"
+					  + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
+			//---------------------------------
+			JOptionPane.showMessageDialog(null, sInfoTest, "Chat\u00ADInformation", JOptionPane.INFORMATION_MESSAGE);
 		}
 		//-----------------------------------------------------------------------
 		else
 		{
-			iKindOfMessage = JOptionPane.WARNING_MESSAGE;
 			sInfoTest = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
-					  + "Wenn Sie den Chat nutzen m\u00F6chten, starten Sie das Spiel bitte neu\u002E";
+					  + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
+					  + "\n"
+					  + "M\u00F6chten Sie das Spiel jetzt neu starten\u003F";
+			//---------------------------------
+			if(JOptionPane.showConfirmDialog(null, sInfoTest, "Fehler bei Chat\u00ADVerbindung", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
+			{
+				getGameMainFrame().dispose();
+				new GameMainFrame();
+			}
 		}
-		//-----------------------------------------------------------------------
-		JOptionPane.showMessageDialog(null, sInfoTest, "Chat\u00ADInformation", iKindOfMessage);
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
 	
 	private static boolean hasSuccessfulChatConnection()
 	{
-		if (Server.isConnected() && Client.ipSuccessfullySent() && Client.hasNetzworkConnection())
+		if (Server.isConnected() && Client.hasIPsuccessfullySent() && Client.hasNetzworkConnection())
 		{
+			tfTextField.setEnabled(true);
+			jbTextSendenButton.setEnabled(true);
 			return true;
 		}
 		else
 		{
-			taTextArea.setEnabled(false);
 			tfTextField.setEnabled(false);
 			jbTextSendenButton.setEnabled(false);
 			return false;
+		}
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+		
+	public static void spielerRunter()
+	{
+		iSpielerY = pSpieler.getY();
+		iSpielerY = oSpieler.SpielerRaufBewegen(iSpielerY);
+		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
+		bSpielerAktiv = true;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void spielerRauf()
+	{
+		iSpielerY = pSpieler.getY();
+		iSpielerY = oSpieler.SpielerRunterBewegen(iSpielerY);
+		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
+		bSpielerAktiv = true;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void spielerLinks()
+	{
+		iSpielerX = pSpieler.getX();
+		iSpielerX = oSpieler.SpielerLinksBewegen(iSpielerX);
+		pSpieler.setLocation(iSpielerX, pSpieler.getY());
+		bSpielerAktiv = true;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void spielerRechts()
+	{
+		iSpielerX = pSpieler.getX();
+		iSpielerX = oSpieler.SpielerRechtsBewegen(iSpielerX);
+		pSpieler.setLocation(iSpielerX, pSpieler.getY());
+		bSpielerAktiv = true;
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static void chattextAnzeigen()
+	{
+		String  keepSpace = "\n\n";
+		String  placeholder = "\n====================\n";
+		String  username = LogInFrame.getUsername() + ":";
+		String  startOfMessage = "---------------------------------\n";
+		String  message = startOfMessage + username + placeholder + tfTextField.getText() + placeholder;
+		
+		if (!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
+		{
+			taTextArea.setText(taTextArea.getText() + message + keepSpace);
+			tfTextField.setText(null);
 		}
 	}
 
@@ -357,64 +420,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	//-------------------------------------------------------------------------------------------------------------------
 
-	public static void chattextAnzeigen()
-	{
-		String  keepSpace = "\n\n";
-		String  placeholder = "\n====================\n";
-		String  username = LogInFrame.getUsername() + ":";
-		String  startOfMessage = "---------------------------------\n";
-		String  message = startOfMessage + username + placeholder + tfTextField.getText() + placeholder;
-		
-		if (hasSuccessfulChatConnection())
-		{
-			if (!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
-			{
-				taTextArea.setText(taTextArea.getText() + message + keepSpace);
-				tfTextField.setText(null);
-			} 
-		}
-	}
-	
-	//-------------------------------------------------------------------------------------------------------------------
-		
-	public static void spielerRunter()
-	{
-		iSpielerY = pSpieler.getY();
-		iSpielerY = oSpieler.SpielerRaufBewegen(iSpielerY);
-		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
-		bSpielerAktiv = true;
-	}
-	
-	//-------------------------------------------------------------------------------------------------------------------
-	
-	public static void spielerRauf()
-	{
-		iSpielerY = pSpieler.getY();
-		iSpielerY = oSpieler.SpielerRunterBewegen(iSpielerY);
-		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
-		bSpielerAktiv = true;
-	}
-	
-	//-------------------------------------------------------------------------------------------------------------------
-	
-	public static void spielerLinks()
-	{
-		iSpielerX = pSpieler.getX();
-		iSpielerX = oSpieler.SpielerLinksBewegen(iSpielerX);
-		pSpieler.setLocation(iSpielerX, pSpieler.getY());
-		bSpielerAktiv = true;
-	}
-	
-	//-------------------------------------------------------------------------------------------------------------------
-	
-	public static void spielerRechts()
-	{
-		iSpielerX = pSpieler.getX();
-		iSpielerX = oSpieler.SpielerRechtsBewegen(iSpielerX);
-		pSpieler.setLocation(iSpielerX, pSpieler.getY());
-		bSpielerAktiv = true;
-	}
-	
 	/**
 	 * In dieser Klasse befindet sich die Methode run, welche für die Bewegung des Geistes zuständig ist.
 	 * @author Thomas Mader-Ofer

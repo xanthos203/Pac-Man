@@ -67,7 +67,7 @@ public final class Client
 		return brReader;
 	}
 	
-	public static boolean ipSuccessfullySent()
+	public static boolean hasIPsuccessfullySent()
 	{
 		return bIPgesendet;
 	}

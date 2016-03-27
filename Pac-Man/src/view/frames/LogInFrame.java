@@ -160,20 +160,20 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		contentPane.add(infoPanel, BorderLayout.EAST);
 	}
 
-	/**Die <i>Getter</i>-Methode für den <b>Spielername</b> retourniert den Spielername, der vom Benutzer eingeben wurde.
-	 * @return den eingegebenen Spielernamen*/
-	public static String getUsername()
-	{
-		/*der aktuelle Spielername wird zurückgegeben*/
-		return username;
-	}
-
 	/**Die <i>Setter</i>-Methode für den <b>Spielername</b> setzt den <i>username</i> auf den vom Benutzer gewünschten Text.
 	 * @param name der vom Benutzer festgelegte Spielername*/
 	public static void setUsername(String name)
 	{
 		/*der username wird auf den Wert von name gesetzt*/
 		username = name;
+	}
+
+	/**Die <i>Getter</i>-Methode für den <b>Spielername</b> retourniert den Spielername, der vom Benutzer eingeben wurde.
+	 * @return den eingegebenen Spielernamen*/
+	public static String getUsername()
+	{
+		/*der aktuelle Spielername wird zurückgegeben*/
+		return username;
 	}
 	
 	/**Die <i>Getter</i>-Methode für das <b>UsernameFeld</b> retourniert das UsernameFeld, indem der Benutzer seinen Spielernamen eingeben kann.

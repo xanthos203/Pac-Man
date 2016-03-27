@@ -191,85 +191,85 @@
     </display>  
   </class>  
   <realization id="22">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="23">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="24" name="oSpieler">        
-        <position height="0" width="0" x="-15" y="-48"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-15" y="-48"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="27" name="oLogDB">        
-        <position height="0" width="0" x="-16" y="-16"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-16" y="-16"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="20" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="29">    
+  <nesting id="23">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="15"/>  
   </nesting>  
-  <realization id="30">    
-    <end type="SOURCE" refId="16"/>    
+  <realization id="24">    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="31">    
+  <association id="25">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="32" name="oClient">        
-        <position height="0" width="0" x="-1" y="-58"/>      
-      </attribute>      
-      <multiplicity id="33" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-1" y="-58"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="34">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="35">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="36" name="oServer">        
+      <attribute id="26" name="oServer">        
         <position height="0" width="0" x="3" y="-72"/>      
       </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
+      <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="3" y="-72"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="38">    
+  <association id="28">    
     <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="39" name="oGeist">        
+      <attribute id="29" name="oLogDB">        
+        <position height="0" width="0" x="-16" y="-16"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-16" y="-16"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="20" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="32" name="oGeist">        
         <position height="0" width="0" x="-13" y="-90"/>      
       </attribute>      
-      <multiplicity id="40" minimum="0" maximum="1">        
+      <multiplicity id="33" minimum="0" maximum="1">        
         <position height="0" width="0" x="-13" y="-90"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="41">    
-    <end type="SOURCE" refId="1"/>    
+  <realization id="34">    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
+  <realization id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="36">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="37" name="oClient">        
+        <position height="0" width="0" x="-1" y="-58"/>      
+      </attribute>      
+      <multiplicity id="38" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-1" y="-58"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="39">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="40" name="oSpieler">        
+        <position height="0" width="0" x="-15" y="-48"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-15" y="-48"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
