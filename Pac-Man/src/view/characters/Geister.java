@@ -6,7 +6,7 @@ import view.frames.GameMainFrame;
  * @author Thomas
  * @version 1.0
  */
-public class Geister 
+public final class Geister 
 {
 	private int iGeistX;
 	private int iGeistY;

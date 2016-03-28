@@ -28,6 +28,7 @@ import control.listeners.ChatSendenButtonListener;
 import control.listeners.SteuerungListener;
 import control.listeners.WindowClosingListener;
 import model.chat.Client;
+import model.chat.ClientHandler;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
@@ -174,6 +175,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		spielfeldAufbauen();
 		chatInformation();
 	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+
+	/**
+	 * Hier wird der Timer der sagt wie oft der Geist pro Sekunde aufgerufen werden soll gestartet
+	 */
+	private void timerStarten()
+	{
+		TimerTask oTimerTask = new Task();		// Hier wird ein Objekt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
+		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
+	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
 
@@ -257,17 +269,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			}
 		}
 	}
-	
-	//-------------------------------------------------------------------------------------------------------------------
-
-	/**
-	 * Hier wird der Timer der sagt wie oft der Geist pro Sekunde aufgerufen werden soll gestartet
-	 */
-	private void timerStarten()
-	{
-		TimerTask oTimerTask = new Task();		// Hier wird ein Objekt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
-		oTimer.schedule(oTimerTask, 0, 150);	// Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
-	}
 
 	//-------------------------------------------------------------------------------------------------------------------
 	
@@ -281,7 +282,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					  + "\n"
 					  + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
 			//---------------------------------
-			JOptionPane.showMessageDialog(null, sInfoTest, "Chat\u00ADInformation", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(getGameMainFrame(), sInfoTest, "Chat\u00ADInformation", JOptionPane.INFORMATION_MESSAGE);
 		}
 		//-----------------------------------------------------------------------
 		else
@@ -291,19 +292,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					  + "\n"
 					  + "M\u00F6chten Sie das Spiel jetzt neu starten\u003F";
 			//---------------------------------
-			if(JOptionPane.showConfirmDialog(null, sInfoTest, "Fehler bei Chat\u00ADVerbindung", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
+			if(JOptionPane.showConfirmDialog(getGameMainFrame(), sInfoTest, "Fehler bei Chat\u00ADVerbindung", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
 			{
 				getGameMainFrame().dispose();
 				new GameMainFrame();
 			}
 		}
 	}
-
+	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	private static boolean hasSuccessfulChatConnection()
+	private boolean hasSuccessfulChatConnection()
 	{
-		if (Server.isConnected() && Client.hasIPsuccessfullySent() && Client.hasNetzworkConnection())
+		if (Server.isConnected() && Client.hasIPsuccessfullySent() && Client.hasNetzworkConnection() && ClientHandler.hasInitialized())
 		{
 			tfTextField.setEnabled(true);
 			jbTextSendenButton.setEnabled(true);
@@ -432,7 +433,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			if(!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
 			{
 				oClient.senden();
-				Server.esAllenWeitersagen(tfTextField.getText());
+				Server.allenWeitersagen(tfTextField.getText());
 			}			
 			
 			if(bSpielerAktiv)

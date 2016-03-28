@@ -15,7 +15,7 @@ public final class EigehendReader implements Runnable
 //				System.out.println("gelesen: " + sNachricht);
 				GameMainFrame.getChatverlaufTextarea().append(sNachricht + "\n");		
 			}
-		} 
+		}
 		catch(Exception exException) 
 		{
 			exException.printStackTrace();

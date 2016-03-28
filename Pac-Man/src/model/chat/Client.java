@@ -1,7 +1,6 @@
 package model.chat;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -32,10 +31,12 @@ public final class Client
 //			System.out.println("Netzwerkverbindung steht");
 //			GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n---Netzwerkverbindung steht---");
 			bNetzwerkSteht = true;
-		} 
-		catch(IOException ioException)
+		}
+		catch(Exception exException)
 		{
-			ioException.printStackTrace();
+			bIPgesendet = false;
+			bNetzwerkSteht = false;
+			exException.printStackTrace();
 		}
 	}
 	

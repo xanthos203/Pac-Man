@@ -9,7 +9,7 @@ import view.frames.GameWonFrame;
  * @author Thomas
  * @version 1.0
  */
-public class Spieler 
+public final class Spieler 
 {
 	private int iSpielerX = 0;
 	private int iSpielerY = 0;

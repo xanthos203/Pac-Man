@@ -6,8 +6,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import view.frames.GameMainFrame;
-
 public final class Server
 {
 	private static boolean bIsConnected = false;
@@ -35,13 +33,14 @@ public final class Server
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
 		}
-		catch(Exception exException)
+		catch (Exception exException)
 		{
+			bIsConnected = false;
 			exException.printStackTrace();
 		}
 	}
 
-	public static void esAllenWeitersagen(String sNachricht) 
+	public static void allenWeitersagen(String sNachricht) 
 	{
 		Iterator<PrintWriter> itIterator = alClientAusgabeStroeme.iterator();
 		
