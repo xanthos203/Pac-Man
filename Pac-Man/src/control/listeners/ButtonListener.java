@@ -54,10 +54,6 @@ public final class ButtonListener implements ActionListener
 		{
 			/*das aktuelle Fenster wird geschlossen*/
 			referenceFrame.dispose();
-			/*die Anzahl der Leben des Spielers wird auf 3 gesetzt*/
-			Spieler.setLeben(3);
-			/*der Punktestand des Spielers wird auf 0 gesetzt*/
-			Spieler.setPunktestand(0);
 			
 			/*=========Hauptfenster öffnen=========*/
 			new GameMainFrame();

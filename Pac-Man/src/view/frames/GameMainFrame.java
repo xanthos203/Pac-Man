@@ -2,6 +2,7 @@ package view.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -32,7 +33,6 @@ import model.chat.ClientHandler;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
-import model.main.TestClass;
 import view.characters.Geister;
 import view.characters.Spieler;
 
@@ -247,14 +247,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						bGeist = true;
 					}
 					//---------------------------------------------
-					if(alSpielfeldArrayList.get(iFeld).equals("3"))
+					if (alSpielfeldArrayList.get(iFeld).equals("3"))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aPanelArray[iZeile][iSpalte].add(lPacMan);
 						bPacMan = true;
 					}
-					//---------------------------------------------
-					if(alSpielfeldArrayList.get(iFeld).equals("4"))
+					// ---------------------------------------------
+					if (alSpielfeldArrayList.get(iFeld).equals("4"))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						/*hier gegebenfalls Quell-Code für Eating-Coins einfügen*/
@@ -275,6 +275,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void chatInformation()
 	{
 		String sInfoTest;
+		String sTitel;
+		int iOptionType;
+		int iMessageType;
+		int iOptionPane;
 		//-----------------------------------------------------------------------
 		if (hasSuccessfulChatConnection())
 		{
@@ -282,7 +286,15 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					  + "\n"
 					  + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
 			//---------------------------------
-			JOptionPane.showMessageDialog(getGameMainFrame(), sInfoTest, "Chat\u00ADInformation", JOptionPane.INFORMATION_MESSAGE);
+			sTitel = "Chat\u00ADInformation";
+			//---------------------------------
+			iOptionType = JOptionPane.OK_OPTION;
+			//---------------------------------
+			iMessageType = JOptionPane.INFORMATION_MESSAGE;
+			//---------------------------------
+			Object[] oOptionen = {"OK"};
+			//---------------------------------
+			iOptionPane = JOptionPane.showOptionDialog(this, sInfoTest, sTitel, iOptionType, iMessageType, null, oOptionen, oOptionen[0]);
 		}
 		//-----------------------------------------------------------------------
 		else
@@ -290,12 +302,28 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			sInfoTest = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
 					  + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
 					  + "\n"
-					  + "M\u00F6chten Sie das Spiel jetzt neu starten\u003F";
+					  + "M\u00F6chten Sie das Spiel jetzt neu starten oder beenden\u003F";
 			//---------------------------------
-			if(JOptionPane.showConfirmDialog(getGameMainFrame(), sInfoTest, "Fehler bei Chat\u00ADVerbindung", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION)
+			sTitel = "Fehler bei Chat\u00ADVerbindung";
+			//---------------------------------
+			iOptionType = JOptionPane.YES_NO_CANCEL_OPTION;
+			//---------------------------------
+			iMessageType = JOptionPane.WARNING_MESSAGE;
+			//---------------------------------
+			Object[] oOptionen = {"Neu starten", "Beenden", "Abbrechen"};
+			//---------------------------------
+			iOptionPane = JOptionPane.showOptionDialog(this, sInfoTest, sTitel, iOptionType, iMessageType, null, oOptionen, oOptionen[0]);
+			//=================================
+			if (iOptionPane == JOptionPane.YES_OPTION)
 			{
 				getGameMainFrame().dispose();
 				new GameMainFrame();
+			}
+			//=================================
+			if (iOptionPane == JOptionPane.NO_OPTION)
+			{
+				getGameMainFrame().dispose();
+				System.exit(0);
 			}
 		}
 	}
