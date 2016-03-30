@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -355,6 +356,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask
 	{
+		
 		public void run()
 		{			
 			if(!tfTextField.getText().isEmpty())
@@ -365,16 +367,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					Server.esAllenWeitersagen(tfTextField.getText());
 				}
 			}			
-			
+			/*
 			if(bSpielerAktiv)
-			{
-				/*
-				iGeisty = pGeist.getY();
-				iGeistx = pGeist.getX();
+			{ 
 				
 				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
 				int index = zufallsZahl.nextInt(8) + 1;
-				
+				/*
 				for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
 				{
 					switch(index)
@@ -389,6 +388,26 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
 					}
 				}
+				for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
+				{
+					for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
+					{
+						iFeld++;
+						if(alSpielfeldArrayList.size() > iFeld)
+						{
+							if(aPanelArray[iLayoutZeilen][iLayoutSpalten].getBackground() == Color.black)
+							{
+								
+							}
+							
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+				repaint();
 				
 				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
 				{
@@ -397,8 +416,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				
 				setBackground(Color.WHITE);
 				pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
-				pGeist.repaint();*/
-			}
+				pGeist.repaint();
+			}*/
 		}
 	}
 }
