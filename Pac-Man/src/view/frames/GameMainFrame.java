@@ -55,9 +55,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private static boolean bSpielerAktiv = false;
 	private static boolean bGeist = false;
-	private static boolean bPacMan = false;
-	private static boolean bClassicCoin = false;
-	private static boolean bEatingCoin = false;
 	
 	private static Spieler oSpieler = new Spieler();
 	
@@ -70,7 +67,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iGeistX;
 	private int iGeistY;
 	private int iFeld = -1;
-	private int iZaehler = 1;
+	private int iGeisterZaehler = 1;
+	private int iCCoinIndex = 0;
+	private int iECoinIndex = 0;
 	
 	private Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
 	private Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
@@ -80,13 +79,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
 	private Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
 	
+	private JLabel[] aClassicCoins = new JLabel[1000];
+	private JLabel[] aEatingCoins = new JLabel[500];
 	private JLabel lGreeny = new JLabel(oIconGreeny);
 	private JLabel lBlue = new JLabel(oIconBlue);
 	private JLabel lOrangy = new JLabel(oIconOrangy);
 	private JLabel lPinky = new JLabel(oIconPinky);
 	private JLabel lPacMan = new JLabel(oIconPacMan);
-	private JLabel lClassicCoin = new JLabel(oIconClassicCoin);
-	private JLabel lEatingCoin = new JLabel(oIconEatingCoin);
 	
 	private JPanel[][] aPanelArray = new JPanel[50][50];
 	private JPanel pGeist = new JPanel();
@@ -166,7 +165,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		add(pChatPanel, BorderLayout.WEST);
 		
 		tfTextField.setHorizontalAlignment(SwingConstants.LEADING);
-		tfTextField.setColumns(10);
 		tfTextField.setFont(defaultFont);
 		tfTextField.addKeyListener(new ChatNachrichtfeldListener());
 		tfTextField.addFocusListener(new ChatNachrichtfeldListener());
@@ -188,33 +186,51 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 
-	private void guiDarstellen(int iZeilenAnz, int iSpaltenAnz)
+	private void classicCoinsDarstellen(int iZeile, int iSpalte)
 	{
-		guiDarstellen(iZeilenAnz, iSpaltenAnz, Color.BLACK);
+		aClassicCoins[iCCoinIndex] = new JLabel(oIconClassicCoin);
+		aPanelArray[iZeile][iSpalte].add(aClassicCoins[iCCoinIndex]);
+		iCCoinIndex++;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
 
-	private void guiDarstellen(int iZeilenAnz, int iSpaltenAnz, Color cFarbe)
+	private void eatingCoinsDarstellen(int iZeile, int iSpalte)
 	{
-		aPanelArray[iZeilenAnz][iSpaltenAnz] = new JPanel();
-		aPanelArray[iZeilenAnz][iSpaltenAnz].addKeyListener(new SteuerungListener());
-		aPanelArray[iZeilenAnz][iSpaltenAnz].setBackground(cFarbe);
+		aEatingCoins[iECoinIndex] = new JLabel(oIconEatingCoin);
+		aPanelArray[iZeile][iSpalte].add(aEatingCoins[iECoinIndex]);
+		iECoinIndex++;
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+
+	private void guiDarstellen(int iZeile, int iSpalte)
+	{
+		guiDarstellen(iZeile, iSpalte, Color.BLACK);
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+
+	private void guiDarstellen(int iZeile, int iSpalte, Color cFarbe)
+	{
+		aPanelArray[iZeile][iSpalte] = new JPanel();
+		aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+		aPanelArray[iZeile][iSpalte].setBackground(cFarbe);
 		//-----------------------------------------------------------------------
 		if (bGeist)
 		{
-			switch (iZaehler)
+			switch (iGeisterZaehler)
 			{
-				case 1: aPanelArray[iZeilenAnz][iSpaltenAnz].add(lGreeny); break;
-				case 2:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lBlue); break;
-				case 3:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lOrangy); break;
-				case 4:	aPanelArray[iZeilenAnz][iSpaltenAnz].add(lPinky); break;
+				case 1: aPanelArray[iZeile][iSpalte].add(lGreeny); break;
+				case 2:	aPanelArray[iZeile][iSpalte].add(lBlue); break;
+				case 3:	aPanelArray[iZeile][iSpalte].add(lOrangy); break;
+				case 4:	aPanelArray[iZeile][iSpalte].add(lPinky); break;
 			}
-			iZaehler++;
+			iGeisterZaehler++;
 			bGeist = false;
 		}
 		//-----------------------------------------------------------------------
-		pSpielfeldPanel.add(aPanelArray[iZeilenAnz][iSpaltenAnz]);
+		pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -227,20 +243,20 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			{
 				iFeld++;
 				//-----------------------------------------------------------------------
-				if(alSpielfeldArrayList.size() > iFeld)
+				if (alSpielfeldArrayList.size() > iFeld)
 				{
-					if(alSpielfeldArrayList.get(iFeld).equals("0"))
+					if (alSpielfeldArrayList.get(iFeld).equals("0"))
 					{
 						guiDarstellen(iZeile, iSpalte);
-						bClassicCoin = true;
+						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if(alSpielfeldArrayList.get(iFeld).equals("1"))
+					if (alSpielfeldArrayList.get(iFeld).equals("1"))
 					{
 						guiDarstellen(iZeile, iSpalte, Color.BLUE);
 					}
 					//---------------------------------------------
-					if(alSpielfeldArrayList.get(iFeld).equals("2"))
+					if (alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						bGeist = true;
@@ -250,14 +266,23 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aPanelArray[iZeile][iSpalte].add(lPacMan);
-						bPacMan = true;
 					}
-					// ---------------------------------------------
+					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("4"))
 					{
 						guiDarstellen(iZeile, iSpalte);
-						/*hier gegebenfalls Quell-Code für Eating-Coins einfügen*/
-						bEatingCoin = true;
+						eatingCoinsDarstellen(iZeile, iSpalte);
+					}
+					//---------------------------------------------
+					if (alSpielfeldArrayList.get(iFeld).equals("5"))
+					{
+						guiDarstellen(iZeile, iSpalte);
+					}
+					//---------------------------------------------
+					if (alSpielfeldArrayList.get(iFeld).equals("6"))
+					{
+						guiDarstellen(iZeile, iSpalte);
+						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 				}
 				//-----------------------------------------------------------------------
