@@ -11,8 +11,8 @@ import view.frames.GameWonFrame;
  */
 public final class Spieler 
 {
-	private int iSpielerX = 0;
-	private int iSpielerY = 0;
+	private static int iSpielerX = 0;
+	private static int iSpielerY = 0;
 	private static int iLeben = 3;
 	private static double dPunktestand = 0;
 	
@@ -21,7 +21,7 @@ public final class Spieler
 	 * @param iRaufY
 	 * @return
 	 */
-	public int SpielerRaufBewegen(int iRaufY)
+	public static int SpielerRaufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
 		if((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
@@ -39,7 +39,7 @@ public final class Spieler
 	 * 
 	 * Diese Methode bewegt den Spieler hinauf allerdings nur, wenn der Spierler den Oberenerand noch nicht erreicht hat.
 	 */
-	public int SpielerRunterBewegen(int iRunterY)
+	public static int SpielerRunterBewegen(int iRunterY)
 	{
 		//  Hier wird überprüft ober der Spieler noch weiter hinauf bewegt werden darf
 		if(iRunterY > 16)
@@ -58,7 +58,7 @@ public final class Spieler
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public int SpielerRechtsBewegen(int iRunterX)
+	public static int SpielerRechtsBewegen(int iRunterX)
 	{
 		
 //		// Hier wird nur überprüft, ob der Spieler noch weiter nach rechts fahren darf
@@ -92,7 +92,7 @@ public final class Spieler
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public int SpielerLinksBewegen(int iRunterX)
+	public static int SpielerLinksBewegen(int iRunterX)
 	{
 //		// Hier wird abegefragt, ob sich der Spieler am Rande des Spielfedes befindet oder nicht
 //		if(iRunterX > /*Hier wird abgefragt ob der Spieler den Rand des Pandels erreicht hat, in Koordinaten anggegeben*/)
