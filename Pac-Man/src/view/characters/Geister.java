@@ -6,14 +6,14 @@ import view.frames.GameMainFrame;
  * @author Thomas
  * @version 1.0
  */
-public class Geister 
+public final class Geister 
 {
 	private int iGeistX;
 	private int iGeistY;
 	
 	public int GeisterRaufBewegen(int iRaufY)
 	{
-		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getFrame().getContentPane().getBounds().getHeight())
+		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
 		{
 			iRaufY += 8;
 			iGeistY = iRaufY;
@@ -23,7 +23,7 @@ public class Geister
 //--------------------------------------------------------------------------------------------------------------------------
 	public int GeisterRunterBewegen(int iRunterY)
 	{ 
-		if(iRunterY >+ 16) 
+		if(iRunterY >+ 16)
 		{
 			iRunterY -= 8;
 			iGeistY = iRunterY;
@@ -33,10 +33,10 @@ public class Geister
 //-------------------------------------------------------------------------------------------------------------------------	
 	public int GeisterRechtsBewegen(int iRunterX)
 	{
-//		if(iRunterx+CSpielFrame.getSpieler().getHeight()<CSpielFrame.getFrame().getContentPane().getBounds().getWidth()-/*Randkoordinaten des JPanels angeben*/)
+//		if(iRunterX + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth() - /*Randkoordinaten des JPanels angeben*/)
 //		{
-//			iRunterx+=8;
-//			iGeistx = iRunterx;
+//			iRunterX += 8;
+//			iGeistX = iRunterX;
 //		}
 		return iGeistX;
 	}

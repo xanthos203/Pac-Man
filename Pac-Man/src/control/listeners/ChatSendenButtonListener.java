@@ -9,7 +9,7 @@ import view.frames.GameMainFrame;
  * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
-public class ChatSendenButtonListener implements ActionListener
+public final class ChatSendenButtonListener implements ActionListener
 {
 	/**Die <i>actionPerformed</i>-Methode fängt den <b>Knopfdruck</b> auf und verarbeitet diesen.
 	 * @param aeEvent Knopfdruck*/
@@ -19,6 +19,6 @@ public class ChatSendenButtonListener implements ActionListener
 		/*der im Textfeld eingegebene Text wird im Chatverlauf angezeigt*/
 		GameMainFrame.chattextAnzeigen();
 		/*der Fokus (Cursor) wird zurück auf das Textfeld gesetzt*/
-		GameMainFrame.getTextfeld().requestFocus();
+		GameMainFrame.getChatnachrichtTextfeld().requestFocus();
 	}
 }

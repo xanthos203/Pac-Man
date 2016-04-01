@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 
+import view.characters.Spieler;
 import view.frames.*;
 
 /**Diese <i>Listener</i>-Klasse dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
@@ -12,14 +13,14 @@ import view.frames.*;
  * @version 1.0 */
 public final class ButtonListener implements ActionListener
 {
-	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
-	private JDialog referenceFrame;
-	/**Die <i>taskOfButton</i> bestimmt, welche <b>Aktion</b> der Button ausführen soll.*/
-	private int taskOfButton;
-	/**Die Konstante <b><i>EXIT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, geschlossen werden soll.*/
-	public static final int EXIT_GAME = 0;
 	/**Die Konstante <b><i>REPEAT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, nochmal geöffnet werden soll.*/
 	public static final int REPEAT_GAME = 1;
+	/**Die Konstante <b><i>EXIT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, geschlossen werden soll.*/
+	public static final int EXIT_GAME 	= 0;
+	/**Die <i>taskOfButton</i> bestimmt, welche <b>Aktion</b> der Button ausführen soll.*/
+	private int 	taskOfButton;
+	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
+	private JDialog referenceFrame;
 	
 	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> sich der Listener bezieht.<br>
 	 * Außerdem wird festgelegt, <b>welche Aktion</b> der gedrückte Button ausführen soll.
@@ -53,9 +54,9 @@ public final class ButtonListener implements ActionListener
 		{
 			/*das aktuelle Fenster wird geschlossen*/
 			referenceFrame.dispose();
-
+			
 			/*=========Hauptfenster öffnen=========*/
-			GameMainFrame oSpielFrame = new GameMainFrame();
+			new GameMainFrame();
 		}
 	}
 }

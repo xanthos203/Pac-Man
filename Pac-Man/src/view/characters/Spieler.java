@@ -1,36 +1,20 @@
 package view.characters;
 
+import view.frames.GameLostFrame;
 import view.frames.GameMainFrame;
+import view.frames.GameWonFrame;
 
 /**
  * 
  * @author Thomas
  * @version 1.0
  */
-public class Spieler 
+public final class Spieler 
 {
 	private int iSpielerX = 0;
 	private int iSpielerY = 0;
-	private int iLeben = 3;		// <-- Testwert
-	private double dPunktestand = 999999999999999L; // <-- Testwert
-	
-	public int getLeben()
-	{
-		return iLeben;
-	}
-	
-	public void setPunktestand(double dPunktestand)
-	{
-		if(dPunktestand > 999999999999999L)
-			dPunktestand = 999999999999999L;
-		else
-			this.dPunktestand = dPunktestand;
-	}
-	
-	public double getPunktestand()
-	{
-		return dPunktestand;
-	}
+	private static int iLeben = 3;
+	private static double dPunktestand = 0;
 	
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
@@ -40,14 +24,13 @@ public class Spieler
 	public int SpielerRaufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getFrame().getContentPane().getBounds().getHeight()) - 18))
+		if((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
 			iRaufY += 4;
 			iSpielerY = iRaufY;
 		}
 		return iSpielerY;
 	}
-	
 //-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * 
@@ -79,26 +62,25 @@ public class Spieler
 	{
 		
 //		// Hier wird nur überprüft, ob der Spieler noch weiter nach rechts fahren darf
-//		if((iRunterx+CSpielFrame.getSpieler().getHeight())+/*Hier wierd die Dicke des Pandels angegeben*/<CSpielFrame.getFrame().getContentPane().getBounds().getWidth())
+//		if((iRunterX + GameMainFrame.getSpieler().getHeight()) + /*Hier wierd die Dicke des Pandels angegeben*/ < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth())
 //		{
-//			iRunterx+=4;
-//			iSpielerx = iRunterx;
+//			iRunterX += 4;
+//			iSpielerX = iRunterX;
 //		}
 //		
 //		// Hier wird überprüft, ob der Spieler sich zwischen den Koordinaten für den Seitenwechsel befindet oder nicht
-//		if((iRunterx</*Hier wierd die Dicke des Pandels angegeben*/+CSpielFrame.getFrame().getContentPane().getBounds().getWidth())&&(((iSpielery>/*Hier wird eine koordinate anggegben für den Seiten wechsel des Spielers*/) && (iSpielery</*Hier wird eine koordinate anggegben für den Seiten wechsel des Spielers*/))))
+//		if((iRunterX < /*Hier wierd die Dicke des Pandels angegeben*/ + GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth()) && (((iSpielery > /*Hier wird eine koordinate anggegben für den Seiten wechsel des Spielers*/) && (iSpielery < /*Hier wird eine koordinate anggegben für den Seiten wechsel des Spielers*/))))
 //		{
-//			iRunterx+=4;
+//			iRunterX += 4;
 //			
 //			// Hier wird nur überprüft, ob der Spieler den linken aüßeren Fensterrand erreicht, wenn ja wird er auf die anderere Spielfeldseite gesetzt
-//			if((iRunterx)>=CSpielFrame.getFrame().getContentPane().getBounds().getWidth())
+//			if((iRunterX) >= GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth())
 //			{
-//				iRunterx = 0;
+//				iRunterX = 0;
 //			}
 //			
-//			iSpielerx = iRunterx;
+//			iSpielerX = iRunterX;
 //		}
-		
 		return iSpielerX;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
@@ -113,25 +95,73 @@ public class Spieler
 	public int SpielerLinksBewegen(int iRunterX)
 	{
 //		// Hier wird abegefragt, ob sich der Spieler am Rande des Spielfedes befindet oder nicht
-//		if(iRunterx>/*Hier wird abgefragt ob der Spieler den Rand des Pandels erreicht hat, in Koordinaten anggegeben*/)
+//		if(iRunterX > /*Hier wird abgefragt ob der Spieler den Rand des Pandels erreicht hat, in Koordinaten anggegeben*/)
 //		{
-//			iRunterx-=4;
-//			iSpielerx=iRunterx;
+//			iRunterX -= 4;
+//			iSpielerX = iRunterX;
 //		}
 //		
 //		// Hier wird überprüft ob sich der Spieler zwischen den Koordinaten befinden wo er die Wand durch fahren darf um die Seite zu wechseln
-//		if((iRunterx</*das selbe wie in zeile 68*/)&& ((iSpielery>/*selbe wie in Zeile 51*/) && (iSpielery/*Selbe wie in Zeile 51*/)))
+//		if((iRunterx < /*das selbe wie in zeile 68*/) && ((iSpielery > /*selbe wie in Zeile 51*/) && (iSpielery/*Selbe wie in Zeile 51*/)))
 //		{
-//			iRunterx -=4;
+//			iRunterX -=4;
 //			
 //			// Hier wird nur überprüft, ob der Spieler den linken aüßeren Fensterrand erreicht, wenn ja wird er auf die anderere Spielfeldseite gesetzt
-//			if(iRunterx<=0)
+//			if(iRunterX <= 0)
 //			{
-//				iRunterx = (int) CSpielFrame.getFrame().getContentPane().getBounds().getWidth();	
+//				iRunterX = (int) GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth();	
 //			}
 //			
-//			iSpielerx = iRunterx;
+//			iSpielerX = iRunterX;
 //		}
 		return iSpielerX;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static void setLeben(int iLeben)
+	{
+		if(iLeben <= 0)
+		{
+			GameMainFrame.getGameMainFrame().dispose();
+			new GameLostFrame();
+		}
+		if(iLeben >= 3)
+		{
+			Spieler.iLeben = 3;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+		else
+		{
+			Spieler.iLeben = iLeben;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static void setPunktestand(double dPunktestand)
+	{
+		if((dPunktestand >= 999999999999999L) && (iLeben > 0))
+		{
+			GameMainFrame.getGameMainFrame().dispose();
+			new GameWonFrame();
+		}
+		if(dPunktestand <= 0)
+		{
+			Spieler.dPunktestand = 0;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+		else
+		{
+			Spieler.dPunktestand = dPunktestand;
+			GameMainFrame.setSpielstandlabelText(getLeben(), getPunktestand());
+		}
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static int getLeben()
+	{
+		return iLeben;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public static double getPunktestand()
+	{
+		return dPunktestand;
 	}
 }

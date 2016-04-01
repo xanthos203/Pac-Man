@@ -23,24 +23,20 @@ public final class Tools
 	 * In dieser Methode wird Mithilfe des BufferedReaders eingelesen und verwendet.
 	 * 
 	 */
-	public ArrayList<String> readGuiCSV(String sPath) 
+	public static ArrayList<String> readGuiCSV(String sPath) 
 	{
 		ArrayList<String> alLog = new ArrayList<String>();
 		
-		try 
+		// Hier wird der BufferedReader erzeugt und die einzulesende Datei wird hinzugefügt.
+		try (BufferedReader brReader = new BufferedReader(new FileReader(sPath)))
 		{
-			// Hier wird der BufferedReader erzeugt und die einzulesende Datei wird Hinzugefügt.
-			BufferedReader brReader = new BufferedReader(new FileReader(sPath));
 			String sZeile = null;
-			
 			// Hier wird mit readLine die entsprechende Zeile eingelesen und der Variable zeile zugewuiesen.
 			while ((sZeile = brReader.readLine()) != null) 
 			{
-				// Hier wird die Zeile der ArrayList log geaddet
+				// Hier wird die Zeile der ArrayList alLog geaddet
 				alLog.add(sZeile);
 			}
-			// Dies Beendet das Einlesen der Datei
-			brReader.close();
 		}
 		// Dies wird aufgerufen, wenn das try nicht ausgeführt werden kann
 		catch (IOException ioException) 
@@ -49,7 +45,7 @@ public final class Tools
 			ioException.printStackTrace();
 		}
 		
-		// wird die ArrayList log zurückgegeben
+		// wird die ArrayList alLog zurückgegeben
 		return alLog;
 	}
 }
