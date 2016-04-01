@@ -8,10 +8,10 @@ import view.frames.GameMainFrame;
  */
 public final class Geister 
 {
-	private int iGeistX;
-	private int iGeistY;
+	private static int iGeistX;
+	private static int iGeistY;
 	
-	public int GeisterRaufBewegen(int iRaufY)
+	public static int GeisterRaufBewegen(int iRaufY)
 	{
 		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
 		{
@@ -21,7 +21,7 @@ public final class Geister
 		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public int GeisterRunterBewegen(int iRunterY)
+	public static int GeisterRunterBewegen(int iRunterY)
 	{ 
 		if(iRunterY >+ 16)
 		{
@@ -31,7 +31,7 @@ public final class Geister
 		return iGeistY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	public int GeisterRechtsBewegen(int iRunterX)
+	public static int GeisterRechtsBewegen(int iRunterX)
 	{
 //		if(iRunterX + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth() - /*Randkoordinaten des JPanels angeben*/)
 //		{
@@ -41,7 +41,7 @@ public final class Geister
 		return iGeistX;
 	}
 //------------------------------------------------------------------------------------------------------------------------	
-	public int GeisterLinksBewegen(int iRunterX)
+	public static int GeisterLinksBewegen(int iRunterX)
 	{
 		if(iRunterX > 16)
 		{
@@ -51,12 +51,12 @@ public final class Geister
 		return iGeistX;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public int getPosY() 
+	public static int getPosY() 
 	{
 		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public int getPosX() 
+	public static int getPosX() 
 	{
 		return iGeistX;
 	}

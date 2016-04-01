@@ -32,7 +32,6 @@ import model.chat.ClientHandler;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
-import view.characters.Geister;
 import view.characters.Spieler;
 
 /**
@@ -55,10 +54,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private static boolean bSpielerAktiv = false;
 	private static boolean bGeist = false;
-	
-	private static Spieler oSpieler = new Spieler();
-	
-	private Geister oGeist = new Geister();
 	
 	private Timer oTimer = new Timer();
 	
@@ -375,7 +370,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRunter()
 	{
 		iSpielerY = pSpieler.getY();
-		iSpielerY = oSpieler.SpielerRaufBewegen(iSpielerY);
+		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
 		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
@@ -385,7 +380,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRauf()
 	{
 		iSpielerY = pSpieler.getY();
-		iSpielerY = oSpieler.SpielerRunterBewegen(iSpielerY);
+		iSpielerY = Spieler.SpielerRunterBewegen(iSpielerY);
 		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
@@ -395,7 +390,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerLinks()
 	{
 		iSpielerX = pSpieler.getX();
-		iSpielerX = oSpieler.SpielerLinksBewegen(iSpielerX);
+		iSpielerX = Spieler.SpielerLinksBewegen(iSpielerX);
 		pSpieler.setLocation(iSpielerX, pSpieler.getY());
 		bSpielerAktiv = true;
 	}
@@ -405,7 +400,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRechts()
 	{
 		iSpielerX = pSpieler.getX();
-		iSpielerX = oSpieler.SpielerRechtsBewegen(iSpielerX);
+		iSpielerX = Spieler.SpielerRechtsBewegen(iSpielerX);
 		pSpieler.setLocation(iSpielerX, pSpieler.getY());
 		bSpielerAktiv = true;
 	}
