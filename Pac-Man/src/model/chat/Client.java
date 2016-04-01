@@ -16,6 +16,7 @@ public final class Client
 	private static BufferedReader brReader;
 	private PrintWriter pwWriter;
 	
+	@SuppressWarnings("resource")
 	public void netzwerkEinrichten()
 	{  
 		try
@@ -24,12 +25,8 @@ public final class Client
 			InputStreamReader isrStreamReader = new InputStreamReader(soSocket.getInputStream());
 			brReader = new BufferedReader(isrStreamReader);
 			pwWriter = new PrintWriter(soSocket.getOutputStream());
-//			System.out.println("IP-Adresse gesendet");
-//			GameMainFrame.getChatverlaufTextarea().setText("------IP-Adresse gesendet------");
 			bIPgesendet = true;
 			new PrintWriter(soSocket.getOutputStream());
-//			System.out.println("Netzwerkverbindung steht");
-//			GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n---Netzwerkverbindung steht---");
 			bNetzwerkSteht = true;
 		}
 		catch(Exception exException)
@@ -52,8 +49,6 @@ public final class Client
 			else
 			{
 				JOptionPane.showMessageDialog(null, "Nichts zum Austauschen\u0021", "Achtung", JOptionPane.WARNING_MESSAGE);
-//				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n----Nichts zum austauschen!----");
-//				System.out.println("Nichts zum austauschen!");
 			}
 			
 		}

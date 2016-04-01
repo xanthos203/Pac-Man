@@ -11,6 +11,7 @@ public final class Server
 	private static boolean bIsConnected = false;
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
 	
+	@SuppressWarnings("resource")
 	public static void serverStarten()
 	{
 		alClientAusgabeStroeme = new ArrayList<PrintWriter>();
@@ -28,8 +29,6 @@ public final class Server
 				thThread.start();
 				
 				bIsConnected = true;
-//				GameMainFrame.getChatverlaufTextarea().setText(GameMainFrame.getChatverlaufTextarea().getText() + "\n\n+++habe eine Verbindung+++\n\n");
-//				System.out.println("habe eine Verbindung");
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
 		}

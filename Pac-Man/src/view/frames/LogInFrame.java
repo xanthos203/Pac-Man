@@ -5,7 +5,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
+
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -128,6 +130,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		
 		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints gbc_pacmanLabel = new GridBagConstraints();
+		gbc_pacmanLabel.insets = new Insets(0, 0, 5, 0);
 		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der X-Achse befindet*/
 		gbc_pacmanLabel.gridx = 0;
 		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der Y-Achse befindet*/
@@ -141,6 +144,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		
 		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints gbc_eingabePanel = new GridBagConstraints();
+		gbc_eingabePanel.insets = new Insets(0, 0, 5, 0);
 		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der X-Achse befindet*/
 		gbc_eingabePanel.gridx = 0;
 		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der Y-Achse befindet*/
