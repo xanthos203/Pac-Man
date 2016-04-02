@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
  *
  */
-public final class GuiDB 
+public class GuiDB 
 {
 	private ArrayList<String> alZeilenString = new ArrayList<String>();
 	

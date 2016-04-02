@@ -88,7 +88,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private JPanel pChatPanel = new JPanel();
 	private JPanel pChatKomponentenPanel = new JPanel();
 	
-	private GuiDB oLogDB = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
+	private GuiDB oGuiDB = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	
 	private Server oServer;
 	private Client oClient = new Client();
@@ -127,7 +127,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		Thread readerThread = new Thread(new EigehendReader());
 		readerThread.start();
 		
-		alSpielfeldArrayList = oLogDB.getArrayList();
+		alSpielfeldArrayList = oGuiDB.getArrayList();
 		
 		GridLayout oSpielFeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
 		pSpielfeldPanel.setLayout(oSpielFeldLayout);
