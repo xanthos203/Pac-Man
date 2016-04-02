@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
  *
  */
-public final class LogDB 
+public final class GuiDB 
 {
 	private ArrayList<String> alZeilenString = new ArrayList<String>();
 	
@@ -22,13 +22,13 @@ public final class LogDB
 	 * Die Strings werden dem entsprechendem Konstruktor in der Klasse CLogzeile übergeben.
 	 * 
 	 */
-	public LogDB(String sPath) 
+	public GuiDB(String sPath) 
 	{
 		//ArrayList der Logzeilen als Strings besorgen
-		ArrayList<String> alLogString = Tools.readGuiCSV(sPath);
+		ArrayList<String> alGuiString = Tools.readGuiCSV(sPath);
 		
 		//Zeilenobjekte aus Stringzeilen erzeugen und der ArrayList hinzufügen
-		for (String sZeile : alLogString) 
+		for (String sZeile : alGuiString) 
 		{	
 			// Hier werden die Texteile "erzeugt" da diese mit dem Befehl split() aufgespalten werden
 			String[] sTeile = sZeile.split(";");
@@ -37,7 +37,7 @@ public final class LogDB
 			if (sTeile.length >= 6) 
 			{
 				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
-				for(int i = 0; i < sTeile.length - 1; i++)
+				for (int i = 0; i < sTeile.length - 1; i++)
 				{
 					alZeilenString.add(sTeile[i]);
 				}				

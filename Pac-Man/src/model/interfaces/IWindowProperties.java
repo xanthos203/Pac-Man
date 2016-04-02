@@ -14,7 +14,7 @@ public interface IWindowProperties
 	/**In <i>guiColumns</i> wird die <b>Anzahl der Spalten</b>, die für die GUI notwendig bzw. zulässig ist, gespeichert.*/
 	int   GUI_COLUMNS	   = 33;
 	/**In <i>frameWidth</i> wird die <b>Breite des Fensters</b> gespeichert.*/
-	int   FRAME_WIDTH	   = 1091;
+	int   FRAME_WIDTH	   = 1090;
 	/**In <i>frameHeight</i> wird die <b>Höhe des Fensters</b> gespeichert.*/
 	int   FRAME_HEIGHT	   = 739;
 	/**In <i>screenWidth</i> wird die <b>Breite des</b> aktuell verwendeten <b>Bildschirms</b> gespeichert.*/

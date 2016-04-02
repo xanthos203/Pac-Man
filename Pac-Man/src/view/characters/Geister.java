@@ -13,7 +13,7 @@ public final class Geister
 	
 	public static int GeisterRaufBewegen(int iRaufY)
 	{
-		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
+		if (iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
 		{
 			iRaufY += 8;
 			iGeistY = iRaufY;
@@ -23,7 +23,7 @@ public final class Geister
 //--------------------------------------------------------------------------------------------------------------------------
 	public static int GeisterRunterBewegen(int iRunterY)
 	{ 
-		if(iRunterY >+ 16)
+		if (iRunterY > +16)
 		{
 			iRunterY -= 8;
 			iGeistY = iRunterY;
@@ -43,7 +43,7 @@ public final class Geister
 //------------------------------------------------------------------------------------------------------------------------	
 	public static int GeisterLinksBewegen(int iRunterX)
 	{
-		if(iRunterX > 16)
+		if (iRunterX > 16)
 		{
 			iRunterX -= 8;
 			iGeistX = iRunterX;

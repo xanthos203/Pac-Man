@@ -25,7 +25,7 @@ public final class Tools
 	 */
 	public static ArrayList<String> readGuiCSV(String sPath) 
 	{
-		ArrayList<String> alLog = new ArrayList<String>();
+		ArrayList<String> alGui = new ArrayList<String>();
 		
 		// Hier wird der BufferedReader erzeugt und die einzulesende Datei wird hinzugefügt.
 		try (BufferedReader brReader = new BufferedReader(new FileReader(sPath)))
@@ -35,7 +35,7 @@ public final class Tools
 			while ((sZeile = brReader.readLine()) != null) 
 			{
 				// Hier wird die Zeile der ArrayList alLog geaddet
-				alLog.add(sZeile);
+				alGui.add(sZeile);
 			}
 		}
 		// Dies wird aufgerufen, wenn das try nicht ausgeführt werden kann
@@ -46,6 +46,6 @@ public final class Tools
 		}
 		
 		// wird die ArrayList alLog zurückgegeben
-		return alLog;
+		return alGui;
 	}
 }
