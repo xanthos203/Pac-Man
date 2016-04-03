@@ -43,7 +43,8 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
-	private static JFrame jfFrame;
+	private static GameMainFrame oGameMainFrame;
+	
 	private static JTextArea taChatverlaufTextarea = new JTextArea();
 	private static JTextField tfChatnachrichtTextfeld = new JTextField("Nachricht eingeben");
 	private static JPanel pSpieler = new JPanel();
@@ -107,7 +108,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void initialize()
 	{
-		jfFrame = this;
+		oGameMainFrame = this;
 		
 		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		
@@ -521,7 +522,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 	public static GameMainFrame getGameMainFrame()
 	{
-		return (GameMainFrame) jfFrame;
+		return oGameMainFrame;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
