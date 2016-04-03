@@ -75,8 +75,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
 	private Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
 	
-	private JLabel[] aClassicCoins = new JLabel[1000];
-	private JLabel[] aEatingCoins = new JLabel[500];
+	private JLabel[] aClassicCoins = new JLabel[2500];
+	private JLabel[] aEatingCoins = new JLabel[1250];
 	private JLabel lGreeny = new JLabel(oIconGreeny);
 	private JLabel lBlue = new JLabel(oIconBlue);
 	private JLabel lOrangy = new JLabel(oIconOrangy);
@@ -110,7 +110,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		oGameMainFrame = this;
 		
-		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
+		Font foDefaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		
 		setTitle("Pac-Man");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -125,13 +125,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		oClient.netzwerkEinrichten();
 		
-		Thread readerThread = new Thread(new EigehendReader());
-		readerThread.start();
+		Thread thReaderThread = new Thread(new EigehendReader());
+		thReaderThread.start();
 		
 		alSpielfeldArrayList = oGuiDB.getArrayList();
 		
-		GridLayout oSpielFeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
-		pSpielfeldPanel.setLayout(oSpielFeldLayout);
+		GridLayout oSpielfeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
+		pSpielfeldPanel.setLayout(oSpielfeldLayout);
 		pSpielfeldPanel.addKeyListener(new SteuerungListener());
 		
 		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -145,17 +145,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		taChatverlaufTextarea.setEditable(false);
 		taChatverlaufTextarea.setLineWrap(true);
 		taChatverlaufTextarea.setWrapStyleWord(true);
-		taChatverlaufTextarea.setFont(defaultFont);
+		taChatverlaufTextarea.setFont(foDefaultFont);
 		
-		JScrollPane scrollPane = new JScrollPane(taChatverlaufTextarea);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane jspScrollPane = new JScrollPane(taChatverlaufTextarea);
+		jspScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		jspScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		pChatKomponentenPanel.add(tfChatnachrichtTextfeld);
 		pChatKomponentenPanel.add(jbTextSendenButton);
 
 		pChatPanel.setLayout(new BorderLayout());
-		pChatPanel.add(scrollPane, BorderLayout.CENTER);
+		pChatPanel.add(jspScrollPane, BorderLayout.CENTER);
 		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 		
 		add(lSpielstandlabel, BorderLayout.NORTH);
@@ -163,7 +163,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		add(pChatPanel, BorderLayout.WEST);
 		
 		tfChatnachrichtTextfeld.setHorizontalAlignment(SwingConstants.LEADING);
-		tfChatnachrichtTextfeld.setFont(defaultFont);
+		tfChatnachrichtTextfeld.setFont(foDefaultFont);
 		tfChatnachrichtTextfeld.addKeyListener(new ChatNachrichtfeldListener());
 		tfChatnachrichtTextfeld.addFocusListener(new ChatNachrichtfeldListener());
 		
@@ -293,7 +293,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("5"))
 					{
-						guiDarstellen(iZeile, iSpalte);
+						guiDarstellen(iZeile, iSpalte, Color.WHITE);
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("6"))
@@ -318,57 +318,50 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void chatInformation()
 	{
-		Component cParentComponent;
-		String sInfoTest;
-		String sTitel;
+		Component cParentComponent = getGameMainFrame();
+		String sMessageText;
+		String sTitle;
 		int iOptionType;
 		int iMessageType;
-		Icon icIcon;
+		Icon icIcon = null;
+		Object[] oOptions;
 		int iOptionPane;
 		//-----------------------------------------------------------------------
 		if (hasSuccessfulChatConnection())
 		{
-			cParentComponent = getGameMainFrame();
+			sMessageText = "Der Chat wurde erfolgreich eingerichtet\u0021\n"
+						 + "\n"
+						 + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
 			//---------------------------------
-			sInfoTest = "Der Chat wurde erfolgreich eingerichtet\u0021\n"
-					  + "\n"
-					  + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
-			//---------------------------------
-			sTitel = "Chat\u00ADInformation";
+			sTitle = "Chat\u00ADInformation";
 			//---------------------------------
 			iOptionType = JOptionPane.OK_OPTION;
 			//---------------------------------
 			iMessageType = JOptionPane.INFORMATION_MESSAGE;
 			//---------------------------------
-			icIcon = null;
+			oOptions = new Object[] {"OK"};
 			//---------------------------------
-			Object[] oOptionen = {"OK"};
-			//---------------------------------
-			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sInfoTest, sTitel, iOptionType, iMessageType,
-					icIcon, oOptionen, oOptionen[0]);
+			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
+					iMessageType, icIcon, oOptions, oOptions[0]);
 		}
 		//-----------------------------------------------------------------------
 		else
 		{
-			cParentComponent = getGameMainFrame();
+			sMessageText = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
+						 + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
+						 + "\n"
+						 + "M\u00F6chten Sie das Spiel jetzt neu starten oder beenden\u003F";
 			//---------------------------------
-			sInfoTest = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
-					  + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
-					  + "\n"
-					  + "M\u00F6chten Sie das Spiel jetzt neu starten oder beenden\u003F";
-			//---------------------------------
-			sTitel = "Fehler bei Chat\u00ADVerbindung";
+			sTitle = "Fehler bei Chat\u00ADVerbindung";
 			//---------------------------------
 			iOptionType = JOptionPane.YES_NO_CANCEL_OPTION;
 			//---------------------------------
 			iMessageType = JOptionPane.WARNING_MESSAGE;
 			//---------------------------------
-			icIcon = null;
+			oOptions = new Object[] {"Neu starten", "Beenden", "Abbrechen"};
 			//---------------------------------
-			Object[] oOptionen = {"Neu starten", "Beenden", "Abbrechen"};
-			//---------------------------------
-			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sInfoTest, sTitel, iOptionType, iMessageType,
-					icIcon, oOptionen, oOptionen[0]);
+			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
+					iMessageType, icIcon, oOptions, oOptions[0]);
 			//=================================
 			if (iOptionPane == JOptionPane.YES_OPTION)
 			{
@@ -398,12 +391,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			return true;
 		}
 		//-----------------------------------------------------------------------
-		else
-		{
-			tfChatnachrichtTextfeld.setEnabled(false);
-			jbTextSendenButton.setEnabled(false);
-			return false;
-		}
+		tfChatnachrichtTextfeld.setEnabled(false);
+		jbTextSendenButton.setEnabled(false);
+		return false;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -497,7 +487,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				+ String.format("%,.0f", Spieler.getPunktestand());
 	}
 
-	//-------------------------------------------------------------------------------------------------------------------
+	// -------------------------------------------------------------------------------------------------------------------
 	
 	public static JTextField getChatnachrichtTextfeld()
 	{

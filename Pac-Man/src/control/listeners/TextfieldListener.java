@@ -50,7 +50,7 @@ public final class TextfieldListener implements KeyListener
 				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als 21 Zeichen ist*/
+			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als maxZeichenLaenge ist*/
 			if (LogInFrame.getUsernameFeld().getText().contains(" ") && (LogInFrame.getUsernameFeld().getText().length() < maxZeichenLaenge))
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
@@ -61,7 +61,7 @@ public final class TextfieldListener implements KeyListener
 				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text länger als 20 Zeichen ist*/
+			/*wird ausgeführt, wenn der eingegebene Text länger als maxZeichenLaenge ist*/
 			if (LogInFrame.getUsernameFeld().getText().length() > maxZeichenLaenge)
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
@@ -72,13 +72,13 @@ public final class TextfieldListener implements KeyListener
 				/*das Programm kehrt wieder zum Fenster zurück*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text kürzer als 21 Zeichen ist*/
+			/*wird ausgeführt, wenn der eingegebene Text kürzer als maxZeichenLaenge ist*/
 			if (LogInFrame.getUsernameFeld().getText().length() < maxZeichenLaenge)
 			{
 				/*diese Schleife läuft so oft durch, so lang wie das sonderzeichen-Array ist*/
 				for (int i = 0; i < sonderzeichen.length; i++)
 				{
-					/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
+					/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als maxZeichenLaenge ist*/
 					if (LogInFrame.getUsernameFeld().getText().contains(sonderzeichen[i]))
 					{
 						/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
@@ -94,7 +94,7 @@ public final class TextfieldListener implements KeyListener
 			/*wird ausgeführt, wenn keine der oben stehenden Bedingungen zutrifft*/
 			for (int i = 0; i < sonderzeichen.length;)
 			{
-				/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als 21 Zeichen ist*/
+				/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als maxZeichenLaenge ist*/
 				if (!LogInFrame.getUsernameFeld().getText().contains(sonderzeichen[i]))
 				{
 					/*der eingegebene Spielername wird gespeichert*/
