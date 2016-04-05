@@ -325,6 +325,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		int iMessageType;
 		Icon icIcon = null;
 		Object[] oOptions;
+		Object oInitialValue;
 		int iOptionPane;
 		//-----------------------------------------------------------------------
 		if (hasSuccessfulChatConnection())
@@ -341,8 +342,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			//---------------------------------
 			oOptions = new Object[] {"OK"};
 			//---------------------------------
+			oInitialValue = oOptions[0];
+			//---------------------------------
 			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
-					iMessageType, icIcon, oOptions, oOptions[0]);
+					iMessageType, icIcon, oOptions, oInitialValue);
 		}
 		//-----------------------------------------------------------------------
 		else
@@ -360,8 +363,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			//---------------------------------
 			oOptions = new Object[] {"Neu starten", "Beenden", "Abbrechen"};
 			//---------------------------------
+			oInitialValue = oOptions[0];
+			//---------------------------------
 			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
-					iMessageType, icIcon, oOptions, oOptions[0]);
+					iMessageType, icIcon, oOptions, oInitialValue);
 			//=================================
 			if (iOptionPane == JOptionPane.YES_OPTION)
 			{
@@ -456,7 +461,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		//---------------------------------------------------------------------------
 		if (!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben"))
 		{
-			if(taChatverlaufTextarea.getText().isEmpty())
+			if (taChatverlaufTextarea.getText().isEmpty())
 			{
 				taChatverlaufTextarea.setText(message);
 				tfChatnachrichtTextfeld.setText(null);
@@ -527,15 +532,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		public void run()
 		{			
-			if(!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben"))
+			if (!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben"))
 			{
 				oClient.senden();
 				Server.allenWeitersagen(tfChatnachrichtTextfeld.getText());
 			}			
 			/*
 			if(bSpielerAktiv)
-			{ 
-				
+			{
 				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
 				int index = zufallsZahl.nextInt(8) + 1;
 				
@@ -581,7 +585,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				setBackground(Color.WHITE);
 				pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
 				pGeist.repaint();
-
 			}
 			*/
 		}
