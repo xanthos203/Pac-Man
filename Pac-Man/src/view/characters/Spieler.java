@@ -24,10 +24,14 @@ public final class Spieler
 	public static int SpielerRaufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if ((iRaufY + GameMainFrame.getSpieler().getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
+		if ((iRaufY + GameMainFrame.getSpieler()
+				.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			iRaufY += 4;
-			iSpielerY = iRaufY;
+//			if (GameMainFrame.getSpielfeld() == GameMainFrame.getGaengeFarbe())
+			{
+				iRaufY += 4;
+				iSpielerY = iRaufY;
+			}
 		}
 		return iSpielerY;
 	}

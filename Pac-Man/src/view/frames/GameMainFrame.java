@@ -51,6 +51,23 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static JLabel lSpielstandlabel = new JLabel();
 	private static JButton jbTextSendenButton = new JButton("SENDEN");
 	
+	private static JPanel[][] aSpielfeldArray = new JPanel[50][50];
+	private static Color cGaengeFarbe = Color.BLACK;
+
+	private static Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
+	private static Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
+	private static Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
+	private static Icon oIconPinky = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
+	private static Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
+	private static Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
+	private static Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
+
+	private static JLabel lGreeny = new JLabel(oIconGreeny);
+	private static JLabel lBlue = new JLabel(oIconBlue);
+	private static JLabel lOrangy = new JLabel(oIconOrangy);
+	private static JLabel lPinky = new JLabel(oIconPinky);
+	private static JLabel lPacMan = new JLabel(oIconPacMan);
+	
 	private static int iSpielerX;
 	private static int iSpielerY;
 	
@@ -67,23 +84,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iCcoinIndex = 0;
 	private int iEcoinIndex = 0;
 	
-	private Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
-	private Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
-	private Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
-	private Icon oIconPinky = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
-	private Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
-	private Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
-	private Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
-	
 	private JLabel[] aClassicCoins = new JLabel[2500];
 	private JLabel[] aEatingCoins = new JLabel[1250];
-	private JLabel lGreeny = new JLabel(oIconGreeny);
-	private JLabel lBlue = new JLabel(oIconBlue);
-	private JLabel lOrangy = new JLabel(oIconOrangy);
-	private JLabel lPinky = new JLabel(oIconPinky);
-	private JLabel lPacMan = new JLabel(oIconPacMan);
 	
-	private JPanel[][] aSpielfeldArray = new JPanel[50][50];
 	private JPanel pGeist = new JPanel();
 	private JPanel pSpielfeldPanel = new JPanel();
 	private JPanel pChatPanel = new JPanel();
@@ -230,7 +233,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void guiDarstellen(int iZeile, int iSpalte)
 	{
-		guiDarstellen(iZeile, iSpalte, Color.BLACK);
+		guiDarstellen(iZeile, iSpalte, cGaengeFarbe);
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -407,9 +410,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
-		iSpielerY = pSpieler.getY();
+		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
-		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
+		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
 	
@@ -419,9 +422,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRauf()
 	{
-		iSpielerY = pSpieler.getY();
+		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRunterBewegen(iSpielerY);
-		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
+		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
 	
@@ -431,9 +434,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
-		iSpielerX = pSpieler.getX();
+		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerLinksBewegen(iSpielerX);
-		pSpieler.setLocation(iSpielerX, pSpieler.getY());
+		lPacMan.setLocation(iSpielerX, lPacMan.getY());
 		bSpielerAktiv = true;
 	}
 	
@@ -443,9 +446,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
-		iSpielerX = pSpieler.getX();
+		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerRechtsBewegen(iSpielerX);
-		pSpieler.setLocation(iSpielerX, pSpieler.getY());
+		lPacMan.setLocation(iSpielerX, lPacMan.getY());
 		bSpielerAktiv = true;
 	}
 
@@ -508,11 +511,25 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 			
-	public static JPanel getSpieler()
+	public static JLabel getSpieler()
 	{
-		return pSpieler;
+		return lPacMan;
 	}
-		
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static JPanel[][] getSpielfeld()
+	{
+		return aSpielfeldArray;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static Color getGaengeFarbe()
+	{
+		return cGaengeFarbe;
+	}
+	
 	//-------------------------------------------------------------------------------------------------------------------
 		
 	public static GameMainFrame getGameMainFrame()
