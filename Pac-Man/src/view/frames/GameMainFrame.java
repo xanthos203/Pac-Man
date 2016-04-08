@@ -43,15 +43,17 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
-	public static final int iGaenge = 0;
-	public static final int iWaende = 1;
-	public static final int iGeister = 2;
-	public static final int iPacMan = 3;
-	public static final int iEatingCoins = 4;
-	public static final int iGeisterAusgang = 5;
-	public static final int iTeleporter = 6;
+	public static final String sGaenge = "0";
+	public static final String sWaende = "1";
+	public static final String sGeister = "2";
+	public static final String sPacMan = "3";
+	public static final String sEatingCoins = "4";
+	public static final String sGeisterAusgang = "5";
+	public static final String sTeleporter = "6";
 	
 	private static final Color cGaengeFarbe = Color.BLACK;
+	private static final Color cWaendeFarbe = Color.BLUE;
+	private static final Color cGeisterAusgangFarbe = Color.WHITE;
 	
 	private static GameMainFrame oGameMainFrame;
 
@@ -80,16 +82,16 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private static int iSpielerX;
 	private static int iSpielerY;
+	private static int iFeld = -1;
 	
 	private static boolean bSpielerAktiv = false;
 	
-	private Timer oTimer = new Timer();
-	
 	private static ArrayList<String> alSpielfeldArrayList;
+	
+	private Timer oTimer = new Timer();
 	
 	private int iGeistX;
 	private int iGeistY;
-	private static int iFeld = -1;
 	private int iGeisterZaehler = 0;
 	private int iCcoinIndex = 0;
 	private int iEcoinIndex = 0;
@@ -271,41 +273,41 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				//-----------------------------------------------------------------------
 				if (alSpielfeldArrayList.size() > iFeld)
 				{
-					if (alSpielfeldArrayList.get(iFeld).equals(iGaenge))
+					if (alSpielfeldArrayList.get(iFeld).equals(sGaenge))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(iWaende))
+					if (alSpielfeldArrayList.get(iFeld).equals(sWaende))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.BLUE);
+						guiDarstellen(iZeile, iSpalte, cWaendeFarbe);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(iGeister))
+					if (alSpielfeldArrayList.get(iFeld).equals(sGeister))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(iPacMan))
+					if (alSpielfeldArrayList.get(iFeld).equals(sPacMan))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(iEatingCoins))
+					if (alSpielfeldArrayList.get(iFeld).equals(sEatingCoins))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(iGeisterAusgang))
+					if (alSpielfeldArrayList.get(iFeld).equals(sGeisterAusgang))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.WHITE);
+						guiDarstellen(iZeile, iSpalte, cGeisterAusgangFarbe);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(iTeleporter))
+					if (alSpielfeldArrayList.get(iFeld).equals(sTeleporter))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
