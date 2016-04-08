@@ -24,15 +24,12 @@ public final class Spieler
 	public static int SpielerRaufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if ((iRaufY + GameMainFrame.getSpieler()
-				.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-		{
+		
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
 				iRaufY += 4;
 				iSpielerY = iRaufY;
 			}
-		}
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -45,15 +42,12 @@ public final class Spieler
 	 */
 	public static int SpielerRunterBewegen(int iRunterY)
 	{
-		if ((iRunterY + GameMainFrame.getSpieler()
-		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-		{
+		
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
 				iRunterY += 4;
 				iSpielerY = iRunterY;
 			}
-		}
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
@@ -67,15 +61,12 @@ public final class Spieler
 	 */
 	public static int SpielerRechtsBewegen(int iRunterX)
 	{
-		if ((iRunterX + GameMainFrame.getSpieler()
-		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-		{
+		
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
 				iRunterX += 4;
 				iSpielerX = iRunterX;
 			}
-		}
 		return iSpielerX;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
@@ -89,14 +80,10 @@ public final class Spieler
 	 */
 	public static int SpielerLinksBewegen(int iRaufX)
 	{
-		if ((iRaufX + GameMainFrame.getSpieler()
-		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
-			{
-				iRaufX += 4;
-				iSpielerX = iRaufX;
-			}
+			iRaufX += 4;
+			iSpielerX = iRaufX;
 		}
 		return iSpielerX;
 	}

@@ -74,6 +74,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private static int iSpielerX;
 	private static int iSpielerY;
+	private static int iSpielerXalt;
+	private int iSpielerYalt;
 	
 	private static boolean bSpielerAktiv = false;
 	
@@ -412,8 +414,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
-		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
-		//bSpielerAktiv = true;
+		try
+		{
+			aSpielfeldArray[iSpielerXalt][iSpielerY].removeAll();
+		}
+		catch(Exception exException)
+		{
+			exException.printStackTrace();
+		}
+		
+		aSpielfeldArray[iSpielerXalt][iSpielerY].add(lPacMan);
+		bSpielerAktiv = true;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -424,8 +435,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRunterBewegen(iSpielerY);
-		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
-		//bSpielerAktiv = true;
+		
+		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
+		try
+		{
+			aSpielfeldArray[iSpielerXalt][iSpielerY].removeAll();
+		}
+		catch(Exception exException)
+		{
+			exException.printStackTrace();
+		}
+		
+		aSpielfeldArray[iSpielerXalt][iSpielerY].add(lPacMan);
+		bSpielerAktiv = true;
 		
 	}
 	
@@ -438,7 +460,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerLinksBewegen(iSpielerX);
 		lPacMan.setLocation(iSpielerX, lPacMan.getY());
-		//bSpielerAktiv = true;
+		bSpielerAktiv = true;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -450,7 +472,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerRechtsBewegen(iSpielerX);
 		lPacMan.setLocation(iSpielerX, lPacMan.getY());
-		//bSpielerAktiv = true;
+		bSpielerAktiv = true;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
