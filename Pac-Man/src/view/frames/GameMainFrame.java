@@ -419,7 +419,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
 		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
-		bSpielerAktiv = true;
+		//bSpielerAktiv = true;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -431,7 +431,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRunterBewegen(iSpielerY);
 		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
-		bSpielerAktiv = true;
+		//bSpielerAktiv = true;
+		
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -443,7 +444,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerLinksBewegen(iSpielerX);
 		lPacMan.setLocation(iSpielerX, lPacMan.getY());
-		bSpielerAktiv = true;
+		//bSpielerAktiv = true;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -455,7 +456,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerRechtsBewegen(iSpielerX);
 		lPacMan.setLocation(iSpielerX, lPacMan.getY());
-		bSpielerAktiv = true;
+		//bSpielerAktiv = true;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
