@@ -33,6 +33,7 @@ import model.chat.ClientHandler;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
+import view.characters.Geister;
 import view.characters.Spieler;
 
 /**
@@ -67,21 +68,21 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iCCoinIndex = 0;
 	private int iECoinIndex = 0;
 	
-	private Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
-	private Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
-	private Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
-	private Icon oIconPinky = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
-	private Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
+	private static Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
+	private static Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
+	private static Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
+	private static Icon oIconPinky = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
+	private static Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
 	private Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
 	private Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
 	
 	private JLabel[] aClassicCoins = new JLabel[1000];
 	private JLabel[] aEatingCoins = new JLabel[500];
-	private JLabel lGreeny = new JLabel(oIconGreeny);
-	private JLabel lBlue = new JLabel(oIconBlue);
-	private JLabel lOrangy = new JLabel(oIconOrangy);
-	private JLabel lPinky = new JLabel(oIconPinky);
-	private JLabel lPacMan = new JLabel(oIconPacMan);
+	public static JLabel lGreeny = new JLabel(oIconGreeny);
+	public static JLabel lBlue = new JLabel(oIconBlue);
+	public static JLabel lOrangy = new JLabel(oIconOrangy);
+	public static JLabel lPinky = new JLabel(oIconPinky);
+	public static JLabel lPacMan = new JLabel(oIconPacMan);
 	
 	private JPanel[][] aPanelArray = new JPanel[50][50];
 	private JPanel pGeist = new JPanel();
@@ -444,7 +445,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Hier wird der chattext Angezeigt mit Username, Platzhalter und dem StartOfMessage.
+	 * 
+	 */
 	public static void chattextAnzeigen()
 	{
 		String  keepSpace = "\n\n";
@@ -461,7 +465,11 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Hier werden die Punkte und die Leben des Spielers angezeigt.
+	 * @param iLeben
+	 * @param dPunkte
+	 */
 	public static void setSpielstandlabelText(int iLeben, double dPunkte)
 	{
 		Spieler.setLeben(iLeben);
@@ -470,35 +478,49 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Hier wird der Spielstand angezeigt.
+	 * @return
+	 */
 	public static String getSpielstandlabelText()
 	{
 		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + Spieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", Spieler.getPunktestand());
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Hier wird die Chatnachricht returniert.
+	 * @return
+	 */
 	public static JTextField getChatnachrichtTextfeld()
 	{
 		return tfTextField;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
-	
+	/**
+	 * Hier wird die Text Area returniert welche weiter oben Bearbeitet wurde.
+	 * @return
+	 */
 	public static JTextArea getChatverlaufTextarea()
 	{
 		return taTextArea;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
-			
+	/**
+	 * Hier wird das Panel Spieler returniert.		
+	 */
 	public static JPanel getSpieler()
 	{
 		return pSpieler;
 	}
 		
 	//-------------------------------------------------------------------------------------------------------------------
-		
+	/**
+	 * Hier wird das jfFrame zurückgeliefert.	
+	 * @return
+	 */
 	public static GameMainFrame getGameMainFrame()
 	{
 		return (GameMainFrame) jfFrame;
@@ -513,6 +535,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask
 	{
+		private Geister oGeist = new Geister();
 		
 		public void run()
 		{			
@@ -521,58 +544,34 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				oClient.senden();
 				Server.allenWeitersagen(tfTextField.getText());
 			}			
-			/*
+			
 			if(bSpielerAktiv)
 			{ 
 				
 				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
 				int index = zufallsZahl.nextInt(8) + 1;
-				/*
+				
 				for(int iZaehler = 0; iZaehler <= 4; iZaehler++)
 				{
 					switch(index)
 					{
-						case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
-						case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
-						case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-						case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
-						case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
-						case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
-						case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
-						case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
+						case 1:	oGeist.GeisterRaufBewegen(iGeistY); break;
+						case 2:	oGeist.GeisterRunterBewegen(iGeistY); break;
+						case 3:	oGeist.GeisterRechtsBewegen(iGeistX); break;
+						case 4:	oGeist.GeisterLinksBewegen(iGeistX); break;
+						case 5:	oGeist.GeisterRaufBewegen(iGeistY); break;
+						case 6:	oGeist.GeisterRunterBewegen(iGeistY); break;
+						case 7:	oGeist.GeisterRechtsBewegen(iGeistX); break;
+						case 8:	oGeist.GeisterLinksBewegen(iGeistX); break;
 					}
 				}
-				for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
-				{
-					for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
-					{
-						iFeld++;
-						if(alSpielfeldArrayList.size() > iFeld)
-						{
-							if(aPanelArray[iLayoutZeilen][iLayoutSpalten].getBackground() == Color.black)
-							{
-								
-							}
-							
-						}
-						else
-						{
-							break;
-						}
-					}
-				}
+				
 				repaint();
-				
-				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
-				{
-					GameLostFrame oFrame = new GameLostFrame();	
-				}
-				
+								
 				setBackground(Color.WHITE);
-				pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
-				pGeist.repaint();
+				
 
-			}*/
+			}
 			
 		}
 	}

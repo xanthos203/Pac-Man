@@ -13,17 +13,54 @@ public final class Geister
 	
 	public static int GeisterRaufBewegen(int iRaufY)
 	{
-		if(iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
+		if(GameMainFrame.lGreeny.getY() != GameMainFrame.lPacMan.getY())
 		{
 			iRaufY += 8;
 			iGeistY = iRaufY;
 		}
+		
+		if(GameMainFrame.lBlue.getY() != GameMainFrame.lPacMan.getY())
+		{
+			iRaufY += 8;
+			iGeistY = iRaufY;
+		}
+		
+		if(GameMainFrame.lOrangy.getY() != GameMainFrame.lPacMan.getY())
+		{
+			iRaufY += 8;
+			iGeistY = iRaufY;
+		}
+		
+		if(GameMainFrame.lPinky.getY() != GameMainFrame.lPacMan.getY())
+		{
+			iRaufY += 8;
+			iGeistY = iRaufY;
+		}
+		
 		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
 	public static int GeisterRunterBewegen(int iRunterY)
 	{ 
-		if(iRunterY >+ 16)
+		if(GameMainFrame.lGreeny.getY() != GameMainFrame.lPacMan.getY())
+		{
+			iRunterY -= 8;
+			iGeistY = iRunterY;
+		}
+		
+		if(GameMainFrame.lBlue.getY() != GameMainFrame.lPacMan.getY())
+		{
+			iRunterY -= 8;
+			iGeistY = iRunterY;
+		}
+		
+		if(GameMainFrame.lOrangy.getY() != GameMainFrame.lPacMan.getY())
+		{
+			iRunterY -= 8;
+			iGeistY = iRunterY;
+		}
+		
+		if(GameMainFrame.lPinky.getY() != GameMainFrame.lPacMan.getY())
 		{
 			iRunterY -= 8;
 			iGeistY = iRunterY;
