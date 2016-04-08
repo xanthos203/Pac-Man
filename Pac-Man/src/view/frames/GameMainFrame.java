@@ -43,17 +43,14 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
-	private static GameMainFrame oGameMainFrame;
+	private static final Color cGaengeFarbe = Color.BLACK;
 	
+	private static GameMainFrame oGameMainFrame;
+
 	private static JTextArea taChatverlaufTextarea = new JTextArea();
 	private static JTextField tfChatnachrichtTextfeld = new JTextField("Nachricht eingeben");
-	private static JPanel pSpieler = new JPanel();
-	private static JLabel lSpielstandlabel = new JLabel();
 	private static JButton jbTextSendenButton = new JButton("SENDEN");
 	
-	private static JPanel[][] aSpielfeldArray = new JPanel[50][50];
-	private static Color cGaengeFarbe = Color.BLACK;
-
 	private static Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
 	private static Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
 	private static Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
@@ -62,11 +59,16 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
 	private static Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
 
+	private static JPanel[][] aSpielfeldArray = new JPanel[50][50];
+	
+	private static JLabel[] aClassicCoins = new JLabel[2500];
+	private static JLabel[] aEatingCoins = new JLabel[1250];
 	private static JLabel lGreeny = new JLabel(oIconGreeny);
 	private static JLabel lBlue = new JLabel(oIconBlue);
 	private static JLabel lOrangy = new JLabel(oIconOrangy);
 	private static JLabel lPinky = new JLabel(oIconPinky);
 	private static JLabel lPacMan = new JLabel(oIconPacMan);
+	private static JLabel lSpielstandlabel = new JLabel(getSpielstandlabelText());
 	
 	private static int iSpielerX;
 	private static int iSpielerY;
@@ -83,9 +85,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iGeisterZaehler = 0;
 	private int iCcoinIndex = 0;
 	private int iEcoinIndex = 0;
-	
-	private JLabel[] aClassicCoins = new JLabel[2500];
-	private JLabel[] aEatingCoins = new JLabel[1250];
 	
 	private JPanel pGeist = new JPanel();
 	private JPanel pSpielfeldPanel = new JPanel();
@@ -140,7 +139,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.BOLD, 25));
 		lSpielstandlabel.setForeground(Color.BLUE);
-		lSpielstandlabel.setText(getSpielstandlabelText());
 		
 		jbTextSendenButton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		jbTextSendenButton.addActionListener(new ChatSendenButtonListener());
