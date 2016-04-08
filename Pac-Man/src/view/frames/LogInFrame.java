@@ -101,7 +101,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
 		pacmanLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		/*dem Text im pacmanLabel wird ein Schriftstil zugewiesen*/
-		pacmanLabel.setFont(new Font("Arial", Font.BOLD, 63));
+		pacmanLabel.setFont(new Font("Arial", Font.BOLD, 62));
 		/*dem Text im pacmanLabel wird eine Schriftfarbe zugewiesen*/
 		pacmanLabel.setForeground(Color.CYAN);
 		

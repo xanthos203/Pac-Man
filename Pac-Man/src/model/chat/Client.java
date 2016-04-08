@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 
 import view.frames.GameMainFrame;
 
-public final class Client 
+public class Client 
 {
 	private static boolean bIPgesendet = false;
 	private static boolean bNetzwerkSteht = false;

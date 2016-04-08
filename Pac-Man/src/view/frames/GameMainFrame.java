@@ -2,11 +2,11 @@ package view.frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import control.file_processing.LogDB;
+import control.file_processing.GuiDB;
 import control.listeners.ChatNachrichtfeldListener;
 import control.listeners.ChatSendenButtonListener;
 import control.listeners.SteuerungListener;
@@ -33,7 +33,6 @@ import model.chat.ClientHandler;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
-import view.characters.Geister;
 import view.characters.Spieler;
 
 /**
@@ -44,53 +43,57 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
-	private static JFrame jfFrame;
-	private static JTextArea taTextArea = new JTextArea();
-	private static JTextField tfTextField = new JTextField("Nachricht eingeben");
-	private static JPanel pSpieler = new JPanel();
-	private static JLabel lSpielstandlabel = new JLabel();
+//	public static final 
+	
+	private static final Color cGaengeFarbe = Color.BLACK;
+	
+	private static GameMainFrame oGameMainFrame;
+
+	private static JTextArea taChatverlaufTextarea = new JTextArea();
+	private static JTextField tfChatnachrichtTextfeld = new JTextField("Nachricht eingeben");
 	private static JButton jbTextSendenButton = new JButton("SENDEN");
-	
-	private static int iSpielerX;
-	private static int iSpielerY;
-	
-	private static boolean bSpielerAktiv = false;
-	private static boolean bGeist = false;
-	
-	private Timer oTimer = new Timer();
-	
-	private ArrayList<String> alSpielfeldArrayList;
-	
-	private int iGeistX;
-	private int iGeistY;
-	private int iFeld = -1;
-	private int iGeisterZaehler = 1;
-	private int iCCoinIndex = 0;
-	private int iECoinIndex = 0;
 	
 	private static Icon oIconGreeny = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
 	private static Icon oIconBlue = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Blue.PNG")));
 	private static Icon oIconOrangy = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
 	private static Icon oIconPinky = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
 	private static Icon oIconPacMan = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_small.PNG")));
-	private Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
-	private Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
+	private static Icon oIconClassicCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
+	private static Icon oIconEatingCoin = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
+
+	private static JPanel[][] aSpielfeldArray = new JPanel[50][50];
 	
-	private JLabel[] aClassicCoins = new JLabel[1000];
-	private JLabel[] aEatingCoins = new JLabel[500];
-	public static JLabel lGreeny = new JLabel(oIconGreeny);
-	public static JLabel lBlue = new JLabel(oIconBlue);
-	public static JLabel lOrangy = new JLabel(oIconOrangy);
-	public static JLabel lPinky = new JLabel(oIconPinky);
-	public static JLabel lPacMan = new JLabel(oIconPacMan);
+	private static JLabel[] aClassicCoins = new JLabel[2500];
+	private static JLabel[] aEatingCoins = new JLabel[1250];
+	private static JLabel lGreeny = new JLabel(oIconGreeny);
+	private static JLabel lBlue = new JLabel(oIconBlue);
+	private static JLabel lOrangy = new JLabel(oIconOrangy);
+	private static JLabel lPinky = new JLabel(oIconPinky);
+	private static JLabel lPacMan = new JLabel(oIconPacMan);
+	private static JLabel lSpielstandlabel = new JLabel(getSpielstandlabelText());
 	
-	private JPanel[][] aPanelArray = new JPanel[50][50];
+	private static int iSpielerX;
+	private static int iSpielerY;
+	
+	private static boolean bSpielerAktiv = false;
+	
+	private Timer oTimer = new Timer();
+	
+	private static ArrayList<String> alSpielfeldArrayList;
+	
+	private int iGeistX;
+	private int iGeistY;
+	private static int iFeld = -1;
+	private int iGeisterZaehler = 0;
+	private int iCcoinIndex = 0;
+	private int iEcoinIndex = 0;
+	
 	private JPanel pGeist = new JPanel();
 	private JPanel pSpielfeldPanel = new JPanel();
 	private JPanel pChatPanel = new JPanel();
 	private JPanel pChatKomponentenPanel = new JPanel();
 	
-	private LogDB oLogDB = new LogDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
+	private GuiDB oGuiDB = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	
 	private Server oServer;
 	private Client oClient = new Client();
@@ -109,9 +112,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void initialize()
 	{
-		jfFrame = this;
+		oGameMainFrame = this;
 		
-		Font defaultFont = new Font("Segoe UI", Font.PLAIN, 15);
+		Font foDefaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		
 		setTitle("Pac-Man");
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -126,47 +129,46 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		oClient.netzwerkEinrichten();
 		
-		Thread readerThread = new Thread(new EigehendReader());
-		readerThread.start();
+		Thread thReaderThread = new Thread(new EigehendReader());
+		thReaderThread.start();
 		
-		alSpielfeldArrayList = oLogDB.getArrayList();
+		alSpielfeldArrayList = oGuiDB.getArrayList();
 		
-		GridLayout oSpielFeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
-		pSpielfeldPanel.setLayout(oSpielFeldLayout);
+		GridLayout oSpielfeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
+		pSpielfeldPanel.setLayout(oSpielfeldLayout);
 		pSpielfeldPanel.addKeyListener(new SteuerungListener());
 		
 		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.BOLD, 25));
 		lSpielstandlabel.setForeground(Color.BLUE);
-		lSpielstandlabel.setText(getSpielstandlabelText());
 		
 		jbTextSendenButton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		jbTextSendenButton.addActionListener(new ChatSendenButtonListener());
 		
-		taTextArea.setEditable(false);
-		taTextArea.setLineWrap(true);
-		taTextArea.setWrapStyleWord(true);
-		taTextArea.setFont(defaultFont);
+		taChatverlaufTextarea.setEditable(false);
+		taChatverlaufTextarea.setLineWrap(true);
+		taChatverlaufTextarea.setWrapStyleWord(true);
+		taChatverlaufTextarea.setFont(foDefaultFont);
 		
-		JScrollPane scrollPane = new JScrollPane(taTextArea);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		JScrollPane jspScrollPane = new JScrollPane(taChatverlaufTextarea);
+		jspScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		jspScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		
-		pChatKomponentenPanel.add(tfTextField);
+		pChatKomponentenPanel.add(tfChatnachrichtTextfeld);
 		pChatKomponentenPanel.add(jbTextSendenButton);
 
 		pChatPanel.setLayout(new BorderLayout());
-		pChatPanel.add(scrollPane, BorderLayout.CENTER);
+		pChatPanel.add(jspScrollPane, BorderLayout.CENTER);
 		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 		
 		add(lSpielstandlabel, BorderLayout.NORTH);
 		add(pSpielfeldPanel, BorderLayout.CENTER);
 		add(pChatPanel, BorderLayout.WEST);
 		
-		tfTextField.setHorizontalAlignment(SwingConstants.LEADING);
-		tfTextField.setFont(defaultFont);
-		tfTextField.addKeyListener(new ChatNachrichtfeldListener());
-		tfTextField.addFocusListener(new ChatNachrichtfeldListener());
+		tfChatnachrichtTextfeld.setHorizontalAlignment(SwingConstants.LEADING);
+		tfChatnachrichtTextfeld.setFont(foDefaultFont);
+		tfChatnachrichtTextfeld.addKeyListener(new ChatNachrichtfeldListener());
+		tfChatnachrichtTextfeld.addFocusListener(new ChatNachrichtfeldListener());
 		
 		spielfeldAufbauen();
 		chatInformation();
@@ -191,9 +193,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void classicCoinsDarstellen(int iZeile, int iSpalte)
 	{
-		aClassicCoins[iCCoinIndex] = new JLabel(oIconClassicCoin);
-		aPanelArray[iZeile][iSpalte].add(aClassicCoins[iCCoinIndex]);
-		iCCoinIndex++;
+		aClassicCoins[iCcoinIndex] = new JLabel(oIconClassicCoin);
+		aSpielfeldArray[iZeile][iSpalte].add(aClassicCoins[iCcoinIndex]);
+		iCcoinIndex++;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -204,9 +206,23 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void eatingCoinsDarstellen(int iZeile, int iSpalte)
 	{
-		aEatingCoins[iECoinIndex] = new JLabel(oIconEatingCoin);
-		aPanelArray[iZeile][iSpalte].add(aEatingCoins[iECoinIndex]);
-		iECoinIndex++;
+		aEatingCoins[iEcoinIndex] = new JLabel(oIconEatingCoin);
+		aSpielfeldArray[iZeile][iSpalte].add(aEatingCoins[iEcoinIndex]);
+		iEcoinIndex++;
+	}
+
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	private void geisterDarstellen(int iZeile, int iSpalte)
+	{
+		switch (iGeisterZaehler)
+		{
+			case 1: aSpielfeldArray[iZeile][iSpalte].add(lGreeny); break;
+			case 2:	aSpielfeldArray[iZeile][iSpalte].add(lBlue); break;
+			case 3:	aSpielfeldArray[iZeile][iSpalte].add(lOrangy); break;
+			case 4:	aSpielfeldArray[iZeile][iSpalte].add(lPinky); break;
+		}
+		iGeisterZaehler++;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -217,7 +233,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void guiDarstellen(int iZeile, int iSpalte)
 	{
-		guiDarstellen(iZeile, iSpalte, Color.BLACK);
+		guiDarstellen(iZeile, iSpalte, cGaengeFarbe);
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -229,24 +245,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void guiDarstellen(int iZeile, int iSpalte, Color cFarbe)
 	{
-		aPanelArray[iZeile][iSpalte] = new JPanel();
-		aPanelArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
-		aPanelArray[iZeile][iSpalte].setBackground(cFarbe);
-		//-----------------------------------------------------------------------
-		if (bGeist)
-		{
-			switch (iGeisterZaehler)
-			{
-				case 1: aPanelArray[iZeile][iSpalte].add(lGreeny); break;
-				case 2:	aPanelArray[iZeile][iSpalte].add(lBlue); break;
-				case 3:	aPanelArray[iZeile][iSpalte].add(lOrangy); break;
-				case 4:	aPanelArray[iZeile][iSpalte].add(lPinky); break;
-			}
-			iGeisterZaehler++;
-			bGeist = false;
-		}
-		//-----------------------------------------------------------------------
-		pSpielfeldPanel.add(aPanelArray[iZeile][iSpalte]);
+		aSpielfeldArray[iZeile][iSpalte] = new JPanel();
+		aSpielfeldArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
+		aSpielfeldArray[iZeile][iSpalte].setBackground(cFarbe);
+		pSpielfeldPanel.add(aSpielfeldArray[iZeile][iSpalte]);
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -277,27 +279,24 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					if (alSpielfeldArrayList.get(iFeld).equals("2"))
 					{
 						guiDarstellen(iZeile, iSpalte);
-						bGeist = true;
+						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("3"))
 					{
 						guiDarstellen(iZeile, iSpalte);
-						aPanelArray[iZeile][iSpalte].add(lPacMan);
+						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("4"))
 					{
 						guiDarstellen(iZeile, iSpalte);
-
-						/*hier gegebenfalls Quell-Code für Eating-Coins einfügen*/
-						
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("5"))
 					{
-						guiDarstellen(iZeile, iSpalte);
+						guiDarstellen(iZeile, iSpalte, Color.WHITE);
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals("6"))
@@ -317,49 +316,60 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	//-------------------------------------------------------------------------------------------------------------------
 	/**
-	 * In dieser Methode wird ausgegeben, dass der Chat erfolgreich ausgeührt wurde oder, dass ein Fehler aufgetreten ist und es wird eine Fehlermeldung geworfen.
+	 * In dieser Methode wird ausgegeben, dass der Chat erfolgreich ausgeührt wurde oder, 
+	 * dass ein Fehler aufgetreten ist und es wird eine Fehlermeldung geworfen.
 	 */
 	private void chatInformation()
 	{
-		String sInfoTest;
-		String sTitel;
+		Component cParentComponent = getGameMainFrame();
+		String sMessageText;
+		String sTitle;
 		int iOptionType;
 		int iMessageType;
+		Icon icIcon = null;
+		Object[] oOptions;
+		Object oInitialValue;
 		int iOptionPane;
 		//-----------------------------------------------------------------------
 		if (hasSuccessfulChatConnection())
 		{
-			sInfoTest = "Der Chat wurde erfolgreich eingerichtet\u0021\n"
-					  + "\n"
-					  + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
+			sMessageText = "Der Chat wurde erfolgreich eingerichtet\u0021\n"
+						 + "\n"
+						 + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
 			//---------------------------------
-			sTitel = "Chat\u00ADInformation";
+			sTitle = "Chat\u00ADInformation";
 			//---------------------------------
 			iOptionType = JOptionPane.OK_OPTION;
 			//---------------------------------
 			iMessageType = JOptionPane.INFORMATION_MESSAGE;
 			//---------------------------------
-			Object[] oOptionen = {"OK"};
+			oOptions = new Object[] {"OK"};
 			//---------------------------------
-			iOptionPane = JOptionPane.showOptionDialog(this, sInfoTest, sTitel, iOptionType, iMessageType, null, oOptionen, oOptionen[0]);
+			oInitialValue = oOptions[0];
+			//---------------------------------
+			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
+					iMessageType, icIcon, oOptions, oInitialValue);
 		}
 		//-----------------------------------------------------------------------
 		else
 		{
-			sInfoTest = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
-					  + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
-					  + "\n"
-					  + "M\u00F6chten Sie das Spiel jetzt neu starten oder beenden\u003F";
+			sMessageText = "Beim Einrichten des Chats ist ein Fehler aufgetreten\u0021\n"
+						 + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
+						 + "\n"
+						 + "M\u00F6chten Sie das Spiel jetzt neu starten oder beenden\u003F";
 			//---------------------------------
-			sTitel = "Fehler bei Chat\u00ADVerbindung";
+			sTitle = "Fehler bei Chat\u00ADVerbindung";
 			//---------------------------------
 			iOptionType = JOptionPane.YES_NO_CANCEL_OPTION;
 			//---------------------------------
 			iMessageType = JOptionPane.WARNING_MESSAGE;
 			//---------------------------------
-			Object[] oOptionen = {"Neu starten", "Beenden", "Abbrechen"};
+			oOptions = new Object[] {"Neu starten", "Beenden", "Abbrechen"};
 			//---------------------------------
-			iOptionPane = JOptionPane.showOptionDialog(this, sInfoTest, sTitel, iOptionType, iMessageType, null, oOptionen, oOptionen[0]);
+			oInitialValue = oOptions[0];
+			//---------------------------------
+			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
+					iMessageType, icIcon, oOptions, oInitialValue);
 			//=================================
 			if (iOptionPane == JOptionPane.YES_OPTION)
 			{
@@ -384,16 +394,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		if (Server.isConnected() && Client.hasIPsuccessfullySent() && Client.hasNetzworkConnection() && ClientHandler.hasInitialized())
 		{
-			tfTextField.setEnabled(true);
+			tfChatnachrichtTextfeld.setEnabled(true);
 			jbTextSendenButton.setEnabled(true);
 			return true;
 		}
-		else
-		{
-			tfTextField.setEnabled(false);
-			jbTextSendenButton.setEnabled(false);
-			return false;
-		}
+		//-----------------------------------------------------------------------
+		tfChatnachrichtTextfeld.setEnabled(false);
+		jbTextSendenButton.setEnabled(false);
+		return false;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
@@ -402,9 +410,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
-		iSpielerY = pSpieler.getY();
+		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
-		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
+		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
 	
@@ -414,9 +422,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRauf()
 	{
-		iSpielerY = pSpieler.getY();
+		iSpielerY = lPacMan.getY();
 		iSpielerY = Spieler.SpielerRunterBewegen(iSpielerY);
-		pSpieler.setLocation(pSpieler.getX(), iSpielerY);
+		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
 		bSpielerAktiv = true;
 	}
 	
@@ -426,9 +434,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
-		iSpielerX = pSpieler.getX();
+		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerLinksBewegen(iSpielerX);
-		pSpieler.setLocation(iSpielerX, pSpieler.getY());
+		lPacMan.setLocation(iSpielerX, lPacMan.getY());
 		bSpielerAktiv = true;
 	}
 	
@@ -438,38 +446,40 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
-		iSpielerX = pSpieler.getX();
+		iSpielerX = lPacMan.getX();
 		iSpielerX = Spieler.SpielerRechtsBewegen(iSpielerX);
-		pSpieler.setLocation(iSpielerX, pSpieler.getY());
+		lPacMan.setLocation(iSpielerX, lPacMan.getY());
 		bSpielerAktiv = true;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird der chattext Angezeigt mit Username, Platzhalter und dem StartOfMessage.
-	 * 
-	 */
+	
 	public static void chattextAnzeigen()
 	{
 		String  keepSpace = "\n\n";
 		String  placeholder = "\n====================\n";
 		String  username = LogInFrame.getUsername() + ":";
 		String  startOfMessage = "---------------------------------\n";
-		String  message = startOfMessage + username + placeholder + tfTextField.getText() + placeholder;
-		
-		if (!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
+		String  message = startOfMessage + username + placeholder + tfChatnachrichtTextfeld.getText() + placeholder;
+		//---------------------------------------------------------------------------
+		if (!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben"))
 		{
-			taTextArea.setText(taTextArea.getText() + message + keepSpace);
-			tfTextField.setText(null);
+			if (taChatverlaufTextarea.getText().isEmpty())
+			{
+				taChatverlaufTextarea.setText(message);
+				tfChatnachrichtTextfeld.setText(null);
+			}
+			//-----------------------------------------------------------------------
+			else
+			{
+				taChatverlaufTextarea.setText(taChatverlaufTextarea.getText() + keepSpace + message);
+				tfChatnachrichtTextfeld.setText(null);
+			}
 		}
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier werden die Punkte und die Leben des Spielers angezeigt.
-	 * @param iLeben
-	 * @param dPunkte
-	 */
+	
 	public static void setSpielstandlabelText(int iLeben, double dPunkte)
 	{
 		Spieler.setLeben(iLeben);
@@ -478,52 +488,65 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird der Spielstand angezeigt.
-	 * @return
-	 */
+	
 	public static String getSpielstandlabelText()
 	{
-		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + Spieler.getLeben() + "  ||  Punkte: " + String.format("%,.0f", Spieler.getPunktestand());
+		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + Spieler.getLeben() + "  ||  Punkte: "
+				+ String.format("%,.0f", Spieler.getPunktestand());
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------
+	
+	public static JTextField getChatnachrichtTextfeld()
+	{
+		return tfChatnachrichtTextfeld;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static JTextArea getChatverlaufTextarea()
+	{
+		return taChatverlaufTextarea;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+			
+	public static JLabel getSpieler()
+	{
+		return lPacMan;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird die Chatnachricht returniert.
-	 * @return
-	 */
-	public static JTextField getChatnachrichtTextfeld()
+	
+	public static JPanel[][] getSpielfeld()
 	{
-		return tfTextField;
+		return aSpielfeldArray;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird die Text Area returniert welche weiter oben Bearbeitet wurde.
-	 * @return
-	 */
-	public static JTextArea getChatverlaufTextarea()
-	{
-		return taTextArea;
-	}
 	
-	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird das Panel Spieler returniert.		
-	 */
-	public static JPanel getSpieler()
+	public static ArrayList<String> getSpielfeldArrayList()
 	{
-		return pSpieler;
-	}
+		return alSpielfeldArrayList;
 		
+	}
 	//-------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird das jfFrame zurückgeliefert.	
-	 * @return
-	 */
+	public static int getFeldindex()
+	{
+		return iFeld;
+	}
+	//-------------------------------------------------------------------------------------------------------------------
+	
+	public static Color getGaengeFarbe()
+	{
+		return cGaengeFarbe;
+	}
+	
+	//-------------------------------------------------------------------------------------------------------------------
+		
 	public static GameMainFrame getGameMainFrame()
 	{
-		return (GameMainFrame) jfFrame;
+		return oGameMainFrame;
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -535,19 +558,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask
 	{
-		private Geister oGeist = new Geister();
 		
 		public void run()
 		{			
-			if(!tfTextField.getText().isEmpty() && !tfTextField.getText().equals("Nachricht eingeben"))
+			if (!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben"))
 			{
 				oClient.senden();
-				Server.allenWeitersagen(tfTextField.getText());
+				Server.allenWeitersagen(tfChatnachrichtTextfeld.getText());
 			}			
-			
+			/*
 			if(bSpielerAktiv)
-			{ 
-				
+			{
 				Random zufallsZahl = new Random();	// zufallszahl für die Bewegung des Geistes generiern 
 				int index = zufallsZahl.nextInt(8) + 1;
 				
@@ -555,24 +576,46 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				{
 					switch(index)
 					{
-						case 1:	oGeist.GeisterRaufBewegen(iGeistY); break;
-						case 2:	oGeist.GeisterRunterBewegen(iGeistY); break;
-						case 3:	oGeist.GeisterRechtsBewegen(iGeistX); break;
-						case 4:	oGeist.GeisterLinksBewegen(iGeistX); break;
-						case 5:	oGeist.GeisterRaufBewegen(iGeistY); break;
-						case 6:	oGeist.GeisterRunterBewegen(iGeistY); break;
-						case 7:	oGeist.GeisterRechtsBewegen(iGeistX); break;
-						case 8:	oGeist.GeisterLinksBewegen(iGeistX); break;
+						case 1:	oGeist.GeisterRaufBewegen(iGeisty); break;
+						case 2:	oGeist.GeisterRunterBewegen(iGeisty); break;
+						case 3:	oGeist.GeisterRechtsBewegen(iGeistx); break;
+						case 4:	oGeist.GeisterLinksBewegen(iGeistx); break;
+						case 5:	oGeist.GeisterRaufBewegen(iGeisty); break;
+						case 6:	oGeist.GeisterRunterBewegen(iGeisty); break;
+						case 7:	oGeist.GeisterRechtsBewegen(iGeistx); break;
+						case 8:	oGeist.GeisterLinksBewegen(iGeistx); break;
 					}
 				}
-				
-				repaint();
+				for (int iZeile = 0; iZeile < iLayoutZeilen; iZeile++)
+				{
+					for (int iSpalte = 0; iSpalte < iLayoutSpalten; iSpalte++)
+					{
+						iFeld++;
+						if(alSpielfeldArrayList.size() > iFeld)
+						{
+							if(aPanelArray[iLayoutZeilen][iLayoutSpalten].getBackground() == Color.black)
+							{
 								
-				setBackground(Color.WHITE);
+							}
+						}
+						else
+						{
+							break;
+						}
+					}
+				}
+				repaint();
 				
-
+				if((oGeist.getPosX() == iSpielerx) && (oGeist.getPosY() == iSpielery))
+				{
+					GameLostFrame oFrame = new GameLostFrame();	
+				}
+				
+				setBackground(Color.WHITE);
+				pGeist.setLocation(oGeist.getPosX(), oGeist.getPosY());
+				pGeist.repaint();
 			}
-			
+			*/
 		}
 	}
 }

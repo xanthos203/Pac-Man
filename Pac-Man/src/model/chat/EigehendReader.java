@@ -2,7 +2,7 @@ package model.chat;
 
 import view.frames.GameMainFrame;
 
-public final class EigehendReader implements Runnable 
+public class EigehendReader implements Runnable 
 {
 	public void run()
 	{

@@ -60,6 +60,8 @@ public final class GameLostFrame extends JDialog implements IWindowProperties
 		setTitle("Verloren\u0021");
 		/*das Fenster wird sichtbar gemacht*/
 		setVisible(true);
+		/*das Fenster ist in seiner Größe nicht veränderbar*/
+		setResizable(false);
 		/*die Größe des Fensters wird festgelegt*/
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
 		/*die Position des Fensters am Bildschirm wird festgelegt*/

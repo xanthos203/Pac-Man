@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public final class ClientHandler implements Runnable 
+public class ClientHandler implements Runnable 
 {
 	private static boolean bInitCH = false;
 	private BufferedReader brReader;
