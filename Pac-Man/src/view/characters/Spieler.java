@@ -27,7 +27,7 @@ public final class Spieler
 		if ((iRaufY + GameMainFrame.getSpieler()
 				.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGaenge))
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
 			{
 				iRaufY += 4;
 				iSpielerY = iRaufY;
@@ -48,7 +48,7 @@ public final class Spieler
 		if ((iRunterY + GameMainFrame.getSpieler()
 		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGaenge))
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
 			{
 				iRunterY += 4;
 				iSpielerY = iRunterY;
@@ -70,7 +70,7 @@ public final class Spieler
 		if ((iRunterX + GameMainFrame.getSpieler()
 		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGaenge))
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
 			{
 				iRunterX += 4;
 				iSpielerX = iRunterX;
@@ -92,7 +92,7 @@ public final class Spieler
 		if ((iRaufX + GameMainFrame.getSpieler()
 		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
 		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGaenge))
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
 			{
 				iRaufX += 4;
 				iSpielerX = iRaufX;

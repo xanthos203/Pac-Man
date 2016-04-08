@@ -43,17 +43,17 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
-	public static final String sGaenge = "0";
-	public static final String sWaende = "1";
-	public static final String sGeister = "2";
-	public static final String sPacMan = "3";
-	public static final String sEatingCoins = "4";
-	public static final String sGeisterAusgang = "5";
-	public static final String sTeleporter = "6";
+	public static final String sGAENGE = "0";
+	public static final String sWAENDE = "1";
+	public static final String sGEISTER = "2";
+	public static final String sPAC_MAN = "3";
+	public static final String sEATING_COINS = "4";
+	public static final String sGEISTER_AUSGANG = "5";
+	public static final String sTELEPORTER = "6";
 	
-	private static final Color cGaengeFarbe = Color.BLACK;
-	private static final Color cWaendeFarbe = Color.BLUE;
-	private static final Color cGeisterAusgangFarbe = Color.WHITE;
+	private static final Color cGAENGE_FARBE = Color.BLACK;
+	private static final Color cWAENDE_FARBE = Color.BLUE;
+	private static final Color cGEISTER_AUSGANG_FARBE = Color.WHITE;
 	
 	private static GameMainFrame oGameMainFrame;
 
@@ -241,7 +241,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void guiDarstellen(int iZeile, int iSpalte)
 	{
-		guiDarstellen(iZeile, iSpalte, cGaengeFarbe);
+		guiDarstellen(iZeile, iSpalte, cGAENGE_FARBE);
 	}
 
 	//-------------------------------------------------------------------------------------------------------------------
@@ -273,41 +273,41 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				//-----------------------------------------------------------------------
 				if (alSpielfeldArrayList.size() > iFeld)
 				{
-					if (alSpielfeldArrayList.get(iFeld).equals(sGaenge))
+					if (alSpielfeldArrayList.get(iFeld).equals(sGAENGE))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sWaende))
+					if (alSpielfeldArrayList.get(iFeld).equals(sWAENDE))
 					{
-						guiDarstellen(iZeile, iSpalte, cWaendeFarbe);
+						guiDarstellen(iZeile, iSpalte, cWAENDE_FARBE);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sGeister))
+					if (alSpielfeldArrayList.get(iFeld).equals(sGEISTER))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sPacMan))
+					if (alSpielfeldArrayList.get(iFeld).equals(sPAC_MAN))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sEatingCoins))
+					if (alSpielfeldArrayList.get(iFeld).equals(sEATING_COINS))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sGeisterAusgang))
+					if (alSpielfeldArrayList.get(iFeld).equals(sGEISTER_AUSGANG))
 					{
-						guiDarstellen(iZeile, iSpalte, cGeisterAusgangFarbe);
+						guiDarstellen(iZeile, iSpalte, cGEISTER_AUSGANG_FARBE);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sTeleporter))
+					if (alSpielfeldArrayList.get(iFeld).equals(sTELEPORTER))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
@@ -550,7 +550,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	public static Color getGaengeFarbe()
 	{
-		return cGaengeFarbe;
+		return cGAENGE_FARBE;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
