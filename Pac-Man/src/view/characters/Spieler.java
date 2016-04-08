@@ -16,7 +16,6 @@ public final class Spieler
 	private static int iLeben = 3;
 	private static double dPunktestand = 0;
 	
-	
 	/**
 	 * 
 	 * Diese Methode heiﬂt zwar Spieler rauf bewegen, jedoch bewegt sich hier der Spieler hinunter.<br>
