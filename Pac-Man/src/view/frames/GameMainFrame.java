@@ -541,16 +541,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	
-	public static int getFeldindex()
+	public static int getFeldIndex()
 	{
 		return iFeld;
-	}
-	
-	//-------------------------------------------------------------------------------------------------------------------
-	
-	public static Color getGaengeFarbe()
-	{
-		return cGAENGE_FARBE;
 	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
