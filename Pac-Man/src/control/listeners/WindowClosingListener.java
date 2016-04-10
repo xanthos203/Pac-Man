@@ -8,8 +8,10 @@ import javax.swing.JOptionPane;
 
 /**Diese <i>Listener</i>-Klasse wird ausgeführt, wenn der Benutzer das <b>Fenster schließen</b> möchte.<br>
  * Er wird dabei gefragt, ob er das Spiel wirklich beenden möchte.<br>
- * Diese Klasse <b>erbt von der Klasse WindowAdapter</b>.
+ * Diese Klasse <b>erbt</b> von der Klasse <b>WindowAdapter</b>.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0 */
 public final class WindowClosingListener extends WindowAdapter
 {

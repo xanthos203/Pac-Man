@@ -3,7 +3,9 @@ package view.characters;
 import view.frames.GameMainFrame;
 
 /**
- * @author Thomas
+ * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0
  */
 public final class Geister 

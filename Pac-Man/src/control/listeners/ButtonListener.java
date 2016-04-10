@@ -9,6 +9,8 @@ import view.frames.*;
 /**Diese <i>Listener</i>-Klasse dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
  * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0 */
 public final class ButtonListener implements ActionListener
 {

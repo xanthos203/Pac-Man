@@ -24,6 +24,8 @@ import model.interfaces.IWindowProperties;
  * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle seine Leben verloren</i> hat.<br>
  * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.1 */
 @SuppressWarnings("serial")
 public final class GameLostFrame extends JDialog implements IWindowProperties

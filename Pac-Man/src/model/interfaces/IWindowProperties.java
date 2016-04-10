@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 
 /**Dieses Interface schreibt die <b>wichtigsten Fenster-Eigenschaften</b>, wie zum Beispiel Größe, Position und Hintergrundfarbe, vor.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0 */
 public interface IWindowProperties
 {

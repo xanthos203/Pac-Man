@@ -6,7 +6,9 @@ import view.frames.GameWonFrame;
 
 /**
  * 
- * @author Thomas
+ * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0
  */
 public final class Spieler 
@@ -21,7 +23,7 @@ public final class Spieler
 	 * @param iRaufY
 	 * @return
 	 */
-	public static int SpielerRaufBewegen(int iRaufY)
+	public static int raufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
 		if ((iRaufY + GameMainFrame.getSpieler()
@@ -43,7 +45,7 @@ public final class Spieler
 	 * 
 	 * Diese Methode bewegt den Spieler hinauf allerdings nur, wenn der Spierler den Oberenerand noch nicht erreicht hat.
 	 */
-	public static int SpielerRunterBewegen(int iRunterY)
+	public static int runterBewegen(int iRunterY)
 	{
 		if ((iRunterY + GameMainFrame.getSpieler()
 		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
@@ -65,7 +67,7 @@ public final class Spieler
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public static int SpielerRechtsBewegen(int iRunterX)
+	public static int rechtsBewegen(int iRunterX)
 	{
 		if ((iRunterX + GameMainFrame.getSpieler()
 		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
@@ -87,7 +89,7 @@ public final class Spieler
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public static int SpielerLinksBewegen(int iRaufX)
+	public static int linksBewegen(int iRaufX)
 	{
 		if ((iRaufX + GameMainFrame.getSpieler()
 		.getHeight() < (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))

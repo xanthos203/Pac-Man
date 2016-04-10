@@ -1,15 +1,17 @@
 package control.listeners;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import view.frames.*;
+import view.frames.GameMainFrame;
 
 /**Diese <i>Listener</i>-Klasse dient zur <b>Steuerung des Hauptcharakters Pac-Man</b>.<br>
- * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
+ * Sie <b>erbt</b> von der Klasse <b>KeyAdapter</b>.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0 */
-public final class SteuerungListener implements KeyListener
+public final class SteuerungListener extends KeyAdapter
 {
 	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
 	 * @param keEvent Taste gedrückt*/
@@ -43,11 +45,4 @@ public final class SteuerungListener implements KeyListener
 //============================================================\\
 		GameMainFrame.getSpieler().repaint();
 	}
-
-//=================================================================\\
-	
-	@Override
-	public void keyTyped(KeyEvent keEvent) {}
-	@Override
-	public void keyReleased(KeyEvent keEvent) {}
 }

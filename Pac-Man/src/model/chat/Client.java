@@ -9,6 +9,12 @@ import javax.swing.JOptionPane;
 
 import view.frames.GameMainFrame;
 
+/**
+ * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
+ * @version 1.0
+ */
 public class Client 
 {
 	private static boolean bIPgesendet = false;

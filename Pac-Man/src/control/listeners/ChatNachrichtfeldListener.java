@@ -2,17 +2,19 @@ package control.listeners;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import view.frames.GameMainFrame;
 
 /**Diese <i>Listener</i>-Klasse dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
  * Außerdem <b>überprüft</b> diese Klasse, ob das Chatnachrichten-Feld im Fokus (=Cursor) steht, oder nicht.<br>
- * Sie <b>implementiert</b> die Interfaces <b>KeyListener</b> und <b>FocusListener</b>.
+ * Sie <b>erbt</b> von der Klasse <b>KeyAdapter</b> und <b>implementiert</b> das Interface <b>FocusListener</b>.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0 */
-public final class ChatNachrichtfeldListener implements KeyListener, FocusListener
+public final class ChatNachrichtfeldListener extends KeyAdapter implements FocusListener
 {
 	/**Die <i>focusGained</i>-Methode wird aufgerufen, wenn das Chatnachrichten-Feld im Fokus steht.*/
 	@Override
@@ -44,9 +46,4 @@ public final class ChatNachrichtfeldListener implements KeyListener, FocusListen
 			GameMainFrame.chattextAnzeigen();
 		}
 	}
-
-	@Override
-	public void keyTyped(KeyEvent keEvent) {}
-	@Override
-	public void keyReleased(KeyEvent keEvent) {}
 }

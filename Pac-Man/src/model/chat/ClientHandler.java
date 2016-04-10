@@ -4,6 +4,12 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+/**
+ * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
+ * @version 1.0
+ */
 public class ClientHandler implements Runnable 
 {
 	private static boolean bInitCH = false;
@@ -33,7 +39,6 @@ public class ClientHandler implements Runnable
 		{
 			while ((sNachricht = brReader.readLine()) != null) 
 			{
-//				System.out.println("gelesen: " + sNachricht);
 				Server.allenWeitersagen(sNachricht);		
 			}
 		}

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 /**
  * 
+ * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0
  *
  * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
@@ -30,19 +32,17 @@ public class GuiDB
 		//Zeilenobjekte aus Stringzeilen erzeugen und der ArrayList hinzufügen
 		for (String sZeile : alGuiString) 
 		{	
-			// Hier werden die Texteile "erzeugt" da diese mit dem Befehl split() aufgespalten werden
+			// Hier werden die Textteile "erzeugt", da diese mit dem Befehl split() aufgespalten werden
 			String[] sTeile = sZeile.split(";");
 			
-			//Hier wierd überprüft, ob die länge größer oder kleiner wie 6 ist
+			//Hier wird überprüft, ob die Länge größer als 6 ist
 			if (sTeile.length >= 6) 
 			{
-				//Hier wierd der Hauptkonstruktor der Klasse CLogzeile aufgerufen und die Teile werden dem Kosnturkor übergeben
 				for (int i = 0; i < sTeile.length - 1; i++)
 				{
 					alZeilenString.add(sTeile[i]);
 				}				
-			}		
-			// hier wird der ArrayList log die Werte mit Hilfe eine Objektes der Klasse CLogzeile hinzugefügt		
+			}
 		}
 	}
 	//---------------------------------------------------------------------------------------------------------------------------

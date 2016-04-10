@@ -24,6 +24,8 @@ import model.interfaces.IWindowProperties;
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
  * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
  * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.2 */
 @SuppressWarnings("serial")
 public final class LogInFrame extends JDialog implements IWindowProperties
@@ -54,7 +56,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 	/**Auf dem Label <i>infoText_label</i> wird das Icon <b>infoText</b> dargestellt.*/
 	private JLabel		infoText_label	= new JLabel(infoText);
 	/**Das <i>pacmanLabel</i> zeigt lediglich den <b>Namen des Spiels</b> an.*/
-	private JLabel 		pacmanLabel 	= new JLabel("PAC-MAN");
+	private JLabel 		pacmanLabel 	= new JLabel("PAC\u00ADMAN");
 	/**Mit dem <i>hinweisLabel</i> wird der Benutzer darauf <b>hingewiesen, wo er seinen Spielernamen eingeben</b> muss.*/
 	private JLabel		hinweisLabel	= new JLabel("Spielername eingeben\u003A");
 	
@@ -112,7 +114,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		/*dem usernameFeld wird ein Hinweistext zugewiesen*/
 		usernameFeld.setToolTipText("Spielername eingeben");
 		/*dem usernameFeld wird ein KeyListener hinzugefügt*/
-		usernameFeld.addKeyListener(new TextfieldListener(this));
+		usernameFeld.addKeyListener(new TextfieldListener(this, usernameFeld));
 		
 		/*dem eingabePanel wird ein neues BorderLayout hinzugefügt*/
 		eingabePanel.setLayout(new BorderLayout());
@@ -178,13 +180,5 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 	{
 		/*der aktuelle Spielername wird zurückgegeben*/
 		return username;
-	}
-	
-	/**Die <i>Getter</i>-Methode für das <b>UsernameFeld</b> retourniert das UsernameFeld, indem der Benutzer seinen Spielernamen eingeben kann.
-	 * @return den eingegebenen Spielernamen*/
-	public static JTextField getUsernameFeld()
-	{
-		/*das usernameFeld wird zurückgegeben*/
-		return usernameFeld;
 	}
 }

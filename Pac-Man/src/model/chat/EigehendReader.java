@@ -2,6 +2,12 @@ package model.chat;
 
 import view.frames.GameMainFrame;
 
+/**
+ * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
+ * @version 1.0
+ */
 public class EigehendReader implements Runnable 
 {
 	public void run()
@@ -12,7 +18,6 @@ public class EigehendReader implements Runnable
 		{			
 			while ((sNachricht = Client.getReader().readLine()) == null) 
 			{
-//				System.out.println("gelesen: " + sNachricht);
 				GameMainFrame.getChatverlaufTextarea().append(sNachricht + "\n");		
 			}
 		}

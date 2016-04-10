@@ -37,7 +37,9 @@ import view.characters.Spieler;
 
 /**
  * 
+ * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
  * @version 1.0
  */
 @SuppressWarnings("serial")
@@ -419,7 +421,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRunter()
 	{
 		iSpielerY = lPacMan.getY();
-		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
+		iSpielerY = Spieler.raufBewegen(iSpielerY);
 		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
 		//bSpielerAktiv = true;
 	}
@@ -431,7 +433,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRauf()
 	{
 		iSpielerY = lPacMan.getY();
-		iSpielerY = Spieler.SpielerRunterBewegen(iSpielerY);
+		iSpielerY = Spieler.runterBewegen(iSpielerY);
 		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
 		//bSpielerAktiv = true;
 		
@@ -444,7 +446,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerLinks()
 	{
 		iSpielerX = lPacMan.getX();
-		iSpielerX = Spieler.SpielerLinksBewegen(iSpielerX);
+		iSpielerX = Spieler.linksBewegen(iSpielerX);
 		lPacMan.setLocation(iSpielerX, lPacMan.getY());
 		//bSpielerAktiv = true;
 	}
@@ -456,7 +458,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRechts()
 	{
 		iSpielerX = lPacMan.getX();
-		iSpielerX = Spieler.SpielerRechtsBewegen(iSpielerX);
+		iSpielerX = Spieler.rechtsBewegen(iSpielerX);
 		lPacMan.setLocation(iSpielerX, lPacMan.getY());
 		//bSpielerAktiv = true;
 	}
@@ -557,8 +559,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	/**
 	 * In dieser Klasse befindet sich die Methode run, welche für die Bewegung des Geistes zuständig ist.
-	 * @author Thomas Mader-Ofer
-	 *
+	 * @author Manuel Glantschnig<br>Thomas Mader-Ofer<br>Cristina Erhart
+	 * @version 1.0
 	 */
 	private class Task extends TimerTask
 	{

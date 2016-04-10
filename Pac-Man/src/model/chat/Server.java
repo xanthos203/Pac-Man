@@ -6,6 +6,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * @author Manuel Glantschnig
+ * @author Thomas Mader-Ofer
+ * @author Cristina Erhart
+ * @version 1.0
+ */
 public final class Server
 {
 	private static boolean bIsConnected = false;
