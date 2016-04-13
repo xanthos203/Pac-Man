@@ -22,7 +22,7 @@ import model.interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>gewonnen</b> hat, dargestellt.<br>
  * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle Münzen und alle Geister verspeist</i> hat.<br>
- * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
+ * Diese Klasse <b>erbt</b> von der Klasse <b>JDialog</b> und <b>implementiert</b> das Interface <b>IWindowProperties</b>.
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart

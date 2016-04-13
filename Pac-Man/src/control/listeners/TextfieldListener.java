@@ -84,7 +84,7 @@ public final class TextfieldListener extends KeyAdapter
 				return;
 			}
 			/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als maxZeichenLaenge ist*/
-			if ((!referenceTextField.getText().matches("[a-zA-Z[0-9]]+")) && (referenceTextField.getText().length() < maxZeichenLaenge))
+			if (!referenceTextField.getText().matches("[a-zA-Z[0-9]]+") && (referenceTextField.getText().length() < maxZeichenLaenge))
 			{
 				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\n"

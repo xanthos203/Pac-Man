@@ -526,13 +526,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		return lPacMan;
 	}
-
-	//-------------------------------------------------------------------------------------------------------------------
-	
-	public static JPanel[][] getSpielfeld()
-	{
-		return aSpielfeldArray;
-	}
 	
 	//-------------------------------------------------------------------------------------------------------------------
 	

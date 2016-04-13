@@ -22,7 +22,7 @@ import model.interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster zum Einloggen des Benutzers dargestellt.<br>
  * Dieses Fenster erscheint am Anfang <b>immer zuerst</b>, wenn das <i>Spiel gestartet</i> wird.<br>
- * Diese Klasse <b>erbt von der Klasse JDialog</b> und <b>implementiert das Interface IWindowProperties</b>.
+ * Diese Klasse <b>erbt</b> von der Klasse <b>JDialog</b> und <b>implementiert</b> das Interface <b>IWindowProperties</b>.
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
@@ -30,11 +30,11 @@ import model.interfaces.IWindowProperties;
 @SuppressWarnings("serial")
 public final class LogInFrame extends JDialog implements IWindowProperties
 {
-	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
-	private static JTextField usernameFeld	   = new JTextField();
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
-	private static String 	  username		   = null;
+	private static String username;
 	
+	/**Im Textfeld <i>usernameFeld</i> kann der Benutzer seinen gewünschten <b>Spielernamen</b> eingeben.*/
+	private JTextField  usernameFeld	= new JTextField();
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
 	private JPanel 		contentPane		= new JPanel();
 	/**Auf dem <i>infoPanel</i> werden alle benötigten Komponenten, die <b>Informationen für den Benutzer</b> bereitstellen, dargestellt.*/
@@ -132,6 +132,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		
 		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints gbc_pacmanLabel = new GridBagConstraints();
+		/*spezifiziert den Mindestabstand zwischen der Komponente und den Ecken der Anzeigefläche*/
 		gbc_pacmanLabel.insets = new Insets(0, 0, 5, 0);
 		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der X-Achse befindet*/
 		gbc_pacmanLabel.gridx = 0;
@@ -146,6 +147,7 @@ public final class LogInFrame extends JDialog implements IWindowProperties
 		
 		/*erstellt ein GridBagConstraint-Objekt, mit all seinen Feldern auf ihren Standardwert gesetzt*/
 		GridBagConstraints gbc_eingabePanel = new GridBagConstraints();
+		/*spezifiziert den Mindestabstand zwischen der Komponente und den Ecken der Anzeigefläche*/
 		gbc_eingabePanel.insets = new Insets(0, 0, 5, 0);
 		/*bestimmt in welcher Spalte sich das GridBagConstraint-Objekt auf der X-Achse befindet*/
 		gbc_eingabePanel.gridx = 0;

@@ -14,33 +14,34 @@ import view.frames.GameMainFrame;
 public final class SteuerungListener extends KeyAdapter
 {
 	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
-	 * @param keEvent Taste gedrückt*/
-	public void keyPressed(KeyEvent keEvent)
+	 * @param keyEvent Taste gedrückt*/
+	public void keyPressed(KeyEvent keyEvent)
 	{
+		System.out.println("Grias di");
 		// Für Spieler die mit "WASD" spielen möchten
-		if((keEvent.getKeyCode() == KeyEvent.VK_S))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
 			GameMainFrame.spielerRunter();
 		//----------------------------------------------
-		if((keEvent.getKeyCode() == KeyEvent.VK_W))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
 			GameMainFrame.spielerRauf();
 		//----------------------------------------------
-		if((keEvent.getKeyCode() == KeyEvent.VK_A))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_A))
 			GameMainFrame.spielerLinks();
 		//----------------------------------------------
-		if((keEvent.getKeyCode() == KeyEvent.VK_D))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_D))
 			GameMainFrame.spielerRechts();
 //============================================================\\
 		// Für Spieler die mit den Pfeiltasten spielen möchten
-		if((keEvent.getKeyCode() == KeyEvent.VK_DOWN))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
 			GameMainFrame.spielerRunter();
 		//--------------------------------------------------
-		if((keEvent.getKeyCode() == KeyEvent.VK_UP))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_UP))
 			GameMainFrame.spielerRauf();
 		//--------------------------------------------------
-		if((keEvent.getKeyCode() == KeyEvent.VK_LEFT))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
 			GameMainFrame.spielerLinks();
 		//--------------------------------------------------
-		if((keEvent.getKeyCode() == KeyEvent.VK_RIGHT))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
 			GameMainFrame.spielerRechts();
 //============================================================\\
 		GameMainFrame.getSpieler().repaint();
