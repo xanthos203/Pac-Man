@@ -58,8 +58,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static final Color cGAENGE_FARBE = Color.BLACK;
 	private static final Color cWAENDE_FARBE = Color.BLUE;
 	private static final Color cGEISTER_AUSGANG_FARBE = Color.WHITE;
-	
-	private static final Color cGaengeFarbe = Color.BLACK;
 
 	private static GameMainFrame oGameMainFrame;
 
@@ -95,10 +93,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	private static boolean bSpielerAktiv = false;
 
-	boolean bOeffnenVerlorenFenster = true;
-
-
-	private Timer oTimer = new Timer();
+	private boolean bOeffnenVerlorenFenster = true;
 
 	private int iSpielerYalt;
 	private int iGeistX;
@@ -113,6 +108,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private JPanel pChatKomponentenPanel = new JPanel();
 
 	private GuiDB oGuiDB = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
+	
+	private Timer oTimer = new Timer();
 
 	private Server oServer;
 	private Client oClient = new Client();
@@ -309,7 +306,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(sWAENDE))
 					{
-						guiDarstellen(iZeile, iSpalte, Color.BLUE);
+						guiDarstellen(iZeile, iSpalte, cWAENDE_FARBE);
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(sGEISTER))
@@ -586,7 +583,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	// -------------------------------------------------------------------------------------------------------------------
 
-	public static JPanel[][] getSpielfeld() {
+	public static JPanel[][] getSpielfeld()
+	{
 		return aSpielfeldArray;
 	}
 
@@ -623,7 +621,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask 
 	{
-		String sname;
+		String sName;
 		
 		public void run() 
 		{
@@ -633,47 +631,47 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				Server.allenWeitersagen(tfChatnachrichtTextfeld.getText());
 			}
 			
-			  if(bSpielerAktiv) 
-			  {
-				  Random zufallsZahl = new Random(); // zufallszahl für die Bewegung des Geistes generiern 
-				  int index = zufallsZahl.nextInt(8) + 1;
-				  
-				  for(int iZaehler = 0; iZaehler <= 8; iZaehler++) 
-				  {
-					  switch(iZaehler)
-					  {
-					  	case 0: sname = "Greeny"; break;
-					  	case 1: sname = "Greeny"; break;
-					  	case 2: sname = "Blue";   break;
-					  	case 3: sname = "Blue";   break;
-					  	case 4: sname = "Orangy"; break;
-					  	case 5: sname = "Orangy"; break;
-					  	case 6: sname = "Pinky";  break;
-					  	case 7: sname = "Pinky";  break;
-					  }
-					  switch(index)
-					  { 
-					  	case 1:  Geister.GeisterRaufBewegen(iGeistY, sname); break; 
-					  	case 2:  Geister.GeisterRunterBewegen(iGeistY, sname); break; 
-					  	case 3:  Geister.GeisterRechtsBewegen(iGeistX, sname); break; 
-					  	case 4:  Geister.GeisterLinksBewegen(iGeistX, sname); break;
-					  	case 5:  Geister.GeisterRaufBewegen(iGeistY, sname); break;
-					  	case 6:  Geister.GeisterRunterBewegen(iGeistY, sname); break; 
-					  	case 7:  Geister.GeisterRechtsBewegen(iGeistX, sname); break;
-					  	case 8:  Geister.GeisterLinksBewegen(iGeistX, sname); break; 
-					  } 
-				  }
-			 } 
-			  
-			  if((iGeistX == iSpielerX) && (iGeistY ==iSpielerY)&&(Spieler.getLeben() == 0)) 
-			  {
-				  if(bOeffnenVerlorenFenster)
-				  {
-					  new GameLostFrame();
-					  bOeffnenVerlorenFenster = false;
-				  }
-			  }
-			  repaint();
+			if (bSpielerAktiv)
+			{
+				Random zufallsZahl = new Random(); // zufallszahl für die Bewegung des Geistes generiern
+				int iIndex = zufallsZahl.nextInt(8) + 1;
+
+				for (int iZaehler = 0; iZaehler <= 8; iZaehler++)
+				{
+					switch (iZaehler)
+					{
+						case 0: sName = "Greeny"; break;
+						case 1: sName = "Greeny"; break;
+						case 2: sName = "Blue"; break;
+						case 3: sName = "Blue"; break;
+						case 4: sName = "Orangy"; break;
+						case 5: sName = "Orangy"; break;
+						case 6: sName = "Pinky"; break;
+						case 7: sName = "Pinky"; break;
+					}
+					switch (iIndex)
+					{
+						case 1: Geister.GeisterRaufBewegen(iGeistY, sName); break;
+						case 2: Geister.GeisterRunterBewegen(iGeistY, sName); break;
+						case 3: Geister.GeisterRechtsBewegen(iGeistX, sName); break;
+						case 4: Geister.GeisterLinksBewegen(iGeistX, sName); break;
+						case 5: Geister.GeisterRaufBewegen(iGeistY, sName); break;
+						case 6: Geister.GeisterRunterBewegen(iGeistY, sName); break;
+						case 7: Geister.GeisterRechtsBewegen(iGeistX, sName); break;
+						case 8: Geister.GeisterLinksBewegen(iGeistX, sName); break;
+					}
+				}
+			}
+
+			if ((iGeistX == iSpielerX) && (iGeistY == iSpielerY) && (Spieler.getLeben() == 0))
+			{
+				if (bOeffnenVerlorenFenster)
+				{
+					new GameLostFrame();
+					bOeffnenVerlorenFenster = false;
+				}
+			}
+			repaint();
 		}	 
 	}
 }

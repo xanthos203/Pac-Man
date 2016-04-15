@@ -127,16 +127,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="view.frames.GameMainFrame.Task" project="Pac-Man" 
-    file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="715" y="370"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="16" language="java" name="view.frames.GameMainFrame" project="Pac-Man" 
+  <class id="15" language="java" name="view.frames.GameMainFrame" project="Pac-Man" 
     file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="940" y="285"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -145,7 +136,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="view.characters.Geister" project="Pac-Man" 
+  <class id="16" language="java" name="view.characters.Geister" project="Pac-Man" 
     file="/Pac-Man/src/view/characters/Geister.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1244" y="62"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="view.characters.Spieler" project="Pac-Man" 
+  <class id="17" language="java" name="view.characters.Spieler" project="Pac-Man" 
     file="/Pac-Man/src/view/characters/Spieler.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1243" y="-237"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -163,7 +154,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="model.main.TestClass" project="Pac-Man" 
+  <class id="18" language="java" name="model.main.TestClass" project="Pac-Man" 
     file="/Pac-Man/src/model/main/TestClass.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="73" y="228"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -172,7 +163,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="20" language="java" name="model.chat.ClientHandler" project="Pac-Man" 
+  <class id="19" language="java" name="model.chat.ClientHandler" project="Pac-Man" 
     file="/Pac-Man/src/model/chat/ClientHandler.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="380" y="-300"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -181,7 +172,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="21" language="java" name="control.file_processing.GuiDB" project="Pac-Man" 
+  <class id="20" language="java" name="control.file_processing.GuiDB" project="Pac-Man" 
     file="/Pac-Man/src/control/file_processing/GuiDB.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1243" y="451"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -190,59 +181,19 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="22">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="23">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="24" name="oClient">        
-        <position height="0" width="0" x="19" y="-102"/>      
-      </attribute>      
-      <multiplicity id="25" minimum="0" maximum="1">        
-        <position height="0" width="0" x="19" y="-102"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="26">    
+  <realization id="21">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="27">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="28" name="oServer">        
-        <position height="0" width="0" x="25" y="-143"/>      
-      </attribute>      
-      <multiplicity id="29" minimum="0" maximum="1">        
-        <position height="0" width="0" x="25" y="-143"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <nesting id="30">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="15"/>  
-  </nesting>  
-  <realization id="31">    
+  <realization id="22">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="23">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <association id="32">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="33" name="oGuiDB">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="34" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="35">    
+  <realization id="24">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  

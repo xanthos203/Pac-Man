@@ -15,7 +15,6 @@ public final class Geister
 	
 	public static int GeisterRaufBewegen(int iRaufY, String sName)
 	{
-		
 		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
@@ -23,9 +22,7 @@ public final class Geister
 				iRaufY += 8;
 				iGeistY = iRaufY;
 			}
-			
 		}
-		
 		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
@@ -38,7 +35,6 @@ public final class Geister
 				iRunterY -= 8;
 				iGeistY = iRunterY;
 			}
-			
 		}
 		return iGeistY;
 	}
@@ -52,7 +48,6 @@ public final class Geister
 				iRunterX += 8;
 				iGeistY = iRunterX;
 			}
-			
 		}
 		return iGeistX;
 	}
@@ -66,7 +61,6 @@ public final class Geister
 				iRunterX -= 8;
 				iGeistY = iRunterX;
 			}
-			
 		}
 		return iGeistX;
 	}
