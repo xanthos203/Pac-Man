@@ -6,9 +6,7 @@ import view.frames.GameWonFrame;
 
 /**
  * 
- * @author Manuel Glantschnig
- * @author Thomas Mader-Ofer
- * @author Cristina Erhart
+ * @author Thomas
  * @version 1.0
  */
 public final class Spieler 
@@ -26,15 +24,12 @@ public final class Spieler
 	public static int raufBewegen(int iRaufY)
 	{				
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		//if ((iRaufY + GameMainFrame.getSpieler().getHeight()
-		//		< (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-		//{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldIndex()).equals(GameMainFrame.sGAENGE))
-			{
-				iRaufY += 4;
-				iSpielerY = iRaufY;
-			}
-		//}
+		
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+		{
+			iRaufY += 4;
+			iSpielerY = iRaufY;
+		}
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -47,15 +42,12 @@ public final class Spieler
 	 */
 	public static int runterBewegen(int iRunterY)
 	{
-		//if ((iRunterY + GameMainFrame.getSpieler().getHeight()
-			//	< (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-		//{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldIndex()).equals(GameMainFrame.sGAENGE))
-			{
-				iRunterY += 4;
-				iSpielerY = iRunterY;
-			}
-		//}
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+		{
+			iRunterY += 4;
+			iSpielerY = iRunterY;
+		}
+		System.out.println(""+iSpielerY);
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
@@ -69,15 +61,12 @@ public final class Spieler
 	 */
 	public static int rechtsBewegen(int iRunterX)
 	{
-		//if ((iRunterX + GameMainFrame.getSpieler().getHeight()
-		//		< (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-		//{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldIndex()).equals(GameMainFrame.sGAENGE))
-			{
-				iRunterX += 4;
-				iSpielerX = iRunterX;
-			}
-		//}
+		
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+		{
+			iRunterX += 4;
+			iSpielerX = iRunterX;
+		}
 		return iSpielerX;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
@@ -91,15 +80,11 @@ public final class Spieler
 	 */
 	public static int linksBewegen(int iRaufX)
 	{
-	//	if ((iRaufX + GameMainFrame.getSpieler().getHeight()
-	//			< (GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight()) - 18))
-	//	{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldIndex()).equals(GameMainFrame.sGAENGE))
-			{
-				iRaufX += 4;
-				iSpielerX = iRaufX;
-			}
-	//	}
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+		{
+			iRaufX += 4;
+			iSpielerX = iRaufX;
+		}
 		return iSpielerX;
 	}
 //-------------------------------------------------------------------------------------------------------------------------

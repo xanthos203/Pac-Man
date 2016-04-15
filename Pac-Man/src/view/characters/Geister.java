@@ -13,45 +13,60 @@ public final class Geister
 	private static int iGeistX;
 	private static int iGeistY;
 	
-	public static int GeisterRaufBewegen(int iRaufY)
+	public static int GeisterRaufBewegen(int iRaufY, String sName)
 	{
-
-		if (iRaufY + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getHeight())
+		
+		if (sName == "Greeny")
 		{
-			iRaufY += 8;
-			iGeistY = iRaufY;
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+			{
+				iRaufY += 8;
+				iGeistY = iRaufY;
+			}
+			
 		}
 		
 		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int GeisterRunterBewegen(int iRunterY)
+	public static int GeisterRunterBewegen(int iRunterY, String sName)
 	{ 
-
-		if (iRunterY > +16)
+		if (sName == "Greeny")
 		{
-			iRunterY -= 8;
-			iGeistY = iRunterY;
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+			{
+				iRunterY -= 8;
+				iGeistY = iRunterY;
+			}
+			
 		}
 		return iGeistY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	public static int GeisterRechtsBewegen(int iRunterX)
+	public static int GeisterRechtsBewegen(int iRunterX, String sName)
 	{
-//		if(iRunterX + GameMainFrame.getSpieler().getHeight() < GameMainFrame.getGameMainFrame().getContentPane().getBounds().getWidth() - /*Randkoordinaten des JPanels angeben*/)
-//		{
-//			iRunterX += 8;
-//			iGeistX = iRunterX;
-//		}
+		if (sName == "Greeny")
+		{
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+			{
+				iRunterX += 8;
+				iGeistY = iRunterX;
+			}
+			
+		}
 		return iGeistX;
 	}
 //------------------------------------------------------------------------------------------------------------------------	
-	public static int GeisterLinksBewegen(int iRunterX)
+	public static int GeisterLinksBewegen(int iRunterX, String sName)
 	{
-		if (iRunterX > 16)
+		if (sName == "Greeny")
 		{
-			iRunterX -= 8;
-			iGeistX = iRunterX;
+			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+			{
+				iRunterX -= 8;
+				iGeistY = iRunterX;
+			}
+			
 		}
 		return iGeistX;
 	}

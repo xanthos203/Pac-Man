@@ -17,10 +17,12 @@ public final class SteuerungListener extends KeyAdapter
 	 * @param keyEvent Taste gedrückt*/
 	public void keyPressed(KeyEvent keyEvent)
 	{
-		System.out.println("Grias di");
 		// Für Spieler die mit "WASD" spielen möchten
 		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
-			GameMainFrame.spielerRunter();
+		{
+			System.out.print("Hallo");
+			GameMainFrame.spielerRunter();			
+		}
 		//----------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
 			GameMainFrame.spielerRauf();
