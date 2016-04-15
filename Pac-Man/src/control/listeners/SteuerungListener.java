@@ -9,15 +9,19 @@ import view.frames.*;
  * Sie <b>implementiert</b> das Interface <b>KeyListener</b>.
  * @author Manuel Glantschnig
  * @version 1.0 */
-public final class SteuerungListener implements KeyListener
+public class SteuerungListener implements KeyListener
 {
 	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
 	 * @param keEvent Taste gedrückt*/
 	public void keyPressed(KeyEvent keEvent)
 	{
+		System.out.print("Hallo");
 		// Für Spieler die mit "WASD" spielen möchten
 		if((keEvent.getKeyCode() == KeyEvent.VK_S))
-			GameMainFrame.spielerRunter();
+		{
+			System.out.print("Hallo");
+			GameMainFrame.spielerRunter();			
+		}
 		//----------------------------------------------
 		if((keEvent.getKeyCode() == KeyEvent.VK_W))
 			GameMainFrame.spielerRauf();

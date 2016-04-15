@@ -48,6 +48,7 @@ public final class Spieler
 				iRunterY += 4;
 				iSpielerY = iRunterY;
 			}
+			System.out.println(""+iSpielerY);
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
