@@ -124,6 +124,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		oGameMainFrame = this;
 		
+		
 		Font foDefaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		
 		setTitle("Pac-Man");
@@ -256,6 +257,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void guiDarstellen(int iZeile, int iSpalte, Color cFarbe)
 	{
 		aSpielfeldArray[iZeile][iSpalte] = new JPanel();
+		aSpielfeldArray[iZeile][iSpalte].setFocusable(true);
+		aSpielfeldArray[iZeile][iSpalte].requestFocusInWindow();
 		aSpielfeldArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
 		aSpielfeldArray[iZeile][iSpalte].setBackground(cFarbe);
 		pSpielfeldPanel.add(aSpielfeldArray[iZeile][iSpalte]);
