@@ -18,33 +18,50 @@ public final class SteuerungListener extends KeyAdapter
 	public void keyPressed(KeyEvent keyEvent)
 	{
 		// Für Spieler die mit "WASD" spielen möchten
-		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
 		{
-			System.out.print("Hallo");
-			GameMainFrame.spielerRunter();			
+			System.out.println("rauf");
+			GameMainFrame.spielerRauf();
 		}
 		//----------------------------------------------
-		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
-			GameMainFrame.spielerRauf();
-		//----------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_A))
+		{
+			System.out.println("links");
 			GameMainFrame.spielerLinks();
+		}
+		//----------------------------------------------
+		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
+		{
+			System.out.println("runter");
+			GameMainFrame.spielerRunter();
+		}
 		//----------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_D))
+		{
+			System.out.println("rechts");
 			GameMainFrame.spielerRechts();
+		}
 //============================================================\\
 		// Für Spieler die mit den Pfeiltasten spielen möchten
-		if((keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
-			GameMainFrame.spielerRunter();
-		//--------------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_UP))
+		{
 			GameMainFrame.spielerRauf();
+		}
 		//--------------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
+		{
 			GameMainFrame.spielerLinks();
+		}
+		//--------------------------------------------------
+		if((keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
+		{
+			GameMainFrame.spielerRunter();
+		}
 		//--------------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
+		{
 			GameMainFrame.spielerRechts();
+		}
 //============================================================\\
 		GameMainFrame.getSpieler().repaint();
 	}

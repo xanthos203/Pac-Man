@@ -10,7 +10,7 @@ import java.awt.Toolkit;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -28,7 +28,7 @@ import model.interfaces.IWindowProperties;
  * @author Cristina Erhart
  * @version 1.2 */
 @SuppressWarnings("serial")
-public final class LogInFrame extends JDialog implements IWindowProperties
+public final class LogInFrame extends JFrame implements IWindowProperties
 {
 	/**In <i>username</i> wird der <b>Spielername</b> des Benutzers gespeichert.*/
 	private static String username;

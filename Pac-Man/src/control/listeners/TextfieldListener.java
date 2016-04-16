@@ -3,7 +3,7 @@ package control.listeners;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -22,14 +22,14 @@ public final class TextfieldListener extends KeyAdapter
 	/**Die <i>maxZeichenLaenge</i> bestimmt, <b>wie viele Zeichen maximal</b> im Textfeld <b>eingegeben werden können</b>.*/
 	private int			maxZeichenLaenge = 18;
 	/**Das <i>referenceDialog</i> bestimmt das <b>Referenz-Fenster</b>, auf welches sich der Listener bezieht.*/
-	private JDialog 	referenceDialog;
+	private JFrame 	referenceDialog;
 	/**Das <i>referenceTextField</i> bestimmt das <b>Referenz-Textfeld</b>, auf welches sich der Listener bezieht.*/
 	private JTextField  referenceTextField;
 	
 	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> und auf <b>welches Textfeld</b> sich der Listener bezieht.
 	 * @param dialog Referenzvariable vom Typ <i>JDialog</i>
 	 * @param textField Referenzvariable vom Typ <i>JTextField</i>*/
-	public TextfieldListener(JDialog dialog, JTextField textField)
+	public TextfieldListener(JFrame dialog, JTextField textField)
 	{
 		/*der Variable referenceDialog wird der Wert von dialog zugewiesen
 		 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
@@ -102,7 +102,7 @@ public final class TextfieldListener extends KeyAdapter
 				LogInFrame.setUsername(referenceTextField.getText());
 				/*das aktuelle Fenster wird geschlossen*/
 				referenceDialog.dispose();
-					
+				
 				/*=========Hauptfenster öffnen=========*/
 				new GameMainFrame();
 			}

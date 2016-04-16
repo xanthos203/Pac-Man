@@ -182,19 +182,19 @@
     </display>  
   </class>  
   <realization id="21">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="22">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
+  <realization id="22">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <realization id="23">    
-    <end type="SOURCE" refId="1"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <realization id="24">    
-    <end type="SOURCE" refId="2"/>    
+    <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

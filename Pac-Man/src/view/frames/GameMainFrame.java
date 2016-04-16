@@ -89,13 +89,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static int iSpielerY;
 	private static int iFeld = -1;
 	
-	private static int iSpielerXalt;
-
 	private static boolean bSpielerAktiv = false;
 
 	private boolean bOeffnenVerlorenFenster = true;
 
-	private int iSpielerYalt;
 	private int iGeistX;
 	private int iGeistY;
 	private int iGeisterZaehler = 0;
@@ -140,6 +137,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		setLocation(WINDOW_POSITION);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		setResizable(false);
+		setFocusable(true);
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowClosingListener(this));
@@ -276,8 +274,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void guiDarstellen(int iZeile, int iSpalte, Color cFarbe)
 	{
 		aSpielfeldArray[iZeile][iSpalte] = new JPanel();
-		aSpielfeldArray[iZeile][iSpalte].setFocusable(true);
-		aSpielfeldArray[iZeile][iSpalte].requestFocusInWindow();
 		aSpielfeldArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
 		aSpielfeldArray[iZeile][iSpalte].setBackground(cFarbe);
 		pSpielfeldPanel.add(aSpielfeldArray[iZeile][iSpalte]);
@@ -319,6 +315,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
+						iSpielerX = iZeile;
+						iSpielerY = iSpalte;
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(sEATING_COINS))
@@ -447,20 +445,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter() 
 	{
-		iSpielerY = lPacMan.getY();
-		iSpielerY = Spieler.raufBewegen(iSpielerY);
-		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
-		//bSpielerAktiv = true;
-		try 
-		{
-			aSpielfeldArray[iSpielerXalt][iSpielerY].removeAll();
-		}
-		catch (Exception exException)
-		{
-			exException.printStackTrace();
-		}
-
-		aSpielfeldArray[iSpielerXalt][iSpielerY].add(lPacMan);
+		iSpielerX = Spieler.runterBewegen(iSpielerX);
+		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -471,23 +458,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRauf() 
 	{
-		iSpielerY = lPacMan.getY();
-		iSpielerY = Spieler.runterBewegen(iSpielerY);
-		lPacMan.setLocation(lPacMan.getX(), iSpielerY);
-		//bSpielerAktiv = true;
-
-//		iSpielerY = Spieler.SpielerRaufBewegen(iSpielerY);
-		
-		try 
-		{
-			aSpielfeldArray[iSpielerXalt][iSpielerY].removeAll();
-		}
-		catch (Exception exException)
-		{
-			exException.printStackTrace();
-		}
-
-		aSpielfeldArray[iSpielerXalt][iSpielerY].add(lPacMan);
+		iSpielerX = Spieler.raufBewegen(iSpielerX);
+		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -498,9 +471,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
-		iSpielerX = lPacMan.getX();
-		iSpielerX = Spieler.linksBewegen(iSpielerX);
-		lPacMan.setLocation(iSpielerX, lPacMan.getY());
+		iSpielerY = Spieler.linksBewegen(iSpielerY);
+		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -511,9 +484,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
-		iSpielerX = lPacMan.getX();
-		iSpielerX = Spieler.rechtsBewegen(iSpielerX);
-		lPacMan.setLocation(iSpielerX, lPacMan.getY());
+		iSpielerY = Spieler.rechtsBewegen(iSpielerY);
+		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -579,6 +552,20 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static JLabel getSpieler()
 	{
 		return lPacMan;
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------
+
+	public static int getSpielerX()
+	{
+		return iSpielerX;
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------
+
+	public static int getSpielerY()
+	{
+		return iSpielerY;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------

@@ -13,79 +13,109 @@ import view.frames.GameWonFrame;
  */
 public final class Spieler 
 {
-	private static int iSpielerX;
-	private static int iSpielerY;
+	private static int iSpielerX = GameMainFrame.getSpielerX();
+	private static int iSpielerY = GameMainFrame.getSpielerY();
 	private static int iLeben = 3;
 	private static double dPunktestand = 0;
 	
 	/**
 	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
-	 * @param iRaufY
+	 * @param iRunter
 	 * @return
 	 */
-	public static int raufBewegen(int iRaufY)
+	public static int runterBewegen(int iRunter)
 	{				
-		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
 		{
-			iRaufY += 4;
-			iSpielerY = iRaufY;
+			if (iSpielerY < 27)
+			{
+//				iRunter += 1;
+				iSpielerY++;
+			}
+			else
+			{
+				iSpielerY = iRunter;
+			}
+			System.out.println(iSpielerY);
 		}
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * 
-	 * @param iRunterY
+	 * @param iRauf
 	 * @return
 	 * 
 	 * Diese Methode bewegt den Spieler hinauf allerdings nur, wenn der Spierler den Oberenerand noch nicht erreicht hat.
 	 */
-	public static int runterBewegen(int iRunterY)
+	public static int raufBewegen(int iRauf)
 	{
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
 		{
-			iRunterY += 4;
-			iSpielerY = iRunterY;
+			if (iSpielerY >= 1)
+			{
+//				iRauf -= 1;
+				iSpielerY--;
+			}
+			else
+			{
+				iSpielerY = iRauf;
+			}
+			System.out.println(iSpielerY);
 		}
-		System.out.println(""+iSpielerY);
 		return iSpielerY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	/**
 	 * 
-	 * @param iRunterX
+	 * @param iRechts
 	 * @return
 	 * 
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public static int rechtsBewegen(int iRunterX)
+	public static int rechtsBewegen(int iRechts)
 	{
+		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
 		
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
 		{
-			iRunterX += 4;
-			iSpielerX = iRunterX;
+			if (iSpielerX < 33)
+			{
+//				iRechts += 1;
+				iSpielerX++;
+			}
+			else
+			{
+				iSpielerX = iRechts;
+			}
+			System.out.println(iSpielerX);
 		}
 		return iSpielerX;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	/**
 	 * 
-	 * @param iRaufX
+	 * @param iLinks
 	 * @return
 	 * 
 	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
 	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
 	 */
-	public static int linksBewegen(int iRaufX)
+	public static int linksBewegen(int iLinks)
 	{
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sGAENGE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
 		{
-			iRaufX += 4;
-			iSpielerX = iRaufX;
+			if (iSpielerX >= 1)
+			{
+//				iLinks -= 1;
+				iSpielerX--;
+			}
+			else
+			{
+				iSpielerX = iLinks;
+			}
+			System.out.println(iSpielerX);
 		}
 		return iSpielerX;
 	}

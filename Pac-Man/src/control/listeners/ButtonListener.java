@@ -2,7 +2,7 @@ package control.listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 import view.frames.*;
 
@@ -21,13 +21,13 @@ public final class ButtonListener implements ActionListener
 	/**Die <i>taskOfButton</i> bestimmt, welche <b>Aktion</b> der Button ausführen soll.*/
 	private int 	taskOfButton;
 	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
-	private JDialog referenceFrame;
+	private JFrame referenceFrame;
 	
 	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> sich der Listener bezieht.<br>
 	 * Außerdem wird festgelegt, <b>welche Aktion</b> der gedrückte Button ausführen soll.
 	 * @param dialog Referenz auf das <i>Fenster</i>
 	 * @param task <i>Aktion</i>, welche der Button ausführen soll*/
-	public ButtonListener(JDialog dialog, int task)
+	public ButtonListener(JFrame dialog, int task)
 	{
 		/*der Variable referenceFrame wird der Wert von dialog zugewiesen
 		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/

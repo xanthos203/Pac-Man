@@ -11,7 +11,7 @@ import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -28,7 +28,7 @@ import model.interfaces.IWindowProperties;
  * @author Cristina Erhart
  * @version 1.1 */
 @SuppressWarnings("serial")
-public final class GameWonFrame extends JDialog implements IWindowProperties
+public final class GameWonFrame extends JFrame implements IWindowProperties
 {
 	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
 	private JPanel 		contentPane		= new JPanel();
