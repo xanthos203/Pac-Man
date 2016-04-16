@@ -20,9 +20,9 @@ import view.frames.LogInFrame;
 public final class TextfieldListener extends KeyAdapter
 {
 	/**Die <i>maxZeichenLaenge</i> bestimmt, <b>wie viele Zeichen maximal</b> im Textfeld <b>eingegeben werden können</b>.*/
-	private int			maxZeichenLaenge = 18;
-	/**Das <i>referenceDialog</i> bestimmt das <b>Referenz-Fenster</b>, auf welches sich der Listener bezieht.*/
-	private JFrame 	referenceDialog;
+	private int		maxZeichenLaenge = 18;
+	/**Das <i>referenceFrame</i> bestimmt das <b>Referenz-Fenster</b>, auf welches sich der Listener bezieht.*/
+	private JFrame 	referenceFrame;
 	/**Das <i>referenceTextField</i> bestimmt das <b>Referenz-Textfeld</b>, auf welches sich der Listener bezieht.*/
 	private JTextField  referenceTextField;
 	
@@ -33,7 +33,7 @@ public final class TextfieldListener extends KeyAdapter
 	{
 		/*der Variable referenceDialog wird der Wert von dialog zugewiesen
 		 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
-		referenceDialog = dialog;
+		referenceFrame = dialog;
 		/*der Variable referenceTextField wird der Wert von textField zugewiesen
 		 *und somit eine Referenz auf das Textfeld erstellt, welches der Listener überwachen soll*/
 		referenceTextField = textField;
@@ -101,7 +101,7 @@ public final class TextfieldListener extends KeyAdapter
 				/*der eingegebene Spielername wird gespeichert*/
 				LogInFrame.setUsername(referenceTextField.getText());
 				/*das aktuelle Fenster wird geschlossen*/
-				referenceDialog.dispose();
+				referenceFrame.dispose();
 				
 				/*=========Hauptfenster öffnen=========*/
 				new GameMainFrame();

@@ -20,25 +20,21 @@ public final class SteuerungListener extends KeyAdapter
 		// Für Spieler die mit "WASD" spielen möchten
 		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
 		{
-			System.out.println("rauf");
 			GameMainFrame.spielerRauf();
 		}
 		//----------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_A))
 		{
-			System.out.println("links");
 			GameMainFrame.spielerLinks();
 		}
 		//----------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
 		{
-			System.out.println("runter");
 			GameMainFrame.spielerRunter();
 		}
 		//----------------------------------------------
 		if((keyEvent.getKeyCode() == KeyEvent.VK_D))
 		{
-			System.out.println("rechts");
 			GameMainFrame.spielerRechts();
 		}
 //============================================================\\
@@ -62,7 +58,5 @@ public final class SteuerungListener extends KeyAdapter
 		{
 			GameMainFrame.spielerRechts();
 		}
-//============================================================\\
-		GameMainFrame.getSpieler().repaint();
 	}
 }

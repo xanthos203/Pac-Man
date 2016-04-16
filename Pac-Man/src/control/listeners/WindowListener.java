@@ -2,6 +2,7 @@ package control.listeners;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -14,14 +15,14 @@ import view.frames.GameMainFrame;
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
  * @version 1.0 */
-public final class WindowClosingListener extends WindowAdapter
+public final class WindowListener extends WindowAdapter
 {
 	/**Die Variable <i>frameReference</i> bestimmt die <b>Referenz auf das JFrame</b>.*/
 	private JFrame frameReference;
 	
 	/**Dieser Konstruktor verlangt als Parameter eine <b>Referenz auf ein JFrame</b>.
 	 * @param frame <i>Referenz</i> auf das <b>JFrame</b>*/
-	public WindowClosingListener(JFrame frame)
+	public WindowListener(JFrame frame)
 	{
 		/*der Variable frameReference wird der Wert von frame zugewiesen
 		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
@@ -45,7 +46,7 @@ public final class WindowClosingListener extends WindowAdapter
 		/*in messageType wird die Art der Nachricht des JOptionPane's gespeichert*/
 		int messageType = JOptionPane.QUESTION_MESSAGE;
 		/*in optionen werden die Möglichkeiten, die dem Benutzer zur Auswahl stehen, gespeichert*/
-		Object[] optionen = {"Beenden", "Abbrechen"};
+		Object[] optionen = { "Beenden", "Abbrechen" };
 		
 		/*wird ausgeführt, wenn frameReference nicht null ist*/
 		if(frameReference instanceof GameMainFrame)

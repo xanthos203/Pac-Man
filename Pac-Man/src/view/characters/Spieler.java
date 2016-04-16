@@ -25,7 +25,7 @@ public final class Spieler
 	 */
 	public static int runterBewegen(int iRunter)
 	{				
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.WAND))
 		{
 			if (iSpielerY < 27)
 			{
@@ -50,7 +50,7 @@ public final class Spieler
 	 */
 	public static int raufBewegen(int iRauf)
 	{
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.WAND))
 		{
 			if (iSpielerY >= 1)
 			{
@@ -78,9 +78,9 @@ public final class Spieler
 	{
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
 		
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.WAND))
 		{
-			if (iSpielerX < 33)
+			if (iSpielerX < 32)
 			{
 //				iRechts += 1;
 				iSpielerX++;
@@ -104,7 +104,7 @@ public final class Spieler
 	 */
 	public static int linksBewegen(int iLinks)
 	{
-		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.sWAENDE))
+		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.WAND))
 		{
 			if (iSpielerX >= 1)
 			{

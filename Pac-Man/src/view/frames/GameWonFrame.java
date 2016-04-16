@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import control.listeners.ButtonListener;
-import control.listeners.WindowClosingListener;
+import control.listeners.WindowListener;
 import model.interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>gewonnen</b> hat, dargestellt.<br>
@@ -59,7 +59,7 @@ public final class GameWonFrame extends JFrame implements IWindowProperties
 	public GameWonFrame()
 	{
 		/*dem Fenster wird ein neuer WindowClosingListener zugewiesen, der ausgeführt wird, wenn auf das Fenster geschlossen wird*/
-		addWindowListener(new WindowClosingListener(this));
+		addWindowListener(new WindowListener(this));
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		/*der Titel der Fensters wird zugewiesen*/

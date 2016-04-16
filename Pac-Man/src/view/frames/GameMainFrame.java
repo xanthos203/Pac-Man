@@ -28,7 +28,7 @@ import control.file_processing.GuiDB;
 import control.listeners.ChatNachrichtfeldListener;
 import control.listeners.ChatSendenButtonListener;
 import control.listeners.SteuerungListener;
-import control.listeners.WindowClosingListener;
+import control.listeners.WindowListener;
 import model.chat.Client;
 import model.chat.ClientHandler;
 import model.chat.EigehendReader;
@@ -47,17 +47,17 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
-	public static final String sGAENGE = "0";
-	public static final String sWAENDE = "1";
-	public static final String sGEISTER = "2";
-	public static final String sPAC_MAN = "3";
-	public static final String sEATING_COINS = "4";
-	public static final String sGEISTER_AUSGANG = "5";
-	public static final String sTELEPORTER = "6";
+	public static final String GANG = "0";
+	public static final String WAND = "1";
+	public static final String GEIST = "2";
+	public static final String PAC_MAN = "3";
+	public static final String EATING_COIN = "4";
+	public static final String GEISTER_AUSGANG = "5";
+	public static final String TELEPORTER = "6";
 	
-	private static final Color cGAENGE_FARBE = Color.BLACK;
-	private static final Color cWAENDE_FARBE = Color.BLUE;
-	private static final Color cGEISTER_AUSGANG_FARBE = Color.WHITE;
+	private static final Color GAENGE_FARBE = Color.BLACK;
+	private static final Color WAENDE_FARBE = Color.BLUE;
+	private static final Color GEISTER_AUSGANG_FARBE = Color.WHITE;
 
 	private static GameMainFrame oGameMainFrame;
 
@@ -140,7 +140,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		setFocusable(true);
 		setVisible(true);
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-		addWindowListener(new WindowClosingListener(this));
+		addWindowListener(new WindowListener(this));
 
 		timerStarten();
 
@@ -259,7 +259,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void guiDarstellen(int iZeile, int iSpalte)
 	{
-		guiDarstellen(iZeile, iSpalte, cGAENGE_FARBE);
+		guiDarstellen(iZeile, iSpalte, GAENGE_FARBE);
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -294,24 +294,24 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				//-----------------------------------------------------------------------
 				if (alSpielfeldArrayList.size() > iFeld)
 				{
-					if (alSpielfeldArrayList.get(iFeld).equals(sGAENGE))
+					if (alSpielfeldArrayList.get(iFeld).equals(GANG))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sWAENDE))
+					if (alSpielfeldArrayList.get(iFeld).equals(WAND))
 					{
-						guiDarstellen(iZeile, iSpalte, cWAENDE_FARBE);
+						guiDarstellen(iZeile, iSpalte, WAENDE_FARBE);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sGEISTER))
+					if (alSpielfeldArrayList.get(iFeld).equals(GEIST))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sPAC_MAN))
+					if (alSpielfeldArrayList.get(iFeld).equals(PAC_MAN))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
@@ -319,18 +319,18 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						iSpielerY = iSpalte;
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sEATING_COINS))
+					if (alSpielfeldArrayList.get(iFeld).equals(EATING_COIN))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sGEISTER_AUSGANG))
+					if (alSpielfeldArrayList.get(iFeld).equals(GEISTER_AUSGANG))
 					{
-						guiDarstellen(iZeile, iSpalte, cGEISTER_AUSGANG_FARBE);
+						guiDarstellen(iZeile, iSpalte, GEISTER_AUSGANG_FARBE);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iFeld).equals(sTELEPORTER))
+					if (alSpielfeldArrayList.get(iFeld).equals(TELEPORTER))
 					{
 						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);

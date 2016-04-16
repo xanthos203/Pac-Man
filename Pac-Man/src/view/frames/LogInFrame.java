@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import control.listeners.TextfieldListener;
-import control.listeners.WindowClosingListener;
+import control.listeners.WindowListener;
 import model.interfaces.IWindowProperties;
 
 /**In dieser Klasse wird des Fenster zum Einloggen des Benutzers dargestellt.<br>
@@ -64,7 +64,7 @@ public final class LogInFrame extends JFrame implements IWindowProperties
 	public LogInFrame()
 	{
 		/*dem Fenster wird ein neuer WindowClosingListener zugewiesen, der ausgeführt wird, wenn auf das Fenster geschlossen wird*/
-		addWindowListener(new WindowClosingListener(this));
+		addWindowListener(new WindowListener(this));
 		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(LogInFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
 		/*der Titel der Fensters wird zugewiesen*/
