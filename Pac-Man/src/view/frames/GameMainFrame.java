@@ -90,14 +90,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static int iSpielerPunkte = 0;
 	private static int iSpielerX;
 	private static int iSpielerY;
+	private static int iGeistX;
+	private static int iGeistY;
 	private static int iFeld = -1;
 	
 	private static boolean bSpielerAktiv = false;
 
 	private boolean bOeffnenVerlorenFenster = true;
 
-	private int iGeistX;
-	private int iGeistY;
 	private int iGeisterZaehler = 0;
 
 //	private JPanel pGeist = new JPanel();
@@ -186,7 +186,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		tfChatnachrichtTextfeld.addFocusListener(new ChatNachrichtfeldListener());
 
 		spielfeldAufbauen();
-		chatInformation();
+		showChatInformation();
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -314,8 +314,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						guiDarstellen(iZeile, iSpalte);
 						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
-						iSpielerX = iZeile;
-						iSpielerY = iSpalte;
+						iSpielerX = iSpalte;
+						iSpielerY = iZeile;
 					}
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(EATING_COIN))
@@ -348,7 +348,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 * wurde oder, dass ein Fehler aufgetreten ist und es wird eine
 	 * Fehlermeldung geworfen.
 	 */
-	private void chatInformation()
+	private void showChatInformation()
 	{
 		Component cParentComponent = getGameMainFrame();
 		String sMessageText;
@@ -365,19 +365,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			sMessageText = "Der Chat wurde erfolgreich eingerichtet\u0021\n"
 						 + "\n"
 						 + "Sie k\u00F6nnen nun mit anderen Spielteilnehmern kommunizieren\u002E";
-			// ---------------------------------
 			sTitle = "Chat\u00ADInformation";
-			// ---------------------------------
 			iOptionType = JOptionPane.OK_OPTION;
-			// ---------------------------------
 			iMessageType = JOptionPane.INFORMATION_MESSAGE;
-			// ---------------------------------
 			oOptions = new Object[] { "OK" };
-			// ---------------------------------
 			oInitialValue = oOptions[0];
-			// ---------------------------------
 			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
-					iMessageType, icIcon, oOptions, oInitialValue);
+														iMessageType, icIcon, oOptions, oInitialValue);
 		}
 		// -----------------------------------------------------------------------
 		else
@@ -386,19 +380,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						 + "Wenn Sie den Chat nutzen m\u00F6chten\u002C starten Sie das Spiel bitte neu\u002E\n"
 						 + "\n"
 						 + "M\u00F6chten Sie das Spiel jetzt neu starten oder beenden\u003F";
-			// ---------------------------------
 			sTitle = "Fehler bei Chat\u00ADVerbindung";
-			// ---------------------------------
 			iOptionType = JOptionPane.YES_NO_CANCEL_OPTION;
-			// ---------------------------------
 			iMessageType = JOptionPane.WARNING_MESSAGE;
-			// ---------------------------------
 			oOptions = new Object[] { "Neu starten", "Beenden", "Abbrechen" };
-			// ---------------------------------
 			oInitialValue = oOptions[0];
-			// ---------------------------------
 			iOptionPane = JOptionPane.showOptionDialog(cParentComponent, sMessageText, sTitle, iOptionType,
-					iMessageType, icIcon, oOptions, oInitialValue);
+														iMessageType, icIcon, oOptions, oInitialValue);
 			// =================================
 			if (iOptionPane == JOptionPane.YES_OPTION)
 			{
@@ -437,27 +425,27 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	// -------------------------------------------------------------------------------------------------------------------
 	/**
-	 * In dieser Methode wird der Spieler runter bewegt und ändert somit seinen
-	 * Position auf der Oberfläche.
-	 */
-	public static void spielerRunter()
-	{
-		iSpielerX = Spieler.runterBewegen(iSpielerX);
-		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
-		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
-		bSpielerAktiv = true;
-	}
-
-	// -------------------------------------------------------------------------------------------------------------------
-	/**
 	 * In dieser Klasse wird der Spieler rauf bewegt und ändert somit seinen
 	 * Position auf der Oberfläche.
 	 */
 	public static void spielerRauf() 
 	{
-		iSpielerX = Spieler.raufBewegen(iSpielerX);
-		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
-		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
+		iSpielerY = Spieler.raufBewegen(iSpielerY);
+		aSpielfeldArray[iSpielerY][iSpielerX].removeAll();
+		aSpielfeldArray[iSpielerY][iSpielerX].add(lPacMan);
+		bSpielerAktiv = true;
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------
+	/**
+	 * In dieser Methode wird der Spieler runter bewegt und ändert somit seinen
+	 * Position auf der Oberfläche.
+	 */
+	public static void spielerRunter()
+	{
+		iSpielerY = Spieler.runterBewegen(iSpielerY);
+		aSpielfeldArray[iSpielerY][iSpielerX].removeAll();
+		aSpielfeldArray[iSpielerY][iSpielerX].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -468,9 +456,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
-		iSpielerY = Spieler.linksBewegen(iSpielerY);
-		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
-		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
+		iSpielerX = Spieler.linksBewegen(iSpielerX);
+		aSpielfeldArray[iSpielerY][iSpielerX].removeAll();
+		aSpielfeldArray[iSpielerY][iSpielerX].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -481,9 +469,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
-		iSpielerY = Spieler.rechtsBewegen(iSpielerY);
-		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
-		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
+		iSpielerX = Spieler.rechtsBewegen(iSpielerX);
+		aSpielfeldArray[iSpielerY][iSpielerX].removeAll();
+		aSpielfeldArray[iSpielerY][iSpielerX].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -553,14 +541,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	public static int getSpielerX()
 	{
-		return iSpielerX;
+		return iSpielerY;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
 
 	public static int getSpielerY()
 	{
-		return iSpielerY;
+		return iSpielerX;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -602,9 +590,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask 
 	{
-		String sName;
+		private String sName;
 		
-		public void run() 
+		@Override
+		public void run()
 		{
 			if (!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben")) 
 			{
@@ -644,7 +633,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 			}
 
-			if ((iGeistX == iSpielerX) && (iGeistY == iSpielerY) && (Spieler.getLeben() == 0))
+			if ((iGeistX == iSpielerY) && (iGeistY == iSpielerX) && (Spieler.getLeben() == 0))
 			{
 				if (bOeffnenVerlorenFenster)
 				{

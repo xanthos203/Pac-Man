@@ -1,6 +1,5 @@
 package view.characters;
 
-import model.interfaces.IWindowProperties;
 import view.frames.GameLostFrame;
 import view.frames.GameMainFrame;
 import view.frames.GameWonFrame;
@@ -28,7 +27,7 @@ public final class Spieler
 	{				
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
-			if (iSpielerY < (IWindowProperties.GUI_ROWS - 1))
+			if (iSpielerY < (GameMainFrame.GUI_ROWS - 1))
 			{
 				iSpielerY++;
 			}
@@ -77,7 +76,7 @@ public final class Spieler
 		
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
-			if (iSpielerX < (IWindowProperties.GUI_COLUMNS - 1))
+			if (iSpielerX < (GameMainFrame.GUI_COLUMNS - 1))
 			{
 				iSpielerX++;
 			}
