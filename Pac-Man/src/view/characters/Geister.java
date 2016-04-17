@@ -13,7 +13,7 @@ public final class Geister
 	private static int iGeistX;
 	private static int iGeistY;
 	
-	public static int GeisterRaufBewegen(int iRaufY, String sName)
+	public static int raufBewegen(int iRaufY, String sName)
 	{
 		if (sName == "Greeny")
 		{
@@ -26,7 +26,7 @@ public final class Geister
 		return iGeistY;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int GeisterRunterBewegen(int iRunterY, String sName)
+	public static int runterBewegen(int iRunterY, String sName)
 	{ 
 		if (sName == "Greeny")
 		{
@@ -39,7 +39,7 @@ public final class Geister
 		return iGeistY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	public static int GeisterRechtsBewegen(int iRunterX, String sName)
+	public static int rechtsBewegen(int iRunterX, String sName)
 	{
 		if (sName == "Greeny")
 		{
@@ -52,7 +52,7 @@ public final class Geister
 		return iGeistX;
 	}
 //------------------------------------------------------------------------------------------------------------------------	
-	public static int GeisterLinksBewegen(int iRunterX, String sName)
+	public static int linksBewegen(int iRunterX, String sName)
 	{
 		if (sName == "Greeny")
 		{

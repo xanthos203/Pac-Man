@@ -55,9 +55,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static final String GEISTER_AUSGANG = "5";
 	public static final String TELEPORTER = "6";
 	
-	private static final Color GAENGE_FARBE = Color.BLACK;
-	private static final Color WAENDE_FARBE = Color.BLUE;
-	private static final Color GEISTER_AUSGANG_FARBE = Color.WHITE;
+	public static final Color GAENGE_FARBE = Color.BLACK;
+	public static final Color WAENDE_FARBE = Color.BLUE;
+	public static final Color GEISTER_AUSGANG_FARBE = Color.WHITE;
 
 	private static GameMainFrame oGameMainFrame;
 
@@ -75,9 +75,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	private static ArrayList<String> alSpielfeldArrayList;
 	private static JPanel[][] aSpielfeldArray = new JPanel[50][50];
-
-	private static JLabel[] aClassicCoins = new JLabel[2500];
-	private static JLabel[] aEatingCoins = new JLabel[1250];
+	private static JPanel[] aClassicCoins = new JPanel[2500];
+	private static JPanel[] aEatingCoins = new JPanel[1250];
+	
 	private static JLabel lGreeny = new JLabel(oIconGreeny);
 	private static JLabel lBlue = new JLabel(oIconBlue);
 	private static JLabel lOrangy = new JLabel(oIconOrangy);
@@ -85,6 +85,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static JLabel lPacMan = new JLabel(oIconPacMan);
 	private static JLabel lSpielstandlabel = new JLabel(getSpielstandlabelText());
 
+	private static int iCcoinIndex = 0;
+	private static int iEcoinIndex = 0;
+	private static int iSpielerPunkte = 0;
 	private static int iSpielerX;
 	private static int iSpielerY;
 	private static int iFeld = -1;
@@ -96,10 +99,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int iGeistX;
 	private int iGeistY;
 	private int iGeisterZaehler = 0;
-	private int iCcoinIndex = 0;
-	private int iEcoinIndex = 0;
 
-	private JPanel pGeist = new JPanel();
+//	private JPanel pGeist = new JPanel();
 	private JPanel pSpielfeldPanel = new JPanel();
 	private JPanel pChatPanel = new JPanel();
 	private JPanel pChatKomponentenPanel = new JPanel();
@@ -108,7 +109,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	private Timer oTimer = new Timer();
 
-	private Server oServer;
+//	private Server oServer;
 	private Client oClient = new Client();
 
 	/**
@@ -128,8 +129,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		oGameMainFrame = this;
 		
-		lPacMan.addKeyListener(new SteuerungListener());
-		
 		Font foDefaultFont = new Font("Segoe UI", Font.PLAIN, 15);
 		
 		setTitle("Pac-Man");
@@ -139,7 +138,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		setResizable(false);
 		setFocusable(true);
 		setVisible(true);
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		addKeyListener(new SteuerungListener());
 		addWindowListener(new WindowListener(this));
 
 		timerStarten();
@@ -153,8 +152,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 		GridLayout oSpielfeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
 		pSpielfeldPanel.setLayout(oSpielfeldLayout);
-		addKeyListener(new SteuerungListener());
-		pSpielfeldPanel.addKeyListener(new SteuerungListener());
 
 		lSpielstandlabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lSpielstandlabel.setFont(new Font("Book Antiqua", Font.BOLD, 25));
@@ -214,8 +211,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void classicCoinsDarstellen(int iZeile, int iSpalte)
 	{
-		aClassicCoins[iCcoinIndex] = new JLabel(oIconClassicCoin);
-		aClassicCoins[iCcoinIndex].addKeyListener(new SteuerungListener());
+		guiDarstellen(iZeile, iSpalte);
+		aClassicCoins[iCcoinIndex] = new JPanel();
+		aClassicCoins[iCcoinIndex].add(new JLabel(oIconClassicCoin));
+		aClassicCoins[iCcoinIndex].setBackground(GAENGE_FARBE);
 		aSpielfeldArray[iZeile][iSpalte].add(aClassicCoins[iCcoinIndex]);
 		iCcoinIndex++;
 	}
@@ -230,8 +229,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private void eatingCoinsDarstellen(int iZeile, int iSpalte)
 	{
-		aEatingCoins[iEcoinIndex] = new JLabel(oIconEatingCoin);
-		aEatingCoins[iEcoinIndex].addKeyListener(new SteuerungListener());
+		guiDarstellen(iZeile, iSpalte);
+		aEatingCoins[iEcoinIndex] = new JPanel();
+		aEatingCoins[iEcoinIndex].add(new JLabel(oIconEatingCoin));
+		aEatingCoins[iEcoinIndex].setBackground(GAENGE_FARBE);
 		aSpielfeldArray[iZeile][iSpalte].add(aEatingCoins[iEcoinIndex]);
 		iEcoinIndex++;
 	}
@@ -240,6 +241,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	private void geisterDarstellen(int iZeile, int iSpalte)
 	{
+		guiDarstellen(iZeile, iSpalte);
 		switch (iGeisterZaehler)
 		{
 			case 1: aSpielfeldArray[iZeile][iSpalte].add(lGreeny); break;
@@ -274,7 +276,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void guiDarstellen(int iZeile, int iSpalte, Color cFarbe)
 	{
 		aSpielfeldArray[iZeile][iSpalte] = new JPanel();
-		aSpielfeldArray[iZeile][iSpalte].addKeyListener(new SteuerungListener());
 		aSpielfeldArray[iZeile][iSpalte].setBackground(cFarbe);
 		pSpielfeldPanel.add(aSpielfeldArray[iZeile][iSpalte]);
 	}
@@ -296,7 +297,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				{
 					if (alSpielfeldArrayList.get(iFeld).equals(GANG))
 					{
-						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
@@ -307,7 +307,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(GEIST))
 					{
-						guiDarstellen(iZeile, iSpalte);
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
@@ -321,7 +320,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(EATING_COIN))
 					{
-						guiDarstellen(iZeile, iSpalte);
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
@@ -332,7 +330,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(TELEPORTER))
 					{
-						guiDarstellen(iZeile, iSpalte);
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 				}
@@ -443,10 +440,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 * In dieser Methode wird der Spieler runter bewegt und ändert somit seinen
 	 * Position auf der Oberfläche.
 	 */
-	public static void spielerRunter() 
+	public static void spielerRunter()
 	{
 		iSpielerX = Spieler.runterBewegen(iSpielerX);
-		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
 		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
@@ -459,7 +456,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRauf() 
 	{
 		iSpielerX = Spieler.raufBewegen(iSpielerX);
-		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
 		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
@@ -472,7 +469,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerLinks()
 	{
 		iSpielerY = Spieler.linksBewegen(iSpielerY);
-		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
 		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
@@ -485,7 +482,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static void spielerRechts()
 	{
 		iSpielerY = Spieler.rechtsBewegen(iSpielerY);
-		lPacMan.setLocation(iSpielerX, iSpielerY);
+		aSpielfeldArray[iSpielerX][iSpielerY].removeAll();
 		aSpielfeldArray[iSpielerX][iSpielerY].add(lPacMan);
 		bSpielerAktiv = true;
 	}
@@ -518,10 +515,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	// -------------------------------------------------------------------------------------------------------------------
 
-	public static void setSpielstandlabelText(int iLeben, double dPunkte)
+	public static void updateSpielstandlabelText()
 	{
-		Spieler.setLeben(iLeben);
-		Spieler.setPunktestand(dPunkte);
 		lSpielstandlabel.setText(getSpielstandlabelText());
 	}
 
@@ -604,7 +599,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 * @author Thomas Mader-Ofer
 	 * @author Cristina Erhart
 	 * @version 1.0
-	 *
 	 */
 	private class Task extends TimerTask 
 	{
@@ -612,7 +606,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		public void run() 
 		{
-			if (!tfChatnachrichtTextfeld.getText().isEmpty()&& !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben")) 
+			if (!tfChatnachrichtTextfeld.getText().isEmpty() && !tfChatnachrichtTextfeld.getText().equals("Nachricht eingeben")) 
 			{
 				oClient.senden();
 				Server.allenWeitersagen(tfChatnachrichtTextfeld.getText());
@@ -638,14 +632,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					}
 					switch (iIndex)
 					{
-						case 1: Geister.GeisterRaufBewegen(iGeistY, sName); break;
-						case 2: Geister.GeisterRunterBewegen(iGeistY, sName); break;
-						case 3: Geister.GeisterRechtsBewegen(iGeistX, sName); break;
-						case 4: Geister.GeisterLinksBewegen(iGeistX, sName); break;
-						case 5: Geister.GeisterRaufBewegen(iGeistY, sName); break;
-						case 6: Geister.GeisterRunterBewegen(iGeistY, sName); break;
-						case 7: Geister.GeisterRechtsBewegen(iGeistX, sName); break;
-						case 8: Geister.GeisterLinksBewegen(iGeistX, sName); break;
+						case 1: Geister.raufBewegen(iGeistY, sName); break;
+						case 2: Geister.runterBewegen(iGeistY, sName); break;
+						case 3: Geister.rechtsBewegen(iGeistX, sName); break;
+						case 4: Geister.linksBewegen(iGeistX, sName); break;
+						case 5: Geister.raufBewegen(iGeistY, sName); break;
+						case 6: Geister.runterBewegen(iGeistY, sName); break;
+						case 7: Geister.rechtsBewegen(iGeistX, sName); break;
+						case 8: Geister.linksBewegen(iGeistX, sName); break;
 					}
 				}
 			}
