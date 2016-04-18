@@ -10,68 +10,68 @@ import view.frames.GameMainFrame;
  */
 public final class Geister 
 {
-	private static int iGeistX;
-	private static int iGeistY;
+	private static int iGeistHor;
+	private static int iGeistVer;
 	
-	public static int raufBewegen(int iRaufY, String sName)
+	public static int raufBewegen(int iRauf, String sName)
 	{
 		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRaufY += 8;
-				iGeistY = iRaufY;
+				iRauf += 8;
+				iGeistVer = iRauf;
 			}
 		}
-		return iGeistY;
+		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int runterBewegen(int iRunterY, String sName)
+	public static int runterBewegen(int iRunter, String sName)
 	{ 
 		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRunterY -= 8;
-				iGeistY = iRunterY;
+				iRunter -= 8;
+				iGeistVer = iRunter;
 			}
 		}
-		return iGeistY;
+		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	public static int rechtsBewegen(int iRunterX, String sName)
+	public static int rechtsBewegen(int iRechts, String sName)
 	{
 		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRunterX += 8;
-				iGeistY = iRunterX;
+				iRechts += 8;
+				iGeistHor = iRechts;
 			}
 		}
-		return iGeistX;
+		return iGeistHor;
 	}
 //------------------------------------------------------------------------------------------------------------------------	
-	public static int linksBewegen(int iRunterX, String sName)
+	public static int linksBewegen(int iLinks, String sName)
 	{
 		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRunterX -= 8;
-				iGeistY = iRunterX;
+				iLinks -= 8;
+				iGeistHor = iLinks;
 			}
 		}
-		return iGeistX;
+		return iGeistHor;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int getPosY() 
+	public static int getGeistX()
 	{
-		return iGeistY;
+		return iGeistHor;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int getPosX() 
+	public static int getGeistY()
 	{
-		return iGeistX;
+		return iGeistVer;
 	}
 }
