@@ -76,7 +76,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //	private static Icon oIconPacManDown = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_down.PNG")));
 //	private static Icon oIconPacManLeft = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_left.PNG")));
 	private static Icon oIconPacManRight = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_right.PNG")));
-
+	
 	private static ArrayList<String> alSpielfeldArrayList;
 	private static JPanel[][] aSpielfeldArray = new JPanel[50][50];
 	private static JPanel[] aClassicCoins = new JPanel[2500];
@@ -92,6 +92,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //	private static JLabel lPacManDown = new JLabel(oIconPacManDown);
 //	private static JLabel lPacManLeft = new JLabel(oIconPacManLeft);
 	private static JLabel lPacManRight = new JLabel(oIconPacManRight);
+	private static JLabel lPacMan;
 
 	private static int iCcoinIndex = 0;
 	private static int iEcoinIndex = 0;
@@ -100,7 +101,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static int iSpielerHor;
 	/**<i>iSpielerVer</i> zählt die gefahrenen Felder in <b>vertikatler Richtung</b>.*/
 	private static int iSpielerVer;
-	/**<i>iGeistHor</i> zählt die gefahrenen Felder in <b>vertikatler Richtung</b>.*/
+	/**<i>iGeistHor</i> zählt die gefahrenen Felder in <b>horizontaler Richtung</b>.*/
 	private static int iGeistHor;
 	/**<i>iGeistVer</i> zählt die gefahrenen Felder in <b>vertikatler Richtung</b>.*/
 	private static int iGeistVer;
@@ -127,7 +128,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public GameMainFrame()
 	{
-		initialize();
+		run();
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -135,7 +136,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 * In dieser Methode wierd das Fenster erstellt und die einzellnen Labels
 	 * und TextFelder werden Initiallisiert.
 	 */
-	private void initialize()
+	private void run()
 	{
 		oGameMainFrame = this;
 		
@@ -322,8 +323,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (alSpielfeldArrayList.get(iFeld).equals(PAC_MAN))
 					{
+						lPacMan = lPacManRight;
 						guiDarstellen(iZeile, iSpalte);
-						aSpielfeldArray[iZeile][iSpalte].add(lPacManRight);
+						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
 						iSpielerVer = iZeile;
 						iSpielerHor = iSpalte;
 					}
@@ -434,15 +436,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
+	
 	/**
 	 * In dieser Klasse wird der Spieler rauf bewegt und ändert somit seinen
 	 * Position auf der Oberfläche.
 	 */
 	public static void spielerRauf() 
 	{
+		lPacMan = lPacManRight;
 		iSpielerVer = Spieler.raufBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacManRight);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -453,9 +457,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
+		lPacMan = lPacManRight;
 		iSpielerVer = Spieler.runterBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacManRight);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -466,9 +471,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
+		lPacMan = lPacManRight;
 		iSpielerHor = Spieler.linksBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacManRight);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -479,9 +485,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
+		lPacMan = lPacManRight;
 		iSpielerHor = Spieler.rechtsBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacManRight);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
 	}
 
@@ -538,34 +545,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static JTextArea getChatverlaufTextarea()
 	{
 		return taChatverlaufTextarea;
-	}
-
-	// -------------------------------------------------------------------------------------------------------------------
-
-	public static JLabel getSpieler()
-	{
-		return lPacManRight;
-	}
-
-	// -------------------------------------------------------------------------------------------------------------------
-
-	public static int getSpielerX()
-	{
-		return iSpielerHor;
-	}
-
-	// -------------------------------------------------------------------------------------------------------------------
-
-	public static int getSpielerY()
-	{
-		return iSpielerVer;
-	}
-
-	// -------------------------------------------------------------------------------------------------------------------
-
-	public static JPanel[][] getSpielfeld()
-	{
-		return aSpielfeldArray;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------

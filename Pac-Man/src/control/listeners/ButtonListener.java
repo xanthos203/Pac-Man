@@ -53,11 +53,12 @@ public final class ButtonListener implements ActionListener
 		/*wird ausgeführt, wenn der Benutzer nochmal spielen will*/
 		if (taskOfButton == REPEAT_GAME)
 		{
-			/*das aktuelle Fenster wird geschlossen*/
-			referenceFrame.dispose();
-			
+			/*das aktuelle Fenster verschwindet*/
+			referenceFrame.setVisible(false);
 			/*=========Hauptfenster öffnen=========*/
 			new GameMainFrame();
+			/*das aktuelle Fenster wird geschlossen*/
+			referenceFrame.dispose();
 		}
 	}
 }

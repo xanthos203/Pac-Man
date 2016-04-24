@@ -100,11 +100,12 @@ public final class TextfieldListener extends KeyAdapter
 			{
 				/*der eingegebene Spielername wird gespeichert*/
 				LogInFrame.setUsername(referenceTextField.getText());
-				/*das aktuelle Fenster wird geschlossen*/
-				referenceFrame.dispose();
-				
+				/*das aktuelle Fenster verschwindet*/
+				referenceFrame.setVisible(false);
 				/*=========Hauptfenster öffnen=========*/
 				new GameMainFrame();
+				/*das aktuelle Fenster wird geschlossen*/
+				referenceFrame.dispose();
 			}
 		}
 	}

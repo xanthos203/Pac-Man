@@ -18,7 +18,7 @@ public final class Server
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
 	
 	@SuppressWarnings("resource")
-	public static void serverStarten()
+	public static void start()
 	{
 		alClientAusgabeStroeme = new ArrayList<PrintWriter>();
 		

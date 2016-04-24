@@ -13,8 +13,8 @@ import view.frames.GameWonFrame;
  */
 public final class Spieler 
 {
-	private static int iSpielerHor = GameMainFrame.getSpielerX();
-	private static int iSpielerVer = GameMainFrame.getSpielerY();
+	private static int iSpielerHor;
+	private static int iSpielerVer;
 	private static int iLeben = 3;
 	private static double dPunktestand = 0;
 	
@@ -97,8 +97,9 @@ public final class Spieler
 	{
 		if (iLeben <= 0)
 		{
-			GameMainFrame.getGameMainFrame().dispose();
+			GameMainFrame.getGameMainFrame().setVisible(false);
 			new GameLostFrame();
+			GameMainFrame.getGameMainFrame().dispose();
 		}
 		if (iLeben >= 3)
 		{
@@ -116,8 +117,9 @@ public final class Spieler
 	{
 		if ((dPunktestand >= 999999999999999L) && (iLeben > 0))
 		{
-			GameMainFrame.getGameMainFrame().dispose();
+			GameMainFrame.getGameMainFrame().setVisible(false);
 			new GameWonFrame();
+			GameMainFrame.getGameMainFrame().dispose();
 		}
 		if (dPunktestand <= 0)
 		{
