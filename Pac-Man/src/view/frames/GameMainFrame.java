@@ -128,7 +128,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public GameMainFrame()
 	{
-		run();
+		initialize();
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -136,7 +136,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 * In dieser Methode wierd das Fenster erstellt und die einzellnen Labels
 	 * und TextFelder werden Initiallisiert.
 	 */
-	private void run()
+	private void initialize()
 	{
 		oGameMainFrame = this;
 		
@@ -437,12 +437,26 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	// -------------------------------------------------------------------------------------------------------------------
 	
+	public static void delay(int iFramesPerSecond)
+	{
+		if (iFramesPerSecond == 0)
+			iFramesPerSecond = 1;
+		if (iFramesPerSecond < 0)
+			iFramesPerSecond *= (-1);
+		try {
+			Thread.sleep(1000 / iFramesPerSecond);
+		} catch (InterruptedException e) {}
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------
+	
 	/**
 	 * In dieser Klasse wird der Spieler rauf bewegt und ändert somit seinen
 	 * Position auf der Oberfläche.
 	 */
 	public static void spielerRauf() 
 	{
+		delay(40);
 		lPacMan = lPacManRight;
 		iSpielerVer = Spieler.raufBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -457,6 +471,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
+		delay(40);
 		lPacMan = lPacManRight;
 		iSpielerVer = Spieler.runterBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -471,6 +486,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
+		delay(40);
 		lPacMan = lPacManRight;
 		iSpielerHor = Spieler.linksBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -485,6 +501,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
+		delay(40);
 		lPacMan = lPacManRight;
 		iSpielerHor = Spieler.rechtsBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
