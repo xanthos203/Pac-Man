@@ -1,5 +1,6 @@
 package view.characters;
 
+import model.interfaces.ICharakterBewegen;
 import view.frames.GameLostFrame;
 import view.frames.GameMainFrame;
 import view.frames.GameWonFrame;
@@ -11,19 +12,61 @@ import view.frames.GameWonFrame;
  * @author Cristina Erhart
  * @version 1.0
  */
-public final class Spieler 
+public class Spieler implements ICharakterBewegen
 {
-	private static int iSpielerHor;
-	private static int iSpielerVer;
-	private static int iLeben = 3;
-	private static double dPunktestand = 0;
-	
+	private int iSpielerHor;
+	private int iSpielerVer;
+	private int iLeben = 3;
+	private double dPunktestand = 0;
+
+//-------------------------------------------------------------------------------------------------------------------------
+	public void setLeben(int iLeben)
+	{
+		if (iLeben <= 0)
+		{
+			GameMainFrame.getGameMainFrame().setVisible(false);
+			new GameLostFrame();
+			GameMainFrame.getGameMainFrame().dispose();
+		}
+		if (iLeben >= 3)
+		{
+			this.iLeben = 3;
+			GameMainFrame.updateSpielstandlabelText();
+		}
+		else
+		{
+			this.iLeben = iLeben;
+			GameMainFrame.updateSpielstandlabelText();
+		}
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	public void setPunktestand(double dPunktestand)
+	{
+		if ((dPunktestand >= 999999999999999L) && (iLeben > 0))
+		{
+			GameMainFrame.getGameMainFrame().setVisible(false);
+			new GameWonFrame();
+			GameMainFrame.getGameMainFrame().dispose();
+		}
+		if (dPunktestand <= 0)
+		{
+			this.dPunktestand = 0;
+			GameMainFrame.updateSpielstandlabelText();
+		}
+		else
+		{
+			this.dPunktestand = dPunktestand;
+			GameMainFrame.updateSpielstandlabelText();
+		}
+	}
+//-------------------------------------------------------------------------------------------------------------------------
 	/**
 	 * Diese Methode bewegt den Spieler hinauf allerdings nur, wenn der Spierler den Oberenerand noch nicht erreicht hat.
 	 * @param iRauf
 	 * @return
 	 */
-	public static int raufBewegen(int iRauf)
+	@Override
+	public int raufBewegen(int iRauf)
 	{
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
@@ -41,7 +84,8 @@ public final class Spieler
 	 * @param iRunter
 	 * @return
 	 */
-	public static int runterBewegen(int iRunter)
+	@Override
+	public int runterBewegen(int iRunter)
 	{				
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
@@ -60,7 +104,8 @@ public final class Spieler
 	 * @param iLinks
 	 * @return
 	 */
-	public static int linksBewegen(int iLinks)
+	@Override
+	public int linksBewegen(int iLinks)
 	{
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
@@ -79,7 +124,8 @@ public final class Spieler
 	 * @param iRechts
 	 * @return
 	 */
-	public static int rechtsBewegen(int iRechts)
+	@Override
+	public int rechtsBewegen(int iRechts)
 	{
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
@@ -93,52 +139,24 @@ public final class Spieler
 		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	public static void setLeben(int iLeben)
+	@Override
+	public int getX()
 	{
-		if (iLeben <= 0)
-		{
-			GameMainFrame.getGameMainFrame().setVisible(false);
-			new GameLostFrame();
-			GameMainFrame.getGameMainFrame().dispose();
-		}
-		if (iLeben >= 3)
-		{
-			Spieler.iLeben = 3;
-			GameMainFrame.updateSpielstandlabelText();
-		}
-		else
-		{
-			Spieler.iLeben = iLeben;
-			GameMainFrame.updateSpielstandlabelText();
-		}
+		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	public static void setPunktestand(double dPunktestand)
+	@Override
+	public int getY()
 	{
-		if ((dPunktestand >= 999999999999999L) && (iLeben > 0))
-		{
-			GameMainFrame.getGameMainFrame().setVisible(false);
-			new GameWonFrame();
-			GameMainFrame.getGameMainFrame().dispose();
-		}
-		if (dPunktestand <= 0)
-		{
-			Spieler.dPunktestand = 0;
-			GameMainFrame.updateSpielstandlabelText();
-		}
-		else
-		{
-			Spieler.dPunktestand = dPunktestand;
-			GameMainFrame.updateSpielstandlabelText();
-		}
+		return iSpielerVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	public static int getLeben()
+	public int getLeben()
 	{
 		return iLeben;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	public static double getPunktestand()
+	public double getPunktestand()
 	{
 		return dPunktestand;
 	}

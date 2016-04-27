@@ -34,7 +34,7 @@ import model.chat.ClientHandler;
 import model.chat.EigehendReader;
 import model.chat.Server;
 import model.interfaces.IWindowProperties;
-import view.characters.Geister;
+import view.characters.Geist;
 import view.characters.Spieler;
 
 /**
@@ -60,6 +60,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static final Color GEISTER_AUSGANG_FARBE = Color.WHITE;
 
 	private static GameMainFrame oGameMainFrame;
+	
+	private static Spieler oSpieler = new Spieler();
+	private static Geist oGeist = new Geist();
 
 	private static JTextArea taChatverlaufTextarea = new JTextArea();
 	private static JTextField tfChatnachrichtTextfeld = new JTextField("Nachricht eingeben");
@@ -458,7 +461,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(40);
 		lPacMan = lPacManRight;
-		iSpielerVer = Spieler.raufBewegen(iSpielerVer);
+		iSpielerVer = oSpieler.raufBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -473,7 +476,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(40);
 		lPacMan = lPacManRight;
-		iSpielerVer = Spieler.runterBewegen(iSpielerVer);
+		iSpielerVer = oSpieler.runterBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -488,7 +491,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(40);
 		lPacMan = lPacManRight;
-		iSpielerHor = Spieler.linksBewegen(iSpielerHor);
+		iSpielerHor = oSpieler.linksBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -503,7 +506,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(40);
 		lPacMan = lPacManRight;
-		iSpielerHor = Spieler.rechtsBewegen(iSpielerHor);
+		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -546,8 +549,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	public static String getSpielstandlabelText()
 	{
-		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + Spieler.getLeben() + "  ||  Punkte: "
-				+ String.format("%,.0f", Spieler.getPunktestand());
+		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: "
+				+ String.format("%,.0f", oSpieler.getPunktestand());
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -596,7 +599,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask 
 	{
-		private String sName;
+//		private String sName;
 		
 		@Override
 		public void run()
@@ -614,32 +617,32 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 				for (int iZaehler = 0; iZaehler <= 8; iZaehler++)
 				{
-					switch (iZaehler)
-					{
-						case 0: sName = "Greeny"; break;
-						case 1: sName = "Greeny"; break;
-						case 2: sName = "Blue"; break;
-						case 3: sName = "Blue"; break;
-						case 4: sName = "Orangy"; break;
-						case 5: sName = "Orangy"; break;
-						case 6: sName = "Pinky"; break;
-						case 7: sName = "Pinky"; break;
-					}
+//					switch (iZaehler)
+//					{
+//						case 0: sName = "Greeny"; break;
+//						case 1: sName = "Greeny"; break;
+//						case 2: sName = "Blue"; break;
+//						case 3: sName = "Blue"; break;
+//						case 4: sName = "Orangy"; break;
+//						case 5: sName = "Orangy"; break;
+//						case 6: sName = "Pinky"; break;
+//						case 7: sName = "Pinky"; break;
+//					}
 					switch (iIndex)
 					{
-						case 1: Geister.raufBewegen(iGeistHor, sName); break;
-						case 2: Geister.runterBewegen(iGeistHor, sName); break;
-						case 3: Geister.rechtsBewegen(iGeistVer, sName); break;
-						case 4: Geister.linksBewegen(iGeistVer, sName); break;
-						case 5: Geister.raufBewegen(iGeistHor, sName); break;
-						case 6: Geister.runterBewegen(iGeistHor, sName); break;
-						case 7: Geister.rechtsBewegen(iGeistVer, sName); break;
-						case 8: Geister.linksBewegen(iGeistVer, sName); break;
+						case 1: oGeist.raufBewegen(iGeistHor); break;
+						case 2: oGeist.runterBewegen(iGeistHor); break;
+						case 3: oGeist.rechtsBewegen(iGeistVer); break;
+						case 4: oGeist.linksBewegen(iGeistVer); break;
+						case 5: oGeist.raufBewegen(iGeistHor); break;
+						case 6: oGeist.runterBewegen(iGeistHor); break;
+						case 7: oGeist.rechtsBewegen(iGeistVer); break;
+						case 8: oGeist.linksBewegen(iGeistVer); break;
 					}
 				}
 			}
 
-			if ((iGeistVer == iSpielerVer) && (iGeistHor == iSpielerHor) && (Spieler.getLeben() == 0))
+			if ((iGeistVer == iSpielerVer) && (iGeistHor == iSpielerHor) && (oSpieler.getLeben() == 0))
 			{
 				if (bOeffnenVerlorenFenster)
 				{

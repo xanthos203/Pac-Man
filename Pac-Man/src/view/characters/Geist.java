@@ -1,5 +1,6 @@
 package view.characters;
 
+import model.interfaces.ICharakterBewegen;
 import view.frames.GameMainFrame;
 
 /**
@@ -8,14 +9,16 @@ import view.frames.GameMainFrame;
  * @author Cristina Erhart
  * @version 1.0
  */
-public final class Geister 
+public class Geist implements ICharakterBewegen
 {
-	private static int iGeistHor;
-	private static int iGeistVer;
+	private int iGeistHor;
+	private int iGeistVer;
 	
-	public static int raufBewegen(int iRauf, String sName)
+//--------------------------------------------------------------------------------------------------------------------------
+	@Override
+	public int raufBewegen(int iRauf)
 	{
-		if (sName == "Greeny")
+//		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
@@ -26,9 +29,10 @@ public final class Geister
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int runterBewegen(int iRunter, String sName)
+	@Override
+	public int runterBewegen(int iRunter)
 	{ 
-		if (sName == "Greeny")
+//		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
@@ -38,10 +42,11 @@ public final class Geister
 		}
 		return iGeistVer;
 	}
-//-------------------------------------------------------------------------------------------------------------------------	
-	public static int rechtsBewegen(int iRechts, String sName)
+//-------------------------------------------------------------------------------------------------------------------------
+	@Override
+	public int rechtsBewegen(int iRechts)
 	{
-		if (sName == "Greeny")
+//		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
@@ -51,10 +56,11 @@ public final class Geister
 		}
 		return iGeistHor;
 	}
-//------------------------------------------------------------------------------------------------------------------------	
-	public static int linksBewegen(int iLinks, String sName)
+//------------------------------------------------------------------------------------------------------------------------
+	@Override
+	public int linksBewegen(int iLinks)
 	{
-		if (sName == "Greeny")
+//		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
@@ -65,12 +71,14 @@ public final class Geister
 		return iGeistHor;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int getGeistX()
+	@Override
+	public int getX()
 	{
 		return iGeistHor;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	public static int getGeistY()
+	@Override
+	public int getY()
 	{
 		return iGeistVer;
 	}
