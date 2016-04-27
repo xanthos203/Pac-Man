@@ -60,81 +60,59 @@ public class Spieler implements ICharakterBewegen
 		}
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Diese Methode bewegt den Spieler hinauf allerdings nur, wenn der Spierler den Oberenerand noch nicht erreicht hat.
-	 * @param iRauf
-	 * @return
-	 */
 	@Override
-	public int raufBewegen(int iRauf)
+	public int raufBewegen(int iPosY)
 	{
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
-			iSpielerVer = iRauf;
+			iSpielerVer = iPosY;
 			if (iSpielerVer > 0)
 				iSpielerVer--;
 			else
-				iSpielerVer = iRauf;
+				iSpielerVer = iPosY;
 		}
 		return iSpielerVer;
 	}
-//-------------------------------------------------------------------------------------------------------------------------	
-	/**
-	 * Diese methode heist zwar Spieler rauf bewegen, allerdings wird hier der Spieler runterbeweget, da aber die Koordinaten steigen werder  diese größer und deshalb wird 
-	 * @param iRunter
-	 * @return
-	 */
+//-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int runterBewegen(int iRunter)
+	public int runterBewegen(int iPosY)
 	{				
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
-			iSpielerVer = iRunter;
+			iSpielerVer = iPosY;
 			if (iSpielerVer < (GameMainFrame.GUI_ROWS - 1))
 				iSpielerVer++;
 			else
-				iSpielerVer = iRunter;
+				iSpielerVer = iPosY;
 		}
 		return iSpielerVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	/**
-	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
-	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
-	 * @param iLinks
-	 * @return
-	 */
 	@Override
-	public int linksBewegen(int iLinks)
+	public int linksBewegen(int iPosX)
 	{
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
-			iSpielerHor = iLinks;
+			iSpielerHor = iPosX;
 			if (iSpielerHor > 0)
 				iSpielerHor--;
 			else
-				iSpielerHor = iLinks;
+				iSpielerHor = iPosX;
 		}
 		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	/**
-	 * Hier wird überprüft ob der Spieler noch weiter nach Rechts bewegt werden darf oder nicht.
-	 * Aber auch ob er sich zwischen den Koordinaten befindet wo er den Rand des Spielfeldes durch queren darf um auf die andere Seite gelangen zu können
-	 * @param iRechts
-	 * @return
-	 */
 	@Override
-	public int rechtsBewegen(int iRechts)
+	public int rechtsBewegen(int iPosX)
 	{
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
 //		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
 		{
-			iSpielerHor = iRechts;
+			iSpielerHor = iPosX;
 			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1))
 				iSpielerHor++;
 			else
-				iSpielerHor = iRechts;
+				iSpielerHor = iPosX;
 		}
 		return iSpielerHor;
 	}

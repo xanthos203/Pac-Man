@@ -16,56 +16,56 @@ public class Geist implements ICharakterBewegen
 	
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int raufBewegen(int iRauf)
+	public int raufBewegen(int iPosY)
 	{
 //		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRauf += 8;
-				iGeistVer = iRauf;
+				iPosY += 8;
+				iGeistVer = iPosY;
 			}
 		}
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int runterBewegen(int iRunter)
+	public int runterBewegen(int iPosY)
 	{ 
 //		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRunter -= 8;
-				iGeistVer = iRunter;
+				iPosY -= 8;
+				iGeistVer = iPosY;
 			}
 		}
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int rechtsBewegen(int iRechts)
+	public int rechtsBewegen(int iPosX)
 	{
 //		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iRechts += 8;
-				iGeistHor = iRechts;
+				iPosX += 8;
+				iGeistHor = iPosX;
 			}
 		}
 		return iGeistHor;
 	}
 //------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int linksBewegen(int iLinks)
+	public int linksBewegen(int iPosX)
 	{
 //		if (sName == "Greeny")
 		{
 			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
 			{
-				iLinks -= 8;
-				iGeistHor = iLinks;
+				iPosX -= 8;
+				iGeistHor = iPosX;
 			}
 		}
 		return iGeistHor;
