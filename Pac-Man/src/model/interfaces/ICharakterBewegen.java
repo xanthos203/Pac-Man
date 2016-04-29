@@ -8,6 +8,7 @@ package model.interfaces;
  * @version 1.0 */
 public interface ICharakterBewegen
 {
+	//<3<3<3<3<3<3<3<3<3
 	/**Methode für die <b>Aufwärtsbewegung</b> des Charakters.
 	 * @param iPosY <b>aktuelle Position</b> des Charakters auf der <i>Y-Achse</i>
 	 * @return <b>neue Position</b> des Charakters auf der <i>Y-Achse</i> nach Abschluss der Methode */
