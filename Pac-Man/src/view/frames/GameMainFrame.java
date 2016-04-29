@@ -47,6 +47,8 @@ import view.characters.Spieler;
 @SuppressWarnings("serial")
 public final class GameMainFrame extends JFrame implements IWindowProperties
 {
+	// Grias eich
+	
 	public static final String GANG = "0";
 	public static final String WAND = "1";
 	public static final String GEIST = "2";
