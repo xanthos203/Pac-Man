@@ -405,8 +405,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			// =================================
 			if (iOptionPane == JOptionPane.YES_OPTION)
 			{
-				getGameMainFrame().dispose();
+				getGameMainFrame().setVisible(false);
 				new GameMainFrame();
+				this.dispose();
 			}
 			// =================================
 			if (iOptionPane == JOptionPane.NO_OPTION)
