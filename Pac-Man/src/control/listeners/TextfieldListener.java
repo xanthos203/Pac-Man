@@ -27,13 +27,13 @@ public final class TextfieldListener extends KeyAdapter
 	private JTextField  referenceTextField;
 	
 	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> und auf <b>welches Textfeld</b> sich der Listener bezieht.
-	 * @param dialog Referenzvariable vom Typ <i>JDialog</i>
+	 * @param frame Referenzvariable vom Typ <i>JDialog</i>
 	 * @param textField Referenzvariable vom Typ <i>JTextField</i>*/
-	public TextfieldListener(JFrame dialog, JTextField textField)
+	public TextfieldListener(JFrame frame, JTextField textField)
 	{
 		/*der Variable referenceDialog wird der Wert von dialog zugewiesen
 		 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
-		referenceFrame = dialog;
+		referenceFrame = frame;
 		/*der Variable referenceTextField wird der Wert von textField zugewiesen
 		 *und somit eine Referenz auf das Textfeld erstellt, welches der Listener überwachen soll*/
 		referenceTextField = textField;
