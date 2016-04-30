@@ -48,7 +48,7 @@ public final class WindowListener extends WindowAdapter
 		/*in optionen werden die Möglichkeiten, die dem Benutzer zur Auswahl stehen, gespeichert*/
 		Object[] optionen = { "Beenden", "Abbrechen" };
 		
-		/*wird ausgeführt, wenn frameReference eine Instanz von GameMainFrame ist*/
+		/*wird ausgeführt, wenn frameReference nicht null ist*/
 		if(frameReference instanceof GameMainFrame)
 		{
 			/*zu warning wird der Standardmelung noch ein Teil hinzugefügt*/

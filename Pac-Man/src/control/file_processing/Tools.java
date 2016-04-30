@@ -6,22 +6,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * In dieser Klasse wird die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CGuiDB übergebben,
- * damit diese die Daten verwenden kann.
  * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
  * @version 1.0
  * 
+ * In dieser Klasse wierd die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CLogDB übergebben, damit diese die Daten verwenden kann.
  */
 public final class Tools 
 {
 	/**
-	 * In dieser Methode wird Mithilfe des BufferedReaders eingelesen und verwendet.
 	 * 
 	 * @param sPath
 	 * @return
+	 * 
+	 * In dieser Methode wird Mithilfe des BufferedReaders eingelesen und verwendet.
+	 * 
 	 */
 	public static ArrayList<String> readGuiCSV(String sPath)
 	{

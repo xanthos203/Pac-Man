@@ -8,15 +8,21 @@ import java.util.ArrayList;
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
  * @version 1.0
+ *
+ * In dieser Klasse wird der eingelesene Text gesplittet und in eine ArrayList von dem Datentype CLogzeile() gespeichert.
+ *
  */
 public class GuiDB 
 {
 	private ArrayList<String> alZeilenString = new ArrayList<String>();
 	
 	/**
-	 * Hier wird der Text in aufgespalten, wenn ein ";" sich inerhalb der Textdatei befindet.
 	 * 
 	 * @param sPath
+	 * 
+	 * Hier wierd der Text in aufgespalten, wenn ein ; sich inerhalb der Textdatei befindet.
+	 * Die Strings werden dem entsprechendem Konstruktor in der Klasse CLogzeile übergeben.
+	 * 
 	 */
 	public GuiDB(String sPath) 
 	{
