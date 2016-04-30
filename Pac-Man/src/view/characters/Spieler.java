@@ -14,6 +14,7 @@ import view.frames.GameWonFrame;
  */
 public class Spieler implements ICharakterBewegen
 {
+	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
 	private int iSpielerHor;
 	private int iSpielerVer;
 	private int iLeben = 3;
@@ -63,7 +64,7 @@ public class Spieler implements ICharakterBewegen
 	@Override
 	public int raufBewegen(int iPosY)
 	{
-//		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+//		if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 		{
 			iSpielerVer = iPosY;
 			if (iSpielerVer > 0)
@@ -77,7 +78,7 @@ public class Spieler implements ICharakterBewegen
 	@Override
 	public int runterBewegen(int iPosY)
 	{				
-//		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+//		if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 		{
 			iSpielerVer = iPosY;
 			if (iSpielerVer < (GameMainFrame.GUI_ROWS - 1))
@@ -91,7 +92,7 @@ public class Spieler implements ICharakterBewegen
 	@Override
 	public int linksBewegen(int iPosX)
 	{
-//		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+//		if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor > 0)
@@ -106,7 +107,7 @@ public class Spieler implements ICharakterBewegen
 	public int rechtsBewegen(int iPosX)
 	{
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		//if  (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+//		if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1))

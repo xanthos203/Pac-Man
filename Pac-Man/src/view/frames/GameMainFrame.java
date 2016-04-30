@@ -59,6 +59,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static final Color  GEISTER_AUSGANG_FARBE = Color.WHITE;
 
 	private static GameMainFrame	 oGameMainFrame;
+	private static GuiDB  			 oGuiDB					 = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	private static Spieler			 oSpieler				 = new Spieler();
 	private static Geist			 oGeist					 = new Geist();
 	private static JTextArea		 taChatverlaufTextarea	 = new JTextArea();
@@ -76,7 +77,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //	private static Icon				 oIconPacManLeft		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_left.PNG")));
 	private static Icon 			 oIconPacManRight		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_right.PNG")));
 	private static ArrayList<String> alSpielfeldArrayList;
-	public static JPanel[][]		 aSpielfeldArray		 = new JPanel[50][50];
+	private static JPanel[][]		 aSpielfeldArray		 = new JPanel[50][50];
 	private static JPanel[]			 aClassicCoins			 = new JPanel[2500];
 	private static JPanel[]			 aEatingCoins			 = new JPanel[1250];
 	private static JLabel			 lSpielstandlabel		 = new JLabel(getSpielstandlabelText());
@@ -91,8 +92,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static JLabel			 lPacManRight			 = new JLabel(oIconPacManRight);
 	private static JLabel			 lPacMan;
 	private static boolean			 bSpielerAktiv			 = false;
-	private static double			 iSpielerPunkte			 = oSpieler.getPunktestand();
-	private static int				 iSpielerLeben			 = oSpieler.getLeben();
+//	private static double			 iSpielerPunkte			 = oSpieler.getPunktestand();
+//	private static int				 iSpielerLeben			 = oSpieler.getLeben();
+	private static int				 iDelayIntervall		 = 40;
 	private static int				 iArrayListIndex		 = -1;
 	private static int				 iCcoinIndex			 = 0;
 	private static int 	 			 iEcoinIndex			 = 0;
@@ -109,7 +111,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private JPanel pSpielfeldPanel		 = new JPanel();
 	private JPanel pChatPanel			 = new JPanel();
 	private JPanel pChatKomponentenPanel = new JPanel();
-	private GuiDB  oGuiDB				 = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
 	private Timer  oTimer				 = new Timer();
 	private Client oClient				 = new Client();
 
@@ -148,8 +149,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 		Thread thReaderThread = new Thread(new EigehendReader());
 		thReaderThread.start();
-
-		alSpielfeldArrayList = oGuiDB.getArrayList();
 
 		GridLayout oSpielfeldLayout = new GridLayout(GUI_ROWS, GUI_COLUMNS);
 		pSpielfeldPanel.setLayout(oSpielfeldLayout);
@@ -294,24 +293,24 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			{
 				iArrayListIndex++;
 				//-----------------------------------------------------------------------
-				if (alSpielfeldArrayList.size() > iArrayListIndex)
+				if (getSpielfeldAL().size() > iArrayListIndex)
 				{
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(GANG))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(GANG))
 					{
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(WAND))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(WAND))
 					{
 						guiDarstellen(iZeile, iSpalte, WAENDE_FARBE);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(GEIST))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(GEIST))
 					{
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(PAC_MAN))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(PAC_MAN))
 					{
 						lPacMan = lPacManRight;
 						guiDarstellen(iZeile, iSpalte);
@@ -320,17 +319,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						iSpielerHor = iSpalte;
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(EATING_COIN))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(EATING_COIN))
 					{
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(GEISTER_AUSGANG))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(GEISTER_AUSGANG))
 					{
 						guiDarstellen(iZeile, iSpalte, GEISTER_AUSGANG_FARBE);
 					}
 					//---------------------------------------------
-					if (alSpielfeldArrayList.get(iArrayListIndex).equals(TELEPORTER))
+					if (getSpielfeldAL().get(iArrayListIndex).equals(TELEPORTER))
 					{
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
@@ -450,7 +449,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRauf() 
 	{
-		delay(40);
+		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
 		iSpielerVer = oSpieler.raufBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -465,7 +464,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
-		delay(40);
+		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
 		iSpielerVer = oSpieler.runterBewegen(iSpielerVer);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -480,7 +479,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
-		delay(40);
+		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
 		iSpielerHor = oSpieler.linksBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -495,7 +494,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
-		delay(40);
+		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
 		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
@@ -559,9 +558,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
-
+	
 	public static ArrayList<String> getSpielfeldAL()
 	{
+		GameMainFrame.alSpielfeldArrayList = oGuiDB.getArrayList();
 		return alSpielfeldArrayList;
 	}
 	
@@ -601,7 +601,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				Server.allenWeitersagen(tfChatnachrichtTextfeld.getText());
 			}
 			
-			if (bSpielerAktiv == true)
+			if (bSpielerAktiv)
 			{
 				Random zufallsZahl = new Random(); // zufallszahl für die Bewegung des Geistes generiern
 				int iIndex = zufallsZahl.nextInt(8) + 1;

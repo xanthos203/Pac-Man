@@ -1,7 +1,5 @@
 package view.characters;
 
-import java.util.ArrayList;
-
 import model.interfaces.ICharakterBewegen;
 import view.frames.GameMainFrame;
 
@@ -15,7 +13,7 @@ public class Geist implements ICharakterBewegen
 {
 	private int iGeistHor;
 	private int iGeistVer;
-	private ArrayList<String> alSpielfeldArrayList  = GameMainFrame.getSpielfeldAL();
+	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
 	
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
@@ -23,7 +21,7 @@ public class Geist implements ICharakterBewegen
 	{
 //		if (sName == "Greeny")
 		{
-			if ((alSpielfeldArrayList).equals(GameMainFrame.GANG))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
 				System.out.println("ra");
 				iGeistVer = iPosY;
@@ -41,7 +39,7 @@ public class Geist implements ICharakterBewegen
 	{ 
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GameMainFrame.GANG))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
 				System.out.println(GameMainFrame.getArrayListIndex());
 				System.out.println("ru");
@@ -60,7 +58,7 @@ public class Geist implements ICharakterBewegen
 	{
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GameMainFrame.GANG))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
 				System.out.println("l");
 				iGeistHor = iPosX;
@@ -78,7 +76,7 @@ public class Geist implements ICharakterBewegen
 	{
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GameMainFrame.GANG))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
 				System.out.println("r");
 				iGeistHor = iPosX;
