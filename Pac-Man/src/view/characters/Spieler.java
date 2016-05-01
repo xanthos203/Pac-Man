@@ -65,7 +65,7 @@ public class Spieler implements ICharakterBewegen
 	@Override
 	public int raufBewegen(int iPosY)
 	{
-		iPacManPos+=33;
+		iPacManPos-=33;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
 			if (iPosY > 0)
@@ -73,7 +73,7 @@ public class Spieler implements ICharakterBewegen
 		}
 		else
 		{
-			iPacManPos-=33;
+			iPacManPos+=33;
 		}
 		return iPosY;
 	}
@@ -84,10 +84,8 @@ public class Spieler implements ICharakterBewegen
 		iPacManPos+=33;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
-			
 			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
 				iPosY++;
-			
 		}
 		else
 		{
@@ -99,7 +97,7 @@ public class Spieler implements ICharakterBewegen
 	@Override
 	public int linksBewegen(int iPosX)
 	{
-		iPacManPos++;
+		iPacManPos--;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
 			iSpielerHor = iPosX;
@@ -110,7 +108,7 @@ public class Spieler implements ICharakterBewegen
 		}
 		else
 		{
-			iPacManPos--;
+			iPacManPos++;
 		}
 		return iSpielerHor;
 	}
