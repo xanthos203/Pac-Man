@@ -477,12 +477,20 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
-		delay(iDelayIntervall);
-		lPacMan = lPacManRight;
-		iSpielerVer = oSpieler.runterBewegen(iSpielerVer, sPacMan);
-		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-		bSpielerAktiv = true;
+		try
+		{
+			delay(iDelayIntervall);
+			lPacMan = lPacManRight;
+			iSpielerVer = oSpieler.runterBewegen(iSpielerVer, sPacMan);
+			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+			bSpielerAktiv = true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -492,12 +500,20 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
-		delay(iDelayIntervall);
-		lPacMan = lPacManRight;
-		iSpielerHor = oSpieler.linksBewegen(iSpielerHor, sPacMan);
-		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-		bSpielerAktiv = true;
+		
+		try
+		{
+			delay(iDelayIntervall);
+			lPacMan = lPacManRight;
+			iSpielerHor = oSpieler.linksBewegen(iSpielerHor, sPacMan);
+			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+			bSpielerAktiv = true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -507,12 +523,20 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
-		delay(iDelayIntervall);
-		lPacMan = lPacManRight;
-		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor, sPacMan);
-		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-		bSpielerAktiv = true;
+		
+		try
+		{
+			delay(iDelayIntervall);
+			lPacMan = lPacManRight;
+			iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor, sPacMan);
+			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+			bSpielerAktiv = true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------

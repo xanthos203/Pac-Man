@@ -27,19 +27,7 @@ public class Geist implements ICharakterBewegen
 	public int raufBewegen(int iPosY, String sName)
 	{
 		if (sName.equals("Greeny"))
-		{
-			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == GANG_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == PAC_MAN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == EATING_COIN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == TELEPORTER_INDEX)
-			{
-				iGeistVer = iPosY;
-				if (iGeistVer > 0)
-					iGeistVer--;
-				else
-					iGeistVer = iPosY;
-			}
-		}
+			iGeistVer = moveUp(iPosY, iGreeny);
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
@@ -47,19 +35,7 @@ public class Geist implements ICharakterBewegen
 	public int runterBewegen(int iPosY, String sName)
 	{ 
 		if (sName.equals("Greeny"))
-		{
-			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == GANG_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == PAC_MAN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == EATING_COIN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == TELEPORTER_INDEX)
-			{
-				iGeistVer = iPosY;
-				if (iGeistVer < (GameMainFrame.GUI_ROWS - 1))
-					iGeistVer--;
-				else
-					iGeistVer = iPosY;
-			}
-		}
+			iGeistVer = moveDown(iPosY, iGreeny);
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -67,19 +43,7 @@ public class Geist implements ICharakterBewegen
 	public int linksBewegen(int iPosX, String sName)
 	{
 		if (sName.equals("Greeny"))
-		{
-			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == GANG_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == PAC_MAN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == EATING_COIN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == TELEPORTER_INDEX)
-			{
-				iGeistHor = iPosX;
-				if (iGeistHor > 0)
-					iGeistHor--;
-				else
-					iGeistHor = iPosX;
-			}
-		}
+			iGeistHor = moveLeft(iPosX, iGreeny);
 		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -87,18 +51,70 @@ public class Geist implements ICharakterBewegen
 	public int rechtsBewegen(int iPosX, String sName)
 	{
 		if (sName.equals("Greeny"))
+			iGeistHor = moveRight(iPosX, iGreeny);
+		return iGeistHor;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	private int moveUp(int iPosY, int iGeist)
+	{
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
 		{
-			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == GANG_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == PAC_MAN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == EATING_COIN_INDEX ||
-				Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny)) == TELEPORTER_INDEX)
-			{
+			iGeistVer = iPosY;
+			if (iGeistVer > 0)
+				iGeistVer--;
+			else
+				iGeistVer = iPosY;
+		}
+		return iGeistVer;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	private int moveDown(int iPosY, int iGeist)
+	{
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+		{
+			iGeistVer = iPosY;
+			if (iGeistVer < (GameMainFrame.GUI_ROWS - 1))
+				iGeistVer--;
+			else
+				iGeistVer = iPosY;
+		}
+		return iGeistVer;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	private int moveLeft(int iPosX, int iGeist)
+	{
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+		{
+			iGeistHor = iPosX;
+			if (iGeistHor > 0)
+				iGeistHor--;
+			else
 				iGeistHor = iPosX;
-				if (iGeistHor < (GameMainFrame.GUI_COLUMNS - 1))
-					iGeistHor--;
-				else
-					iGeistHor = iPosX;
-			}
+		}
+		return iGeistHor;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	private int moveRight(int iPosX, int iGeist)
+	{
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+		{
+			iGeistHor = iPosX;
+			if (iGeistHor < (GameMainFrame.GUI_COLUMNS - 1))
+				iGeistHor--;
+			else
+				iGeistHor = iPosX;
 		}
 		return iGeistHor;
 	}

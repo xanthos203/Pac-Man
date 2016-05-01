@@ -66,6 +66,9 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
+	/**
+	 * Hier in der Methode raufBewegen  wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	 */
 	public int raufBewegen(int iPosY, String sName)
 	{
 		iPacManPos -= 33;
@@ -85,6 +88,9 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
+	/**
+	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	 */
 	public int runterBewegen(int iPosY, String sName)
 	{	
 		iPacManPos += 33;
@@ -104,6 +110,9 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	@Override
+	/**
+	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	 */
 	public int linksBewegen(int iPosX, String sName)
 	{
 		iPacManPos--;
@@ -113,7 +122,7 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
-			if (iSpielerHor > 0)
+			if (iSpielerHor > -1)
 				iSpielerHor--;
 			else
 				iSpielerHor = iPosX;
@@ -125,12 +134,15 @@ public class Spieler implements ICharakterBewegen
 		
 		if(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
-			iSpielerHor=32;
+			iSpielerHor=33;
 		}
 		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
+	/**
+	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	 */
 	public int rechtsBewegen(int iPosX, String sName)
 	{
 		iPacManPos++;
@@ -154,7 +166,7 @@ public class Spieler implements ICharakterBewegen
 		
 		if(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
-			iSpielerHor = 1;
+			iSpielerHor = 0;
 		}
 		return iSpielerHor;
 	}
