@@ -14,10 +14,12 @@ import view.frames.GameWonFrame;
  */
 public class Spieler implements ICharakterBewegen
 {
+	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
 	private int iSpielerHor;
-	private int iSpielerVer;
+	private int iSpielerVer=0;
 	private int iLeben = 3;
 	private double dPunktestand = 0;
+	private static int iPacManPos = 610;
 
 //-------------------------------------------------------------------------------------------------------------------------
 	public void setLeben(int iLeben)
@@ -63,35 +65,46 @@ public class Spieler implements ICharakterBewegen
 	@Override
 	public int raufBewegen(int iPosY)
 	{
-//		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+		iPacManPos+=33;
+		if ((Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)||(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)))==(3))
 		{
-			iSpielerVer = iPosY;
-			if (iSpielerVer > 0)
-				iSpielerVer--;
-			else
-				iSpielerVer = iPosY;
+			//iSpielerVer = iPosY;
+			if (iPosY > 0)
+				iPosY--;
+			/*else
+				iSpielerVer = iPosY;*/
 		}
-		return iSpielerVer;
+		else
+		{
+			iPacManPos-=33;
+		}
+		return iPosY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
 	public int runterBewegen(int iPosY)
-	{				
-//		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+	{	
+		iPacManPos+=33;
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
 			iSpielerVer = iPosY;
-			if (iSpielerVer < (GameMainFrame.GUI_ROWS - 1))
-				iSpielerVer++;
-			else
-				iSpielerVer = iPosY;
+			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
+				iPosY++;
+			//else
+				//iSpielerVer = iPosY;
 		}
-		return iSpielerVer;
+		else
+		{
+			iPacManPos-=33;
+		}
+		return iPosY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	@Override
 	public int linksBewegen(int iPosX)
 	{
-//		if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+		iPacManPos++;
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor > 0)
@@ -99,20 +112,32 @@ public class Spieler implements ICharakterBewegen
 			else
 				iSpielerHor = iPosX;
 		}
+		else
+		{
+			iPacManPos--;
+		}
 		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
 	public int rechtsBewegen(int iPosX)
 	{
+		iPacManPos++;
+		System.out.println(iPacManPos);
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		//if  (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals(GameMainFrame.GANG))
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1))
+			{
 				iSpielerHor++;
+			}
 			else
 				iSpielerHor = iPosX;
+		}
+		else
+		{
+			iPacManPos--;
 		}
 		return iSpielerHor;
 	}
@@ -139,3 +164,5 @@ public class Spieler implements ICharakterBewegen
 		return dPunktestand;
 	}
 }
+
+

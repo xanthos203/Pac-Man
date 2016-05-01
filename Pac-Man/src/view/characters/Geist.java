@@ -1,8 +1,5 @@
 package view.characters;
 
-import java.util.ArrayList;
-
-import control.file_processing.GuiDB;
 import model.interfaces.ICharakterBewegen;
 import view.frames.GameMainFrame;
 
@@ -16,8 +13,7 @@ public class Geist implements ICharakterBewegen
 {
 	private int iGeistHor;
 	private int iGeistVer;
-	private GuiDB oGuiDB = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
-	private ArrayList<String> alSpielfeldArrayList  = oGuiDB.getArrayList();
+	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
 	
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
@@ -25,11 +21,14 @@ public class Geist implements ICharakterBewegen
 	{
 //		if (sName == "Greeny")
 		{
-			if ((alSpielfeldArrayList).equals("0"))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
 				System.out.println("ra");
-				iPosY += 8;
 				iGeistVer = iPosY;
+				if (iGeistVer > 0)
+					iGeistVer--;
+				else
+					iGeistVer = iPosY;
 			}
 		}
 		return iGeistVer;
@@ -40,15 +39,36 @@ public class Geist implements ICharakterBewegen
 	{ 
 //		if (sName == "Greeny")
 		{
-//			 if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
-				System.out.println(GameMainFrame.getFeldindex());
+				System.out.println(GameMainFrame.getArrayListIndex());
 				System.out.println("ru");
-				iPosY -= 8;
 				iGeistVer = iPosY;
+				if (iGeistVer < (GameMainFrame.GUI_ROWS - 1))
+					iGeistVer--;
+				else
+					iGeistVer = iPosY;
 			}
 		}
 		return iGeistVer;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	@Override
+	public int linksBewegen(int iPosX)
+	{
+//		if (sName == "Greeny")
+		{
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
+			{
+				System.out.println("l");
+				iGeistHor = iPosX;
+				if (iGeistHor > 0)
+					iGeistHor--;
+				else
+					iGeistHor = iPosX;
+			}
+		}
+		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
@@ -56,31 +76,19 @@ public class Geist implements ICharakterBewegen
 	{
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
+//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
 			{
 				System.out.println("r");
-				iPosX += 8;
 				iGeistHor = iPosX;
+				if (iGeistHor < (GameMainFrame.GUI_COLUMNS - 1))
+					iGeistHor--;
+				else
+					iGeistHor = iPosX;
 			}
 		}
 		return iGeistHor;
 	}
 //------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int linksBewegen(int iPosX)
-	{
-//		if (sName == "Greeny")
-		{
-//			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
-			{
-				System.out.println("l");
-				iPosX -= 8;
-				iGeistHor = iPosX;
-			}
-		}
-		return iGeistHor;
-	}
-//--------------------------------------------------------------------------------------------------------------------------
 	@Override
 	public int getX()
 	{
