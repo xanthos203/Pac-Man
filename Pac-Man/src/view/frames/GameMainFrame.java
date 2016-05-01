@@ -642,9 +642,4 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		}	
 		
 	}
-
-	public static char[] getFeldindex() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
