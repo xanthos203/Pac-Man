@@ -91,6 +91,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //	private static JLabel			 lPacManLeft			 = new JLabel(oIconPacManLeft);
 	private static JLabel			 lPacManRight			 = new JLabel(oIconPacManRight);
 	private static JLabel			 lPacMan;
+	private static String 			 sPacMan = "PacMan";
 	private static boolean			 bSpielerAktiv			 = false;
 //	private static double			 iSpielerPunkte			 = oSpieler.getPunktestand();
 //	private static int				 iSpielerLeben			 = oSpieler.getLeben();
@@ -452,7 +453,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerVer = oSpieler.raufBewegen(iSpielerVer);
+		iSpielerVer = oSpieler.raufBewegen(iSpielerVer, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -467,7 +468,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerVer = oSpieler.runterBewegen(iSpielerVer);
+		iSpielerVer = oSpieler.runterBewegen(iSpielerVer, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -482,7 +483,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerHor = oSpieler.linksBewegen(iSpielerHor);
+		iSpielerHor = oSpieler.linksBewegen(iSpielerHor, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -497,7 +498,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor);
+		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;

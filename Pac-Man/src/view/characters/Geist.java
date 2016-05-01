@@ -20,7 +20,6 @@ public class Geist implements ICharakterBewegen
 	private int iPinky;
 	
 //--------------------------------------------------------------------------------------------------------------------------
-	@Override
 	public int raufBewegen(int iPosY, String sName)
 	{
 //		if (sName == "Greeny")
@@ -41,7 +40,6 @@ public class Geist implements ICharakterBewegen
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	@Override
 	public int runterBewegen(int iPosY, String sName)
 	{ 
 //		if (sName == "Greeny")
@@ -63,7 +61,6 @@ public class Geist implements ICharakterBewegen
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
 	public int linksBewegen(int iPosX, String sName)
 	{
 //		if (sName == "Greeny")
@@ -84,7 +81,6 @@ public class Geist implements ICharakterBewegen
 		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
 	public int rechtsBewegen(int iPosX, String sName)
 	{
 		if (sName == "Greeny")
