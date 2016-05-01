@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -333,7 +334,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iArrayListIndex).equals(TELEPORTER))
 					{
-						classicCoinsDarstellen(iZeile, iSpalte);
+						classicCoinsDarstellen( iZeile, iSpalte);
 					}
 				}
 				// -----------------------------------------------------------------------
@@ -451,12 +452,22 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRauf() 
 	{
-		delay(iDelayIntervall);
-		lPacMan = lPacManRight;
-		iSpielerVer = oSpieler.raufBewegen(iSpielerVer, sPacMan);
-		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-		bSpielerAktiv = true;
+		
+		try
+		{
+			delay(iDelayIntervall);
+			lPacMan = lPacManRight;
+			iSpielerVer = oSpieler.raufBewegen(iSpielerVer, sPacMan);
+			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+			bSpielerAktiv = true;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		
+		
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
