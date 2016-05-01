@@ -591,7 +591,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask 
 	{
-//		private String sName;
+		private String sName;
 		
 		@Override
 		public void run()
@@ -609,27 +609,27 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 				for (int iZaehler = 0; iZaehler <= 8; iZaehler++)
 				{
-//					switch (iZaehler)
-//					{
-//						case 0: sName = "Greeny"; break;
-//						case 1: sName = "Greeny"; break;
-//						case 2: sName = "Blue"; break;
-//						case 3: sName = "Blue"; break;
-//						case 4: sName = "Orangy"; break;
-//						case 5: sName = "Orangy"; break;
-//						case 6: sName = "Pinky"; break;
-//						case 7: sName = "Pinky"; break;
-//					}
+					switch (iZaehler)
+					{
+						case 0: sName = "Greeny"; break;
+						case 1: sName = "Greeny"; break;
+						case 2: sName = "Blue"; break;
+						case 3: sName = "Blue"; break;
+						case 4: sName = "Orangy"; break;
+						case 5: sName = "Orangy"; break;
+						case 6: sName = "Pinky"; break;
+						case 7: sName = "Pinky"; break;
+					}
 					switch (iIndex)
 					{
-						case 1: oGeist.raufBewegen(iGeistHor); break;
-						case 2: oGeist.runterBewegen(iGeistHor); break;
-						case 3: oGeist.rechtsBewegen(iGeistVer); break;
-						case 4: oGeist.linksBewegen(iGeistVer); break;
-						case 5: oGeist.raufBewegen(iGeistHor); break;
-						case 6: oGeist.runterBewegen(iGeistHor); break;
-						case 7: oGeist.rechtsBewegen(iGeistVer); break;
-						case 8: oGeist.linksBewegen(iGeistVer); break;
+						case 1: oGeist.raufBewegen(iGeistHor,sName); break;
+						case 2: oGeist.runterBewegen(iGeistHor,sName); break;
+						case 3: oGeist.rechtsBewegen(iGeistVer,sName); break;
+						case 4: oGeist.linksBewegen(iGeistVer,sName); break;
+						case 5: oGeist.raufBewegen(iGeistHor,sName); break;
+						case 6: oGeist.runterBewegen(iGeistHor,sName); break;
+						case 7: oGeist.rechtsBewegen(iGeistVer,sName); break;
+						case 8: oGeist.linksBewegen(iGeistVer,sName); break;
 					}
 				}
 			}

@@ -11,19 +11,19 @@ public interface ICharakterBewegen
 	/**Methode für die <b>Aufwärtsbewegung</b> des Charakters.
 	 * @param iPosY <b>aktuelle Position</b> des Charakters auf der <i>Y-Achse</i>
 	 * @return <b>neue Position</b> des Charakters auf der <i>Y-Achse</i> nach Abschluss der Methode */
-	int raufBewegen(int iPosY);
+	int raufBewegen(int iPosY, String sName);
 	/**Methode für die <b>Abwärtsbewegung</b> des Charakters.
 	 * @param iPosY <b>aktuelle Position</b> des Charakters auf der <i>Y-Achse</i>
 	 * @return <b>neue Position</b> des Charakters auf der <i>Y-Achse</i> nach Abschluss der Methode */
-	int runterBewegen(int iPosY);
+	int runterBewegen(int iPosY, String sName);
 	/**Methode für die <b>Linksbewegung</b> des Charakters.
 	 * @param iPosX <b>aktuelle Position</b> des Charakters auf der <i>X-Achse</i>
 	 * @return <b>neue Position</b> des Charakters auf der <i>X-Achse</i> nach Abschluss der Methode */
-	int linksBewegen(int iPosX);
+	int linksBewegen(int iPosX, String sName);
 	/**Methode für die <b>Rechtsbewegung</b> des Charakters.
 	 * @param iPosX <b>aktuelle Position</b> des Charakters auf der <i>X-Achse</i>
 	 * @return <b>neue Position</b> des Charakters auf der <i>X-Achse</i> nach Abschluss der Methode */
-	int rechtsBewegen(int iPosX);
+	int rechtsBewegen(int iPosX, String sName);
 	/**<i>Getter-Methode</i> für die <b>aktuelle Position</b> des Charakters.
 	 * @return <b>aktuelle Position</b> des Charakters auf der <i>X-Achse</i> */
 	int getX();
