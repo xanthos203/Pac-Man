@@ -68,11 +68,10 @@ public class Spieler implements ICharakterBewegen
 		iPacManPos++;
 		if ((Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)||(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)))==(3))
 		{
-			//iSpielerVer = iPosY;
+			
 			if (iPosY > 0)
 				iPosY--;
-			/*else
-				iSpielerVer = iPosY;*/
+			
 		}
 		else
 		{
@@ -87,11 +86,10 @@ public class Spieler implements ICharakterBewegen
 		iPacManPos++;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
 		{
-			iSpielerVer = iPosY;
+			
 			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
 				iPosY++;
-			//else
-				//iSpielerVer = iPosY;
+			
 		}
 		else
 		{
