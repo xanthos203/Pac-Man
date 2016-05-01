@@ -313,6 +313,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					if (getSpielfeldAL().get(iArrayListIndex).equals(PAC_MAN))
 					{
 						lPacMan = lPacManRight;
+						
 						guiDarstellen(iZeile, iSpalte);
 						aSpielfeldArray[iZeile][iSpalte].add(lPacMan);
 						iSpielerVer = iZeile;
@@ -638,7 +639,6 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //				oSpieler.setLeben(iSpielerLeben--);
 //			}
 			repaint();
-		}	
-		
+		}
 	}
 }
