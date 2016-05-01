@@ -15,8 +15,11 @@ import view.frames.GameWonFrame;
 public class Spieler implements ICharakterBewegen
 {
 	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
+	private static final int PAC_MAN_INDEX = Integer.parseInt(GameMainFrame.PAC_MAN);
+	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
+	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
 	private int iSpielerHor;
-	private int iSpielerVer = 0;
+//	private int iSpielerVer = 0;
 	private int iLeben = 3;
 	private double dPunktestand = 0;
 	private static int iPacManPos = 610;
@@ -63,10 +66,13 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int raufBewegen(int iPosY)
+	public int raufBewegen(int iPosY, String sName)
 	{
 		iPacManPos -= 33;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			if (iPosY > 0)
 				iPosY--;
@@ -79,10 +85,13 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int runterBewegen(int iPosY)
+	public int runterBewegen(int iPosY, String sName)
 	{	
 		iPacManPos += 33;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== GANG_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
 				iPosY++;
@@ -95,10 +104,13 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
 	@Override
-	public int linksBewegen(int iPosX)
+	public int linksBewegen(int iPosX, String sName)
 	{
 		iPacManPos--;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor > 0)
@@ -114,11 +126,13 @@ public class Spieler implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int rechtsBewegen(int iPosX)
+	public int rechtsBewegen(int iPosX, String sName)
 	{
 		iPacManPos++;
-		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1))
@@ -133,18 +147,6 @@ public class Spieler implements ICharakterBewegen
 			iPacManPos--;
 		}
 		return iSpielerHor;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int getX()
-	{
-		return iSpielerHor;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int getY()
-	{
-		return iSpielerVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	public int getLeben()

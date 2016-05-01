@@ -91,6 +91,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //	private static JLabel			 lPacManLeft			 = new JLabel(oIconPacManLeft);
 	private static JLabel			 lPacManRight			 = new JLabel(oIconPacManRight);
 	private static JLabel			 lPacMan;
+	private static String 			 sPacMan = "PacMan";
 	private static boolean			 bSpielerAktiv			 = false;
 //	private static double			 iSpielerPunkte			 = oSpieler.getPunktestand();
 //	private static int				 iSpielerLeben			 = oSpieler.getLeben();
@@ -452,7 +453,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerVer = oSpieler.raufBewegen(iSpielerVer);
+		iSpielerVer = oSpieler.raufBewegen(iSpielerVer, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -467,7 +468,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerVer = oSpieler.runterBewegen(iSpielerVer);
+		iSpielerVer = oSpieler.runterBewegen(iSpielerVer, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -482,7 +483,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerHor = oSpieler.linksBewegen(iSpielerHor);
+		iSpielerHor = oSpieler.linksBewegen(iSpielerHor, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -497,7 +498,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	{
 		delay(iDelayIntervall);
 		lPacMan = lPacManRight;
-		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor);
+		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor, sPacMan);
 		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
 		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
 		bSpielerAktiv = true;
@@ -591,7 +592,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask 
 	{
-//		private String sName;
+		private String sName;
 		
 		@Override
 		public void run()
@@ -609,27 +610,27 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 				for (int iZaehler = 0; iZaehler <= 8; iZaehler++)
 				{
-//					switch (iZaehler)
-//					{
-//						case 0: sName = "Greeny"; break;
-//						case 1: sName = "Greeny"; break;
-//						case 2: sName = "Blue"; break;
-//						case 3: sName = "Blue"; break;
-//						case 4: sName = "Orangy"; break;
-//						case 5: sName = "Orangy"; break;
-//						case 6: sName = "Pinky"; break;
-//						case 7: sName = "Pinky"; break;
-//					}
+					switch (iZaehler)
+					{
+						case 0: sName = "Greeny"; break;
+						case 1: sName = "Greeny"; break;
+						case 2: sName = "Blue"; break;
+						case 3: sName = "Blue"; break;
+						case 4: sName = "Orangy"; break;
+						case 5: sName = "Orangy"; break;
+						case 6: sName = "Pinky"; break;
+						case 7: sName = "Pinky"; break;
+					}
 					switch (iIndex)
 					{
-						case 1: oGeist.raufBewegen(iGeistHor); break;
-						case 2: oGeist.runterBewegen(iGeistHor); break;
-						case 3: oGeist.rechtsBewegen(iGeistVer); break;
-						case 4: oGeist.linksBewegen(iGeistVer); break;
-						case 5: oGeist.raufBewegen(iGeistHor); break;
-						case 6: oGeist.runterBewegen(iGeistHor); break;
-						case 7: oGeist.rechtsBewegen(iGeistVer); break;
-						case 8: oGeist.linksBewegen(iGeistVer); break;
+						case 1: oGeist.raufBewegen(iGeistHor,sName); break;
+						case 2: oGeist.runterBewegen(iGeistHor,sName); break;
+						case 3: oGeist.rechtsBewegen(iGeistVer,sName); break;
+						case 4: oGeist.linksBewegen(iGeistVer,sName); break;
+						case 5: oGeist.raufBewegen(iGeistHor,sName); break;
+						case 6: oGeist.runterBewegen(iGeistHor,sName); break;
+						case 7: oGeist.rechtsBewegen(iGeistVer,sName); break;
+						case 8: oGeist.linksBewegen(iGeistVer,sName); break;
 					}
 				}
 			}

@@ -14,14 +14,21 @@ public class Geist implements ICharakterBewegen
 	private int iGeistHor;
 	private int iGeistVer;
 	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
+	private int iGreeny;
+	private int iBlue;
+	private int iOrangy;
+	private int iPinky;
 	
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int raufBewegen(int iPosY)
+	public int raufBewegen(int iPosY, String sName)
 	{
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))== 0||
+			(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(3)||
+			(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(4)||
+			(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(6)))))
 			{
 				System.out.println("ra");
 				iGeistVer = iPosY;
@@ -35,11 +42,14 @@ public class Geist implements ICharakterBewegen
 	}
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int runterBewegen(int iPosY)
+	public int runterBewegen(int iPosY, String sName)
 	{ 
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
+			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))== 0||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(3)||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(4)||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(6)))))
 			{
 				System.out.println(GameMainFrame.getArrayListIndex());
 				System.out.println("ru");
@@ -54,11 +64,14 @@ public class Geist implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int linksBewegen(int iPosX)
+	public int linksBewegen(int iPosX, String sName)
 	{
 //		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
+			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))== 0||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(3)||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(4)||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(6)))))
 			{
 				System.out.println("l");
 				iGeistHor = iPosX;
@@ -72,11 +85,14 @@ public class Geist implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	@Override
-	public int rechtsBewegen(int iPosX)
+	public int rechtsBewegen(int iPosX, String sName)
 	{
-//		if (sName == "Greeny")
+		if (sName == "Greeny")
 		{
-//			if (GameMainFrame.getSpielfeldAL().get(GameMainFrame.getArrayListIndex()).equals(GANG_INDEX))
+			if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))== 0||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(3)||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(4)||
+					(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGreeny))==(6)))))
 			{
 				System.out.println("r");
 				iGeistHor = iPosX;
@@ -87,17 +103,5 @@ public class Geist implements ICharakterBewegen
 			}
 		}
 		return iGeistHor;
-	}
-//------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int getX()
-	{
-		return iGeistHor;
-	}
-//--------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int getY()
-	{
-		return iGeistVer;
 	}
 }
