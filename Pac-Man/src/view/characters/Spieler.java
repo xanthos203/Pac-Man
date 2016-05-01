@@ -66,7 +66,10 @@ public class Spieler implements ICharakterBewegen
 	public int raufBewegen(int iPosY)
 	{
 		iPacManPos-=33;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== (0)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(3)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(4)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(6)))))
 		{
 			if (iPosY > 0)
 				iPosY--;
@@ -82,7 +85,10 @@ public class Spieler implements ICharakterBewegen
 	public int runterBewegen(int iPosY)
 	{	
 		iPacManPos+=33;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(3)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(4)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(6)))))
 		{
 			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
 				iPosY++;
@@ -98,7 +104,10 @@ public class Spieler implements ICharakterBewegen
 	public int linksBewegen(int iPosX)
 	{
 		iPacManPos--;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(3)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(4)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(6)))))
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor > 0)
@@ -119,7 +128,10 @@ public class Spieler implements ICharakterBewegen
 		iPacManPos++;
 		System.out.println(iPacManPos);
 		// Hier wird überprüft, ob der Spieler noch nicht den Unterenrand des Spielfeldes erreicht hat dann wird er um einen bestimmten Wert weiter geschoben
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))== 0||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(3)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(4)||
+				(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos))==(6)))))
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1))
