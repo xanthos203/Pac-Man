@@ -18,11 +18,10 @@ public class Spieler implements ICharakterBewegen
 	private static final int PAC_MAN_INDEX = Integer.parseInt(GameMainFrame.PAC_MAN);
 	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
 	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
-	private int iSpielerHor;
-//	private int iSpielerVer = 0;
-	private int iLeben = 3;
-	private double dPunktestand = 0;
 	private static int iPacManPos = 610;
+	private double dPunktestand = 0;
+	private int iSpielerHor;
+	private int iLeben = 3;
 
 //-------------------------------------------------------------------------------------------------------------------------
 	public void setLeben(int iLeben)
@@ -78,7 +77,9 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			if (iPosY > 0)
+			{
 				iPosY--;
+			}
 		}
 		else
 		{
@@ -100,7 +101,9 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
+			{
 				iPosY++;
+			}
 		}
 		else
 		{
@@ -122,19 +125,19 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
-			if (iSpielerHor > -1)
+			if (iSpielerHor > -1) {
 				iSpielerHor--;
-			else
+			} else {
 				iSpielerHor = iPosX;
+			}
 		}
 		else
 		{
 			iPacManPos++;
 		}
-		
-		if(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
+		if (iSpielerHor == 0)
 		{
-			iSpielerHor=33;
+			iSpielerHor = (GameMainFrame.GUI_COLUMNS - 2);
 		}
 		return iSpielerHor;
 	}
@@ -152,21 +155,19 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
-			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1))
-			{
+			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1)) {
 				iSpielerHor++;
-			}
-			else
+			} else {
 				iSpielerHor = iPosX;
+			}
 		}
 		else
 		{
 			iPacManPos--;
 		}
-		
-		if(Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
+		if (iSpielerHor == (GameMainFrame.GUI_COLUMNS - 1))
 		{
-			iSpielerHor = 0;
+			iSpielerHor = 1;
 		}
 		return iSpielerHor;
 	}
@@ -180,5 +181,4 @@ public class Spieler implements ICharakterBewegen
 	{
 		return dPunktestand;
 	}
-
 }

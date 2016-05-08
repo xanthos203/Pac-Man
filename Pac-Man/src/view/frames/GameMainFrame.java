@@ -6,7 +6,6 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -28,6 +27,7 @@ import javax.swing.SwingConstants;
 import control.file_processing.GuiDB;
 import control.listeners.ChatNachrichtfeldListener;
 import control.listeners.ChatSendenButtonListener;
+import control.listeners.SpielenButtonListener;
 import control.listeners.SteuerungListener;
 import control.listeners.WindowListener;
 import model.chat.Client;
@@ -57,7 +57,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static final String TELEPORTER			 = "6";
 	public static final Color  GAENGE_FARBE			 = Color.BLACK;
 	public static final Color  WAENDE_FARBE			 = Color.BLUE;
-	public static final Color  GEISTER_AUSGANG_FARBE = Color.WHITE;
+	public static final Color  GEISTER_AUSGANG_FARBE = Color.BLACK;
+	public static final Color  TELEPORTER_FARBE		 = Color.YELLOW;
 
 	private static GameMainFrame	 oGameMainFrame;
 	private static GuiDB  			 oGuiDB					 = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
@@ -66,6 +67,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static JTextArea		 taChatverlaufTextarea	 = new JTextArea();
 	private static JTextField		 tfChatnachrichtTextfeld = new JTextField("Nachricht eingeben");
 	private static JButton			 jbTextSendenButton		 = new JButton("SENDEN");
+	private static JButton			 jbSpielenButton		 = new JButton("SPIELEN");
 	private static Icon				 oIconClassicCoin		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/ClassicCoin.PNG")));
 	private static Icon				 oIconEatingCoin		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/EatingCoin.PNG")));
 	private static Icon				 oIconGreeny			 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Greeny.PNG")));
@@ -73,11 +75,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static Icon				 oIconOrangy			 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Orangy.PNG")));
 	private static Icon				 oIconPinky				 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pinky.PNG")));
 //	private static Icon				 oIconEatableGhost		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Eatable_Ghost.PNG")));
-//	private static Icon				 oIconPacManUp			 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_up.PNG")));
-//	private static Icon				 oIconPacManDown		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_down.PNG")));
-//	private static Icon				 oIconPacManLeft		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_left.PNG")));
+	private static Icon				 oIconPacManUp			 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_up.PNG")));
+	private static Icon				 oIconPacManDown		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_down.PNG")));
+	private static Icon				 oIconPacManLeft		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_left.PNG")));
 	private static Icon 			 oIconPacManRight		 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameMainFrame.class.getResource("/view/images/Pac-Man_right.PNG")));
 	private static ArrayList<String> alSpielfeldArrayList;
+	private static Boolean[][]		 aClassicCoinsBool		 = new Boolean[50][50];
+	private static Boolean[][]		 aEatingCoinsBool		 = new Boolean[50][50];
 	private static JPanel[][]		 aSpielfeldArray		 = new JPanel[50][50];
 	private static JPanel[]			 aClassicCoins			 = new JPanel[2500];
 	private static JPanel[]			 aEatingCoins			 = new JPanel[1250];
@@ -87,17 +91,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private static JLabel			 lOrangy				 = new JLabel(oIconOrangy);
 	private static JLabel			 lPinky					 = new JLabel(oIconPinky);
 //	private static JLabel			 lEatableGhost			 = new JLabel(oIconEatableGhost);
-//	private static JLabel			 lPacManUp				 = new JLabel(oIconPacManUp);
-//	private static JLabel			 lPacManDown			 = new JLabel(oIconPacManDown);
-//	private static JLabel			 lPacManLeft			 = new JLabel(oIconPacManLeft);
+	private static JLabel			 lPacManUp				 = new JLabel(oIconPacManUp);
+	private static JLabel			 lPacManDown			 = new JLabel(oIconPacManDown);
+	private static JLabel			 lPacManLeft			 = new JLabel(oIconPacManLeft);
 	private static JLabel			 lPacManRight			 = new JLabel(oIconPacManRight);
 	private static JLabel			 lPacMan;
-	private static String 			 sPacMan = "PacMan";
+	private static String 			 sPacMan				 = "PAC-MAN";
 	private static boolean			 bSpielerAktiv			 = false;
-//	private static double			 iSpielerPunkte			 = oSpieler.getPunktestand();
+	private static double			 iSpielerPunkte			 = oSpieler.getPunktestand();
 //	private static int				 iSpielerLeben			 = oSpieler.getLeben();
 	private static int				 iDelayIntervall		 = 40;
-	private static int				 iArrayListIndex		 = -1;
+	private static int				 iSpielfeldIndex		 = -1;
 	private static int				 iCcoinIndex			 = 0;
 	private static int 	 			 iEcoinIndex			 = 0;
 	/**<i>iSpielerHor</i> zählt die gefahrenen Felder in <b>horizontaler Richtung</b>.*/
@@ -115,6 +119,12 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private JPanel pChatKomponentenPanel = new JPanel();
 	private Timer  oTimer				 = new Timer();
 	private Client oClient				 = new Client();
+	private int iGreenyHor;
+	private int iGreenyVer;
+	private int iBlueHor;
+	private int iBlueVer;
+	private int iOrangyHor;
+	private int iOrangyVer;
 
 	/**
 	 * Hier wird das Fenster erstellt und Sichtbargeschalten
@@ -161,6 +171,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 		jbTextSendenButton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 		jbTextSendenButton.addActionListener(new ChatSendenButtonListener());
+		
+		jbSpielenButton.setIcon(new ImageIcon(GameMainFrame.class.getResource("/view/images/Pac-Man_right.PNG")));
+		jbSpielenButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		jbSpielenButton.addActionListener(new SpielenButtonListener(this));
 
 		taChatverlaufTextarea.setEditable(false);
 		taChatverlaufTextarea.setLineWrap(true);
@@ -175,6 +189,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		pChatKomponentenPanel.add(jbTextSendenButton);
 
 		pChatPanel.setLayout(new BorderLayout());
+		pChatPanel.add(jbSpielenButton, BorderLayout.NORTH);
 		pChatPanel.add(jspScrollPane, BorderLayout.CENTER);
 		pChatPanel.add(pChatKomponentenPanel, BorderLayout.SOUTH);
 
@@ -200,7 +215,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void timerStarten()
 	{
 		TimerTask oTimerTask = new Task(); // Hier wird ein Objekt der Klasse Task, welche von der Klasse Timertask erbt, erzeugt.
-		oTimer.schedule(oTimerTask, 0, 150); // Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
+		oTimer.schedule(oTimerTask, 0, 400); // Hier wird angegeben, wie oft die Methode run in der Unterklasse pro Sekunde aufgerufen werden soll.
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -214,6 +229,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void classicCoinsDarstellen(int iZeile, int iSpalte)
 	{
 		guiDarstellen(iZeile, iSpalte);
+		aClassicCoinsBool[iZeile][iSpalte] = true;
 		aClassicCoins[iCcoinIndex] = new JPanel();
 		aClassicCoins[iCcoinIndex].add(new JLabel(oIconClassicCoin));
 		aClassicCoins[iCcoinIndex].setBackground(GAENGE_FARBE);
@@ -232,6 +248,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private void eatingCoinsDarstellen(int iZeile, int iSpalte)
 	{
 		guiDarstellen(iZeile, iSpalte);
+		aEatingCoinsBool[iZeile][iSpalte] = true;
 		aEatingCoins[iEcoinIndex] = new JPanel();
 		aEatingCoins[iEcoinIndex].add(new JLabel(oIconEatingCoin));
 		aEatingCoins[iEcoinIndex].setBackground(GAENGE_FARBE);
@@ -246,10 +263,18 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		guiDarstellen(iZeile, iSpalte);
 		switch (iGeisterZaehler)
 		{
-			case 1: aSpielfeldArray[iZeile][iSpalte].add(lGreeny); break;
-			case 2: aSpielfeldArray[iZeile][iSpalte].add(lBlue); break;
-			case 3: aSpielfeldArray[iZeile][iSpalte].add(lOrangy); break;
-			case 4: aSpielfeldArray[iZeile][iSpalte].add(lPinky); break;
+			case 1: aSpielfeldArray[iZeile][iSpalte].add(lGreeny); 
+					iGreenyHor = iZeile;
+					iGreenyVer = iSpalte; break;
+			case 2: aSpielfeldArray[iZeile][iSpalte].add(lBlue); 
+					iBlueHor = iZeile;
+					iBlueVer = iSpalte; break;
+			case 3: aSpielfeldArray[iZeile][iSpalte].add(lOrangy); 
+					iOrangyHor = iZeile;
+					iOrangyVer = iSpalte; break;
+			case 4: aSpielfeldArray[iZeile][iSpalte].add(lPinky); 
+					iGeistHor = iZeile;
+					iGeistVer = iSpalte; break;
 		}
 		iGeisterZaehler++;
 	}
@@ -293,26 +318,26 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		{
 			for (int iSpalte = 0; iSpalte < GUI_COLUMNS; iSpalte++)
 			{
-				iArrayListIndex++;
+				iSpielfeldIndex++;
 				//-----------------------------------------------------------------------
-				if (getSpielfeldAL().size() > iArrayListIndex)
+				if (getSpielfeldAL().size() > iSpielfeldIndex)
 				{
-					if (getSpielfeldAL().get(iArrayListIndex).equals(GANG))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(GANG))
 					{
 						classicCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iArrayListIndex).equals(WAND))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(WAND))
 					{
 						guiDarstellen(iZeile, iSpalte, WAENDE_FARBE);
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iArrayListIndex).equals(GEIST))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(GEIST))
 					{
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iArrayListIndex).equals(PAC_MAN))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(PAC_MAN))
 					{
 						lPacMan = lPacManRight;
 						
@@ -322,19 +347,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						iSpielerHor = iSpalte;
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iArrayListIndex).equals(EATING_COIN))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(EATING_COIN))
 					{
 						eatingCoinsDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iArrayListIndex).equals(GEISTER_AUSGANG))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(GEISTER_AUSGANG))
 					{
 						guiDarstellen(iZeile, iSpalte, GEISTER_AUSGANG_FARBE);
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iArrayListIndex).equals(TELEPORTER))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(TELEPORTER))
 					{
-						classicCoinsDarstellen( iZeile, iSpalte);
+						guiDarstellen(iZeile, iSpalte, TELEPORTER_FARBE);
 					}
 				}
 				// -----------------------------------------------------------------------
@@ -406,7 +431,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			}
 		}
 	}
-
+	
 	// -------------------------------------------------------------------------------------------------------------------
 	/**
 	 * Diese Methode sagt, dass der Sendebutton "Freigegeben" wird, damit eine
@@ -429,6 +454,28 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
+	
+	private static void checkCoins(int iPosY, int iPosX)
+	{
+		if (aClassicCoinsBool[iPosY][iPosX] != null)
+		{
+			if (aClassicCoinsBool[iPosY][iPosX] && (aSpielfeldArray[iPosY][iPosX].getBackground() == GAENGE_FARBE))
+			{
+				oSpieler.setPunktestand(iSpielerPunkte += 500);
+				aClassicCoinsBool[iPosY][iPosX] = false;
+			} 
+		}
+		if (aEatingCoinsBool[iPosY][iPosX] != null)
+		{
+			if (aEatingCoinsBool[iPosY][iPosX] && (aSpielfeldArray[iPosY][iPosX].getBackground() == GAENGE_FARBE))
+			{
+				oSpieler.setPunktestand(iSpielerPunkte += 2000);
+				aEatingCoinsBool[iPosY][iPosX] = false;
+			}
+		}//ich liebe dich
+	}
+
+	// -------------------------------------------------------------------------------------------------------------------
 	/**
 	 * Je kleiner der Wert, desto größer die Verzögerung.
 	 * @param iFramesPerSecond Bilder pro Sekunde
@@ -445,29 +492,25 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
-	
 	/**
 	 * In dieser Methode wird der Spieler rauf bewegt und ändert somit seinen
 	 * Position auf der Oberfläche.
 	 */
 	public static void spielerRauf() 
 	{
+		delay(iDelayIntervall);
 		
-		try
-		{
-			delay(iDelayIntervall);
-			lPacMan = lPacManRight;
-			iSpielerVer = oSpieler.raufBewegen(iSpielerVer, sPacMan);
-			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-			bSpielerAktiv = true;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		lPacManDown.setVisible(false);
+		lPacManUp.setVisible(true);
+		lPacManLeft.setVisible(false);
+		lPacManRight.setVisible(false);
 		
-		
+		lPacMan = lPacManUp;
+		iSpielerVer = oSpieler.raufBewegen(iSpielerVer, sPacMan);
+		checkCoins(iSpielerVer, iSpielerHor);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+		bSpielerAktiv = true;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -477,20 +520,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRunter()
 	{
-		try
-		{
-			delay(iDelayIntervall);
-			lPacMan = lPacManRight;
-			iSpielerVer = oSpieler.runterBewegen(iSpielerVer, sPacMan);
-			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-			bSpielerAktiv = true;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		delay(iDelayIntervall);
 		
+		lPacManDown.setVisible(true);
+		lPacManUp.setVisible(false);
+		lPacManLeft.setVisible(false);
+		lPacManRight.setVisible(false);
+		
+		lPacMan = lPacManDown;
+		iSpielerVer = oSpieler.runterBewegen(iSpielerVer, sPacMan);
+		checkCoins(iSpielerVer, iSpielerHor);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+		bSpielerAktiv = true;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -500,20 +542,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerLinks()
 	{
+		delay(iDelayIntervall);
 		
-		try
-		{
-			delay(iDelayIntervall);
-			lPacMan = lPacManRight;
-			iSpielerHor = oSpieler.linksBewegen(iSpielerHor, sPacMan);
-			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-			bSpielerAktiv = true;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		lPacManDown.setVisible(false);
+		lPacManUp.setVisible(false);
+		lPacManRight.setVisible(false);
+		lPacManLeft.setVisible(true);
+		
+		lPacMan = lPacManLeft;
+		iSpielerHor = oSpieler.linksBewegen(iSpielerHor, sPacMan);
+		checkCoins(iSpielerVer, iSpielerHor);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+		bSpielerAktiv = true;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -523,20 +564,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	public static void spielerRechts()
 	{
+		delay(iDelayIntervall);
 		
-		try
-		{
-			delay(iDelayIntervall);
-			lPacMan = lPacManRight;
-			iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor, sPacMan);
-			aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
-			aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
-			bSpielerAktiv = true;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
+		lPacManDown.setVisible(false);
+		lPacManUp.setVisible(false);		
+		lPacManLeft.setVisible(false);
+		lPacManRight.setVisible(true);
+		
+		lPacMan = lPacManRight;
+		iSpielerHor = oSpieler.rechtsBewegen(iSpielerHor, sPacMan);
+		checkCoins(iSpielerVer, iSpielerHor);
+		aSpielfeldArray[iSpielerVer][iSpielerHor].removeAll();
+		aSpielfeldArray[iSpielerVer][iSpielerHor].add(lPacMan);
+		bSpielerAktiv = true;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -606,7 +646,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	
 	public static int getArrayListIndex()
 	{
-		return iArrayListIndex;
+		return iSpielfeldIndex;
 	}
 	
 	// -------------------------------------------------------------------------------------------------------------------
@@ -628,6 +668,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private class Task extends TimerTask 
 	{
 		private String sName;
+		private Geist oGreeny = new Geist();
+		private Geist oBlue = new Geist();
+		private Geist oOrangy = new Geist();
 		
 		@Override
 		public void run()
@@ -640,11 +683,11 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			
 			if (bSpielerAktiv)
 			{
-				Random zufallsZahl = new Random(); // zufallszahl für die Bewegung des Geistes generiern
-				int iIndex = zufallsZahl.nextInt(8) + 1;
-
 				for (int iZaehler = 0; iZaehler <= 8; iZaehler++)
 				{
+					Random zufallsZahl = new Random(); // zufallszahl für die Bewegung des Geistes generiern
+					int iIndex = zufallsZahl.nextInt(8) + 1;
+
 					switch (iZaehler)
 					{
 						case 0: sName = "Greeny"; break;
@@ -656,17 +699,191 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 6: sName = "Pinky"; break;
 						case 7: sName = "Pinky"; break;
 					}
+					
 					switch (iIndex)
 					{
-						case 1: oGeist.raufBewegen(iGeistHor,sName); break;
-						case 2: oGeist.runterBewegen(iGeistHor,sName); break;
-						case 3: oGeist.rechtsBewegen(iGeistVer,sName); break;
-						case 4: oGeist.linksBewegen(iGeistVer,sName); break;
-						case 5: oGeist.raufBewegen(iGeistHor,sName); break;
-						case 6: oGeist.runterBewegen(iGeistHor,sName); break;
-						case 7: oGeist.rechtsBewegen(iGeistVer,sName); break;
-						case 8: oGeist.linksBewegen(iGeistVer,sName); break;
+						case 1: 
+							if(sName.equals("Greeny"))
+							{
+								
+								oGreeny.raufBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Blue"))
+							{
+								oBlue.raufBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.raufBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Pinky"))
+							{
+								oGeist.raufBewegen(iGeistHor,sName);
+							}
+							repaint();
+							geistRauf(); break;
+								
+						case 2:
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.runterBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Blue"))
+							{
+								oBlue.runterBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.runterBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Pinky"))
+							{
+								oGeist.runterBewegen(iGeistHor,sName);
+							}
+							repaint();
+							geistRunter(); break;
+								
+						case 3: 
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.rechtsBewegen(iGeistVer,sName); 
+							}
+							
+							if(sName.equals("Blue"))
+							{
+								oBlue.rechtsBewegen(iGeistVer,sName); 
+							}
+							
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.rechtsBewegen(iGeistVer,sName); 
+							}
+							
+							if(sName.equals("Pinky"))
+							{
+								oGeist.rechtsBewegen(iGeistVer,sName); 
+							}
+							repaint();
+							geistRechtsBewegen(); break;
+								
+						case 4:
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.linksBewegen(iGeistVer,sName);
+							}
+							
+							if(sName.equals("Blue"))
+							{
+								oBlue.linksBewegen(iGeistVer,sName);
+							}
+							
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.linksBewegen(iGeistVer,sName);
+							}
+							
+							if(sName.equals("Pinky"))
+							{
+								oGeist.linksBewegen(iGeistVer,sName);
+							}
+							repaint();
+							geistLinksBewegen(); break;
+							
+						case 5:
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.raufBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Blue"))
+							{
+								oBlue.raufBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.raufBewegen(iGeistHor,sName);
+							}
+							
+							if(sName.equals("Pinky"))
+							{
+								oGeist.raufBewegen(iGeistHor,sName);
+							}
+							repaint();
+							geistRauf(); break;
+							
+						case 6:
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.runterBewegen(iGeistHor,sName);
+							}
+						
+							if(sName.equals("Blue"))
+							{
+								oBlue.runterBewegen(iGeistHor,sName);
+							}
+						
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.runterBewegen(iGeistHor,sName);
+							}
+							if(sName.equals("Pinky"))
+							{
+								oGeist.runterBewegen(iGeistHor,sName);
+							}
+							repaint();
+							geistRunter(); break;
+							
+						case 7: 
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.rechtsBewegen(iGeistVer,sName);
+							}
+						
+							if(sName.equals("Blue"))
+							{
+								oBlue.rechtsBewegen(iGeistVer,sName);
+							}
+						
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.rechtsBewegen(iGeistVer,sName);
+							}
+							if(sName.equals("Pinky"))
+							{
+								oGeist.rechtsBewegen(iGeistVer,sName);
+							}
+							repaint();
+							geistRechtsBewegen(); break;
+						case 8: 
+							if(sName.equals("Greeny"))
+							{
+								oGreeny.linksBewegen(iGeistVer,sName);
+							}
+						
+							if(sName.equals("Blue"))
+							{
+								oBlue.linksBewegen(iGeistVer,sName);
+							}
+						
+							if(sName.equals("Orangy"))
+							{
+								oOrangy.linksBewegen(iGeistVer,sName);
+							}
+							if(sName.equals("Pinky"))
+							{
+								oGeist.linksBewegen(iGeistVer,sName);
+							}
+							repaint();
+							geistLinksBewegen(); break;
 					}
+					
 				}
 			}
 
@@ -674,8 +891,142 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 //			{
 //				oSpieler.setLeben(iSpielerLeben--);
 //			}
-			repaint();
+			
 		}	
+//--------------------------------------------------------------------------------------------------		
+		public  void geistRauf() 
+		{
+			
+			if(sName.equals("Greeny"))
+			{
+				iGeistVer = oGreeny.raufBewegen(iGreenyVer, sName);
+				aSpielfeldArray[iGreenyVer][iGreenyHor].add(lGreeny);
+				lGreeny.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Blue"))
+			{
+				iBlueVer = oBlue.raufBewegen(iBlueVer, sName);
+				aSpielfeldArray[iBlueVer][iBlueHor].add(lBlue);
+				lBlue.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Orangy"))
+			{
+				iOrangyVer = oOrangy.raufBewegen(iOrangyVer, sName);
+				aSpielfeldArray[iOrangyVer][iOrangyHor].add(lOrangy);
+				lOrangy.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Pinky"))
+			{
+				iGeistVer = oGeist.raufBewegen(iGeistHor, sName);
+				aSpielfeldArray[iGeistVer][iGeistHor].add(lPinky);
+				lPinky.setVisible(true);
+				repaint();
+			}
+		}
+//-----------------------------------------------------------------------------------------		
+		public  void geistRunter() 
+		{
 		
+			if(sName.equals("Greeny"))
+			{
+				iGreenyVer = oGreeny.runterBewegen(iGreenyVer, sName);
+				aSpielfeldArray[iGreenyVer][iGreenyHor].add(lGreeny);
+				lGreeny.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Blue"))
+			{
+				iBlueVer = oBlue.runterBewegen(iBlueVer, sName);
+				aSpielfeldArray[iBlueVer][iBlueHor].add(lBlue);
+				lBlue.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Orangy"))
+			{
+				iOrangyVer = oOrangy.runterBewegen(iOrangyVer, sName);
+				aSpielfeldArray[iOrangyVer][iOrangyHor].add(lOrangy);
+				lOrangy.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Pinky"))
+			{
+				iGeistVer = oGeist.runterBewegen(iGeistVer, sName);
+				aSpielfeldArray[iGeistVer][iGeistHor].add(lPinky);
+				lPinky.setVisible(true);
+				repaint();
+			}
+		}
+//------------------------------------------------------------------------------------		
+		public  void geistLinksBewegen() 
+		{
+			
+			if(sName.equals("Greeny"))
+			{
+				iGreenyHor = oOrangy.linksBewegen(iGreenyHor, sName);
+				aSpielfeldArray[iGeistVer][iGeistHor].add(lGreeny);
+				lGreeny.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Blue"))
+			{
+				iBlueHor = oBlue.linksBewegen(iBlueHor, sName);
+				aSpielfeldArray[iBlueVer][iBlueHor].add(lBlue);
+				lBlue.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Orangy"))
+			{
+				iOrangyHor = oOrangy.linksBewegen(iOrangyHor, sName);
+				aSpielfeldArray[iOrangyVer][iOrangyHor].add(lOrangy);
+				lOrangy.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Pinky"))
+			{
+				iGeistHor = oGeist.linksBewegen(iGeistHor, sName);
+				aSpielfeldArray[iGeistVer][iGeistHor].add(lPinky);
+				lPinky.setVisible(true);
+				repaint();
+			}
+		}
+//-----------------------------------------------------------------------------------		
+		public  void geistRechtsBewegen() 
+		{
+			
+			if(sName.equals("Greeny"))
+			{
+				System.out.println("iGreenyHor"+iGreenyHor);
+				System.out.println("iGreenyVer"+iGreenyVer);
+				iGreenyHor = oGreeny.rechtsBewegen(iGreenyHor, sName);
+				aSpielfeldArray[iGreenyVer][iGreenyHor].add(lGreeny);
+				lGreeny.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Blue"))
+			{	
+				iBlueHor = oBlue.rechtsBewegen(iBlueHor, sName);
+				aSpielfeldArray[iBlueVer][iBlueHor].add(lBlue);
+				System.out.println(iGeistVer);
+				lBlue.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Orangy"))
+			{
+				iOrangyHor = oOrangy.rechtsBewegen(iOrangyHor, sName);
+				aSpielfeldArray[iOrangyVer][iOrangyHor].add(lOrangy);
+				lOrangy.setVisible(true);
+				repaint();
+			}
+			if(sName.equals("Pinky"))
+			{
+				iGeistHor = oGeist.rechtsBewegen(iGeistHor, sName);
+				aSpielfeldArray[iGeistVer][iGeistHor].add(lPinky);
+				lPinky.setVisible(true);
+				repaint();
+			}
+		}
 	}
 }
