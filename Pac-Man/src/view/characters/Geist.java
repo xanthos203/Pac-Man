@@ -11,16 +11,17 @@ import view.frames.GameMainFrame;
  */
 public class Geist implements ICharakterBewegen
 {
-	private int iGreeny;
-	private int iBlue;
-	private int iOrangy;
-	private int iPinky;
+	private int iGreeny = 410;
+	private int iBlue = 411;
+	private int iOrangy = 412;
+	private int iPinky = 413;
 	private int iGeistHor;
 	private int iGeistVer;
 	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
 	private static final int PAC_MAN_INDEX = Integer.parseInt(GameMainFrame.PAC_MAN);
 	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
 	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
+	private static final int SPAWN_POINT = 2;
 	
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
@@ -28,6 +29,16 @@ public class Geist implements ICharakterBewegen
 	{
 		if (sName.equals("Greeny"))
 			iGeistVer = moveUp(iPosY, iGreeny);
+		
+		if (sName.equals("iBlue"))
+			iGeistVer = moveUp(iPosY, iBlue);
+		
+		if (sName.equals("iOrangy"))
+			iGeistVer = moveUp(iPosY, iOrangy);
+		
+		if (sName.equals("iPinky"))
+			iGeistVer = moveUp(iPosY, iPinky);
+		
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
@@ -36,6 +47,16 @@ public class Geist implements ICharakterBewegen
 	{ 
 		if (sName.equals("Greeny"))
 			iGeistVer = moveDown(iPosY, iGreeny);
+		
+		if (sName.equals("iBlue"))
+			iGeistVer = moveDown(iPosY, iBlue);
+		
+		if (sName.equals("iOrangy"))
+			iGeistVer = moveDown(iPosY, iOrangy);
+		
+		if (sName.equals("iPinky"))
+			iGeistVer = moveDown(iPosY, iPinky);
+		
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -44,6 +65,16 @@ public class Geist implements ICharakterBewegen
 	{
 		if (sName.equals("Greeny"))
 			iGeistHor = moveLeft(iPosX, iGreeny);
+		
+		if (sName.equals("iBlue"))
+			iGeistHor = moveLeft(iPosX, iBlue);
+		
+		if (sName.equals("iOrangy"))
+			iGeistHor = moveLeft(iPosX, iOrangy);
+		
+		if (sName.equals("iPinky"))
+			iGeistHor = moveLeft(iPosX, iPinky);
+		
 		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -52,6 +83,16 @@ public class Geist implements ICharakterBewegen
 	{
 		if (sName.equals("Greeny"))
 			iGeistHor = moveRight(iPosX, iGreeny);
+		
+		if (sName.equals("iBlue"))
+			iGeistHor = moveRight(iPosX, iGreeny);
+		
+		if (sName.equals("iOrangy"))
+			iGeistHor = moveRight(iPosX, iGreeny);
+		
+		if (sName.equals("iPinky"))
+			iGeistHor = moveRight(iPosX, iPinky);
+		
 		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -60,13 +101,16 @@ public class Geist implements ICharakterBewegen
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
+			
+			System.out.println("w");
 			iGeistVer = iPosY;
-			if (iGeistVer > 0)
-				iGeistVer--;
-			else
-				iGeistVer = iPosY;
+			if (iPosY > 0)
+				iPosY--;
+			
+			iGeistVer = iPosY;
 		}
 		return iGeistVer;
 	}
@@ -76,13 +120,15 @@ public class Geist implements ICharakterBewegen
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
+			System.out.println("s");
 			iGeistVer = iPosY;
-			if (iGeistVer < (GameMainFrame.GUI_ROWS - 1))
-				iGeistVer--;
-			else
-				iGeistVer = iPosY;
+			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
+				iPosY--;
+			
+			iGeistVer = iPosY;
 		}
 		return iGeistVer;
 	}
@@ -92,13 +138,15 @@ public class Geist implements ICharakterBewegen
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
+			System.out.println("a");
 			iGeistHor = iPosX;
-			if (iGeistHor > 0)
-				iGeistHor--;
-			else
-				iGeistHor = iPosX;
+			if (iPosX > 0)
+				iPosX--;
+			
+			iGeistHor = iPosX;
 		}
 		return iGeistHor;
 	}
@@ -108,13 +156,15 @@ public class Geist implements ICharakterBewegen
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == GANG_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
+			System.out.println("d");
 			iGeistHor = iPosX;
-			if (iGeistHor < (GameMainFrame.GUI_COLUMNS - 1))
-				iGeistHor--;
-			else
-				iGeistHor = iPosX;
+			if (iPosX < (GameMainFrame.GUI_COLUMNS - 1))
+				iPosX--;
+			
+			iGeistHor = iPosX;
 		}
 		return iGeistHor;
 	}

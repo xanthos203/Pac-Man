@@ -1,7 +1,6 @@
 package model.interfaces;
 
-/**Dieses Interface schreibt die <b>Methoden für die Bewegung</b> der Charaktere vor.<br>
- * Außerdem schreibt es noch <b>Getter-Methoden für die Position</b> der Figuren vor.
+/**Dieses Interface schreibt die <b>Methoden für die Bewegung</b> der Charaktere vor.
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart

@@ -208,56 +208,56 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="24">    
+  <realization id="24">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <nesting id="25">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <realization id="26">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="27">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="22"/>  
+  </realization>  
+  <realization id="28">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="29">    
     <end type="SOURCE" refId="15" navigable="false" variant="ASSOCIATION">      
-      <attribute id="25" name="oSpieler">        
+      <attribute id="30" name="oSpieler">        
         <position height="0" width="0" x="834" y="-127"/>      
       </attribute>      
-      <multiplicity id="26" minimum="0" maximum="1">        
+      <multiplicity id="31" minimum="0" maximum="1">        
         <position height="0" width="0" x="834" y="-127"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="21" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="27">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="19"/>  
-  </nesting>  
-  <realization id="28">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="22"/>  
-  </realization>  
-  <realization id="29">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="22"/>  
-  </realization>  
-  <association id="30">    
+  <association id="32">    
     <end type="SOURCE" refId="15" navigable="false" variant="ASSOCIATION">      
-      <attribute id="31" name="oGeist">        
+      <attribute id="33" name="oGeist">        
         <position height="0" width="0" x="778" y="87"/>      
       </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1">        
+      <multiplicity id="34" minimum="0" maximum="1">        
         <position height="0" width="0" x="778" y="87"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="20" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="33">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="34">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
   <realization id="35">    
-    <end type="SOURCE" refId="15"/>    
+    <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <realization id="36">    
-    <end type="SOURCE" refId="3"/>    
+    <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
