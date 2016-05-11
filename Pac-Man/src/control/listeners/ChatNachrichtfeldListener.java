@@ -21,7 +21,9 @@ public final class ChatNachrichtfeldListener extends KeyAdapter implements Focus
 	public void focusGained(FocusEvent feEvent)
 	{
 		/*der Text des Textfeldes wird auf "" gesetzt*/
+		System.out.print(feEvent);
 		GameMainFrame.getChatnachrichtTextfeld().setText(null);
+		GameMainFrame.bSpielerAktiv = false;
 	}
 
 	/**Die <i>focusLost</i>-Methode wird aufgerufen, wenn das Chatnachrichten-Feld den Fokus verliert.*/

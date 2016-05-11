@@ -21,7 +21,7 @@ public class Geist implements ICharakterBewegen
 	private static final int PAC_MAN_INDEX = Integer.parseInt(GameMainFrame.PAC_MAN);
 	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
 	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
-	private static final int SpawnPoint = 2;
+	private static final int SPAWN_POINT = 2;
 	
 //--------------------------------------------------------------------------------------------------------------------------
 	@Override
@@ -31,16 +31,17 @@ public class Geist implements ICharakterBewegen
 	public int raufBewegen(int iPosY, String sName)
 	{
 		if (sName.equals("Greeny"))
-			iGeistVer = moveUp(iPosY, iGreeny);
-		
+			iGeistVer = moveUp(iPosY, iGreeny); 
+			
 		if (sName.equals("iBlue"))
 			iGeistVer = moveUp(iPosY, iBlue);
-		
+					
 		if (sName.equals("iOrangy"))
 			iGeistVer = moveUp(iPosY, iOrangy);
 		
 		if (sName.equals("iPinky"))
 			iGeistVer = moveUp(iPosY, iPinky);
+		
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
@@ -61,6 +62,7 @@ public class Geist implements ICharakterBewegen
 		
 		if (sName.equals("iPinky"))
 			iGeistVer = moveDown(iPosY, iPinky);
+		
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -81,6 +83,7 @@ public class Geist implements ICharakterBewegen
 		
 		if (sName.equals("iPinky"))
 			iGeistHor = moveLeft(iPosX, iPinky);
+		
 		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -114,7 +117,7 @@ public class Geist implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SpawnPoint)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
 			
 			System.out.println("w");
@@ -136,14 +139,14 @@ public class Geist implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SpawnPoint)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
 			System.out.println("s");
 			iGeistVer = iPosY;
 			if (iPosY < (GameMainFrame.GUI_ROWS - 2))
 				iPosY++;
 			
-			iGeistVer = iPosY;
+			iGeistVer = iPosY; 
 		}
 		return iGeistVer;
 	}
@@ -157,7 +160,7 @@ public class Geist implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SpawnPoint)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
 			System.out.println("a");
 			iGeistHor = iPosX;
@@ -178,7 +181,7 @@ public class Geist implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == PAC_MAN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == EATING_COIN_INDEX ||
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == TELEPORTER_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SpawnPoint)
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iGeist)) == SPAWN_POINT)
 		{
 			System.out.println("d");
 			iGeistHor = iPosX;

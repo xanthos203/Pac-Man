@@ -58,5 +58,14 @@ public final class SteuerungListener extends KeyAdapter
 		{
 			GameMainFrame.spielerRechts();
 		}
+//============================================================\\
+		if(keyEvent.getKeyCode() == KeyEvent.VK_T)
+		{
+			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
+		}
+		if(keyEvent.getKeyCode() == KeyEvent.VK_J)
+		{
+			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
+		}
 	}
 }
