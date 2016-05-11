@@ -18,24 +18,30 @@ public final class SteuerungListener extends KeyAdapter
 	public void keyPressed(KeyEvent keyEvent)
 	{
 	//  Für Spieler die mit "WASD" spielen möchten ODER Für Spieler die mit den Pfeiltasten spielen möchten
-		if((keyEvent.getKeyCode() == KeyEvent.VK_W) || (keyEvent.getKeyCode() == KeyEvent.VK_UP))
+		if ((keyEvent.getKeyCode() == KeyEvent.VK_W) || (keyEvent.getKeyCode() == KeyEvent.VK_UP))
 		{
 			GameMainFrame.spielerRauf();
 		}
-		//----------------------------------------------
-		if((keyEvent.getKeyCode() == KeyEvent.VK_A) || (keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
+		//-------------------------------------------------------------------------------------------
+		if ((keyEvent.getKeyCode() == KeyEvent.VK_A) || (keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
 		{
 			GameMainFrame.spielerLinks();
 		}
-		//----------------------------------------------
-		if((keyEvent.getKeyCode() == KeyEvent.VK_S) || (keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
+		//-------------------------------------------------------------------------------------------
+		if ((keyEvent.getKeyCode() == KeyEvent.VK_S) || (keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
 		{
 			GameMainFrame.spielerRunter();
 		}
-		//----------------------------------------------
-		if((keyEvent.getKeyCode() == KeyEvent.VK_D) || (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
+		//-------------------------------------------------------------------------------------------
+		if ((keyEvent.getKeyCode() == KeyEvent.VK_D) || (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
 		{
 			GameMainFrame.spielerRechts();
+		}
+//===========================================================================================================\\
+		if ((keyEvent.getKeyCode() == KeyEvent.VK_T) || (keyEvent.getKeyCode() == KeyEvent.VK_J))
+		{
+			/*der Focus wird auf das Textfeld für Chatnachrichten gesetzt*/
+			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
 		}
 	}
 }

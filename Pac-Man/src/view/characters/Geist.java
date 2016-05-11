@@ -24,18 +24,18 @@ public class Geist implements ICharakterBewegen
 	private static final int SPAWN_POINT = 2;
 	
 //--------------------------------------------------------------------------------------------------------------------------
-	@Override
 	/*
 	 * Hier wird die rauf Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
 	 */
+	@Override
 	public int raufBewegen(int iPosY, String sName)
 	{
 		if (sName.equals("Greeny"))
-			iGeistVer = moveUp(iPosY, iGreeny);
-		
+			iGeistVer = moveUp(iPosY, iGreeny); 
+			
 		if (sName.equals("iBlue"))
 			iGeistVer = moveUp(iPosY, iBlue);
-		
+					
 		if (sName.equals("iOrangy"))
 			iGeistVer = moveUp(iPosY, iOrangy);
 		
@@ -45,10 +45,10 @@ public class Geist implements ICharakterBewegen
 		return iGeistVer;
 	}
 //--------------------------------------------------------------------------------------------------------------------------
-	@Override
 	/*
 	 * Hier wird die runter Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
 	 */
+	@Override
 	public int runterBewegen(int iPosY, String sName)
 	{ 
 		if (sName.equals("Greeny"))
@@ -66,10 +66,10 @@ public class Geist implements ICharakterBewegen
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
 	/*
 	 * Hier wird die links Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
 	 */
+	@Override
 	public int linksBewegen(int iPosX, String sName)
 	{
 		if (sName.equals("Greeny"))
@@ -87,10 +87,10 @@ public class Geist implements ICharakterBewegen
 		return iGeistHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
 	/*
 	 * Hier wird die rechts Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
 	 */
+	@Override
 	public int rechtsBewegen(int iPosX, String sName)
 	{
 		if (sName.equals("Greeny"))
@@ -109,7 +109,7 @@ public class Geist implements ICharakterBewegen
 	}
 //-------------------------------------------------------------------------------------------------------------------------
 	/*
-	 * In dieser Methode werden die Geister nach oben Beweget.
+	 * In dieser Methode werden die Geister nach oben Bewegt.
 	 */
 	private int moveUp(int iPosY, int iGeist)
 	{
@@ -146,7 +146,7 @@ public class Geist implements ICharakterBewegen
 			if (iPosY < (GameMainFrame.GUI_ROWS - 2))
 				iPosY++;
 			
-			iGeistVer = iPosY;
+			iGeistVer = iPosY; 
 		}
 		return iGeistVer;
 	}

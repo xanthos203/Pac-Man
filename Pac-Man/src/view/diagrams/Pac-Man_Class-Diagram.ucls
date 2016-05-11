@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="control.listeners.TextfieldListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/TextfieldListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="578" y="1202"/>    
+    <position height="-1" width="-1" x="578" y="1182"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="control.listeners.SteuerungListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/SteuerungListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="355" y="1230"/>    
+    <position height="-1" width="-1" x="350" y="1192"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="control.listeners.ButtonListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/ButtonListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="122" y="1230"/>    
+    <position height="-1" width="-1" x="121" y="1209"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="view.frames.GameMainFrame.Task" project="Pac-Man" 
     file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="597" y="223"/>    
+    <position height="-1" width="-1" x="1105" y="497"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -201,60 +201,60 @@
   </interface>  
   <class id="23" language="java" name="control.listeners.SpielenButtonListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/SpielenButtonListener.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="813" y="1242"/>    
+    <position height="-1" width="-1" x="347" y="1312"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="24">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <realization id="25">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="26">    
+  <association id="24">    
     <end type="SOURCE" refId="15" navigable="false" variant="ASSOCIATION">      
-      <attribute id="27" name="oSpieler">        
-        <position height="0" width="0" x="834" y="-127"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="0" width="0" x="834" y="-127"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="21" navigable="true" variant="ASSOCIATION"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="29">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="30">    
-    <end type="SOURCE" refId="15" navigable="false" variant="ASSOCIATION">      
-      <attribute id="31" name="oGeist">        
+      <attribute id="25" name="oGeist">        
         <position height="0" width="0" x="778" y="87"/>      
       </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1">        
+      <multiplicity id="26" minimum="0" maximum="1">        
         <position height="0" width="0" x="778" y="87"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="20" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <nesting id="33">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="19"/>  
-  </nesting>  
-  <realization id="34">    
+  <realization id="27">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="28">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="35">    
+  <realization id="29">    
     <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="22"/>  
+  </realization>  
+  <nesting id="30">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="19"/>  
+  </nesting>  
+  <realization id="31">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="32">    
+    <end type="SOURCE" refId="15" navigable="false" variant="ASSOCIATION">      
+      <attribute id="33" name="oSpieler">        
+        <position height="0" width="0" x="834" y="-127"/>      
+      </attribute>      
+      <multiplicity id="34" minimum="0" maximum="1">        
+        <position height="0" width="0" x="834" y="-127"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="35">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
   </realization>  
   <realization id="36">    
     <end type="SOURCE" refId="21"/>    

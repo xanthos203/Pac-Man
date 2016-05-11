@@ -64,10 +64,11 @@ public class Spieler implements ICharakterBewegen
 		}
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
-	/**
-	 * Hier in der Methode raufBewegen  wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	/*
+	 * Hier in der Methode raufBewegen wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt,
+	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
+	@Override
 	public int raufBewegen(int iPosY, String sName)
 	{
 		iPacManPos -= 33;
@@ -88,10 +89,11 @@ public class Spieler implements ICharakterBewegen
 		return iPosY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
-	/**
-	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	/*
+	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt,
+	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
+	@Override
 	public int runterBewegen(int iPosY, String sName)
 	{	
 		iPacManPos += 33;
@@ -112,10 +114,11 @@ public class Spieler implements ICharakterBewegen
 		return iPosY;
 	}
 //-------------------------------------------------------------------------------------------------------------------------	
-	@Override
-	/**
-	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	/*
+	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt,
+	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
+	@Override
 	public int linksBewegen(int iPosX, String sName)
 	{
 		iPacManPos--;
@@ -142,10 +145,11 @@ public class Spieler implements ICharakterBewegen
 		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
-	@Override
-	/**
-	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt, ob das Feld welches er betreten will eine Wand oder ein Gang ist.
+	/*
+	 * Hier in dieser Methode wird als erstes die Position vom Pac-Man geändert und danach wird abgefragt,
+	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
+	@Override
 	public int rechtsBewegen(int iPosX, String sName)
 	{
 		iPacManPos++;
