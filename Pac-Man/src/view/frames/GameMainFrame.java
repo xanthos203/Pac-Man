@@ -50,7 +50,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 {
 	public static final String GANG					 = "0";
 	public static final String WAND					 = "1";
-	public static final String GEIST				 = "2";
+	public static final String SPAWN_POINT				 = "2";
 	public static final String PAC_MAN				 = "3";
 	public static final String EATING_COIN			 = "4";
 	public static final String GEISTER_AUSGANG		 = "5";
@@ -268,28 +268,26 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		{
 			case 1:
 				aSpielfeldArray[iZeile][iSpalte].add(lGreeny);
-				iGreenyHor = iZeile;
-				iGreenyVer = iSpalte;
+				iGreenyHor = iSpalte;
+				iGreenyVer = iZeile;
 				break;
 			// ---------------------------------------------------
 			case 2:
 				aSpielfeldArray[iZeile][iSpalte].add(lBlue);
-				iBlueHor = iZeile;
-				System.out.println("iBlueHor" + iBlueHor);
-				iBlueVer = iSpalte;
-				System.out.println("iBlueVer" + iBlueVer);
+				iBlueHor = iSpalte;		
+				iBlueVer = iZeile;
 				break;
 			// ---------------------------------------------------
 			case 3:
 				aSpielfeldArray[iZeile][iSpalte].add(lOrangy);
-				iOrangyHor = iZeile;
-				iOrangyVer = iSpalte;
+				iOrangyHor = iSpalte;
+				iOrangyVer = iZeile;
 				break;
 			// ---------------------------------------------------
 			case 4:
 				aSpielfeldArray[iZeile][iSpalte].add(lPinky);
-				iPinkyHor = iZeile;
-				iPinkyVer = iSpalte;
+				iPinkyHor = iSpalte;
+				iPinkyVer = iZeile;
 				break;
 			// ---------------------------------------------------
 		}
@@ -349,7 +347,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						guiDarstellen(iZeile, iSpalte, WAENDE_FARBE);
 					}
 					//---------------------------------------------
-					if (getSpielfeldAL().get(iSpielfeldIndex).equals(GEIST))
+					if (getSpielfeldAL().get(iSpielfeldIndex).equals(SPAWN_POINT))
 					{
 						geisterDarstellen(iZeile, iSpalte);
 					}
@@ -685,6 +683,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			{
 				for (int iZaehler = 0; iZaehler <= 8; iZaehler++)
 				{
+					repaint();
 					Random zufallsZahl = new Random(); // zufallszahl für die Bewegung des Geistes generiern
 					int iIndex = zufallsZahl.nextInt(8) + 1;
 					// ---------------------------------------------------
@@ -705,19 +704,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 1: 
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.raufBewegen(iGreenyHor, sName);
+								oGreeny.raufBewegen(iGreenyVer, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.raufBewegen(iBlueHor, sName);
+								oBlue.raufBewegen(iBlueVer, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.raufBewegen(iOrangyHor, sName);
+								oOrangy.raufBewegen(iOrangyVer, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.raufBewegen(iPinkyHor, sName);
+								oGeist.raufBewegen(iPinkyVer, sName);
 							}
 							repaint();
 							geistRaufBewegen();
@@ -726,19 +725,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 2:
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.runterBewegen(iGreenyHor, sName);
+								oGreeny.runterBewegen(iGreenyVer, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.runterBewegen(iBlueHor, sName);
+								oBlue.runterBewegen(iBlueVer, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.runterBewegen(iOrangyHor, sName);
+								oOrangy.runterBewegen(iOrangyVer, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.runterBewegen(iPinkyHor, sName);
+								oGeist.runterBewegen(iPinkyVer, sName);
 							}
 							repaint();
 							geistRunterBewegen();
@@ -747,19 +746,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 3: 
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.rechtsBewegen(iGreenyVer, sName); 
+								oGreeny.rechtsBewegen(iGreenyHor, sName); 
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.rechtsBewegen(iBlueVer, sName); 
+								oBlue.rechtsBewegen(iBlueHor, sName); 
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.rechtsBewegen(iOrangyVer, sName); 
+								oOrangy.rechtsBewegen(iOrangyHor, sName); 
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.rechtsBewegen(iPinkyVer, sName); 
+								oGeist.rechtsBewegen(iPinkyHor, sName); 
 							}
 							repaint();
 							geistRechtsBewegen();
@@ -768,19 +767,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 4:
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.linksBewegen(iGreenyVer, sName);
+								oGreeny.linksBewegen(iGreenyHor, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.linksBewegen(iBlueVer, sName);
+								oBlue.linksBewegen(iBlueHor, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.linksBewegen(iOrangyVer, sName);
+								oOrangy.linksBewegen(iOrangyHor, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.linksBewegen(iPinkyVer, sName);
+								oGeist.linksBewegen(iPinkyHor, sName);
 							}
 							repaint();
 							geistLinksBewegen();
@@ -789,19 +788,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 5:
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.raufBewegen(iGreenyHor, sName);
+								oGreeny.raufBewegen(iGreenyVer, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.raufBewegen(iBlueHor, sName);
+								oBlue.raufBewegen(iBlueVer, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.raufBewegen(iOrangyHor, sName);
+								oOrangy.raufBewegen(iOrangyVer, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.raufBewegen(iPinkyHor, sName);
+								oGeist.raufBewegen(iPinkyVer, sName);
 							}
 							repaint();
 							geistRaufBewegen();
@@ -810,19 +809,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 6:
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.runterBewegen(iGreenyHor, sName);
+								oGreeny.runterBewegen(iGreenyVer, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.runterBewegen(iBlueHor, sName);
+								oBlue.runterBewegen(iBlueVer, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.runterBewegen(iOrangyHor, sName);
+								oOrangy.runterBewegen(iOrangyVer, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.runterBewegen(iPinkyHor, sName);
+								oGeist.runterBewegen(iPinkyVer, sName);
 							}
 							repaint();
 							geistRunterBewegen();
@@ -831,19 +830,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 7: 
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.rechtsBewegen(iGreenyVer, sName);
+								oGreeny.rechtsBewegen(iGreenyHor, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.rechtsBewegen(iBlueVer, sName);
+								oBlue.rechtsBewegen(iBlueHor, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.rechtsBewegen(iOrangyVer, sName);
+								oOrangy.rechtsBewegen(iOrangyHor, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.rechtsBewegen(iPinkyVer, sName);
+								oGeist.rechtsBewegen(iPinkyHor, sName);
 							}
 							repaint();
 							geistRechtsBewegen();
@@ -852,19 +851,19 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						case 8: 
 							if(sName.equals("Greeny"))
 							{
-								oGreeny.linksBewegen(iGreenyVer, sName);
+								oGreeny.linksBewegen(iGreenyHor, sName);
 							}
 							if(sName.equals("Blue"))
 							{
-								oBlue.linksBewegen(iBlueVer, sName);
+								oBlue.linksBewegen(iBlueHor, sName);
 							}
 							if(sName.equals("Orangy"))
 							{
-								oOrangy.linksBewegen(iOrangyVer, sName);
+								oOrangy.linksBewegen(iOrangyHor, sName);
 							}
 							if(sName.equals("Pinky"))
 							{
-								oGeist.linksBewegen(iPinkyVer, sName);
+								oGeist.linksBewegen(iPinkyHor, sName);
 							}
 							repaint();
 							geistLinksBewegen();
@@ -885,7 +884,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		{
 			if(sName.equals("Greeny"))
 			{
-				iPinkyVer = oGreeny.raufBewegen(iGreenyVer, sName);
+				iGreenyVer = oGreeny.raufBewegen(iGreenyVer, sName);
 				aSpielfeldArray[iGreenyVer][iGreenyHor].add(lGreeny);
 				lGreeny.setVisible(true);
 				repaint();
@@ -907,7 +906,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			}
 			if(sName.equals("Pinky"))
 			{
-				iPinkyVer = oGeist.raufBewegen(iPinkyHor, sName);
+				iPinkyVer = oGeist.raufBewegen(iPinkyVer, sName);
 				aSpielfeldArray[iPinkyVer][iPinkyHor].add(lPinky);
 				lPinky.setVisible(true);
 				repaint();
@@ -954,8 +953,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		{
 			if(sName.equals("Greeny"))
 			{
-				iGreenyHor = oOrangy.linksBewegen(iGreenyHor, sName);
-				aSpielfeldArray[iPinkyVer][iPinkyHor].add(lGreeny);
+				iGreenyHor = oGreeny.linksBewegen(iGreenyHor, sName);
+				aSpielfeldArray[iGreenyVer][iGreenyHor].add(lGreeny);
 				lGreeny.setVisible(true);
 				repaint();
 			}
