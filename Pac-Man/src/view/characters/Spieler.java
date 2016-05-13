@@ -19,15 +19,16 @@ public class Spieler implements ICharakterBewegen
 	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
 	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
 	private static int iPacManPos = 610;
-	private double dPunktestand = 0;
-	private int iSpielerHor;
 	private int iLeben = 3;
+	private int iSpielerHor;
+	private double dPunktestand = 0;
 
 //-------------------------------------------------------------------------------------------------------------------------
 	public void setLeben(int iLeben)
 	{
 		if (iLeben <= 0)
 		{
+			GameMainFrame.setSpielerLebt(false);
 			GameMainFrame.getGameMainFrame().setVisible(false);
 			new GameLostFrame();
 			GameMainFrame.getGameMainFrame().dispose();

@@ -22,92 +22,7 @@ public class Geist implements ICharakterBewegen
 	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
 	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
 	private static final int SPAWN_POINT_INDEX = Integer.parseInt(GameMainFrame.SPAWN_POINT);
-	
-//--------------------------------------------------------------------------------------------------------------------------
-	/*
-	 * Hier wird die rauf Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
-	 */
-	@Override
-	public int raufBewegen(int iPosY, String sName)
-	{
-		if (sName.equals("Greeny"))
-			iGeistVer = moveUp(iPosY, sName); 
-					
-		if (sName.equals("iBlue"))
-			iGeistVer = moveUp(iPosY, sName);
 
-		if (sName.equals("iOrangy"))
-			iGeistVer = moveUp(iPosY, sName);
-		
-		if (sName.equals("iPinky"))
-			iGeistVer = moveUp(iPosY, sName);
-		
-		return iGeistVer;
-	}
-//--------------------------------------------------------------------------------------------------------------------------
-	/*
-	 * Hier wird die runter Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
-	 */
-	@Override
-	public int runterBewegen(int iPosY, String sName)
-	{ 
-		if (sName.equals("Greeny"))
-			iGeistVer = moveDown(iPosY, sName);
-		
-		if (sName.equals("iBlue"))
-			iGeistVer = moveDown(iPosY, sName);
-		
-		if (sName.equals("iOrangy"))
-			iGeistVer = moveDown(iPosY, sName);
-		
-		if (sName.equals("iPinky"))
-			iGeistVer = moveDown(iPosY, sName);
-		
-		
-		return iGeistVer;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	/*
-	 * Hier wird die links Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
-	 */
-	@Override
-	public int linksBewegen(int iPosX, String sName)
-	{
-		if (sName.equals("Greeny"))
-			iGeistHor = moveLeft(iPosX, sName);
-		
-		if (sName.equals("iBlue"))
-			iGeistHor = moveLeft(iPosX, sName);
-		
-		if (sName.equals("iOrangy"))
-			iGeistHor = moveLeft(iPosX, sName);
-		
-		if (sName.equals("iPinky"))
-			iGeistHor = moveLeft(iPosX, sName);
-		
-		return iGeistHor;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	/*
-	 * Hier wird die rechts Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
-	 */
-	@Override
-	public int rechtsBewegen(int iPosX, String sName)
-	{
-		if (sName.equals("Greeny"))
-			iGeistHor = moveRight(iPosX, sName);
-		
-		if (sName.equals("iBlue"))
-			iGeistHor = moveRight(iPosX, sName);
-		
-		if (sName.equals("iOrangy"))
-			iGeistHor = moveRight(iPosX, sName);
-		
-		if (sName.equals("iPinky"))
-			iGeistHor = moveRight(iPosX, sName);
-		
-		return iGeistHor;
-	}
 //-------------------------------------------------------------------------------------------------------------------------
 	/*
 	 * In dieser Methode werden die Geister nach oben Bewegt.
@@ -129,7 +44,7 @@ public class Geist implements ICharakterBewegen
 		
 		if(sName.equals("Orangy"))
 		{
-			iOrangy -= 33;
+				iOrangy -= 33;
 			iGeist = iOrangy;
 		}
 		
@@ -147,8 +62,7 @@ public class Geist implements ICharakterBewegen
 		{
 			
 			System.out.println("w");
-			iGeistVer = iPosY;
-			if (iPosY >= 2)
+			if (iPosY >= 1)
 				iPosY--;
 			
 			iGeistVer = iPosY;
@@ -167,7 +81,6 @@ public class Geist implements ICharakterBewegen
 			if(sName.equals("Pinky"))
 				iPinky += 33;
 		}
-		
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -211,7 +124,7 @@ public class Geist implements ICharakterBewegen
 			System.out.println("s");
 			
 			iGeistVer = iPosY;
-			if (iPosY < (GameMainFrame.GUI_ROWS - 2))
+			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
 				iPosY++;
 			
 			iGeistVer = iPosY; 
@@ -230,7 +143,6 @@ public class Geist implements ICharakterBewegen
 			if(sName.equals("Pinky"))
 				iPinky -= 33;
 		}
-		
 		return iGeistVer;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -273,7 +185,7 @@ public class Geist implements ICharakterBewegen
 		{
 			System.out.println("a");
 			iGeistHor = iPosX;
-			if (iPosX >= 2)
+			if (iPosX >= 1)
 				iPosX--;
 			
 			iGeistHor = iPosX;
@@ -313,7 +225,7 @@ public class Geist implements ICharakterBewegen
 			iBlue += 1;
 			iGeist = iBlue;
 		}
-	
+		
 		if(sName.equals("Orangy"))
 		{
 			iOrangy += 1;
@@ -334,7 +246,7 @@ public class Geist implements ICharakterBewegen
 		{
 			System.out.println("d");
 			iGeistHor = iPosX;
-			if (iPosX < (GameMainFrame.GUI_COLUMNS - 2))
+			if (iPosX < (GameMainFrame.GUI_COLUMNS -1 ))
 				iPosX++;
 			
 			iGeistHor = iPosX;
@@ -353,6 +265,90 @@ public class Geist implements ICharakterBewegen
 			if(sName.equals("Pinky"))
 				iPinky -= 1;
 		}
+		return iGeistHor;
+	}
+//--------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * Hier wird die rauf Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
+	 */
+	@Override
+	public int raufBewegen(int iPosY, String sName)
+	{
+		if (sName.equals("Greeny"))
+			iGeistVer = moveUp(iPosY, sName); 
+					
+		if (sName.equals("iBlue"))
+			iGeistVer = moveUp(iPosY, sName);
+
+		if (sName.equals("iOrangy"))
+			iGeistVer = moveUp(iPosY, sName);
+		
+		if (sName.equals("iPinky"))
+			iGeistVer = moveUp(iPosY, sName);
+		
+		return iGeistVer;
+	}
+//--------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * Hier wird die runter Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
+	 */
+	@Override
+	public int runterBewegen(int iPosY, String sName)
+	{ 
+		if (sName.equals("Greeny"))
+			iGeistVer = moveDown(iPosY, sName);
+		
+		if (sName.equals("iBlue"))
+			iGeistVer = moveDown(iPosY, sName);
+		
+		if (sName.equals("iOrangy"))
+			iGeistVer = moveDown(iPosY, sName);
+		
+		if (sName.equals("iPinky"))
+			iGeistVer = moveDown(iPosY, sName);
+		
+		return iGeistVer;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * Hier wird die links Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
+	 */
+	@Override
+	public int linksBewegen(int iPosX, String sName)
+	{
+		if (sName.equals("Greeny"))
+			iGeistHor = moveLeft(iPosX, sName);
+		
+		if (sName.equals("iBlue"))
+			iGeistHor = moveLeft(iPosX, sName);
+		
+		if (sName.equals("iOrangy"))
+			iGeistHor = moveLeft(iPosX, sName);
+		
+		if (sName.equals("iPinky"))
+			iGeistHor = moveLeft(iPosX, sName);
+		
+		return iGeistHor;
+	}
+//-------------------------------------------------------------------------------------------------------------------------
+	/*
+	 * Hier wird die rechts Bewegen der Geister aufgerufen. Diese Methode ist die Schnittstelle zwischen GaimMainFrame und Geist Klasse.
+	 */
+	@Override
+	public int rechtsBewegen(int iPosX, String sName)
+	{
+		if (sName.equals("Greeny"))
+			iGeistHor = moveRight(iPosX, sName);
+		
+		if (sName.equals("iBlue"))
+			iGeistHor = moveRight(iPosX, sName);
+		
+		if (sName.equals("iOrangy"))
+			iGeistHor = moveRight(iPosX, sName);
+		
+		if (sName.equals("iPinky"))
+			iGeistHor = moveRight(iPosX, sName);
+		
 		return iGeistHor;
 	}
 }
