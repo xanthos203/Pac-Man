@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Cristina Erhart
  * @version 1.0
  * 
- * In dieser Klasse wierd die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CLogDB übergebben, damit diese die Daten verwenden kann.
+ * In dieser Klasse wird die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CLogDB übergebben, damit diese die Daten verwenden kann.
  */
 public final class Tools 
 {

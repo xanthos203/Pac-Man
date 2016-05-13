@@ -4,11 +4,18 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.Toolkit;
 
-/**Dieses Interface schreibt die <b>wichtigsten Fenster-Eigenschaften</b>, wie zum Beispiel Größe, Position und Hintergrundfarbe, vor.
+/**
+ * 
+ * Dieses <i>Interface</i> namens <b>'IWindowProperties'</b> schreibt die <b>wichtigsten Fenster-Eigenschaften</b> vor.<br>
+ * Solche Eigenschaften wären zum Beispiel Größe, Position, Hintergrundfarbe, ...<br>
+ * 
+ * @version 1.0
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0 */
+ * 
+ * */
 public interface IWindowProperties
 {
 	/**In <i>guiRows</i> wird die <b>Anzahl der Zeilen</b>, die für die GUI notwendig bzw. zulässig ist, gespeichert.*/

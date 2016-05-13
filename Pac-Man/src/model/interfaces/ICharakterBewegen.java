@@ -1,30 +1,49 @@
 package model.interfaces;
 
-/**Dieses Interface schreibt die <b>Methoden für die Bewegung</b> der Charaktere vor.
+/**
+ * Dieses <i>Interface</i> namens <b>"ICharakterBewegen"</b> schreibt <b>Methoden bzgl. der Bewegungen</b> der Charaktere (Geister und Pac-Man) vor.<br>
+ * <br>
+ * Mittels dieser Methoden wird ermittelt, <i>wo sich der entsprechende Charakter dezeit befindet</i> (Getter-Methoden).<br>
+ * Der jeweiligen Spielfigur wird anschließend mitgetteilt,<i>wo sich seine nächste "erwünschte" Position im Spielfeld befindet</i>.<br>
+ * 
+ * @version 1.0
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
- * @author Cristina Erhart
- * @version 1.0 */
+ * @author Cristina Erhart 
+ * 
+ * */
 public interface ICharakterBewegen
 {
-	/**Methode für die <b>Aufwärtsbewegung</b> des Charakters.
-	 * @param iPosY <b>aktuelle Position</b> des Charakters auf der <i>Y-Achse</i>
-	 * @param sName <b>Name</b> des Charakters
-	 * @return <b>neue Position</b> des Charakters auf der <i>Y-Achse</i> nach Abschluss der Methode */
+	/**
+	 * Die folgende Methode schreibt die <b>Aufwärtsbewegung</b> des jeweiligen Charakters vor.<br>
+	 * @param iPosY <br>
+	 * Die Variable <i>iPosY</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>Y-Achse</i>.<br>
+	 * @return Nach Abschluss der Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>Y-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
+	 */
 	int raufBewegen(int iPosY, String sName);
-	/**Methode für die <b>Abwärtsbewegung</b> des Charakters.
-	 * @param iPosY <b>aktuelle Position</b> des Charakters auf der <i>Y-Achse</i>
-	 * @param sName <b>Name</b> des Charakters
-	 * @return <b>neue Position</b> des Charakters auf der <i>Y-Achse</i> nach Abschluss der Methode */
+	
+	/**
+	 * Diese Methode hingegen schreibt die <b>Abwärtsbewegung</b> der entsprechenden Spielfigur vor.<br>
+	 * @param iPosY <br>
+	 * Hier wird ebenfalls die <b>aktuelle Position</b> des jeweiligen Charakters auf der <i>Y-Achse</i> gespeichert.
+	 * @return Nach Abschluss dieser Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>Y-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
+	 */
 	int runterBewegen(int iPosY, String sName);
-	/**Methode für die <b>Linksbewegung</b> des Charakters.
-	 * @param iPosX <b>aktuelle Position</b> des Charakters auf der <i>X-Achse</i>
-	 * @param sName <b>Name</b> des Charakters
-	 * @return <b>neue Position</b> des Charakters auf der <i>X-Achse</i> nach Abschluss der Methode */
+	
+	/**
+	 * Die nächste Methode ist für die <b>Linksbewegung</b> des Charakters verantwortlich.<br>
+	 * @param iPosX <br>
+	 * Die Variable <i>iPosX</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>X-Achse</i>.<br>
+	 * @return Nach Abschluss dieser Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>X-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
+	 */
 	int linksBewegen(int iPosX, String sName);
-	/**Methode für die <b>Rechtsbewegung</b> des Charakters.
-	 * @param iPosX <b>aktuelle Position</b> des Charakters auf der <i>X-Achse</i>
-	 * @param sName <b>Name</b> des Charakters
-	 * @return <b>neue Position</b> des Charakters auf der <i>X-Achse</i> nach Abschluss der Methode */
+	
+	/**
+	 * Diese Methode hingegen schreibt die <b>Rechtsbewegung</b> der entsprechenden Spielfigur vor.<br>
+	 * @param iPosX <br>
+	 * Hier wird ebenfalls die <b>aktuelle Position</b> des jeweiligen Charakters auf der <i>X-Achse</i> gespeichert.
+	 * @return Nach Abschluss dieser Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>X-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
+	 */
 	int rechtsBewegen(int iPosX, String sName);
 }

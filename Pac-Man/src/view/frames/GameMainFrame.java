@@ -586,13 +586,13 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		{
 			if (taChatverlaufTextarea.getText().isEmpty())
 			{
-				taChatverlaufTextarea.setText(message);
+				taChatverlaufTextarea.append(message);
 				tfChatnachrichtTextfeld.setText(null);
 			}
 			// -----------------------------------------------------------------------
 			else
 			{
-				taChatverlaufTextarea.setText(taChatverlaufTextarea.getText() + keepSpace + message);
+				taChatverlaufTextarea.append(keepSpace + message);
 				tfChatnachrichtTextfeld.setText(null);
 			}
 		}
@@ -607,9 +607,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	// -------------------------------------------------------------------------------------------------------------------
 
-	public static void setSpielerAktiv(boolean bAktiv)
+	public static void setSpielerAktiv(boolean bSpielerAktiv)
 	{
-		GameMainFrame.bSpielerAktiv = bAktiv;
+		GameMainFrame.bSpielerAktiv = bSpielerAktiv;
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------

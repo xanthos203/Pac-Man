@@ -6,58 +6,80 @@ import javax.swing.JFrame;
 
 import view.frames.*;
 
-/**Diese <i>Listener</i>-Klasse dient dazu, um <b>Knopfdrücke abzufangen</b>.<br>
- * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
+/**
+ * Diese <i>Listener-Klasse</i> namens <b>ButtonListener</b> dient dazu,<b>Knopfdrücke</b> von den<br>
+ * Knopfen des <i>"GameLostFrame"</i>-Fensters und den Knopfen des <i>"GameWonFrame"</i>-Fensters <b>abzufangen</b>.<br>
+ * Der Name <i>"ButtonListener"</i> kommt von dem englischen Wort <i>"button"</i> (deutsch Knopf).<br>
+ * <br>
+ * Die ButtonListener-Klasse <b>implementiert</b> das Interface <b>ActionListener</b>.<br>
+ * Dieser ActionListener wird sozusagen von <i>"JAVA"</i> vorgeschrieben, um den Benutzer ein wenig <i>"unter die Arme zu greifen".</i>
+ * 
+ * @version 1.0 
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0 */
+ * 
+ * */
 public final class ButtonListener implements ActionListener
 {
-	/**Die Konstante <b><i>REPEAT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, nochmal geöffnet werden soll.*/
+	/**Die konstante Variable <b><i>REPEAT_GAME</i></b> besagt, dass das <i>Spiel nochmals von vorne beginnt</i>.<br>*/
 	public static final int REPEAT_GAME = 1;
-	/**Die Konstante <b><i>EXIT_GAME</i></b> bestimmt, dass das Spiel, bei ihrem Aufruf, geschlossen werden soll.*/
+	/**Die konstante Variable <b><i>EXIT_GAME</i></b> hingegen ist für das <i>Schließen des Spiels</i> verantwortlich.<br>*/
 	public static final int EXIT_GAME 	= 0;
-	/**Die <i>taskOfButton</i> bestimmt, welche <b>Aktion</b> der Button ausführen soll.*/
-	private int 	taskOfButton;
-	/**Das <i>referenceFrame</i> bestimmt das <b>Referenzfenster</b>, auf welches sich der Listener bezieht.*/
+	/**In der Variable <b>taskOfButton</b> wird festgehalten, <i>welche Aktion bzw. Aufgabe das Spiel als nächstes tun soll</i>.<br>
+	 * Sie dient sozusagen als <i>Zwischenspeicher</i>.<br>*/
+	private int taskOfButton;
+	/**<b>"referenceFrame"</b> bestimmt das <b>Referenzfenster</b>, <i>auf welches sich der Listener bezieht</i>.<br>
+	 * Aslo wenn ein Button in der "GameWonFrame" gedrückt wird, wird dies in der Variale "referenceFrame" gespeichert.<br>
+	 * Dieses Speichern ist wichtig um das entsprechende Fenster später zum Beispiel zu schließen.<br>*/
 	private JFrame referenceFrame;
 	
-	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> sich der Listener bezieht.<br>
-	 * Außerdem wird festgelegt, <b>welche Aktion</b> der gedrückte Button ausführen soll.
-	 * @param dialog Referenz auf das <i>Fenster</i>
-	 * @param task <i>Aktion</i>, welche der Button ausführen soll*/
+	/**
+	 * Der Kontruktor ermittelt, von <b>welchem Fenster</b> sozusagen <i>"der Auftrag des Knopfdruckes"</i> kommt.<br>
+	 * Es wird ebenfalls festgehalten, <b>welche Aktion</b> der gedrückte Button ausführen soll.
+	 * @param dialog
+	 * Die Variable <i>dialog</i> gibt uns die Auskunft, <i>in welchem Fenster der Button gedrückt wurde</i>.<br>
+	 * @param task
+	 * Die Variable <i>task</i> beinhaltet Auskunft über die vom <i>Benutzer gewünschte nächstfolgende Aktion</i>, die ausgeführt werden soll.<br>*/
 	public ButtonListener(JFrame dialog, int task)
 	{
-		/*der Variable referenceFrame wird der Wert von dialog zugewiesen
-		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
+		/*In der Variable "referenceFrame" wird der Wert von "dialog" gespeichert.
+		 *Somit wird eine Referenz auf das Fenster erstellt, wo der entsprechende Button gedrückt wurde.*/
 		referenceFrame = dialog;
-		/*der Variable taskOfButton wird der Wert von task zugewiesen
-		 *und somit festgelegt, welche Aktion der gedrückte Button ausführt*/
+		/*In der Variable "taskOfButton" wird der Wert von "task" gespeichert.
+		 *Mithilfe dieser Variable kann festgeleg werden, welche Aufgabe das Programm als nächstes ausführen soll.*/
 		taskOfButton = task;
 	}
 	
-	/**Die <i>actionPerformed</i>-Methode fängt <b>Knopfdrücke</b> auf und verarbeitet diese.
-	 * @param aeEvent Knopfdruck*/
+	/**In der Methode <b>actionPerformed</b> werden die entsprechenden <i>"Maßnahmen"</i> getroffen, <i>um mit dem Spiel fortzufahren</i>.<br>
+	 * Sobald der Button <b>"EXIT_GAME"</b> gedrückt wurde, wird das gesamte <i>Spiel geschlossen</i>.<br>
+	 * Wenn jedoch der Buttton "REPEAT_GAME" betätigt wird, <i>startet</i> das <i>Programm</i> wieder <i>von vorne</i>.<br>
+	 * 
+	 * @param aeEvent*/
 	@Override
 	public void actionPerformed(ActionEvent aeEvent)
 	{
-		/*wird ausgeführt, wenn der Benutzer das Spiel beenden will*/
+		/* Wenn der Spieler das Programm gerne beenden möchte, wird dies ausgeführt.
+		 * Hierbei wird überprüft, ob in der Variable "taskOfButton" "EXIT_GAME" gespeichert ist.
+		 * Ist dies der Fall, so wird das aktuelle Fenster und das Programm geschlossen.*/
 		if (taskOfButton == EXIT_GAME)
 		{
-			/*das aktuelle Fenster wird geschlossen*/
+			/*Fenster schließen*/
 			referenceFrame.dispose();
-			/*das Programm wird beendet*/
+			/*Programm beenden*/
 			System.exit(0);
 		}
-		/*wird ausgeführt, wenn der Benutzer nochmal spielen will*/
+		
+		/*Wenn der Benutzer hingegen gerne noch eine Runde spielen möchte, so wird hier überprüft, ob in der VAriable "taskOfButton" "REPEAT_GAME" gespeichert ist.
+		 * Ist dies der Fall, so das aktuell geöffnete Fenster unsichbargemacht und geschlossen und das Spiel wird neu gestartet.*/
 		if (taskOfButton == REPEAT_GAME)
 		{
-			/*das aktuelle Fenster verschwindet*/
+			/*Fenster unsichtbar machen*/
 			referenceFrame.setVisible(false);
-			/*=========Hauptfenster öffnen=========*/
+			/*Hauptfenster öffnen also Spiel neu starten*/
 			new GameMainFrame();
-			/*das aktuelle Fenster wird geschlossen*/
+			/*aktuelle Fenster schließen*/
 			referenceFrame.dispose();
 		}
 	}
