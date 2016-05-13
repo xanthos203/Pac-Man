@@ -56,7 +56,7 @@ public final class ButtonListener implements ActionListener
 	 * Sobald der Button <b>"EXIT_GAME"</b> gedrückt wurde, wird das gesamte <i>Spiel geschlossen</i>.<br>
 	 * Wenn jedoch der Buttton "REPEAT_GAME" betätigt wird, <i>startet</i> das <i>Programm</i> wieder <i>von vorne</i>.<br>
 	 * 
-	 * @param aeEvent*/
+	 * @param aeEvent Die Variable <i>aeEvent</i> ermittelt ob der entsprechende <b>Button getätigt</b> wurde.*/
 	@Override
 	public void actionPerformed(ActionEvent aeEvent)
 	{

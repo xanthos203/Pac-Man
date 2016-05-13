@@ -53,6 +53,7 @@ public final class SteuerungListener extends KeyAdapter
 			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
 		}
 		
+		
 //		/*Überprüfung der Option "Pfeiltasten"
 //		 * Wenn der Benutzer die Taste "Hoch" der Pfeiltasten drückt, wird die Methode "spielerRauf()" in der Klasse "GameMainFrame" geöffnet.*/
 //		if((keyEvent.getKeyCode() == KeyEvent.VK_UP))
