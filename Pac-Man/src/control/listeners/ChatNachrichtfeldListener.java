@@ -7,7 +7,8 @@ import java.awt.event.KeyEvent;
 
 import view.frames.GameMainFrame;
 
-/**Diese <i>Listener</i>-Klasse dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
+/**In der <i>Listener-Klasse</i> namens <b>ChatNachrichtListener</b> wird der eingegebene Text des Beutzers verarbeitet.<br>
+ * Diese Klasse 
  * Außerdem <b>überprüft</b> diese Klasse, ob das Chatnachrichten-Feld im Fokus (=Cursor) steht, oder nicht.<br>
  * Sie <b>erbt</b> von der Klasse <b>KeyAdapter</b> und <b>implementiert</b> das Interface <b>FocusListener</b>.
  * @author Manuel Glantschnig

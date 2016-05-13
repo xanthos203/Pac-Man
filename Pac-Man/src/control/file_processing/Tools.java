@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
+ * In dieser Klasse wird die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CLogDB übergebben, damit diese die Daten verwenden kann.
+ * 
+ * @version 1.0
  * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0
- * 
- * In dieser Klasse wird die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CLogDB übergebben, damit diese die Daten verwenden kann.
  */
 public final class Tools 
 {
