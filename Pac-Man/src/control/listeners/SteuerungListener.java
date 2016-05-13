@@ -5,55 +5,66 @@ import java.awt.event.KeyEvent;
 
 import view.frames.GameMainFrame;
 
-/**Diese <i>Listener</i>-Klasse dient zur <b>Steuerung des Hauptcharakters Pac-Man</b>.<br>
- * Sie <b>erbt</b> von der Klasse <b>KeyAdapter</b>.
+/**Diese <i>Listener-Klasse</i> namens <b>SteuerungListener</b> dient zur <b>Steuerung des Hauptcharakters namens Pac-Man</b>.<br>
+ * Der Benutzer hat dabei die Wahl, ob er <i>Pac-Man</i> mit den Tasten <b>WASD</b> oder den <b>Pfeiltasten</b> bedienen möchte.<br>
+ * <br>
+ * Diese Klasse <b>erbt</b> von der Klasse <b>KeyAdapter</b>.<br>
+ * Diese <i>"KeyAdapter-Klasse"</i> wird sozusagen von <i>"JAVA"</i> vorgeschrieben, um den Benutzer ein wenig <i>"unter die Arme zu greifen".</i>
+ * 
+ * @version 1.0
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0 */
+ */
 public final class SteuerungListener extends KeyAdapter
 {
-	/**Hier wird der Spieler mit Hilfe der <i>Pfeiltasten</i> oder den Tasten "<i>WASD</i>" gesteuert.
-	 * @param keyEvent Taste gedrückt*/
+	/**Hier wird geschaut <b>welche Tasten der Spieler zum Steuern des Hauptcharakters verwendet</b>.<br>
+	 * Mittels dieser Ermittlung werden entsprechende <b>Methoden</b> der <i>"GameMainFrame-Klasse"</i> <b>aufgerufen</b>.<br>
+	 * 
+	 * @param keyEvent In <i>"keyEvent"</i> wird die <i>gedrückte Taste gespeichert</i>.*/
 	public void keyPressed(KeyEvent keyEvent)
 	{
-		// Für Spieler die mit "WASD" spielen möchten
+		/*Überprüfung der Tasten für die Option "WASD"
+		 * Wenn der Benutzer die Taste "W" drückt, wird die Methode "spielerRauf()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
 		{
 			GameMainFrame.spielerRauf();
 		}
-		//----------------------------------------------
+		/* Wenn der Benutzer die Taste "A" drückt, wird die Methode "spielerLinks()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_A))
 		{
 			GameMainFrame.spielerLinks();
 		}
-		//----------------------------------------------
+		/* Wenn der Benutzer die Taste "S" drückt, wird die Methode "spielerRunter()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
 		{
 			GameMainFrame.spielerRunter();
 		}
-		//----------------------------------------------
+		/* Wenn der Benutzer die Taste "D" drückt, wird die Methode "spielerRechts()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_D))
 		{
 			GameMainFrame.spielerRechts();
 		}
-//============================================================\\
-		// Für Spieler die mit den Pfeiltasten spielen möchten
+		
+		
+		/*Überprüfung der Option "Pfeiltasten"
+		 * Wenn der Benutzer die Taste "Hoch" der Pfeiltasten drückt, wird die Methode "spielerRauf()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_UP))
 		{
 			GameMainFrame.spielerRauf();
 		}
-		//--------------------------------------------------
+		/*Wenn der Benutzer die Taste "Links" der Pfeiltasten drückt, wird die Methode "spielerLinks()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
 		{
 			GameMainFrame.spielerLinks();
 		}
-		//--------------------------------------------------
+		/*Wenn der Benutzer die Taste "Hinunter" der Pfeiltasten drückt, wird die Methode "spielerRunter()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
 		{
 			GameMainFrame.spielerRunter();
 		}
-		//--------------------------------------------------
+		/*Wenn der Benutzer die Taste "Rechts" der Pfeiltasten drückt, wird die Methode "spielerRechts()" in der Klasse "GameMainFrame" geöffnet.*/
 		if((keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
 		{
 			GameMainFrame.spielerRechts();

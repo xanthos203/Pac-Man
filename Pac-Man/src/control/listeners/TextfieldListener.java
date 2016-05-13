@@ -10,101 +10,112 @@ import javax.swing.JTextField;
 import view.frames.GameMainFrame;
 import view.frames.LogInFrame;
 
-/**Diese <i>Listener</i>-Klasse dient dazu, um <b>Tastendrücke abzufangen</b>.<br>
- * Außerdem <b>überprüft</b> diese Klasse den <b>eingegebenen Text</b> im <i>JTextField</i>.<br>
- * Sie <b>erbt</b> von der Klasse <b>KeyAdapter</b>.
+/**Diese <i>Listener-Klasse</i> namens <b>TextfieldListener</b> überprüft,<br>
+ * ob der <b>eingegebene gewünschte Spielername bestimmten Kriterien entspricht</b>.<br>
+ * <br>
+ * Diese Klasse <b>erbt</b> von der Klasse <b>KeyAdapter</b>.
+ * Dieser "KeyAdapter" wird sozusagen von <i>"JAVA"</i> vorgeschrieben, um den Benutzer ein wenig <i>"unter die Arme zu greifen".</i>
+ * 
+ * @version 1.0
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0 */
+ */
 public final class TextfieldListener extends KeyAdapter
 {
-	/**Die <i>maxZeichenLaenge</i> bestimmt, <b>wie viele Zeichen maximal</b> im Textfeld <b>eingegeben werden können</b>.*/
+	/**Die <b>maxZeichenLaenge</b> bestimmt, <b>wie viele Zeichen maximal im Textfeld</b> des "LogInFrames" <b>eingegeben werden können</b>.<br>
+	 * In diesem Fall wird die <i>maxZeichenLaenge</i> auf <i>18 Zeichen begrenzt</i>.<br>
+	 * Das heißt, dass man als gewünschten Spielernamen maximal 18 Buchstaben bzw. Zahlen eingeben kann.<br>*/
 	private int		maxZeichenLaenge = 18;
-	/**Das <i>referenceFrame</i> bestimmt das <b>Referenz-Fenster</b>, auf welches sich der Listener bezieht.*/
+	/**Die Variable <b>referenceFrame</b> speichert die Information, von <b>welchem Fenster aus der Listener aufgerufen wurde</b>.*/
 	private JFrame 	referenceFrame;
-	/**Das <i>referenceTextField</i> bestimmt das <b>Referenz-Textfeld</b>, auf welches sich der Listener bezieht.*/
+	/**Die Variable <b>referenceTextField</b> speichert die Information, von <b>welchem Textfeld aus der Listener aufgerufen wurde</b>.*/
 	private JTextField  referenceTextField;
 	
-	/**Im Konstruktor wird festgelegt, auf <b>welches Fenster</b> und auf <b>welches Textfeld</b> sich der Listener bezieht.
-	 * @param dialog Referenzvariable vom Typ <i>JDialog</i>
-	 * @param textField Referenzvariable vom Typ <i>JTextField</i>*/
+	/**Im Konstruktor wird festgehalten, auf <b>welches Fenster</b> und auf <b>welches Textfeld</b> sich der Listener bezieht.
+	 * 
+	 * @param dialog Die Referenzvariable <i>dialog</i> ist vom Typ <i>JDialog</i>.
+	 * @param textField Die Referenzvariable <i>textField</i> ist vom Typ <i>JTextField</i>.*/
 	public TextfieldListener(JFrame dialog, JTextField textField)
 	{
-		/*der Variable referenceDialog wird der Wert von dialog zugewiesen
-		 *und somit eine Referenz auf die Klasse erstellt, die den Konstruktor aufruft*/
+		/*Die Variable "referenceDialog" speichert den Wert der Variable "dialog"
+		 *und erstellt so eine Referenz auf die jeweilige Klasse, die den Konstruktor bzw. den Listener aufruft.*/
 		referenceFrame = dialog;
-		/*der Variable referenceTextField wird der Wert von textField zugewiesen
-		 *und somit eine Referenz auf das Textfeld erstellt, welches der Listener überwachen soll*/
+		/*Die Variable "referenceTextField" speichert den Wert der Variable "textField".
+		 *und erstellt so eine Referenz auf das jeweilige Textfeld, das den Konstruktor bzw. den Listener aufruft.*/
 		referenceTextField = textField;
 	}
 	
-	/**Die <i>keyPressed</i>-Methode fängt <b>Tastendrücke</b> auf und verarbeitet diese.
-	 * @param keyEvent Tastendruck*/
+	/**Die <b>keyPressed-Methode</b> fängt alle <b>Tastendrücke</b>, die bei der <i>Eingabe des Benutzernamens betätigt werden</i>, ab und <b>ergreift entsprechende Maßnahmen</b>.<br>
+	 * Solche Maßnahmen wären zum Beispiel, wenn das <i>Textfeld leer</i> bleibt wird ein <i>Fehler</i> ausgegeben oder<br>
+	 * wenn ein <i>Leerzeichen eingegeben</i> wurde wird eine <i>Fehlermeldung</i> ausgegeben.<br>
+	 * 
+	 * @param keyEvent Die Variable "<b>keyEvent</b>" speichert die <b>bereits gedrückten Tastendrücke</b>.*/
 	@Override
 	public void keyPressed(KeyEvent keyEvent)
 	{
-		/*Wird nur ausgeführt, wenn die ENTER-Taste gedrückt wurde*/
+		/*Wenn die "ENTER-Taste" gedrückt wurde, werden entsprechende Abfragen getätigt.*/
 		if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
 		{
-			/*wird ausgeführt, wenn kein Text eingegeben wurde*/
+			/*Wenn sich kein Text im Textfeld befindet wird follgendes ausgeführt.*/
 			if (referenceTextField.getText().isEmpty())
 			{
-				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
+				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\n"
 												  + "Der Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
 													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
-				/*der Text im Textfeld wird zurückgesetzt*/
+				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
-				/*das Programm kehrt wieder zum Fenster zurück*/
+				/*Das Programm startet von Vorne.*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text Leerzeichen enthält und kürzer als maxZeichenLaenge ist*/
+			/*Wenn der gewünschte Benutzername Leerzeichen enthält, wird follgendes ausgeführt.*/
 			if (referenceTextField.getText().contains(" ") && (referenceTextField.getText().length() < maxZeichenLaenge))
 			{
-				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
+				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\n"
 												  + "Der Spielername darf keine Leerzeichen enthalten\u002E",
 													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
-				/*der Text im Textfeld wird zurückgesetzt*/
+				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
-				/*das Programm kehrt wieder zum Fenster zurück*/
+				/*Das Programm startet von Vorne.*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text länger als maxZeichenLaenge ist*/
+			/*Wenn die maximale Zeichenlänge des eingegebenen Benutzernamens überschritten ist, wird follgendes ausgeführt.*/
 			if (referenceTextField.getText().length() > maxZeichenLaenge)
 			{
-				/*ein Dialogfeld mit der Meldung, dass ein zu langer Name eingegeben wurde, erscheint*/
+				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\n"
 												  + "Der Spielername darf maximal " + maxZeichenLaenge+ " Zeichen lang sein\u002E",
 													"Zu langer Name", JOptionPane.WARNING_MESSAGE);
-				/*der Text im Textfeld wird zurückgesetzt*/
+				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
-				/*das Programm kehrt wieder zum Fenster zurück*/
+				/*Das Programm startet von Vorne.*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text Sonderzeichen enthält und kürzer als maxZeichenLaenge ist*/
+			/*Wenn der gewünschte Benutzername Sonderzeichen enthält, wird follgendes ausgeführt.*/
 			if (!referenceTextField.getText().matches("[a-zA-Z[0-9]]+") && (referenceTextField.getText().length() < maxZeichenLaenge))
 			{
-				/*ein Dialogfeld mit der Meldung, dass ein ungültiger Name eingegeben wurde, erscheint*/
+				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
 				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\n"
 												  + "Der Spielername darf keine Sonderzeichen enthalten\u002E",
 													"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
-				/*der Text im Textfeld wird zurückgesetzt*/
+				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
-				/*das Programm kehrt wieder zum Fenster zurück*/
+				/*Das Programm startet von Vorne.*/
 				return;
 			}
-			/*wird ausgeführt, wenn der eingegebene Text keine Sonderzeichen enthält und kürzer als maxZeichenLaenge ist*/
+			/*Wenn dr eingegebene Benutzername allen Anforderungen entspricht, wird follgendes ausgeführt.*/
 			if (referenceTextField.getText().matches("[a-zA-Z[0-9]]+"))
 			{
-				/*der eingegebene Spielername wird gespeichert*/
+				/*Der eingegebene Spielername wird gespeichert.*/
 				LogInFrame.setUsername(referenceTextField.getText());
-				/*das aktuelle Fenster verschwindet*/
+				/*Das aktuelle Fenster wird unsichtbar gemacht.*/
 				referenceFrame.setVisible(false);
-				/*=========Hauptfenster öffnen=========*/
+				/*Das Hauptfenster wird geöffnet.*/
 				new GameMainFrame();
-				/*das aktuelle Fenster wird geschlossen*/
+				/*Das aktuelle Fenster wird geschlossen*/
 				referenceFrame.dispose();
 			}
 		}

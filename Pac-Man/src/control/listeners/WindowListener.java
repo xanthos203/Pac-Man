@@ -8,60 +8,65 @@ import javax.swing.JOptionPane;
 
 import view.frames.GameMainFrame;
 
-/**Diese <i>Listener</i>-Klasse wird ausgeführt, wenn der Benutzer das <b>Fenster schließen</b> möchte.<br>
- * Er wird dabei gefragt, ob er das Spiel wirklich beenden möchte.<br>
+/**Diese <i>Listener-Klasse</i> namens <b>WindowListener</b> wird aufgerufen, wenn der Benutzer das <b>Programm schließen</b> möchte.<br>
+ * Hierbei wird der Benutzer nocheinmal gefragt, ob er das Spiel wirklich beenden möchte.<br>
+ * <br>
  * Diese Klasse <b>erbt</b> von der Klasse <b>WindowAdapter</b>.
+ * Diese <i>"KeyAdapter-Klasse"</i> wird sozusagen von <i>"JAVA"</i> vorgeschrieben, um den Benutzer ein wenig <i>"unter die Arme zu greifen".</i>
+ *
+ * @version 1.0 
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0 */
+ */
 public final class WindowListener extends WindowAdapter
 {
-	/**Die Variable <i>frameReference</i> bestimmt die <b>Referenz auf das JFrame</b>.*/
+	/**In der Variable <B>frameReference</B> wird gespeichert um <b>welches Fenster</b> es sich handelt, wenn diese Klasse aufgerufen wird.*/
 	private JFrame frameReference;
 	
-	/**Dieser Konstruktor verlangt als Parameter eine <b>Referenz auf ein JFrame</b>.
-	 * @param frame <i>Referenz</i> auf das <b>JFrame</b>*/
+	/**Im follgenden <b>Konstruktor</b> wird der <b>Wert der Variable "frame" in der Variable "frameReference" gespeichert</b>.
+	 * @param frame Die Variable <i>frame</i> erstellt eine <i>Referenz</i> auf das <b>JFrame</b>.*/
 	public WindowListener(JFrame frame)
 	{
-		/*der Variable frameReference wird der Wert von frame zugewiesen
-		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
+		/*In der Variable "frameReference" wird der Wert von der Variable "frame" gespeichert
+		 und somit wird eine Referenz auf die jeweilige Klasse, die den Konstruktor bzw. den Listener aufruft, erstellt.*/
 		frameReference = frame;
-		/*beim Schließen des JFrames soll gar nichts passieren*/
+		/*Wenn man auf das "X" in der rechten oberern Ecke klickt, soll nichts passieren.*/
 		frameReference.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	
-	/**Diese Methode wird ausgeführt, wenn der Benutzer das <b>Spiel beenden</b> will.<br>
-	 * Es erscheint ein <i>kleines Fenster</i> am Bildschirm.
-	 * @param weEvent das Fenster <i>wird geschlossen</i>*/
+	/**Die <b>"windowClosing-Methode" kommt immer dann zum Vorschein, wenn ein Benutzer das Programm schleißen möchte..<br>
+	 * Es erscheint dann ein <i>"kleines Fenster"</i> am Bildschirm.
+	 * @param weEvent Die Variable "<i>weEvent</i>" speichert, wenn ein Fenster geschlossen werden soll.*/
 	@Override
 	public void windowClosing(WindowEvent weEvent)
 	{
-		/*in warning wird die Warnmeldung, die am optionPane angezeigt wird, gespeichert*/
+		/*Die Variable "warning" speichert einen kleinen Warnhinweiß.*/
 		String warning = "M\u00F6chten Sie das Spiel wirklich beenden\u003F";
-		/*in titel wird der Text, der in der Titelleiste des JOptionPane's angezeigt wird, gespeichert*/
+		/*Die Variable "title" speichert den Text in der oberen (meist eingefärbten) Leiste.*/
 		String titel = "Spiel beenden\u003F";
-		/*in optionType wird gespeichert, um welche "Art" von Auswahlmöglichkeiten es sich handelt*/
+		/*In der Variable "optionPane" wird gespeichert, welchen Typ dieses optionPane hat.*/
 		int optionType = JOptionPane.YES_NO_OPTION;
-		/*in messageType wird die Art der Nachricht des JOptionPane's gespeichert*/
+		/*In  der Variable "messageType" wird die Art der Nachricht des JOptionPanes gespeichert.*/
 		int messageType = JOptionPane.QUESTION_MESSAGE;
-		/*in optionen werden die Möglichkeiten, die dem Benutzer zur Auswahl stehen, gespeichert*/
+		/*"optionen" speichert die Möglichkeiten, die dem Benutzer zur Auswahl stehen, wenn er das Programm beendet.*/
 		Object[] optionen = { "Beenden", "Abbrechen" };
 		
-		/*wird ausgeführt, wenn frameReference nicht null ist*/
+		/*Wenn die Variable "frameReference" nicht null ist, wird follgendes ausgeführt.*/
 		if(frameReference instanceof GameMainFrame)
 		{
-			/*zu warning wird der Standardmelung noch ein Teil hinzugefügt*/
+			/*Zu dem Text der Variable "warning" wird noch ein Teil hinzugefügt.*/
 			warning += "\n\nDadurch geht Ihr gesamter Spielfortschritt verloren\u0021";
 		}
 		
-		/*hier wird ein neues JOptionPane erstellt, das den Benutzer fragt, ob er das Spiel wirklich beenden möchte*/
+		/*Ein neues JOptionPane wird erstellt. Dieses fragt den Benutzer, ob er das Spiel wirklich beenden möchte.*/
 		int optionPane = JOptionPane.showOptionDialog(null, warning, titel, optionType, messageType, null, optionen, optionen[0]);
 		
-		/*wird ausgeführt, wenn der Benutzer auf "Beenden" klickt*/
+		/*Follgendes wird ausgeführt, wenn der Benutzer auf "Beenden" klickt.*/
 		if(optionPane == JOptionPane.YES_OPTION)
 		{
-			/*das Programm wird beendet*/
+			/*Das Programm wird beendet*/
 			System.exit(0);
 		}
 	}

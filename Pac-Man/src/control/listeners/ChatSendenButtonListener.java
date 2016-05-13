@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import view.frames.GameMainFrame;
 
-/**Diese <i>Listener</i>-Klasse dient dazu, um den <b>Knopfdruck des "SENDEN" abzufangen</b>.<br>
+/**Diese <i>Listener-Klasse</i> namens <b>ChatSendenButtonListener</b> dient dazu, um den <b>Knopfdruck des "SENDEN" abzufangen</b>.<br>
  * Sie <b>implementiert</b> das Interface <b>ActionListener</b>.
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
