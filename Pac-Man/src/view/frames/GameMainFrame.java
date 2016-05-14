@@ -115,9 +115,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	private int    iBlueVer				 = 0;
 	private int    iOrangyHor			 = 0;
 	private int    iOrangyVer			 = 0;
-	/**<i>iGeistHor</i> zählt die gefahrenen Felder in <b>horizontaler Richtung</b>.*/
 	private int	   iPinkyHor			 = 0;
-	/**<i>iGeistVer</i> zählt die gefahrenen Felder in <b>vertikatler Richtung</b>.*/
 	private int	   iPinkyVer			 = 0;
 	private JPanel pSpielfeldPanel		 = new JPanel();
 	private JPanel pChatPanel			 = new JPanel();
@@ -685,7 +683,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	 */
 	private class Task extends TimerTask 
 	{
-		private String sName = "ad";
+		private String sName = "test";
 		private Geist  oGreeny = new Geist();
 		private Geist  oBlue = new Geist();
 		private Geist  oOrangy = new Geist();
@@ -744,7 +742,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 								
 								geistRaufBewegen();
 								break;
-								// ---------------------------------------------------
+							// ---------------------------------------------------
 							case 2:
 								if(sName.equals("Greeny"))
 								{
@@ -765,7 +763,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 								
 								geistRunterBewegen();
 								break;
-								// ---------------------------------------------------
+							// ---------------------------------------------------
 							case 3: 
 								if(sName.equals("Greeny"))
 								{
@@ -786,7 +784,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 								
 								geistRechtsBewegen();
 								break;
-								// ---------------------------------------------------
+							// ---------------------------------------------------
 							case 4:
 								if(sName.equals("Greeny"))
 								{
