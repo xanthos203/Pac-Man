@@ -165,9 +165,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="18" language="java" name="view.characters.Geist" project="Pac-Man" 
-    file="/Pac-Man/src/view/characters/Geist.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1365" y="71"/>    
+  <class id="18" language="java" name="view.characters.Spieler" project="Pac-Man" 
+    file="/Pac-Man/src/view/characters/Spieler.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1390" y="279"/>    
     <background red="128" green="255" blue="255"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -175,19 +175,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="19" language="java" name="view.characters.Spieler" project="Pac-Man" 
-    file="/Pac-Man/src/view/characters/Spieler.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1154" y="-88"/>    
-    <background reference="../../class[17]/background"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="20" language="java" name="model.interfaces.ICharakterBewegen" project="Pac-Man" 
+  <interface id="19" language="java" name="model.interfaces.ICharakterBewegen" project="Pac-Man" 
     file="/Pac-Man/src/model/interfaces/ICharakterBewegen.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1364" y="-336"/>    
+    <position height="-1" width="-1" x="1390" y="-53"/>    
     <background reference="../../interface/background"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -195,7 +185,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="21" language="java" name="control.listeners.SpielenButtonListener" project="Pac-Man" 
+  <class id="20" language="java" name="control.listeners.SpielenButtonListener" project="Pac-Man" 
     file="/Pac-Man/src/control/listeners/SpielenButtonListener.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="347" y="1312"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -204,9 +194,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="view.frames.GameMainFrame.Task" project="Pac-Man" 
+  <class id="21" language="java" name="view.frames.GameMainFrame.Task" project="Pac-Man" 
     file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1140" y="518"/>    
+    <position height="-1" width="-1" x="1140" y="605"/>    
     <background reference="../../class/background"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -214,7 +204,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="23" language="java" name="view.frames.GameMainFrame" project="Pac-Man" 
+  <class id="22" language="java" name="view.frames.GameMainFrame" project="Pac-Man" 
     file="/Pac-Man/src/view/frames/GameMainFrame.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="855" y="423"/>    
     <background reference="../../class/background"/>    
@@ -224,105 +214,149 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="24">    
-    <bendpoint x="1195" y="316"/>    
+  <class id="23" language="java" name="view.characters.Geist" project="Pac-Man" 
+    file="/Pac-Man/src/view/characters/Geist.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1182" y="103"/>    
+    <background red="128" green="255" blue="255"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="view.gui.FeldWand" project="Pac-Man" file="/Pac-Man/src/view/gui/FeldWand.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1180" y="-347"/>    
+    <background red="192" green="192" blue="192"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="25">    
     <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
-      <attribute id="25" name="oPinky"/>      
-      <multiplicity id="26" minimum="0" maximum="1"/>    
+      <attribute id="26" name="alWaende"/>      
+      <multiplicity id="27" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true" variant="ASSOCIATION"/>    
+    <end type="TARGET" refId="24" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="27">    
-    <bendpoint x="1261" y="361"/>    
-    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
-      <attribute id="28" name="oOrangy"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true" variant="ASSOCIATION"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="30">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <nesting id="31">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="22"/>  
-  </nesting>  
-  <association id="32">    
-    <bendpoint x="1365" y="518"/>    
-    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
-      <attribute id="33" name="oBlue"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true" variant="ASSOCIATION"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="35">    
+  <realization id="28">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
-  <realization id="36">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <realization id="37">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="20"/>  
-  </realization>  
-  <association id="38">    
-    <end type="SOURCE" refId="23" navigable="false" variant="ASSOCIATION">      
-      <attribute id="39" name="oSpieler"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true" variant="ASSOCIATION"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="41">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="42">    
-    <bendpoint x="1140" y="256"/>    
+  <association id="29">    
+    <bendpoint x="1071" y="264"/>    
     <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
-      <attribute id="43" name="oGreeny"/>      
-      <multiplicity id="44" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true" variant="ASSOCIATION"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="45">    
-    <bendpoint x="851" y="1352"/>    
-    <bendpoint x="1013" y="1352"/>    
-    <bendpoint x="1013" y="1297"/>    
-    <end type="SOURCE" refId="23" navigable="false" variant="ASSOCIATION">      
-      <attribute id="46" name="oGameMainFrame"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
+      <attribute id="30" name="oPinky"/>      
+      <multiplicity id="31" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="23" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="48">    
-    <end type="SOURCE" refId="23" navigable="false" variant="ASSOCIATION">      
-      <attribute id="49" name="oClient"/>      
-      <multiplicity id="50" minimum="0" maximum="1"/>    
+  <association id="32">    
+    <bendpoint x="1182" y="280"/>    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="33" name="oGreeny"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true" variant="ASSOCIATION"/>    
+    <end type="TARGET" refId="23" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="51">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="52">    
-    <end type="SOURCE" refId="23" navigable="false" variant="ASSOCIATION">      
-      <attribute id="53" name="oGuiDB"/>      
-      <multiplicity id="54" minimum="0" maximum="1"/>    
+  <association id="35">    
+    <bendpoint x="1032" y="102"/>    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="36" name="oOrangy"/>      
+      <multiplicity id="37" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="38">    
+    <bendpoint x="851" y="1352"/>    
+    <bendpoint x="1013" y="1352"/>    
+    <bendpoint x="1013" y="1297"/>    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="39" name="oGameMainFrame">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="41">    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="42" name="oGuiDB">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="43" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="17" navigable="true" variant="ASSOCIATION"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <nesting id="44">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="21"/>  
+  </nesting>  
+  <realization id="45">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <association id="46">    
+    <bendpoint x="1040" y="197"/>    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="47" name="oBlue"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="49">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <realization id="50">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
+  <association id="51">    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="52" name="oClient">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="53" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="54">    
+    <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
+      <attribute id="55" name="oSpieler">        
+        <position height="0" width="0" x="236" y="367"/>      
+      </attribute>      
+      <multiplicity id="56" minimum="0" maximum="1">        
+        <position height="0" width="0" x="236" y="367"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true" variant="ASSOCIATION"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="57">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="19"/>  
+  </realization>  
+  <realization id="58">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

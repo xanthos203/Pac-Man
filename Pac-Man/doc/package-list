@@ -5,3 +5,4 @@ model.interfaces
 model.main
 view.characters
 view.frames
+view.gui

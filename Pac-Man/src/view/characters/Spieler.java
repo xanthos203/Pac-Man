@@ -22,7 +22,7 @@ public class Spieler implements ICharakterBewegen
 	private int iLeben = 3;
 	private int iSpielerHor;
 	private double dPunktestand = 0;
-
+	
 //-------------------------------------------------------------------------------------------------------------------------
 	public void setLeben(int iLeben)
 	{
@@ -70,7 +70,7 @@ public class Spieler implements ICharakterBewegen
 	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
 	@Override
-	public int raufBewegen(int iPosY, String sName)
+	public int raufBewegen(int iPosX, int iPosY)
 	{
 		iPacManPos -= 33;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
@@ -95,7 +95,7 @@ public class Spieler implements ICharakterBewegen
 	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
 	@Override
-	public int runterBewegen(int iPosY, String sName)
+	public int runterBewegen(int iPosX, int iPosY)
 	{	
 		iPacManPos += 33;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
@@ -120,7 +120,7 @@ public class Spieler implements ICharakterBewegen
 	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
 	@Override
-	public int linksBewegen(int iPosX, String sName)
+	public int linksBewegen(int iPosX, int iPosY)
 	{
 		iPacManPos--;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
@@ -129,9 +129,12 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
-			if (iSpielerHor > -1) {
+			if (iSpielerHor > -1) 
+			{
 				iSpielerHor--;
-			} else {
+			} 
+			else
+			{
 				iSpielerHor = iPosX;
 			}
 		}
@@ -142,7 +145,7 @@ public class Spieler implements ICharakterBewegen
 		if (iSpielerHor == 0)
 		{
 			iSpielerHor = (GameMainFrame.GUI_COLUMNS - 2);
-		}
+		}	
 		return iSpielerHor;
 	}
 //-------------------------------------------------------------------------------------------------------------------------
@@ -151,7 +154,7 @@ public class Spieler implements ICharakterBewegen
 	 * ob das Feld welches er betreten will eine Wand oder ein Gang ist.
 	 */
 	@Override
-	public int rechtsBewegen(int iPosX, String sName)
+	public int rechtsBewegen(int iPosX, int iPosY)
 	{
 		iPacManPos++;
 		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
@@ -160,9 +163,12 @@ public class Spieler implements ICharakterBewegen
 			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
-			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1)) {
+			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1)) 
+			{
 				iSpielerHor++;
-			} else {
+			}
+			else 
+			{
 				iSpielerHor = iPosX;
 			}
 		}
