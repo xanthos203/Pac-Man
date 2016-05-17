@@ -18,14 +18,14 @@ public class Geist implements ICharakterBewegen
 		this.iPosX = iPosX;
 	}
 
-	public int getPosX()
-	{
-		return iPosX;
-	}
-
 	public void setPosY(int iPosY)
 	{
 		this.iPosY = iPosY;
+	}
+
+	public int getPosX()
+	{
+		return iPosX;
 	}
 
 	public int getPosY()
@@ -33,6 +33,7 @@ public class Geist implements ICharakterBewegen
 		return iPosY;
 	}
 
+	@Override
 	public int raufBewegen(int iPosX, int iPosY)
 	{
 		iPosY -= 1;
@@ -40,6 +41,7 @@ public class Geist implements ICharakterBewegen
 		return iPosY;
 	}
 
+	@Override
 	public int runterBewegen(int iPosX, int iPosY)
 	{
 		iPosY += 1;
@@ -47,6 +49,7 @@ public class Geist implements ICharakterBewegen
 		return iPosY;
 	}
 
+	@Override
 	public int linksBewegen(int iPosX, int iPosY)
 	{
 		iPosX -= 1;
@@ -54,6 +57,7 @@ public class Geist implements ICharakterBewegen
 		return iPosY;
 	}
 
+	@Override
 	public int rechtsBewegen(int iPosX, int iPosY)
 	{
 		iPosX += 1;

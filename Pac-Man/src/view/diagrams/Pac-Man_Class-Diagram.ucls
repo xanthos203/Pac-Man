@@ -274,8 +274,8 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="38">    
-    <bendpoint x="851" y="1352"/>    
-    <bendpoint x="1013" y="1352"/>    
+    <bendpoint x="853" y="1392"/>    
+    <bendpoint x="1013" y="1392"/>    
     <bendpoint x="1013" y="1297"/>    
     <end type="SOURCE" refId="22" navigable="false" variant="ASSOCIATION">      
       <attribute id="39" name="oGameMainFrame">        

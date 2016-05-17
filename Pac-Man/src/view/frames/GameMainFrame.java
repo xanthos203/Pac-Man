@@ -60,6 +60,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static final Color  WAENDE_FARBE			 = Color.BLUE;
 	public static final Color  GEISTER_AUSGANG_FARBE = Color.BLACK;
 	public static final Color  TELEPORTER_FARBE		 = Color.YELLOW;
+	
+	public static final int    GANG_INDEX			 = Integer.parseInt(GANG);
+	public static final int    WAND_INDEX			 = Integer.parseInt(WAND);
+	public static final int    SPAWN_POINT_INDEX	 = Integer.parseInt(SPAWN_POINT);
+	public static final int    PAC_MAN_INDEX		 = Integer.parseInt(PAC_MAN);
+	public static final int	   EATING_COIN_INDEX	 = Integer.parseInt(EATING_COIN);
+	public static final int    GEISTER_AUSGANG_INDEX = Integer.parseInt(GEISTER_AUSGANG);
+	public static final int    TELEPORTER_INDEX		 = Integer.parseInt(TELEPORTER);
 
 	private static GameMainFrame	 oGameMainFrame;
 	private static GuiDB  			 oGuiDB					 = new GuiDB(System.getProperty("user.dir") + "\\src\\view\\gui\\GUI.csv");
@@ -357,14 +365,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(WAND))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 1);
+						FeldWand wand = new FeldWand(iSpalte, iZeile, WAND_INDEX);
 						alWaende.add(wand);
 						guiDarstellen(iZeile, iSpalte, WAENDE_FARBE);
 					}
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(SPAWN_POINT))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 2);
+						FeldWand wand = new FeldWand(iSpalte, iZeile, SPAWN_POINT_INDEX);
 						alWaende.add(wand);
 						
 						geisterDarstellen(iZeile, iSpalte);
@@ -386,14 +394,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(GEISTER_AUSGANG))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 5);
+						FeldWand wand = new FeldWand(iSpalte, iZeile, GEISTER_AUSGANG_INDEX);
 						alWaende.add(wand);
 						guiDarstellen(iZeile, iSpalte, GEISTER_AUSGANG_FARBE);
 					}
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(TELEPORTER))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 6);
+						FeldWand wand = new FeldWand(iSpalte, iZeile, TELEPORTER_INDEX);
 						alWaende.add(wand);
 						guiDarstellen(iZeile, iSpalte, TELEPORTER_FARBE);
 					}
@@ -706,17 +714,17 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 			if (bSpielerAktiv)
 			{					
-				int altYPosPinky = oPinky.getPosY();
-				int altXPosPinky = oPinky.getPosX();
+				int altPosYpinky = oPinky.getPosY();
+				int altPosXpinky = oPinky.getPosX();
 
-				int altYPosGreeny = oGreeny.getPosY();
-				int altXPosGreeny = oGreeny.getPosX();
+				int altPosYgreeny = oGreeny.getPosY();
+				int altPosXgreeny = oGreeny.getPosX();
 
-				int altYPosblue = oBlue.getPosY();
-				int altXPosblue = oBlue.getPosX();
+				int altPosYblue = oBlue.getPosY();
+				int altPosXblue = oBlue.getPosX();
 
-				int altYPosOrangey = oOrangy.getPosY();
-				int altXPosOrangey = oOrangy.getPosX();
+				int altPosYorangy = oOrangy.getPosY();
+				int altPosXorangy = oOrangy.getPosX();
 
 				zufallszahlPinky = (int) ((Math.random() * 40) + 1);
 				zufallszahlGreeny = (int) ((Math.random() * 40) + 1);
@@ -729,7 +737,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				{
 					lPinky.setVisible(false);
 					oPinky.linksBewegen(oPinky.getPosX(), oPinky.getPosY());
-					ausfuehren(altYPosPinky, altXPosPinky, oPinky, lPinky);
+					ausfuehren(altPosYpinky, altPosXpinky, oPinky, lPinky);
 				}
 				else
 				{
@@ -737,7 +745,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						lPinky.setVisible(false);
 						oPinky.rechtsBewegen(oPinky.getPosX(), oPinky.getPosY());
-						ausfuehren(altYPosPinky, altXPosPinky, oPinky, lPinky);
+						ausfuehren(altPosYpinky, altPosXpinky, oPinky, lPinky);
 					}
 					else
 					{
@@ -745,7 +753,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						{
 							lPinky.setVisible(false);
 							oPinky.runterBewegen(oPinky.getPosX(), oPinky.getPosY());
-							ausfuehren(altYPosPinky, altXPosPinky, oPinky, lPinky);
+							ausfuehren(altPosYpinky, altPosXpinky, oPinky, lPinky);
 						}
 						else
 						{
@@ -753,7 +761,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 							{
 								lPinky.setVisible(false);
 								oPinky.raufBewegen(oPinky.getPosX(), oPinky.getPosY());
-								ausfuehren(altYPosPinky, altXPosPinky, oPinky, lPinky);
+								ausfuehren(altPosYpinky, altPosXpinky, oPinky, lPinky);
 							}
 						}
 					}
@@ -764,7 +772,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				{
 					lGreeny.setVisible(false);
 					oGreeny.linksBewegen(oGreeny.getPosX(), oGreeny.getPosY());
-					ausfuehren(altYPosGreeny, altXPosGreeny, oGreeny, lGreeny);
+					ausfuehren(altPosYgreeny, altPosXgreeny, oGreeny, lGreeny);
 				}
 				else
 				{
@@ -772,7 +780,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						lGreeny.setVisible(false);
 						oGreeny.rechtsBewegen(oGreeny.getPosX(), oGreeny.getPosY());
-						ausfuehren(altYPosGreeny, altXPosGreeny, oGreeny, lGreeny);
+						ausfuehren(altPosYgreeny, altPosXgreeny, oGreeny, lGreeny);
 					}
 					else
 					{
@@ -780,7 +788,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						{
 							lGreeny.setVisible(false);
 							oGreeny.runterBewegen(oGreeny.getPosX(), oGreeny.getPosY());
-							ausfuehren(altYPosGreeny, altXPosGreeny, oGreeny, lGreeny);
+							ausfuehren(altPosYgreeny, altPosXgreeny, oGreeny, lGreeny);
 						}
 						else
 						{
@@ -788,7 +796,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 							{
 								lGreeny.setVisible(false);
 								oGreeny.raufBewegen(oGreeny.getPosX(), oGreeny.getPosY());
-								ausfuehren(altYPosGreeny, altXPosGreeny, oGreeny, lGreeny);
+								ausfuehren(altPosYgreeny, altPosXgreeny, oGreeny, lGreeny);
 							}
 						}
 					}
@@ -799,7 +807,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				{
 					lBlue.setVisible(false);
 					oBlue.linksBewegen(oBlue.getPosX(), oBlue.getPosY());
-					ausfuehren(altYPosblue, altXPosblue, oBlue, lBlue);
+					ausfuehren(altPosYblue, altPosXblue, oBlue, lBlue);
 				}
 				else
 				{
@@ -807,7 +815,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						lBlue.setVisible(false);
 						oBlue.rechtsBewegen(oBlue.getPosX(), oBlue.getPosY());
-						ausfuehren(altYPosblue, altXPosblue, oBlue, lBlue);
+						ausfuehren(altPosYblue, altPosXblue, oBlue, lBlue);
 					}
 					else
 					{
@@ -815,7 +823,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						{
 							lBlue.setVisible(false);
 							oBlue.runterBewegen(oBlue.getPosX(), oBlue.getPosY());
-							ausfuehren(altYPosblue, altXPosblue, oBlue, lBlue);
+							ausfuehren(altPosYblue, altPosXblue, oBlue, lBlue);
 						}
 						else
 						{
@@ -823,7 +831,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 							{
 								lBlue.setVisible(false);
 								oBlue.raufBewegen(oBlue.getPosX(), oBlue.getPosY());
-								ausfuehren(altYPosblue, altXPosblue, oBlue, lBlue);
+								ausfuehren(altPosYblue, altPosXblue, oBlue, lBlue);
 							}
 						}
 					}
@@ -834,7 +842,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				{
 					lOrangy.setVisible(false);
 					oOrangy.linksBewegen(oOrangy.getPosX(), oOrangy.getPosY());
-					ausfuehren(altYPosOrangey, altXPosOrangey, oOrangy, lOrangy);
+					ausfuehren(altPosYorangy, altPosXorangy, oOrangy, lOrangy);
 				}
 				else
 				{
@@ -842,7 +850,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					{
 						lOrangy.setVisible(false);
 						oOrangy.rechtsBewegen(oOrangy.getPosX(), oOrangy.getPosY());
-						ausfuehren(altYPosOrangey, altXPosOrangey, oOrangy, lOrangy);
+						ausfuehren(altPosYorangy, altPosXorangy, oOrangy, lOrangy);
 					}
 					else
 					{
@@ -850,7 +858,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 						{
 							lOrangy.setVisible(false);
 							oOrangy.runterBewegen(oOrangy.getPosX(), oOrangy.getPosY());
-							ausfuehren(altYPosOrangey, altXPosOrangey, oOrangy, lOrangy);
+							ausfuehren(altPosYorangy, altPosXorangy, oOrangy, lOrangy);
 						}
 						else
 						{
@@ -858,7 +866,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 							{
 								lPinky.setVisible(false);
 								oOrangy.raufBewegen(oOrangy.getPosX(), oOrangy.getPosY());
-								ausfuehren(altYPosOrangey, altXPosOrangey, oOrangy, lOrangy);
+								ausfuehren(altPosYorangy, altPosXorangy, oOrangy, lOrangy);
 							}
 						}
 					}
@@ -940,7 +948,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			int i;
 			for (i = 0; i < alWaende.size(); i++)
 			{
-				if (alWaende.get(i).getFeldX() == altXPos && alWaende.get(i).getFeldY() == altYPos && alWaende.get(i).getFarbe() == 2)
+				if (alWaende.get(i).getFeldX() == altXPos && alWaende.get(i).getFeldY() == altYPos && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX)
 				{
 					darfSpawnPointFahren = true;
 					break;
@@ -956,10 +964,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			{
 				if (!darfSpawnPointFahren)
 				{
-					if ((alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == 1) ||
-						(alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == 2) ||
-						(alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == 6) ||
-						(alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == 5))
+					if ((alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX) ||
+						(alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX) ||
+						(alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX) ||
+						(alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == GEISTER_AUSGANG_INDEX))
 					{
 						geist.setPosY(altYPos);
 						geist.setPosX(altXPos);
@@ -968,8 +976,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 				else
 				{
-					if (alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == 1 ||
-					   (alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == 6))
+					if (alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX ||
+					   (alWaende.get(i).getFeldX() == geist.getPosX() && alWaende.get(i).getFeldY() == geist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX))
 					{
 						geist.setPosY(altYPos);
 						geist.setPosX(altXPos);

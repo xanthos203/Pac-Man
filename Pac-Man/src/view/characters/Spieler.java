@@ -14,10 +14,6 @@ import view.frames.GameWonFrame;
  */
 public class Spieler implements ICharakterBewegen
 {
-	private static final int GANG_INDEX = Integer.parseInt(GameMainFrame.GANG);
-	private static final int PAC_MAN_INDEX = Integer.parseInt(GameMainFrame.PAC_MAN);
-	private static final int EATING_COIN_INDEX = Integer.parseInt(GameMainFrame.EATING_COIN);
-	private static final int TELEPORTER_INDEX = Integer.parseInt(GameMainFrame.TELEPORTER);
 	private static int iPacManPos = 610;
 	private int iLeben = 3;
 	private int iSpielerHor;
@@ -73,10 +69,10 @@ public class Spieler implements ICharakterBewegen
 	public int raufBewegen(int iPosX, int iPosY)
 	{
 		iPacManPos -= 33;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.TELEPORTER_INDEX)
 		{
 			if (iPosY > 0)
 			{
@@ -98,10 +94,10 @@ public class Spieler implements ICharakterBewegen
 	public int runterBewegen(int iPosX, int iPosY)
 	{	
 		iPacManPos += 33;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.TELEPORTER_INDEX)
 		{
 			if (iPosY < (GameMainFrame.GUI_ROWS - 1))
 			{
@@ -123,10 +119,10 @@ public class Spieler implements ICharakterBewegen
 	public int linksBewegen(int iPosX, int iPosY)
 	{
 		iPacManPos--;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor > -1) 
@@ -157,10 +153,10 @@ public class Spieler implements ICharakterBewegen
 	public int rechtsBewegen(int iPosX, int iPosY)
 	{
 		iPacManPos++;
-		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GANG_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == PAC_MAN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == EATING_COIN_INDEX ||
-			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == TELEPORTER_INDEX)
+		if (Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.GANG_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.PAC_MAN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.EATING_COIN_INDEX ||
+			Integer.parseInt(GameMainFrame.getSpielfeldAL().get(iPacManPos)) == GameMainFrame.TELEPORTER_INDEX)
 		{
 			iSpielerHor = iPosX;
 			if (iSpielerHor < (GameMainFrame.GUI_COLUMNS - 1)) 
