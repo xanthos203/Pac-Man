@@ -3,6 +3,8 @@ package control.listeners;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JOptionPane;
+
 import view.frames.GameMainFrame;
 
 /**Diese <i>Listener-Klasse</i> namens <b>SteuerungListener</b> dient zur <b>Steuerung des Hauptcharakters namens Pac-Man</b>.<br>
@@ -47,10 +49,16 @@ public final class SteuerungListener extends KeyAdapter
 			GameMainFrame.spielerRechts();
 		}
 		
-		
 		if ((keyEvent.getKeyCode() == KeyEvent.VK_J) || (keyEvent.getKeyCode() == KeyEvent.VK_T))
 		{
 			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
+		}
+		
+		if (keyEvent.getKeyCode() == KeyEvent.VK_P)
+		{
+			GameMainFrame.setSpielerAktiv(false);
+			JOptionPane.showMessageDialog(GameMainFrame.getGameMainFrame(), "Das Spiel wurde soeben pausiert\u002E",
+																			"Information", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

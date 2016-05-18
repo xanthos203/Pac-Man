@@ -381,15 +381,15 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(WAND))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 1);
-						alWaende.add(wand);
+						FeldWand oWand = new FeldWand(iSpalte, iZeile, WAND_INDEX);
+						alWaende.add(oWand);
 						guiDarstellen(iZeile, iSpalte, WAENDE_FARBE);
 					}
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(SPAWN_POINT))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 2);
-						alWaende.add(wand);
+						FeldWand oWand = new FeldWand(iSpalte, iZeile, SPAWN_POINT_INDEX);
+						alWaende.add(oWand);
 						geisterDarstellen(iZeile, iSpalte);
 					}
 					//---------------------------------------------
@@ -409,15 +409,15 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(GEISTER_AUSGANG))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 5);
-						alWaende.add(wand);
+						FeldWand oWand = new FeldWand(iSpalte, iZeile, GEISTER_AUSGANG_INDEX);
+						alWaende.add(oWand);
 						guiDarstellen(iZeile, iSpalte, GEISTER_AUSGANG_FARBE);
 					}
 					//---------------------------------------------
 					if (getSpielfeldAL().get(iSpielfeldIndex).equals(TELEPORTER))
 					{
-						FeldWand wand = new FeldWand(iSpalte, iZeile, 6);
-						alWaende.add(wand);
+						FeldWand oWand = new FeldWand(iSpalte, iZeile, TELEPORTER_INDEX);
+						alWaende.add(oWand);
 						guiDarstellen(iZeile, iSpalte, TELEPORTER_FARBE);
 					}
 				}
@@ -1015,7 +1015,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			int i;
 			for (i = 0; i < alWaende.size(); i++)
 			{
-				if (alWaende.get(i).getFeldX() == iPosXalt && alWaende.get(i).getFeldY() == iPosYalt && alWaende.get(i).getFarbe() == 2)
+				if (alWaende.get(i).getFeldX() == iPosXalt && alWaende.get(i).getFeldY() == iPosYalt && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX)
 				{
 					darfInSpawnPointFahren = true;
 					break;
@@ -1031,10 +1031,10 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 			{
 				if (!darfInSpawnPointFahren)
 				{
-					if ((alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == 1) ||
-						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == 2) ||
-						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == 6) ||
-						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == 5))
+					if ((alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX) ||
+						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX) ||
+						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX) ||
+						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == GEISTER_AUSGANG_INDEX))
 					{
 						oGeist.setPosY(iPosYalt);
 						oGeist.setPosX(iPosXalt);
@@ -1043,15 +1043,14 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 				else
 				{
-					if (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == 1 ||
-					   (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == 6))
+					if (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX ||
+					   (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX))
 					{
 						oGeist.setPosY(iPosYalt);
 						oGeist.setPosX(iPosXalt);
 						break;
 					}
 				}
-
 			}
 
 			if (i >= alWaende.size() - 1)
