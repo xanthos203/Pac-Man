@@ -683,8 +683,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	public static String getSpielstandlabelText()
 	{
-		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: "
-				+ String.format("%,.0f", oSpieler.getPunktestand());
+		return "Spieler: " + LogInFrame.getUsername() + "  \u007C\u007C  Leben: " + oSpieler.getLeben()
+				+ "  \u007C\u007C  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand());
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
