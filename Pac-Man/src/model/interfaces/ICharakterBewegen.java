@@ -17,7 +17,8 @@ public interface ICharakterBewegen
 {
 	/**
 	 * Die folgende Methode schreibt die <b>Aufwärtsbewegung</b> des jeweiligen Charakters vor.<br>
-	 * @param iPosX
+	 * @param iPosX <br>
+	 * Die Variable <i>iPosX</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>X-Achse</i>.<br>
 	 * @param iPosY <br>
 	 * Die Variable <i>iPosY</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>Y-Achse</i>.<br>
 	 * @return Nach Abschluss der Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>Y-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
@@ -26,7 +27,8 @@ public interface ICharakterBewegen
 	
 	/**
 	 * Diese Methode hingegen schreibt die <b>Abwärtsbewegung</b> der entsprechenden Spielfigur vor.<br>
-	 * @param iPosX
+	 * @param iPosX <br>
+	 * Die Variable <i>iPosX</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>X-Achse</i>.<br>
 	 * @param iPosY <br>
 	 * Hier wird ebenfalls die <b>aktuelle Position</b> des jeweiligen Charakters auf der <i>Y-Achse</i> gespeichert.
 	 * @return Nach Abschluss dieser Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>Y-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
@@ -37,7 +39,8 @@ public interface ICharakterBewegen
 	 * Die nächste Methode ist für die <b>Linksbewegung</b> des Charakters verantwortlich.<br>
 	 * @param iPosX <br>
 	 * Die Variable <i>iPosX</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>X-Achse</i>.<br>
-	 * @param iPosY
+	 * @param iPosY<br>
+	 * Die Variable <i>iPosY</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>Y-Achse</i>.<br>
 	 * @return Nach Abschluss dieser Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>X-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
 	 */
 	int linksBewegen(int iPosX, int iPosY);
@@ -46,7 +49,8 @@ public interface ICharakterBewegen
 	 * Diese Methode hingegen schreibt die <b>Rechtsbewegung</b> der entsprechenden Spielfigur vor.<br>
 	 * @param iPosX <br>
 	 * Hier wird ebenfalls die <b>aktuelle Position</b> des jeweiligen Charakters auf der <i>X-Achse</i> gespeichert.
-	 * @param iPosY
+	 * @param iPosY<br>
+	 * Die Variable <i>iPosY</i> speichert die <b>aktuelle Position</b> des entsprechenden Charakters auf der <i>Y-Achse</i>.<br>
 	 * @return Nach Abschluss dieser Methode wird die <b>neu erwünschte Position</b> einer Spielfigur auf der <i>X-Achse</i> dem jeweiligen Spielcharakter mitgeteilt.<br>
 	 */
 	int rechtsBewegen(int iPosX, int iPosY);
