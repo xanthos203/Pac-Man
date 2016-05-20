@@ -87,19 +87,32 @@ public class Client
 		}
 	}
 	
-	/**In der folgenden Methode namens <b>"BufferedReader getReader()"<b> wird der Wert der Variable <b>"brReader"</b> zurückgegeben.*/
+	/**
+	 * In der folgenden Methode namens <b>"BufferedReader getReader()"<b> wird der Wert der Variable <b>"brReader"</b> zurückgegeben.
+	 * 
+	 * @return brReader<br>
+	 * Die Variable "brReader" wird zurückgegeben.
+	 */
 	public static BufferedReader getReader()
 	{
 		return brReader;
 	}
 	
-	/**In der folgenden Methode namens <b>hasIPsuccessfullySent()<b> wird der Wert der Variable <b>bIPgesendet</b> zurückgegeben.*/
+	/**
+	 * In der folgenden Methode namens <b>hasIPsuccessfullySent()<b> wird der Wert der Variable <b>bIPgesendet</b> zurückgegeben.
+	 * 
+	 * @return bIPgesendet<br>
+	 * Die Variable "bIPgesendet" wird zurückgegeben.*/
 	public static boolean hasIPsuccessfullySent()
 	{
 		return bIPgesendet;
 	}
 	
-	/**In der folgenden Methode namens <b>hasNetzworkConnection()<b> wird der Wert der Variable <b>bNetzwerkSteht</b> zurückgegeben.*/
+	/**
+	 * In der folgenden Methode namens <b>hasNetzworkConnection()<b> wird der Wert der Variable <b>bNetzwerkSteht</b> zurückgegeben.
+	 * 
+	 * @return bNetzwerkSteht<br>
+	 * Die Variable "bNetzwerkSteht" wird zurückgegeben.*/
 	public static boolean hasNetzworkConnection()
 	{
 		return bNetzwerkSteht;

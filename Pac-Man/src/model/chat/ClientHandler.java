@@ -63,7 +63,8 @@ public class ClientHandler implements Runnable
 	/**
 	 * In der untenstehenden Methode names <b>bInitCH</b> wird die Variable <b>bInitCH zurückgegeben</b>.<br>
 	 * 
-	 * @return bInitCH
+	 * @return bInitCH<br>
+	 * Die Variable "bInitCH" wird zurückgegeben.
 	 */
 	public static boolean hasInitialized()
 	{

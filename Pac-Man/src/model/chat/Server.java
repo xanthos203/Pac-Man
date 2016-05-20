@@ -8,12 +8,13 @@ import java.util.Iterator;
 
 /**
  * 
- * In dieser Klasse Server wird der Server ausgeführt über welchen die Spieler später miteinander Komunizieren können.
+ * In dieser Klasse namens <b>Server</b> wird der Server ausgeführt über welchen die Spieler später miteinander komunizieren können.
+ * 
+ * @version 1.0
  * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0
  */
 public final class Server
 {
@@ -21,8 +22,9 @@ public final class Server
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
 	
 	/**
-	 * Diese Methode wird aus der Hauptklasse aufegrufen, in welcher der Server gestartet wird.
-	 * Das Socket stellt die Grundlage für die spätere Komunikatin da.
+	 * Diese Methode namens <b>start</b> wird aus der Hauptklasse aus aufgerufen;<br>
+	 * in welcher der Server gestartet wird.<br>
+	 * Das Socket stellt die Grundlage für die spätere Komunikation dar.<br>
 	 */
 	@SuppressWarnings("resource")
 	public static void start()
@@ -52,9 +54,11 @@ public final class Server
 		}
 	}
 	/**
-	 * Hier über diese Methode werden die Nachrichten, welche die Spieler geschrieben haben an alle weiter gegeben.
+	 * In der untenstehenden Methode namens <b>allenWeitersagen</b> werden die Nachrichten,<br>
+	 * die die Spieler verfasst haben an alle weiter gegeben.<br>
 	 * 
-	 * @param sNachricht
+	 * @param sNachricht<br>
+	 * Die Variable "sNachricht" speichert die vom Benutzer eingegebene Nachricht.<br>
 	 */
 	public static void allenWeitersagen(String sNachricht) 
 	{
@@ -76,8 +80,9 @@ public final class Server
 	}
 	
 	/**
-	 * Hier wird nur true oder false über geben welche sagt ob die Verbindung erfolgreich war oder nicht.
-	 * @return
+	 * In der untenstehenden Methode namens <b>isConnected</b> wird die Variable "bIsConnected" zurückgegeben.<br> 
+	 * @return bIsConnected<br>
+	 * Die Variable "bIsConnected" wird zurückgegeben.<br>
 	 */
 	public static boolean isConnected()
 	{
