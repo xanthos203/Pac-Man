@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
+ * 
+ * In dieser Klasse Server wird der Server ausgeführt über welchen die Spieler später miteinander Komunizieren können.
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
@@ -18,6 +21,10 @@ public final class Server
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
 	
 	@SuppressWarnings("resource")
+	/**
+	 * Diese Methode wird aus der Hauptklasse aufegrufen, in welcher der Server gestartet wird.
+	 * Das Socket stellt die Grundlage für die spätere Komunikatin da.
+	 */
 	public static void start()
 	{
 		alClientAusgabeStroeme = new ArrayList<PrintWriter>();
@@ -44,7 +51,11 @@ public final class Server
 			exException.printStackTrace();
 		}
 	}
-
+	/**
+	 * Hier über diese Methode werden die Nachrichten, welche die Spieler geschrieben haben an alle weiter gegeben.
+	 * 
+	 * @param sNachricht
+	 */
 	public static void allenWeitersagen(String sNachricht) 
 	{
 		Iterator<PrintWriter> itIterator = alClientAusgabeStroeme.iterator();
@@ -64,6 +75,10 @@ public final class Server
 		}
 	}
 	
+	/**
+	 * Hier wird nur true oder false über geben welche sagt ob die Verbindung erfolgreich war oder nicht.
+	 * @return
+	 */
 	public static boolean isConnected()
 	{
 		return bIsConnected;

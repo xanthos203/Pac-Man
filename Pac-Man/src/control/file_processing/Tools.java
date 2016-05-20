@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * In dieser Klasse wird die Textdatei mithilfe des BufferedReaders eingelesen und der Klasse CLogDB übergebben, damit diese die Daten verwenden kann.
+ * Diese Klasse namens <b>Tools liest</b> mithilfe eines sog. BufferedReader eine <b>csv-Datei ein</b>.<br>
+ * Diese <i>csv-Datei</i> wird anschließend der <i>Klasse</i> <b>"CLogDB"</b> zur <i>Weiterverarbeitung</i> <b>übergeben</b>.
  * 
  * @version 1.0
  * 
@@ -17,36 +18,48 @@ import java.util.ArrayList;
 public final class Tools 
 {
 	/**
+	 * In der nachstehenden Methode namens <b>ArrayList<String> readGuiCSV</b> wird die für den Spielbereich<br>
+	 * relevante <b>csv-Datei eingelesen</b> und <b>für</b> die <b>weitere Verarbeitung vorbereitet</b>.<br>
 	 * 
-	 * @param sPath
-	 * @return
+	 * @param sPath<br>
+	 * In der Variable <i>"sPath"</i> ist die <b>"csv-Datei"</b> gespeichert.
 	 * 
-	 * In dieser Methode wird Mithilfe des BufferedReaders eingelesen und verwendet.
-	 * 
+	 * @return alGui<br>
+	 * In der Variable <i>"alGui</i> ist die <b>verarbeitete csv-Datei</b> gespeichert.
 	 */
 	public static ArrayList<String> readGuiCSV(String sPath)
 	{
+		/*Die ArrayList "alGui" (vom Datentyp "String") wird erstellt.*/
 		ArrayList<String> alGui = new ArrayList<String>();
 		
-		// Hier wird der BufferedReader erzeugt und die einzulesende Datei wird hinzugefügt.
+		/* Im folgenden Abschnitt wird ein sogenannter "BufferedReader" mit dem Namen "brReader" erzeugt.
+		 * Dieser Reader liest die "csv-Datei" ein und verarbeitet diese so, dass man mit dieser Datei wieter Maßnahmen ergreifen kann.*/
 		try (BufferedReader brReader = new BufferedReader(new FileReader(sPath)))
 		{
+			/* Eine Variable namens "sZeile" (vom Datentyp "String") wird erstellt.
+			 * In dieser Variable ist der Wert "null" gespeichert.*/
 			String sZeile = null;
-			// Hier wird mit readLine die entsprechende Zeile eingelesen und der Variable sZeile zugewuiesen.
+			
+			/* Die eingelesene Datei wird in der Variable "sZeile" gespeichert.
+			 * Solange "sZeile" nicht den Wert "null" hat, wird "sZeile" in der ArrayList "alGui" gespeichert. 
+			 * Also immer, wenn sich etwas neues in der eingelesenen Datei befindet, wird dieses "Teil" der ArrayList "alGui" hizugefügt.*/
 			while ((sZeile = brReader.readLine()) != null) 
 			{
-				// Hier wird die Zeile der ArrayList alGui geaddet
+				/* Der ArrayList "alGui" wird die Variable "sZeile" hinzugefügt.*/
 				alGui.add(sZeile);
 			}
 		}
-		// Dies wird aufgerufen, wenn das try nicht ausgeführt werden kann
+		/* Funktioniert dies nicht, so wird folgende Teil ausgeführt.
+		 * Im kommenden Abschnitt wird eine Exception geworfen.
+		 * Eine Exception ist im Grunde genommen nichts anderes als eine Fehlermeldung, die am Bildschirm sichtbar angezeigt wird.
+		 * Diese Fehlermeldung wird also auch für den Benutzer des Spiels sichtbar.*/
 		catch (IOException ioException) 
 		{
-			// Hier wird die Exception geworfen, wenn das catch aufgerufen wird
+			/* Eine Exception wird geworfen bzw. angezeigt.*/
 			ioException.printStackTrace();
 		}
 		
-		// wird die ArrayList alGui zurückgegeben
+		/* Die ArrayList "alGui" wird zurückgegeben.*/
 		return alGui;
 	}
 }

@@ -6,50 +6,66 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-/**Diese <i>Listener</i>-Klasse wird ausgeführt, wenn der Benutzer auf den Button "<b>SPIELEN</b>" klickt.<br>
- * Er wird dabei darüber informiert, dass das Spiel bereit zum Weiterspielen ist.<br>
+ 
+/**Diese <i>Listener-Klasse</i> namens <b>SpielernButtonListener</b> wird ausgeführt, sobald der Benutzer auf den Button <b>"SPIELEN" betätigt</b>.<br>
+ * Der Benutzer bekommt dabei die <b>Information</b>, dass das <b>Spiel zum Weiterspielen bereit</b> ist.<br>
+ * <br>
  * Diese Klasse <b>implementiert</b> das Interface <b>ActionListener</b>.
+ * Dieser ActionListener wird sozusagen von <i>"JAVA"</i> vorgeschrieben, um den Benutzer ein wenig <i>"unter die Arme zu greifen".</i>
+ * 
+ * @version 1.0 
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0 */
+ */
 public final class SpielenButtonListener implements ActionListener
 {
-	/**Die Variable <i>frameReference</i> bestimmt die <b>Referenz auf das JFrame</b>.*/
+	/**In der Variable <b>frameReference</b> wird das Fenster gespeichert, von welchem der Knopfdruck kommt.</b>.*/
 	private JFrame frameReference;
 	
-	/**Dieser Konstruktor verlangt als Parameter eine <b>Referenz auf ein JFrame</b>.
-	 * @param frame <i>Referenz</i> auf das <b>JFrame</b>*/
+	/**Dieser Konstruktor <b>speichert den Wert</b> der Variable <b>"frame" in</b> der Variable <b>"frameReference"</b>.
+	 * 
+	 * @param frame Die Variable <i>frame</i> erstellt eine <b>Referenz</b> auf das <b>JFrame</b>, von dem der Knopfdruck kommt.*/
 	public SpielenButtonListener(JFrame frame)
 	{
-		/*der Variable frameReference wird der Wert von frame zugewiesen
-		 *und somit eine Referenz auf das Fenster erstellt, das den Konstruktor aufruft*/
+		/*In der Variable "frameReference" wird der Wert von "frame" gespeichert
+		 *und somit wird eine Referenz auf das jeweilige Fenster erstellt, das den Konstruktor aufruft.*/
 		frameReference = frame;
 	}
 	
-	/**Die <i>actionPerformed</i>-Methode fängt den <b>Knopfdruck</b> auf und verarbeitet diesen.
-	 * @param aeEvent Knopfdruck*/
+	/**Die <b>actionPerformed-Methode</b> wird aufgerufen, sobald der Button <b>"SPIELEN" betätigt</b> wurde.<br>
+	 * Diese Methode entscheidet auch was als <b>nächstes im Programm passieren soll</b> <br>
+	 * und <b>ergreift</b> dementsprechend die dafür <b>erforderlichen Maßnahmen</b>.<br>
+	 * <br>
+	 * Sobald der Benutzer diesen <b>Knopf betätigt</b>, geht eine <b>Hinweismeldung</b> auf.<br>
+	 * Diese Hinweismeldung beinhaltet den <i>Nachrichtentext "Bereit zum Weiterspielen."</i>.<br>
+	 * Danach kann der Benutzer ganz normal seinem <i>Spielfortschritt folgen</i>.<br>
+	 * 
+	 *@param aeEvent Die Variable <i>aeEvent</i> ermittelt ob der <b>Button betätigt</b> wurde.*/
 	@Override
 	public void actionPerformed(ActionEvent aeEvent)
 	{
-		/*in parentComponent wird gespeichert, auf welchem Fenster der Dialog angezeigt wird*/
+		/*In der Variable "parentComponent" wird gespeichert, auf welchem Fenster die Hinweismeldung angezeigt werden soll.*/
 		Component parentComponent = frameReference;
-		/*in warning wird die Warnmeldung, die am optionPane angezeigt wird, gespeichert*/
+		/*Die Variable "warning" speichert den Text der bei der Hinweismeldung ausgegeben wird.
+		 *Diese Nachricht leutet "Bereit zum Weiterspielen.".*/
 		String warning = "Bereit zum Weiterspielen\u002E";
-		/*in titel wird der Text, der in der Titelleiste des JOptionPane's angezeigt wird, gespeichert*/
+		/*Die Variable "titel" speichert den Text der in der Titelleiste steht.*/
 		String titel = "Spiel\u00ADInformation";
-		/*in optionType wird gespeichert, um welche "Art" von Auswahlmöglichkeiten es sich handelt*/
+		/*In der Variable "optionType" wird gespeichert, um welche "Art" von Auswahlmöglichkeiten es sich handelt.
+		 *In diesem Fall kann man die Antwort "OK" mittels Knopfdruck eines Buttons geben.*/
 		int optionType = JOptionPane.OK_OPTION;
-		/*in messageType wird die Art der Nachricht des JOptionPane's gespeichert*/
+		/*In der Variable "messageType" wird die Art der Nachricht des JOptionPanes gespeichert.
+		 *In diesem Fall wird eine Informationsnachricht ausgegeben.*/
 		int messageType = JOptionPane.INFORMATION_MESSAGE;
-		/*in optionen werden die Möglichkeiten, die dem Benutzer zur Auswahl stehen, gespeichert*/
+		/*Die Variable "optionen" speichert alle Möglichkeiten, die dem Benutzer zur Antwort zur Auswahl stehen.*/
 		Object[] optionen = { "OK" };
 		
-		/*hier wird der Input-Fokus für frameReference angefordert*/
+		/*Hier wird der "Input-Fokus" für die Variable "frameReference" angefordert*/
 		frameReference.requestFocusInWindow();
 		
-		/*hier wird ein neues JOptionPane erstellt, das den Benutzer fragt, ob er das Spiel wirklich beenden möchte*/
+		/*Ein neues JOptionPane wird erstellt. Dieses fragt den Benutzer, ob er das Spiel wirklich beenden möchte.*/
 		JOptionPane.showOptionDialog(parentComponent, warning, titel, optionType, messageType, null, optionen, optionen[0]);
 	}
 }

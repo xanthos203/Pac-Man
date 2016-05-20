@@ -20,151 +20,181 @@ import control.listeners.ButtonListener;
 import control.listeners.WindowListener;
 import model.interfaces.IWindowProperties;
 
-/**In dieser Klasse wird des Fenster, das erscheint, wenn der Benutzer <b>gewonnen</b> hat, dargestellt.<br>
- * Dieses Fenster erscheint, wenn das <b>Spiel vorbei</b> ist und <i>Pac-Man alle Münzen und alle Geister verspeist</i> hat.<br>
- * Diese Klasse <b>erbt</b> von der Klasse <b>JDialog</b> und <b>implementiert</b> das Interface <b>IWindowProperties</b>.
+/**In dieser Klasse namens <b>GameWonFrame</b> wird des Fenster, das erscheint, wenn der <b>Benutzer gewonnen</b> hat, dargestellt.<br>
+ * Dieses Fenster <b>erscheint</b>, wenn <b>Pac-Man alle Münzen und alle Geister verspeist</b> hat.<br>
+ * <br>
+ * Diese Klasse <b>erbt</b> von der Klasse <b>JFrame</b> und <b>implementiert</b> das Interface <b>IWindowProperties</b>.
+ * Diese <i>JFrame-Klasse</i> wird sozusagen von <i>"JAVA"</i> vorgeschrieben, um den Benutzer ein wenig <i>"unter die Arme zu greifen".</i><br>
+ * Das Interface <i>IWindowProperties</i> wurde hingegen von <i>uns ersellt</i>.<br>
+ * Dieses <i>Interface</i> schreibt die <i>Methoden für</i> die <i>Fenstereigenschafen vor</i>.<br>
+ * <br>
+ * @version 1.0
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.1 */
+ * */
 @SuppressWarnings("serial")
 public final class GameWonFrame extends JFrame implements IWindowProperties
 {
-	/**Auf der <i>contentPane</i> werden <b>alle Widgets</b>, die für das Fenster benötigt werden, dargestellt.*/
+	/**Auf der <b>contentPane</b> werden <b>alle Widgets bzw Komponenten</b>, die für das <b>GameWonFrame-Fenster benötigt werden, dargestellt</b>.*/
 	private JPanel 		contentPane		= new JPanel();
-	/**Auf dem <i>gratulationPanel</i> wird das <b>gratTextPanel</b> mit all seinen Widgets angezeigt.*/
+	/**Auf dem <b>gratulationPanel</b> wird das <b>gratTextPanel</b> mit seinen Widgets bzw. Komponenten <b>angezeigt</b>.*/
 	private JPanel		gratulationPanel= new JPanel();
-	/**Auf dem <i>gratTextPanel</i> werden die beiden Labels <i>gratulationLabel</i> und <i>gratTextLabel</i> zu einem <b>Text zusammengefügt</b>.*/
+	/**Auf dem <b>gratTextPanel</b> werden die beiden Labels <b>gratulationLabel</b> und <b>gratTextLabel</b> <i>zu einem Text zusammengefügt</i>.*/
 	private JPanel		gratTextPanel	= new JPanel();
-	/**Auf dem <i>playagainPanel</i> werden alle <b>Komponenten</b> angezeigt, die <b>zum Wiederholen des Spiels</b> notwendig sind.*/
+	/**Auf dem <b>playagainPanel</b> werden alle <b>Komponenten angezeigt</b>, die <b>zum Wiederholen des Spiels</b> notwendig sind.*/
 	private JPanel		playagainPanel	= new JPanel();
-	/**Auf dem <i>buttonPanel</i> werden sämtliche <b>Buttons</b> nebeneinander <b>dargestellt</b>.*/
+	/**Auf dem <b>buttonPanel</b> werden sämtliche <b>Buttons</b> <i>nebeneinander</i> <b>dargestellt</b>.*/
 	private JPanel		buttonPanel		= new JPanel();
-	/**Das Icon <i>gameWonIcon</i> stellt die <b>Hauptfigur Pac-Man</b>, der gerade die <i>Geister verspeist</i>, dar.*/
+	/**Das Icon <b>gameWonIcon</b> stellt die <b>Hauptfigur Pac-Man</b> dar.<br>
+	 * Auf diesem Bild genießt er gerade seine athletischen Künste, indem er ein spezielles Festmahl in allen Zügen genießt.<br>
+	 * Diese vorzügliche Mahlzeit besteht aus seinen ehemaligen Mitgenossen - den Geistern.<br>
+	 * Er verspeißt also sozusagen die Geister.<br>*/
 	private Icon		gameWonIcon		= new ImageIcon(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/view/images/Game_won.PNG")));
-	/**Mit dem <i>gratulationLabel</i> wird dem Benutzer <b>mit seinem Spielernamen gratuliert</b>.*/
+	/**Im <b>gratulationLabel</b> wird dem Benutzer <b>mit seinem Spielernamen für seine Künste gratuliert</b>.*/
 	private JLabel		gratulationLabel= new JLabel();
-	/**Mit dem <i>gratTextLabel</i> wird der Benutzer darauf hingewiesen, dass er <b>gewonnen</b> hat.*/
+	/**Mit dem <b>gratTextLabel</b> wird der Benutzer darauf aufmerksam gemacht, dass er <b>gewonnen</b> hat.*/
 	private JLabel		gratTextLabel	= new JLabel();
-	/**Mit dem <i>playagainLabel</i> wird der Benutzer gefragt, ob er <b>nochmal spielen</b> will.*/
+	/**Mit dem <b>playagainLabel</b> wird der Benutzer gefragt, ob er <b>nocheinmal spielen</b> will.*/
 	private JLabel		playagainLabel	= new JLabel();
-	/**Auf dem Label <i>wonImage_label</i> wird das Icon <b>gameWonIcon</b> dargestellt.*/
+	/**Auf dem Label <b>wonImage_label</b> wird das Icon <b>gameWonIcon</b> dargestellt.*/
 	private JLabel		wonImage_label	= new JLabel(gameWonIcon);
-	/**Mit dem <i>ja</i>-Button bestätigt der Benutzer, dass er <b>nochmal spielen</b> möchte.*/
+	/**Sobald der Benutzer den <b>ja-Button</b> betätigt, sagt er, dass er gerne <b>nocheinmal spielen möchte</b>.*/
 	private JButton		jaButton		= new JButton("     Ja     ");
-	/**Mit dem <i>nein</i>-Button bestätigt der Benutzer, dass er das <b>Spiel beenden</b> möchte.*/
+	/**Mit dem <b>nein-Button</b> hingegen sagt der Spieler, dass er <i>nicht mehr spielen möchte</i>.<br>
+	 * Nach Betätigung des Buttons wird das <b>Programm geschossen</b>.<br>
+	 * Somit wird auch das <b>Spiel beendet</b>.<br>*/
 	private JButton		neinButton		= new JButton("   Nein   ");
-	
-	/**Im Konstruktor werden die <b>Eigenschaften des Fensters und der Widgets</b> festgelegt.*/
+
+	/**Im Konstruktor namens <b>LogInFrame</b> werden alle <b>Eigenschaften des Fensters und der Widgets bzw. Komponenten</b> festgelegt.<br>
+	 * Solche Eingenschaften wären zum Beispiel Hintergrundfarbe, Größe, Position am Bildschirm,...*/
 	public GameWonFrame()
 	{
-		/*dem Fenster wird ein neuer WindowClosingListener zugewiesen, der ausgeführt wird, wenn auf das Fenster geschlossen wird*/
+		/*Dem Fenster wird ein neuer WindowClosingListener zugewiesen.
+		 *Dieser Listener wird ausgeführt, wenn das Fenster geschlossen wird bzw. geschlossen werden soll.*/
 		addWindowListener(new WindowListener(this));
-		/*dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
+		/*Dem Fenster wird ein Icon zugewiesen, das in der Taskleiste angezeigt wird*/
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GameWonFrame.class.getResource("/view/images/Pac-Man_icon.PNG")));
-		/*der Titel der Fensters wird zugewiesen*/
+		/*Das Fenster bekommt den Titel "Gewonnen!".*/
 		setTitle("Gewonnen\u0021");
-		/*das Fenster wird sichtbar gemacht*/
+		/*Das Fenster wird sichtbar gemacht.*/
 		setVisible(true);
-		/*das Fenster ist in seiner Größe nicht veränderbar*/
+		/*Die Größe des Fensters ist nicht mehr veränderbar.
+		 * Das heißt, dass auch der Vollbildmodus nicht möglich ist.*/
 		setResizable(false);
-		/*die Größe des Fensters wird festgelegt*/
+		/*Die Größe des Fensters wird festgelegt.
+		 * Diese ist 1090 breit und 739 hoch.*/
 		setSize(FRAME_WIDTH, FRAME_HEIGHT);
-		/*die Position des Fensters am Bildschirm wird festgelegt*/
+		/*Die Position des Fensters (am Bildschirm) wird festgelegt.
+		 * Das Fenster ist allerdings trotzdem am Bildschirm verschiebbar.*/
 		setLocation(WINDOW_POSITION);
-		/*dem Fenster wird die "contentPane" (ein Panel) hinzugefügt*/
+		/*Dem Fenster wird das Panel "contentPane" hinzugefügt.*/
 		getContentPane().add(contentPane);
-		/*der contentPane wird eine Hintergrundfarbe zugewiesen*/
+		/*Der contentPane wird ihre zukünftige Hintergrundfarbe mitgeteilt.*/
 		contentPane.setBackground(BACKGROUND_COLOR);
-		/*der contentPane wird ein neues BorderLayout zugewiesen*/
+		/*Der contentPane wird ein BorderLayout zugewiesen.
+		 * Dieses dient zur erleichterten Position der einzelnen Komponenten am Bildschirm.*/
 		contentPane.setLayout(new BorderLayout());
 		
-		/*dem gratulationLabel wird der Text mit dem Spielernamen des Benutzers zugewiesen*/
+		/*Dem gratulationLabel wird der Text "GRATULATION jeweiliger Spielername !" hinzugefügt.
+		 * Wenn der Spielername also zum Beispiel "Das Dynamische Trio" ist, so lautet dieser Text "GRATULATION Das Dynamische Trio!".*/
 		gratulationLabel.setText("GRATULATION " + LogInFrame.getUsername() + "\u0021");
-		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
+		/*Die horizontale Ausrichtung des "gratulationLabels" wird auf das Zentrum (=Mitte des Fensters) gesetzt.*/
 		gratulationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		/*dem Text im gratulationLabel wird ein Schriftstil zugewiesen*/
-		gratulationLabel.setFont(new Font("arial", Font.PLAIN, 40));
-		/*dem Text im gratulationLabel wird eine Schriftfarbe zugewiesen*/
+		/*Dem Text im gratulationLabel wird die Schriftart "Arial" mit der Größe 40 zugewiesen:*/
+		gratulationLabel.setFont(new Font("Arial", Font.PLAIN, 40));
+		/*Dem Text im gratulationLabel wird die Farbe "weiß" gegeben.*/
 		gratulationLabel.setForeground(Color.CYAN);
 		
-		/*dem gratTextLabel wird der Hinweistext zugewiesen*/
+		/*Dem gratTextLabel wird ein Hinweistext zugewiesen.
+		 * Dieser Hinweißtext lautet "SIE HABEN GEWONNEN!!!"*/
 		gratTextLabel.setText("SIE HABEN GEWONNEN\u0021 \u003A\u0029");
-		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
+		/*Die horizontale Ausrichtung des "gratulationLabels" wird auf das Zentrum (=Mitte des Fensters) gesetzt.*/
 		gratTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		/*dem Text im gratTextLabel wird ein Schriftstil zugewiesen*/
-		gratTextLabel.setFont(new Font("arial", Font.PLAIN, 40));
-		/*dem Text im gratTextLabel wird eine Schriftfarbe zugewiesen*/
+		/*Dem Text im gratTextLabel wird die Schriftart "Arial" mit der Schriftgröße 40 zugewiesen.*/
+		gratTextLabel.setFont(new Font("Arial", Font.PLAIN, 40));
+		/*Dem Text im gratTextLabel wird die Farbe "cyan" gegeben.*/
 		gratTextLabel.setForeground(Color.CYAN);
 		
-		/*dem gratTextPanel wird ein neues BorderLayout hinzugefügt*/
+		/*Dem gratTextPanel wird ein BorderLayout hinzugefügt.*/
 		gratTextPanel.setLayout(new BorderLayout());
-		/*dem gratTextPanel wird eine Hintergrundfarbe zugewiesen*/
+		/*Dem gratTextPanel wird seine zukünftige Hintergrundfarbe zugewiesen.*/
 		gratTextPanel.setBackground(BACKGROUND_COLOR);
-		/*dem gratTextPanel wird das gratulationLabel im Norden des BorderLayouts hinzugefügt*/
+		/*Dem gratTextPanel wird das gratulationLabel hinzugefügt.
+		 * Dieses befindet sich im Norden des BorderLayouts. */
 		gratTextPanel.add(gratulationLabel, BorderLayout.NORTH);
-		/*dem gratTextPanel wird das gratTextLabel im Süden des BorderLayouts hinzugefügt*/
+		/*Dem gratTextPanel wird das gratTextLabel hinzugefügt.
+		 * Dieses befindet sich im Süden des BorderLayouts.*/
 		gratTextPanel.add(gratTextLabel, BorderLayout.SOUTH);
 		
-		/*dem Panel wird ein neues GridBagLayout hinzugefügt*/
+		/*Dem Panel wird ein GridBagLayout hinzugefügt.*/
 		gratulationPanel.setLayout(new GridBagLayout());
-		/*erstellt ein GridBagConstraint-Objekt mit, all seinen Feldern auf ihren Standardwert gesetzt*/
+		/*Es wird ein GridBagConstraint-Objekt erstellt.*/
 		GridBagConstraints center = new GridBagConstraints();
-		/*das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert*/
+		/*Das GridBagConstraint-Objekt wird im Zentrum des GridBagLayouts platziert.*/
 		center.anchor = GridBagConstraints.CENTER;
-		/*das GridBagConstraint-Objekt wird in seiner Größe nicht verändert*/
+		/*Das GridBagConstraint-Objekt ist in seiner Größe nun nicht veränderbar.*/
 		center.fill = GridBagConstraints.NONE;
-		/*dem Panel wird das Textfeld im Zentrum hinzugefügt*/
+		/*Dem gratulationPanel wird das Textfeld "gratTextPanel" im Zentrum hinzugefügt.*/
 		gratulationPanel.add(gratTextPanel);
-		/*die Hintergrundfarbe des Panels wird festgelegt*/
+		/*Die zukünftige Hintergrundfarbe wird dem Panels mitgeteilt.*/
 		gratulationPanel.setBackground(BACKGROUND_COLOR);
 		
-		/*dem playagainLabel wird der Fragetext zugewiesen*/
-		playagainLabel.setText("Nochmal\u003F");
-		/*die horizontale Ausrichtung des Textes wird auf ZENTRUM gesetzt*/
+		/*Dem playagainLabel wird der Fragetext zugewiesen.
+		 * Deiser lautet "Nocheinmal?".*/
+		playagainLabel.setText("Nocheinmal\u003F");
+		/*Die horizontale Ausrichtung des Textes wird auf das Zentrum (= Mitte) gesetzt.*/
 		playagainLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		/*dem Text im playagainLabel wird ein Schriftstil zugewiesen*/
-		playagainLabel.setFont(new Font("arial", Font.PLAIN, 38));
-		/*dem Text im playagainLabel wird eine Schriftfarbe zugewiesen*/
+		/*Dem Text im playagainLabel wird die Schriftart "Arial" mit dr Größe 38 gegeben.*/
+		playagainLabel.setFont(new Font("Arial", Font.PLAIN, 38));
+		/*Dem Text im playagainLabel wird die Schriftfarbe "magenta" gegeben.*/
 		playagainLabel.setForeground(Color.MAGENTA);
 		
-		/*dem ja-Button wird ein Schriftstil zugewiesen*/
-		jaButton.setFont(new Font("arial", Font.PLAIN, 38));
-		/*dem ja-Button wird ein Hinweistext zugewiesen*/
-		jaButton.setToolTipText("Nochmal spielen");
-		/*dem ja-Button wird ein ActionListener zugewiesen*/
+		/*Dem ja-Button wird die Schriftart "Arial" mit dr Größe 38 gegeben.*/
+		jaButton.setFont(new Font("Arial", Font.PLAIN, 38));
+		/*Dem ja-Button wird ein Hinweistext zugewiesen.
+		 * Dieser lautet "Nocheinmal spielen?".*/
+		jaButton.setToolTipText("Nocheinhmal spielen");
+		/*Dem ja-Button wird ein ActionListener zugewiesen.*/
 		jaButton.addActionListener(new ButtonListener(this, ButtonListener.REPEAT_GAME));
 		
-		/*dem nein-Button wird ein Schriftstil zugewiesen*/
-		neinButton.setFont(new Font("arial", Font.PLAIN, 38));
-		/*dem nein-Button wird ein Hinweistext zugewiesen*/
+		/*Dem nein-Button wird die Schriftart "Arial" mit dr Größe 38 gegeben.*/
+		neinButton.setFont(new Font("Arial", Font.PLAIN, 38));
+		/*Dem ja-Button wird ein Hinweistext zugewiesen.
+		 * Dieser lautet "Nocheinmal spielen?".*/
 		neinButton.setToolTipText("Spiel beenden");
-		/*dem nein-Button wird ein ActionListener zugewiesen*/
+		/*dem nein-Button wird ein ActionListener zugewiesen.*/
 		neinButton.addActionListener(new ButtonListener(this, ButtonListener.EXIT_GAME));
 		
-		/*dem buttonPanel wird ein neues FlowLayout hinzugefügt*/
+		/*Dem buttonPanel wird ein FlowLayout hinzugefügt.*/
 		buttonPanel.setLayout(new FlowLayout());
-		/*dem buttonPanel wird eine Hintergrundfarbe zugewiesen*/
+		/*Dem buttonPanel wird seine zukünftige Hintergrundfarbe mitgeteilt.*/
 		buttonPanel.setBackground(BACKGROUND_COLOR);
-		/*dem buttonPanel wird der ja-Button zugewiesen*/
+		/*Dem buttonPanel wird der ja-Button hizugefügt.*/
 		buttonPanel.add(jaButton);
-		/*dem buttonPanel wird der nein-Button zugewiesen*/
+		/*Dem buttonPanel wird der nein-Button zugewiesen.S*/
 		buttonPanel.add(neinButton);
 		
-		/*dem playagainPanel wird ein neues BorderLayout hinzugefügt*/
+		/*Dem playagainPanel wird ein BorderLayout hinzugefügt.*/
 		playagainPanel.setLayout(new BorderLayout());
-		/*dem playagainPanel wird eine Hintergrundfarbe zugewiesen*/
+		/*Dem playagainPanel wird seine zukünftige Hintergrundfarbe mitgeteilt.*/
 		playagainPanel.setBackground(BACKGROUND_COLOR);
-		/*dem playagainPanel wird das playagainLabel im Norden des BorderLayouts hinzugefügt*/
+		/*Dem playagainPanel wird das playagainLabel hinzugefügt.
+		 * Dieses befindet sich im Norden des BorderLayouts.*/
 		playagainPanel.add(playagainLabel, BorderLayout.NORTH);
-		/*dem playagainPanel wird das buttonPanel im Süden des BorderLayouts hinzugefügt*/
+		/*Dem playagainPanel wird das buttonPanel hinzugefügt.
+		 * Dieses befindet sich im Süden des BorderLayouts.*/
 		playagainPanel.add(buttonPanel, BorderLayout.SOUTH);
 		
-		/*der contentPane wird das wonImage_label im Norden des BorderLayouts hinzugefügt*/
+		/*Der contentPane wird das wonImage_label hinzugefügt.
+		 * Dieses befindet sich im Norden des BorderLayouts.*/
 		contentPane.add(wonImage_label, BorderLayout.NORTH);
-		/*der contentPane wird das gratulationPanel im Zentrum des BorderLayouts hinzugefügt*/
+		/*Der contentPane wird das gratulationPanel hinzugefügt.
+		 * Dieses befindet sich im Zentrum (=in der Mitte) des BorderLayouts.*/
 		contentPane.add(gratulationPanel, BorderLayout.CENTER);
-		/*der contentPane wird das playagainPanel im Süden des BorderLayouts hinzugefügt*/
+		/*Der contentPane wird das playagainPanel hinzugefügt.
+		 * Dieses befindet sich im Süden des BorderLayouts.*/
 		contentPane.add(playagainPanel, BorderLayout.SOUTH);
 	}
 }

@@ -48,12 +48,12 @@ public final class SteuerungListener extends KeyAdapter
 		{
 			GameMainFrame.spielerRechts();
 		}
-		
+		/* Wenn der Benutzer die Taste "J" oder die Taste "T" drückt, kann er im Textfeld für Chatnachrichten einen Text eingeben.*/
 		if ((keyEvent.getKeyCode() == KeyEvent.VK_J) || (keyEvent.getKeyCode() == KeyEvent.VK_T))
 		{
 			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
 		}
-		
+		/* Wenn der Benutzer die Taste "P" drückt, wird das Spiel pausiert.*/
 		if (keyEvent.getKeyCode() == KeyEvent.VK_P)
 		{
 			GameMainFrame.setSpielerAktiv(false);

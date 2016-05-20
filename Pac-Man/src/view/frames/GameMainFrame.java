@@ -1009,31 +1009,31 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		public void ausfuehren(int iPosYalt, int iPosXalt, Geist oGeist, JLabel lFarbe)
 		{
-			boolean bDarfInSpawnPointFahren = false;
+			boolean darfInSpawnPointFahren = false;
 			
-			int iZaehler;
-			for (iZaehler = 0; iZaehler < alWaende.size(); iZaehler++)
+			int i;
+			for (i = 0; i < alWaende.size(); i++)
 			{
-				if (alWaende.get(iZaehler).getFeldX() == iPosXalt && alWaende.get(iZaehler).getFeldY() == iPosYalt && alWaende.get(iZaehler).getFarbe() == SPAWN_POINT_INDEX)
+				if (alWaende.get(i).getFeldX() == iPosXalt && alWaende.get(i).getFeldY() == iPosYalt && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX)
 				{
-					bDarfInSpawnPointFahren = true;
+					darfInSpawnPointFahren = true;
 					break;
 				}
 			}
 
-			if (iZaehler >= alWaende.size() - 1)
+			if (i >= alWaende.size() - 1)
 			{
-				bDarfInSpawnPointFahren = false;
+				darfInSpawnPointFahren = false;
 			}
 
-			for (iZaehler = 0; iZaehler < alWaende.size(); iZaehler++)
+			for (i = 0; i < alWaende.size(); i++)
 			{
-				if (!bDarfInSpawnPointFahren)
+				if (!darfInSpawnPointFahren)
 				{
-					if ((alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == WAND_INDEX) ||
-						(alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == SPAWN_POINT_INDEX) ||
-						(alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == TELEPORTER_INDEX) ||
-						(alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == GEISTER_AUSGANG_INDEX))
+					if ((alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX) ||
+						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX) ||
+						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX) ||
+						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == GEISTER_AUSGANG_INDEX))
 					{
 						oGeist.setPosY(iPosYalt);
 						oGeist.setPosX(iPosXalt);
@@ -1042,8 +1042,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 				else
 				{
-					if (alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == WAND_INDEX ||
-					   (alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == TELEPORTER_INDEX))
+					if (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX ||
+					   (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX))
 					{
 						oGeist.setPosY(iPosYalt);
 						oGeist.setPosX(iPosXalt);
@@ -1052,35 +1052,65 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 			}
 
-			if (iZaehler >= alWaende.size() - 1)
+			if (i >= alWaende.size() - 1)
 			{
-				if (!bDarfInSpawnPointFahren)
-				{					
-					if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] != null || aEatingCoinsBool[oGeist.getPosY()][oGeist.getPosX()] != null)
+				if (!darfInSpawnPointFahren)
+				{	
+					try
 					{
-						if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] && (aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].getBackground() == GAENGE_FARBE))
+						if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] != null || aEatingCoinsBool[oGeist.getPosY()][oGeist.getPosX()])
 						{
-							aClassicCoinsBool[iPosYalt][iPosXalt] = true;
-							aSpielfeldArray[iPosYalt][iPosXalt].add(new JLabel(oIconClassicCoin));
-							aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] = false;
-							aSpielfeldArray[iPosYalt][iPosXalt].setVisible(false);
-							aSpielfeldArray[iPosYalt][iPosXalt].setVisible(true);
-							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].removeAll();
-							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+							if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] && (aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].getBackground() == GAENGE_FARBE))
+							{
+								aClassicCoinsBool[iPosYalt][iPosXalt] = true;
+								aSpielfeldArray[iPosYalt][iPosXalt].add(new JLabel(oIconClassicCoin));
+								aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] = false;
+								aSpielfeldArray[iPosYalt][iPosXalt].setVisible(false);
+								aSpielfeldArray[iPosYalt][iPosXalt].setVisible(true);
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].removeAll();
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+							}
+							else
+							{
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(false);
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
+							}
+							
 						}
 						else
 						{
 							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(false);
 							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
 							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
-						}
+						}				
 					}
-					else
+					catch(Exception ex)
 					{
-						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(false);
-						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
-						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
-					}				
+						try
+						{
+							if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] && (aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].getBackground() == GAENGE_FARBE))
+							{
+								aClassicCoinsBool[iPosYalt][iPosXalt] = true;
+								aSpielfeldArray[iPosYalt][iPosXalt].add(new JLabel(oIconClassicCoin));
+								aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] = false;
+								aSpielfeldArray[iPosYalt][iPosXalt].setVisible(false);
+								aSpielfeldArray[iPosYalt][iPosXalt].setVisible(true);
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].removeAll();
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+							}
+							else
+							{
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(false);
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
+							}
+						}
+						catch(Exception ec)
+						{}
+						
+					}
+					
 				}
 				else
 				{

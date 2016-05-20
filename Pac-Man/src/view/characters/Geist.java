@@ -18,42 +18,58 @@ import model.interfaces.ICharakterBewegen;
  */
 public class Geist implements ICharakterBewegen
 {
+	/**Die Variable <b>iPosX</b> speichert die aktuelle <b>Postition der Geister auf der X-Achse</b>.*/
 	private int iPosX = 0;
+	/**Die Variable <b>iPosY</b> speichert die aktuelle <b>Postition der Geister auf der Y-Achse</b>.*/
 	private int iPosY = 0;
 
 	/**
+	 * Die untenstehende Methode namens <b>setPosX ermittelt</b> die <b>Position des entsprechenden Geistes</b><br>
+	 * auf der <b>X-Achse</b> und <b>speichert</b> diesen Wert in der Variable <b>"iPosX"</b>.
 	 * 
-	 * @param iPosX
+	 * @param iPosX<br>
+	 * Diese Variable speichert die <b>aktuelle Position</b> des entsprechenden Geistes auf der <b>X-Achse</b>.
 	 */
 	public void setPosX(int iPosX)
 	{
+		/*Die Position des entsprechenden Geistes auf der X-Achse wird in iPosX gespeichert.*/
 		this.iPosX = iPosX;
 	}
 
 	/**
+	 * Die untenstehende Methode namens <b>setPosY ermittelt</b> die <b>Position des entsprechenden Geistes</b><br>
+	 * auf der <b>Y-Achse</b> und <b>speichert</b> diesen Wert in der Variable <b>"iPosY"</b>.
 	 * 
-	 * @param iPosY
+	 * @param iPosY<br>
+	 * Diese Variable speichert die <b>aktuelle Position</b> des entsprechenden Geistes auf der <b>Y-Achse</b>.
 	 */
 	public void setPosY(int iPosY)
 	{
+		/*Die Position des entsprechenden Geistes auf der Y-Achse wird in iPosX gespeichert.*/
 		this.iPosY = iPosY;
 	}
 
 	/**
+	 * Die untenstehende Methode namens <b>getPosX</b> gibt die Variable <b>iPosX</b> zurück.
 	 * 
-	 * @return
+	 * @return iPosX<br>
+	 * Diese Variable <b>gibt</b> die <b>aktuelle Position</b> des entsprechenden Geistes auf der <b>X-Achse zurück</b>.
 	 */
 	public int getPosX()
 	{
+		/*Die Position des Geistes auf der X-Achse wird zurückgegeben.*/
 		return iPosX;
 	}
 
 	/**
+	 * Die untenstehende Methode namens <b>getPosY</b> gibt die Variable <b>iPosY</b> zurück.
 	 * 
-	 * @return
+	 * @return iPosX<br>
+	 * Diese Variable <b>gibt</b> die <b>aktuelle Position</b> des entsprechenden Geistes auf der <b>Y-Achse zurück</b>.
 	 */
 	public int getPosY()
 	{
+		/*Die Position des Geistes auf der Y-Achse wird zurückgegeben.*/
 		return iPosY;
 	}
 
