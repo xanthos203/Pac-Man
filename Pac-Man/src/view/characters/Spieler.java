@@ -77,7 +77,7 @@ public class Spieler implements ICharakterBewegen
 	public void setPunktestand(double dPunktestand)
 	{
 		/*Wenn der Spieler gewonnen hat, wird nachfolgendes ausgeführt.*/
-		if ((dPunktestand >= 999999999999999L) && (iLeben > 0))
+		if ((dPunktestand >= 1831500) && (iLeben > 0))
 		{
 			/*Das Huptfenster wird unsichtbar gemacht.*/
 			GameMainFrame.getGameMainFrame().setVisible(false);
