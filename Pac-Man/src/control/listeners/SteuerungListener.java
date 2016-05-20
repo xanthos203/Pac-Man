@@ -3,6 +3,8 @@ package control.listeners;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+import javax.swing.JOptionPane;
+
 import view.frames.GameMainFrame;
 
 /**Diese <i>Listener-Klasse</i> namens <b>SteuerungListener</b> dient zur <b>Steuerung des Hauptcharakters namens Pac-Man</b>.<br>
@@ -27,47 +29,36 @@ public final class SteuerungListener extends KeyAdapter
 	{
 		/*Überprüfung der Tasten für die Option "WASD"
 		 * Wenn der Benutzer die Taste "W" drückt, wird die Methode "spielerRauf()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_W))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_W) || (keyEvent.getKeyCode() == KeyEvent.VK_UP))
 		{
 			GameMainFrame.spielerRauf();
 		}
 		/* Wenn der Benutzer die Taste "A" drückt, wird die Methode "spielerLinks()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_A))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_A) || (keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
 		{
 			GameMainFrame.spielerLinks();
 		}
 		/* Wenn der Benutzer die Taste "S" drückt, wird die Methode "spielerRunter()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_S))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_S) || (keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
 		{
 			GameMainFrame.spielerRunter();
 		}
 		/* Wenn der Benutzer die Taste "D" drückt, wird die Methode "spielerRechts()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_D))
+		if((keyEvent.getKeyCode() == KeyEvent.VK_D) || (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
 		{
 			GameMainFrame.spielerRechts();
 		}
 		
+		if ((keyEvent.getKeyCode() == KeyEvent.VK_J) || (keyEvent.getKeyCode() == KeyEvent.VK_T))
+		{
+			GameMainFrame.getChatnachrichtTextfeld().requestFocus();
+		}
 		
-		/*Überprüfung der Option "Pfeiltasten"
-		 * Wenn der Benutzer die Taste "Hoch" der Pfeiltasten drückt, wird die Methode "spielerRauf()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_UP))
+		if (keyEvent.getKeyCode() == KeyEvent.VK_P)
 		{
-			GameMainFrame.spielerRauf();
-		}
-		/*Wenn der Benutzer die Taste "Links" der Pfeiltasten drückt, wird die Methode "spielerLinks()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_LEFT))
-		{
-			GameMainFrame.spielerLinks();
-		}
-		/*Wenn der Benutzer die Taste "Hinunter" der Pfeiltasten drückt, wird die Methode "spielerRunter()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_DOWN))
-		{
-			GameMainFrame.spielerRunter();
-		}
-		/*Wenn der Benutzer die Taste "Rechts" der Pfeiltasten drückt, wird die Methode "spielerRechts()" in der Klasse "GameMainFrame" geöffnet.*/
-		if((keyEvent.getKeyCode() == KeyEvent.VK_RIGHT))
-		{
-			GameMainFrame.spielerRechts();
+			GameMainFrame.setSpielerAktiv(false);
+			JOptionPane.showMessageDialog(GameMainFrame.getGameMainFrame(), "Das Spiel wurde soeben pausiert\u002E",
+																			"Information", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

@@ -21,10 +21,10 @@ public final class TestClass
 {
 	public static void main(String[] args)
 	{
-		/**Die Klasse bzw. das Fenster "LogInFrame" wird aufgerufen.<br>*/
+		/*Die Klasse bzw. das Fenster "LogInFrame" wird aufgerufen.<br>*/
 		new LogInFrame();
 		
-		/**Der "Server" wird gestartet.*/
+		/*Der "Server" wird gestartet.*/
 		Server.start();
 	}
 }

@@ -1,5 +1,6 @@
 package control.listeners;
 
+import java.awt.Component;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -42,6 +43,8 @@ public final class WindowListener extends WindowAdapter
 	@Override
 	public void windowClosing(WindowEvent weEvent)
 	{
+		/*in parentComponent wird gespeichert, auf welchem Fenster der Dialog angezeigt wird*/
+		Component parentComponent = frameReference;
 		/*Die Variable "warning" speichert einen kleinen Warnhinweiß.*/
 		String warning = "M\u00F6chten Sie das Spiel wirklich beenden\u003F";
 		/*Die Variable "title" speichert den Text in der oberen (meist eingefärbten) Leiste.*/
@@ -61,7 +64,7 @@ public final class WindowListener extends WindowAdapter
 		}
 		
 		/*Ein neues JOptionPane wird erstellt. Dieses fragt den Benutzer, ob er das Spiel wirklich beenden möchte.*/
-		int optionPane = JOptionPane.showOptionDialog(null, warning, titel, optionType, messageType, null, optionen, optionen[0]);
+		int optionPane = JOptionPane.showOptionDialog(parentComponent, warning, titel, optionType, messageType, null, optionen, optionen[0]);
 		
 		/*Follgendes wird ausgeführt, wenn der Benutzer auf "Beenden" klickt.*/
 		if(optionPane == JOptionPane.YES_OPTION)

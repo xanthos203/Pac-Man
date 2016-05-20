@@ -1,5 +1,5 @@
 package model.interfaces;
-
+ 
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -14,7 +14,6 @@ import java.awt.Toolkit;
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * 
  * */
 public interface IWindowProperties
 {

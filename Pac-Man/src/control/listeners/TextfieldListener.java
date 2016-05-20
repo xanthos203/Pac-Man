@@ -31,7 +31,7 @@ public final class TextfieldListener extends KeyAdapter
 	/**Die Variable <b>referenceFrame</b> speichert die Information, von <b>welchem Fenster aus der Listener aufgerufen wurde</b>.*/
 	private JFrame 	referenceFrame;
 	/**Die Variable <b>referenceTextField</b> speichert die Information, von <b>welchem Textfeld aus der Listener aufgerufen wurde</b>.*/
-	private JTextField  referenceTextField;
+	private JTextField referenceTextField;
 	
 	/**Im Konstruktor wird festgehalten, auf <b>welches Fenster</b> und auf <b>welches Textfeld</b> sich der Listener bezieht.
 	 * 
@@ -62,9 +62,9 @@ public final class TextfieldListener extends KeyAdapter
 			if (referenceTextField.getText().isEmpty())
 			{
 				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\n"
-												  + "Der Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
-													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(referenceFrame, "Bitte geben Sie einen g\u00FCltigen Spielernamen ein\u0021\n"
+															+ "Der Spielername darf nur Buchstaben und Zahlen enthalten\u002E",
+															  "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
 				/*Das Programm startet von Vorne.*/
@@ -74,9 +74,9 @@ public final class TextfieldListener extends KeyAdapter
 			if (referenceTextField.getText().contains(" ") && (referenceTextField.getText().length() < maxZeichenLaenge))
 			{
 				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\n"
-												  + "Der Spielername darf keine Leerzeichen enthalten\u002E",
-													"Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(referenceFrame, "Bitte geben Sie einen Spielernamen ohne Leerzeichen ein\u0021\n"
+															+ "Der Spielername darf keine Leerzeichen enthalten\u002E",
+															  "Ung\u00FCltiger Name", JOptionPane.ERROR_MESSAGE);
 				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
 				/*Das Programm startet von Vorne.*/
@@ -86,9 +86,9 @@ public final class TextfieldListener extends KeyAdapter
 			if (referenceTextField.getText().length() > maxZeichenLaenge)
 			{
 				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\n"
-												  + "Der Spielername darf maximal " + maxZeichenLaenge+ " Zeichen lang sein\u002E",
-													"Zu langer Name", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(referenceFrame, "Bitte geben Sie einen k\u00FCrzeren Spielernamen ein\u0021\n"
+															+ "Der Spielername darf maximal " + maxZeichenLaenge+ " Zeichen lang sein\u002E",
+															  "Zu langer Name", JOptionPane.WARNING_MESSAGE);
 				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
 				/*Das Programm startet von Vorne.*/
@@ -98,9 +98,9 @@ public final class TextfieldListener extends KeyAdapter
 			if (!referenceTextField.getText().matches("[a-zA-Z[0-9]]+") && (referenceTextField.getText().length() < maxZeichenLaenge))
 			{
 				/*Eine sog. Fehlermeldung wird ausgegeben, um den Benutzer auf seinen Fehler aufmerksam zu machen.*/
-				JOptionPane.showMessageDialog(null, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\n"
-												  + "Der Spielername darf keine Sonderzeichen enthalten\u002E",
-													"Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(referenceFrame, "Bitte geben Sie einen Spielernamen ohne Sonderzeichen ein\u0021\n"
+															+ "Der Spielername darf keine Sonderzeichen enthalten\u002E",
+															  "Ung\u00FCltige Zeichen", JOptionPane.ERROR_MESSAGE);
 				/*Der bereits eingegebene Text im Textfeld wird gelöscht.*/
 				referenceTextField.setText(null);
 				/*Das Programm startet von Vorne.*/

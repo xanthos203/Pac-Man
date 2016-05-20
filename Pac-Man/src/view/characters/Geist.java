@@ -1,85 +1,91 @@
 package view.characters;
 
 import model.interfaces.ICharakterBewegen;
-import view.frames.GameMainFrame;
 
 /**
+ * In dieser Klasse namens <b>Geist</b> werden die <i>derzeitigen</i> <b>Positionen</b> <i>der vier verschiedenen Geister</i>,<br>
+ * <b>ermittelt</b> sowie <b>gespeichert</b>.<br>
+ * Nebenbei wird auch für die <b>zufällige Bewegung</b> <i>der Geister</i> <b>gesorgt</b>.<br>.
+ * <br>
+ * Die <i>Spieler-Klasse</i> implementiert das Inderface <b>ICharakterBewegen</b>.<br>
+ * Das Interface <i>ICharakterBewegen</i> schreibt die Methoden für die Positionierung und Bewegung der Charaktere vor</b>.<br>
+ * 
+ * @version 1.0
+ * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @version 1.0
  */
 public class Geist implements ICharakterBewegen
 {
-	private int iGeistHor;
-	private int iGeistVer;
-	
-//--------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int raufBewegen(int iPosY)
+	private int iPosX = 0;
+	private int iPosY = 0;
+
+	/**
+	 * 
+	 * @param iPosX
+	 */
+	public void setPosX(int iPosX)
 	{
-//		if (sName == "Greeny")
-		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
-			{
-				iPosY += 8;
-				iGeistVer = iPosY;
-			}
-		}
-		return iGeistVer;
+		this.iPosX = iPosX;
 	}
-//--------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int runterBewegen(int iPosY)
-	{ 
-//		if (sName == "Greeny")
-		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
-			{
-				iPosY -= 8;
-				iGeistVer = iPosY;
-			}
-		}
-		return iGeistVer;
-	}
-//-------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int rechtsBewegen(int iPosX)
+
+	/**
+	 * 
+	 * @param iPosY
+	 */
+	public void setPosY(int iPosY)
 	{
-//		if (sName == "Greeny")
-		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
-			{
-				iPosX += 8;
-				iGeistHor = iPosX;
-			}
-		}
-		return iGeistHor;
+		this.iPosY = iPosY;
 	}
-//------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int linksBewegen(int iPosX)
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getPosX()
 	{
-//		if (sName == "Greeny")
-		{
-			if (GameMainFrame.getSpielfeldArrayList().get(GameMainFrame.getFeldindex()).equals("0"))
-			{
-				iPosX -= 8;
-				iGeistHor = iPosX;
-			}
-		}
-		return iGeistHor;
+		return iPosX;
 	}
-//--------------------------------------------------------------------------------------------------------------------------
-	@Override
-	public int getX()
+
+	/**
+	 * 
+	 * @return
+	 */
+	public int getPosY()
 	{
-		return iGeistHor;
+		return iPosY;
 	}
-//--------------------------------------------------------------------------------------------------------------------------
+
 	@Override
-	public int getY()
+	public int raufBewegen(int iPosX, int iPosY)
 	{
-		return iGeistVer;
+		iPosY -= 1;
+		setPosY(iPosY);
+		return iPosY;
+	}
+
+	@Override
+	public int runterBewegen(int iPosX, int iPosY)
+	{
+		iPosY += 1;
+		setPosY(iPosY);
+		return iPosY;
+	}
+
+	@Override
+	public int linksBewegen(int iPosX, int iPosY)
+	{
+		iPosX -= 1;
+		setPosX(iPosX);
+		return iPosY;
+	}
+
+	@Override
+	public int rechtsBewegen(int iPosX, int iPosY)
+	{
+		iPosX += 1;
+		setPosX(iPosX);
+		return iPosY;
 	}
 }

@@ -38,9 +38,12 @@ public final class Server
 			}
 			// wenn wir hier angelangt sind, haben wir eine Verbindung
 		}
+		/* Funktioniert dies nicht, so wird folgende Teil ausgeführt.
+		 * Im kommenden Abschnitt wird eine Exception geworfen.*/
 		catch (Exception exException)
 		{
 			bIsConnected = false;
+			/* Eine Exception wird geworfen bzw. angezeigt.*/
 			exException.printStackTrace();
 		}
 	}

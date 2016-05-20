@@ -19,7 +19,6 @@ import view.frames.*;
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * 
  * */
 public final class ButtonListener implements ActionListener
 {
@@ -39,9 +38,9 @@ public final class ButtonListener implements ActionListener
 	 * Der Kontruktor ermittelt, von <b>welchem Fenster</b> sozusagen <i>"der Auftrag des Knopfdruckes"</i> kommt.<br>
 	 * Es wird ebenfalls festgehalten, <b>welche Aktion</b> der gedrückte Button ausführen soll.
 	 * @param dialog
-	 * Die Variable <i>dialog</i> gibt uns die Auskunft, <i>in welchem Fenster der Button gedrückt wurde</i>.<br>
+	 * Die Variable <i>dialog</i> gibt uns die Auskunft, <b>in welchem Fenster der Button gedrückt wurde</b>.<br>
 	 * @param task
-	 * Die Variable <i>task</i> beinhaltet Auskunft über die vom <i>Benutzer gewünschte nächstfolgende Aktion</i>, die ausgeführt werden soll.<br>*/
+	 * Die Variable <i>task</i> beinhaltet Auskunft über die vom <b>Benutzer gewünschte nächstfolgende Aktion</b>, die ausgeführt werden soll.<br>*/
 	public ButtonListener(JFrame dialog, int task)
 	{
 		/*In der Variable "referenceFrame" wird der Wert von "dialog" gespeichert.
