@@ -968,7 +968,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 					}
 				}
 				
-				if (iGeistFressen == 45)
+				if (iGeistFressen == 150)
 				{
 					bGeisterFressen = false;
 					iGeistFressen = 0;

@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 /**
- * Diese Methode wird vom Server aus Aufgerufen und erhält die gesendeten Nachrichten der Spieler.
+ * Diese Klasse namens <b>ClientHandler</b> wird vom <b>Server aus aufgerufen<b> und <b>erhält die gesendeten Nachrichten der Spielerteilnehmer</b> von ihm.<br>
  * 
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
@@ -19,7 +19,9 @@ public class ClientHandler implements Runnable
 	private Socket soSocket;
 	
 	/**
-	 *  In dieser Methode befindet sich der InputStreamReader welcher die gesendeten Nachrichten der Claients erhält und weiter gibt.
+	 * In dieser Methode names <b>ClientHandler</b> befindet sich der <b>InputStreamReader</b>.<br>
+	 * Dieser <i>erhält</i> die <i>gesendeten Nachrichten der Clients</i> und <i>gibt diese weiter</i>.<br>
+	 * 
 	 * @param soClientSocket
 	 */
 	public ClientHandler(Socket soClientSocket)
@@ -39,7 +41,8 @@ public class ClientHandler implements Runnable
 	} 
 	
 	/**
-	 * Diese Methode wird nur ausgeführt, wenn auch wirklich etwas gesendet wird.
+	 * Die untenstehende Methode namens <b>run</b> wird nur <b>ausgeführt</b>,<br>
+	 * wenn auch wirklich etwas <b>gesendet wurde</b>.
 	 */
 	public void run() 
 	{
@@ -58,8 +61,9 @@ public class ClientHandler implements Runnable
 	}
 	
 	/**
-	 * Hier wrid nur angegeben ob die Inizialisierung erfolg reich war oder nicht dies erfollgt über eine Boolische Variable mit true oder false.
-	 * @return
+	 * In der untenstehenden Methode names <b>bInitCH</b> wird die Variable <b>bInitCH zurückgegeben</b>.<br>
+	 * 
+	 * @return bInitCH
 	 */
 	public static boolean hasInitialized()
 	{
