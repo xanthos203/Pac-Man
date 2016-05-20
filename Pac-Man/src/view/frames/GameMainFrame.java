@@ -43,7 +43,6 @@ import view.gui.FeldWand;
  * @author Manuel Glantschnig
  * @author Thomas Mader-Ofer
  * @author Cristina Erhart
- * @author Andrea Mader-Ofer
  * @version 1.0
  */
 @SuppressWarnings("serial")
@@ -59,7 +58,7 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 	public static final Color  GAENGE_FARBE			 = Color.BLACK;
 	public static final Color  WAENDE_FARBE			 = Color.BLUE;
 	public static final Color  GEISTER_AUSGANG_FARBE = Color.BLACK;
-	public static final Color  TELEPORTER_FARBE		 = Color.YELLOW;
+	public static final Color  TELEPORTER_FARBE		 = Color.BLUE;
 	
 	public static final int    GANG_INDEX			 = Integer.parseInt(GANG);
 	public static final int    WAND_INDEX			 = Integer.parseInt(WAND);
@@ -683,8 +682,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 
 	public static String getSpielstandlabelText()
 	{
-		return "Spieler: " + LogInFrame.getUsername() + "  \u007C\u007C  Leben: " + oSpieler.getLeben()
-				+ "  \u007C\u007C  Punkte: " + String.format("%,.0f", oSpieler.getPunktestand());
+		return "Spieler: " + LogInFrame.getUsername() + "  ||  Leben: " + oSpieler.getLeben() + "  ||  Punkte: "
+				+ String.format("%,.0f", oSpieler.getPunktestand());
 	}
 
 	// -------------------------------------------------------------------------------------------------------------------
@@ -1010,31 +1009,31 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 		
 		public void ausfuehren(int iPosYalt, int iPosXalt, Geist oGeist, JLabel lFarbe)
 		{
-			boolean darfInSpawnPointFahren = false;
-
-			int i;
-			for (i = 0; i < alWaende.size(); i++)
+			boolean bDarfInSpawnPointFahren = false;
+			
+			int iZaehler;
+			for (iZaehler = 0; iZaehler < alWaende.size(); iZaehler++)
 			{
-				if (alWaende.get(i).getFeldX() == iPosXalt && alWaende.get(i).getFeldY() == iPosYalt && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX)
+				if (alWaende.get(iZaehler).getFeldX() == iPosXalt && alWaende.get(iZaehler).getFeldY() == iPosYalt && alWaende.get(iZaehler).getFarbe() == SPAWN_POINT_INDEX)
 				{
-					darfInSpawnPointFahren = true;
+					bDarfInSpawnPointFahren = true;
 					break;
 				}
 			}
 
-			if (i >= alWaende.size() - 1)
+			if (iZaehler >= alWaende.size() - 1)
 			{
-				darfInSpawnPointFahren = false;
+				bDarfInSpawnPointFahren = false;
 			}
 
-			for (i = 0; i < alWaende.size(); i++)
+			for (iZaehler = 0; iZaehler < alWaende.size(); iZaehler++)
 			{
-				if (!darfInSpawnPointFahren)
+				if (!bDarfInSpawnPointFahren)
 				{
-					if ((alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX) ||
-						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == SPAWN_POINT_INDEX) ||
-						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX) ||
-						(alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == GEISTER_AUSGANG_INDEX))
+					if ((alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == WAND_INDEX) ||
+						(alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == SPAWN_POINT_INDEX) ||
+						(alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == TELEPORTER_INDEX) ||
+						(alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == GEISTER_AUSGANG_INDEX))
 					{
 						oGeist.setPosY(iPosYalt);
 						oGeist.setPosX(iPosXalt);
@@ -1043,8 +1042,8 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 				else
 				{
-					if (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == WAND_INDEX ||
-					   (alWaende.get(i).getFeldX() == oGeist.getPosX() && alWaende.get(i).getFeldY() == oGeist.getPosY() && alWaende.get(i).getFarbe() == TELEPORTER_INDEX))
+					if (alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == WAND_INDEX ||
+					   (alWaende.get(iZaehler).getFeldX() == oGeist.getPosX() && alWaende.get(iZaehler).getFeldY() == oGeist.getPosY() && alWaende.get(iZaehler).getFarbe() == TELEPORTER_INDEX))
 					{
 						oGeist.setPosY(iPosYalt);
 						oGeist.setPosX(iPosXalt);
@@ -1053,20 +1052,35 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 				}
 			}
 
-			if (i >= alWaende.size() - 1)
+			if (iZaehler >= alWaende.size() - 1)
 			{
-				if (!darfInSpawnPointFahren)
-				{
-					if (aClassicCoinsBool[iPosYalt][iPosXalt] != null || aClassicCoinsBool[iPosYalt][iPosXalt] == null)
+				if (!bDarfInSpawnPointFahren)
+				{					
+					if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] != null || aEatingCoinsBool[oGeist.getPosY()][oGeist.getPosX()] != null)
 					{
-						JLabel icon = new JLabel(oIconClassicCoin);
-						aSpielfeldArray[iPosYalt][iPosXalt].setVisible(false);
-						aSpielfeldArray[iPosYalt][iPosXalt].add(icon);
-						aSpielfeldArray[iPosYalt][iPosXalt].setBackground(GAENGE_FARBE);
-						aSpielfeldArray[iPosYalt][iPosXalt].setVisible(true);
-						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].removeAll();
-						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+						if (aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] && (aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].getBackground() == GAENGE_FARBE))
+						{
+							aClassicCoinsBool[iPosYalt][iPosXalt] = true;
+							aSpielfeldArray[iPosYalt][iPosXalt].add(new JLabel(oIconClassicCoin));
+							aClassicCoinsBool[oGeist.getPosY()][oGeist.getPosX()] = false;
+							aSpielfeldArray[iPosYalt][iPosXalt].setVisible(false);
+							aSpielfeldArray[iPosYalt][iPosXalt].setVisible(true);
+							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].removeAll();
+							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+						}
+						else
+						{
+							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(false);
+							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+							aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
+						}
 					}
+					else
+					{
+						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(false);
+						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].add(lFarbe);
+						aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
+					}				
 				}
 				else
 				{
