@@ -20,11 +20,11 @@ public final class Server
 	private static boolean bIsConnected = false;
 	private static ArrayList<PrintWriter> alClientAusgabeStroeme;
 	
-	@SuppressWarnings("resource")
 	/**
 	 * Diese Methode wird aus der Hauptklasse aufegrufen, in welcher der Server gestartet wird.
 	 * Das Socket stellt die Grundlage für die spätere Komunikatin da.
 	 */
+	@SuppressWarnings("resource")
 	public static void start()
 	{
 		alClientAusgabeStroeme = new ArrayList<PrintWriter>();
