@@ -1106,11 +1106,9 @@ public final class GameMainFrame extends JFrame implements IWindowProperties
 								aSpielfeldArray[oGeist.getPosY()][oGeist.getPosX()].setVisible(true);
 							}
 						}
-						catch(Exception ec)
+						catch(Exception e)
 						{}
-						
 					}
-					
 				}
 				else
 				{
